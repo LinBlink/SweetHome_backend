@@ -10,3 +10,57 @@ services:
     ports:
       - "8848:8848"
       - "9848:9848"
+    networks:
+      - backend_network
+
+#  部署mysql 的最佳实践
+  mysql:
+    image: mysql:8.0.36 # 1. 指定具体版本，避免使用 latest
+    container_name: mysql
+    restart: always # 2. 生产环境建议设置为 always 或 unless-stopped
+
+    # 3. 环境变量管理（敏感信息推荐从 .env 文件读取）
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      TZ: Asia/Shanghai # 设置容器时区
+
+    # 4. 端口映射（如果仅内部服务访问，可省略 ports，改用 expose）
+    ports:
+      - "3306:3306"
+
+    # 5. 数据持久化与配置挂载
+    volumes:
+      - mysql_data:/var/lib/mysql # 数据文件
+      - ./mysql-config/my.cnf:/etc/mysql/conf.d/my.cnf # 自定义配置文件
+      - ./mysql-init:/docker-entrypoint-initdb.d # 初始化脚本目录
+
+    # 6. 安全与资源限制
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          memory: 1G
+
+    # 7. 健康检查（极为重要！）
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s # 给数据库初始化留出足够的时间
+    networks:
+      - backend_network
+
+# 定义持久化卷
+volumes:
+  mysql_data:
+    driver: local
+
+# 定义安全网络
+networks:
+  backend_network:
+    driver: bridge
