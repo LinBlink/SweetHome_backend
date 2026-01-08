@@ -1,11 +1,11 @@
 server:
-  port: 8081
+  port: 8080
   tomcat:
     uri-encoding: UTF-8
 
 spring:
   application:
-    name: auth
+    name: gateway
   cloud:
     nacos:
       server-addr: ${NACOS_SERVER_ADDR}:8848
@@ -20,8 +20,6 @@ spring:
       - optional:file:.env[.properties]
       - optional:nacos:common-spring.yaml
       - optional:nacos:common-logs.yaml
-      - optional:nacos:common-mybatis.yaml
-
 
 sh:
   jdbc:

@@ -1,11 +1,12 @@
 server:
-  port: 8081
+  port: 8082
   tomcat:
     uri-encoding: UTF-8
 
 spring:
   application:
-    name: auth
+    name: user-service
+
   cloud:
     nacos:
       server-addr: ${NACOS_SERVER_ADDR}:8848
@@ -21,12 +22,17 @@ spring:
       - optional:nacos:common-spring.yaml
       - optional:nacos:common-logs.yaml
       - optional:nacos:common-mybatis.yaml
-
+      - optional:nacos:common-dubbo.yaml
 
 sh:
   jdbc:
-    database: sh_auth
+    host: ${MYSQL_SERVER_ADDR}
+    password: ${MYSQL_ROOT_PASSWORD}
+    database: sh_user
+  nacos:
+    server-addr: ${NACOS_SERVER_ADDR}
 
 logging:
   level:
     asia.sweethome: debug
+
