@@ -31,19 +31,8 @@ services:
     # 5. 数据持久化与配置挂载
     volumes:
       - mysql_data:/var/lib/mysql # 数据文件
-      - ./mysql-config/my.cnf:/etc/mysql/conf.d/my.cnf # 自定义配置文件
-      - ./mysql-init:/docker-entrypoint-initdb.d # 初始化脚本目录
-
-    # 6. 安全与资源限制
-    security_opt:
-      - no-new-privileges:true
-    deploy:
-      resources:
-        limits:
-          cpus: '2.0'
-          memory: 2G
-        reservations:
-          memory: 1G
+      - ./docker/mysql/mysql-config/my.cnf:/etc/mysql/conf.d/my.cnf # 自定义配置文件
+      - ./docker/mysql/mysql-init:/docker-entrypoint-initdb.d # 初始化脚本目录
 
     # 7. 健康检查（极为重要！）
     healthcheck:
