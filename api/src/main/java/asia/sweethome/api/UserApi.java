@@ -1,6 +1,10 @@
 package asia.sweethome.api;
 
 import asia.sweethome.api.entity.dto.UserDTO;
+import asia.sweethome.api.entity.dto.UserRegisterDTO;
+import asia.sweethome.api.entity.vo.UserInfoVO;
+
+import java.util.List;
 
 /**
  * @description:
@@ -8,5 +12,11 @@ import asia.sweethome.api.entity.dto.UserDTO;
  * @date: 6/30/2026 3:52 PM
  */
 public interface UserApi {
-    UserDTO findUserById( Long id );
+    UserDTO findUserAndFamilyByPhone(String phone);
+
+    UserInfoVO createUser(UserRegisterDTO userRegisterDTO);
+
+    UserDTO findUserById(Long userId);
+
+    List<UserDTO> findUsersByIds(List<Long> userIds);
 }

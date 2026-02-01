@@ -1,0 +1,458 @@
+04:12:39.951-[LinPro][sys]-- INFO 912 --- [tTimer-thread-1] o.a.d.m.store.nacos.NacosMetadataReport  :  [DUBBO] start to publish all metadata., dubbo version: 3.3.3, current host: 192.168.150.1
+04:12:39.968-[LinPro][sys]-- INFO 912 --- [Report-thread-1] o.a.d.m.store.nacos.NacosMetadataReport  :  [DUBBO] store consumer metadata. Identifier : MetadataIdentifier{application='lia-chat-service-dubbo', serviceInterface='asia.sweethome.api.UserApi', version='', group='', side='consumer'}; definition: {release=3.3.3, pid=912, dubbo=2.0.2, interface=asia.sweethome.api.UserApi, application=lia-chat-service-dubbo, side=consumer, executor-management-mode=isolation, file-cache=true, register.ip=192.168.150.1, methods=createUser,findUserAndFamilyByPhone,findUserById,findUsersByIds, background=false, qos.port=22223, sticky=false, timeout=5000, unloadClusterRelated=false, timestamp=1783005640423}, dubbo version: 3.3.3, current host: 192.168.150.1
+04:12:39.970-[LinPro][sys]-- INFO 912 --- [Report-thread-1] o.a.d.m.store.nacos.NacosMetadataReport  :  [DUBBO] store provider metadata. Identifier : MetadataIdentifier{application='lia-chat-service-dubbo', serviceInterface='asia.sweethome.api.ChatApi', version='', group='', side='provider'}; definition: FullServiceDefinition{parameters={release=3.3.3, pid=912, anyhost=true, dubbo=2.0.2, interface=asia.sweethome.api.ChatApi, application=lia-chat-service-dubbo, side=provider, executor-management-mode=isolation, file-cache=true, methods=addMemberToGroupConversation,createGroupConversation,filterOnlineUserIds,removeMemberFromGroupConversation, deprecated=false, qos.port=22223, service-name-mapping=true, timeout=5000, generic=false, bind.port=20883, bind.ip=192.168.150.1, prefer.serialization=hessian2,fastjson2, background=false, dynamic=true, timestamp=1783005637660}} ServiceDefinition [canonicalName=asia.sweethome.api.ChatApi, codeSource=file:/Z:/PUBLIC/_GitProjects/SweetHome_backend/sh/api/target/classes/, methods=[MethodDefinition [name=filterOnlineUserIds, parameterTypes=[java.util.List<java.lang.Long>], returnType=java.util.List<java.lang.Long>], MethodDefinition [name=removeMemberFromGroupConversation, parameterTypes=[java.lang.Long, java.lang.Long], returnType=void], MethodDefinition [name=createGroupConversation, parameterTypes=[java.lang.Long, java.lang.String, java.util.List<java.lang.Long>], returnType=java.lang.Long], MethodDefinition [name=addMemberToGroupConversation, parameterTypes=[java.lang.Long, java.lang.Long], returnType=void]]], dubbo version: 3.3.3, current host: 192.168.150.1
+04:12:39.989-[LinPro][sys]-- INFO 912 --- [Report-thread-1] c.a.n.client.config.impl.ClientWorker    : [Config-fixed-public-127.0.0.1_8848] [publish-single] ok, dataId=asia.sweethome.api.ChatApi:::provider:lia-chat-service-dubbo, group=dubbo, tenant=public
+04:12:39.991-[LinPro][sys]-- INFO 912 --- [Report-thread-1] o.a.d.m.store.nacos.NacosMetadataReport  :  [DUBBO] store consumer metadata. Identifier : MetadataIdentifier{application='lia-chat-service-dubbo', serviceInterface='asia.sweethome.api.FamilyApi', version='', group='', side='consumer'}; definition: {release=3.3.3, pid=912, dubbo=2.0.2, interface=asia.sweethome.api.FamilyApi, application=lia-chat-service-dubbo, side=consumer, executor-management-mode=isolation, file-cache=true, register.ip=192.168.150.1, methods=createFamily,getFamilyByUserId,getFamilyRoleByUserId,getGenderByUserId,getRelation,joinFamily, background=false, qos.port=22223, sticky=false, timeout=5000, unloadClusterRelated=false, timestamp=1783005639430}, dubbo version: 3.3.3, current host: 192.168.150.1
+09:44:55.773-[LinPro][sys]--DEBUG 912 --- [enerContainer-2] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+09:44:55.774-[LinPro][sys]--DEBUG 912 --- [enerContainer-2] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+09:44:55.789-[LinPro][sys]--DEBUG 912 --- [enerContainer-2] a.s.c.m.C.selectList                     : <==      Total: 1
+09:44:55.791-[LinPro][sys]--DEBUG 912 --- [enerContainer-2] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+09:44:55.793-[LinPro][sys]--DEBUG 912 --- [enerContainer-2] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+09:44:55.799-[LinPro][sys]--DEBUG 912 --- [enerContainer-2] a.s.c.m.C.selectList                     : <==      Total: 2
+09:47:00.610-[LinPro][sys]--DEBUG 912 --- [enerContainer-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+09:47:00.611-[LinPro][sys]--DEBUG 912 --- [enerContainer-3] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+09:47:00.613-[LinPro][sys]--DEBUG 912 --- [enerContainer-3] a.s.c.m.C.selectList                     : <==      Total: 1
+09:47:00.615-[LinPro][sys]--DEBUG 912 --- [enerContainer-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+09:47:00.616-[LinPro][sys]--DEBUG 912 --- [enerContainer-3] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+09:47:00.619-[LinPro][sys]--DEBUG 912 --- [enerContainer-3] a.s.c.m.C.selectList                     : <==      Total: 2
+09:47:00.876-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+09:47:00.877-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+09:47:00.881-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : <==      Total: 1
+09:47:00.883-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? ) AND deleted_at IS NULL
+09:47:00.884-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long)
+09:47:00.888-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectBatchIds                 : <==      Total: 1
+09:47:00.890-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+09:47:00.891-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+09:47:00.895-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : <==      Total: 2
+09:47:00.897-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+09:47:00.898-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+09:47:00.905-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+09:47:00.915-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+09:47:00.916-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+09:47:00.919-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 1
+09:47:00.920-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? ) AND deleted_at IS NULL
+09:47:00.921-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long)
+09:47:00.924-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : <==      Total: 1
+09:47:00.926-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+09:47:00.927-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+09:47:00.929-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 2
+09:47:00.931-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+09:47:00.932-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+09:47:00.934-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+09:59:32.514-[LinPro][sys]--DEBUG 912 --- [enerContainer-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+09:59:32.515-[LinPro][sys]--DEBUG 912 --- [enerContainer-4] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+09:59:32.520-[LinPro][sys]--DEBUG 912 --- [enerContainer-4] a.s.c.m.C.selectList                     : <==      Total: 1
+09:59:32.522-[LinPro][sys]--DEBUG 912 --- [enerContainer-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+09:59:32.523-[LinPro][sys]--DEBUG 912 --- [enerContainer-4] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+09:59:32.525-[LinPro][sys]--DEBUG 912 --- [enerContainer-4] a.s.c.m.C.selectList                     : <==      Total: 2
+09:59:32.969-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+09:59:32.970-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+09:59:32.974-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : <==      Total: 1
+09:59:32.976-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? ) AND deleted_at IS NULL
+09:59:32.977-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long)
+09:59:32.981-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectBatchIds                 : <==      Total: 1
+09:59:32.982-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+09:59:32.983-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+09:59:32.987-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : <==      Total: 2
+09:59:32.989-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+09:59:32.989-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+09:59:32.993-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+09:59:33.002-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+09:59:33.003-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+09:59:33.006-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : <==      Total: 1
+09:59:33.007-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? ) AND deleted_at IS NULL
+09:59:33.008-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long)
+09:59:33.011-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectBatchIds                 : <==      Total: 1
+09:59:33.012-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+09:59:33.014-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+09:59:33.016-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : <==      Total: 2
+09:59:33.018-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+09:59:33.019-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+09:59:33.023-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+09:59:36.601-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+09:59:36.603-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+09:59:36.605-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 1
+09:59:36.606-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? ) AND deleted_at IS NULL
+09:59:36.607-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long)
+09:59:36.609-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : <==      Total: 1
+09:59:36.619-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.ConversationsMapper.insert  : ==>  Preparing: INSERT INTO conversations ( type, created_at, updated_at ) VALUES ( ?, ?, ? )
+09:59:36.621-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.ConversationsMapper.insert  : ==> Parameters: direct(String), 2026-07-03T09:59:36.611058500(LocalDateTime), 2026-07-03T09:59:36.611058500(LocalDateTime)
+09:59:36.641-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.ConversationsMapper.insert  : <==    Updates: 1
+09:59:36.659-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ?)
+09:59:36.660-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+09:59:36.663-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 0
+09:59:36.665-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.insert                         : ==>  Preparing: INSERT INTO conversation_members ( conversation_id, user_id, joined_at ) VALUES ( ?, ?, ? )
+09:59:36.666-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.insert                         : ==> Parameters: 7(Long), 10(Long), 2026-07-03T09:59:36.664362100(LocalDateTime)
+09:59:36.675-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.insert                         : <==    Updates: 1
+09:59:36.677-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ?)
+09:59:36.678-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+09:59:36.680-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 0
+09:59:36.681-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.insert                         : ==>  Preparing: INSERT INTO conversation_members ( conversation_id, user_id, joined_at ) VALUES ( ?, ?, ? )
+09:59:36.682-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.insert                         : ==> Parameters: 7(Long), 11(Long), 2026-07-03T09:59:36.680517200(LocalDateTime)
+09:59:36.691-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.insert                         : <==    Updates: 1
+09:59:36.694-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+09:59:36.694-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+09:59:36.697-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 2
+09:59:36.699-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+09:59:36.700-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+09:59:36.702-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+09:59:38.594-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+09:59:38.594-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+09:59:38.597-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 2
+09:59:38.598-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+09:59:38.598-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+09:59:38.601-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+09:59:38.603-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+09:59:38.604-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+09:59:38.606-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 1
+09:59:38.608-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+09:59:38.608-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+09:59:38.620-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 2
+09:59:38.621-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+09:59:38.622-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+09:59:38.625-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+09:59:39.385-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+09:59:39.386-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+09:59:39.389-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 2
+09:59:39.390-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+09:59:39.390-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+09:59:39.392-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+09:59:39.395-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+09:59:39.396-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+09:59:39.402-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 1
+09:59:39.403-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+09:59:39.404-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+09:59:39.407-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 2
+09:59:39.410-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+09:59:39.410-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+09:59:39.414-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:00:54.570-[LinPro][sys]--DEBUG 912 --- [enerContainer-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:00:54.571-[LinPro][sys]--DEBUG 912 --- [enerContainer-5] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:00:54.574-[LinPro][sys]--DEBUG 912 --- [enerContainer-5] a.s.c.m.C.selectList                     : <==      Total: 2
+10:00:54.575-[LinPro][sys]--DEBUG 912 --- [enerContainer-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:00:54.576-[LinPro][sys]--DEBUG 912 --- [enerContainer-5] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:00:54.578-[LinPro][sys]--DEBUG 912 --- [enerContainer-5] a.s.c.m.C.selectList                     : <==      Total: 2
+10:00:54.580-[LinPro][sys]--DEBUG 912 --- [enerContainer-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:00:54.581-[LinPro][sys]--DEBUG 912 --- [enerContainer-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:00:54.585-[LinPro][sys]--DEBUG 912 --- [enerContainer-5] a.s.c.m.C.selectList                     : <==      Total: 2
+10:00:54.840-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:00:54.841-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:00:54.845-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : <==      Total: 2
+10:00:54.846-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:00:54.846-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:00:54.849-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:00:54.851-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:00:54.852-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:00:54.854-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : <==      Total: 2
+10:00:54.857-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:00:54.857-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+10:00:54.860-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:00:54.862-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:00:54.862-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:00:54.865-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : <==      Total: 2
+10:00:54.866-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:00:54.867-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:00:54.870-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:00:54.928-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:00:54.929-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:00:54.933-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : <==      Total: 2
+10:00:54.935-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:00:54.936-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:00:54.939-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:00:54.942-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:00:54.943-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:00:54.946-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : <==      Total: 2
+10:00:54.948-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:00:54.949-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+10:00:54.952-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:00:54.956-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:00:54.957-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:00:54.961-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : <==      Total: 2
+10:00:54.962-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:00:54.963-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:00:54.965-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:00:59.556-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:00:59.557-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:00:59.560-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 2
+10:00:59.561-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:00:59.562-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:00:59.564-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:00:59.567-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:00:59.567-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:00:59.570-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 1
+10:00:59.571-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:00:59.571-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:00:59.573-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 2
+10:00:59.575-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:00:59.575-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:00:59.578-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:01:01.133-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:01:01.135-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:01:01.137-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:01.138-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:01:01.139-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:01:01.142-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:01:01.143-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:01:01.144-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:01:01.146-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 1
+10:01:01.148-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:01:01.149-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:01:01.151-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:01.153-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:01:01.154-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:01:01.156-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:01:01.730-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:01:01.731-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:01:01.733-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:01.734-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:01:01.735-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:01:01.738-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:01:01.739-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:01:01.740-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:01:01.743-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 1
+10:01:01.744-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:01:01.745-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:01:01.748-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:01.750-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:01:01.751-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:01:01.753-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:01:02.161-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:01:02.163-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:01:02.165-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:02.166-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:01:02.167-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:01:02.169-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:01:02.171-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:01:02.172-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:01:02.174-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : <==      Total: 1
+10:01:02.176-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:01:02.177-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:01:02.180-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:02.181-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:01:02.182-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:01:02.185-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:01:02.391-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:01:02.391-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:01:02.395-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:02.397-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:01:02.398-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:01:02.402-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:01:02.404-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:01:02.405-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:01:02.407-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : <==      Total: 1
+10:01:02.409-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:01:02.409-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:01:02.412-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:02.413-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:01:02.414-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:01:02.417-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:01:02.971-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:01:02.972-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:01:02.974-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:02.976-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:01:02.976-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:01:02.979-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:01:02.980-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:01:02.981-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:01:02.984-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 1
+10:01:02.986-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:01:02.986-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:01:02.988-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:02.990-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:01:02.991-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:01:02.993-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:01:07.607-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:01:07.609-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:01:07.611-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:07.613-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:01:07.614-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:01:07.616-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:01:07.618-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:01:07.619-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:01:07.622-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 1
+10:01:07.623-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:01:07.624-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:01:07.627-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:07.629-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:01:07.629-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:01:07.632-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:01:18.416-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:01:18.418-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:01:18.421-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:18.422-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:01:18.423-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:01:18.426-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:01:18.428-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:01:18.429-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:01:18.432-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : <==      Total: 1
+10:01:18.433-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:01:18.434-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:01:18.437-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:18.438-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:01:18.439-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:01:18.442-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:01:27.042-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:01:27.044-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:01:27.046-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:27.047-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:01:27.048-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:01:27.051-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:01:27.053-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:01:27.054-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:01:27.057-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 1
+10:01:27.058-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:01:27.059-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:01:27.061-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:27.062-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:01:27.063-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:01:27.065-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:01:27.603-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:01:27.604-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:01:27.607-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:27.608-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:01:27.610-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:01:27.613-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:01:27.615-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:01:27.615-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:01:27.618-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 1
+10:01:27.620-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:01:27.621-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:01:27.623-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:27.625-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:01:27.626-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:01:27.628-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:01:36.859-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:01:36.860-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:01:36.864-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:36.865-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:01:36.866-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:01:36.869-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:01:36.872-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:01:36.873-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:01:36.876-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 1
+10:01:36.878-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:01:36.879-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:01:36.882-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:01:36.883-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:01:36.884-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:01:36.886-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:02:03.890-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:02:03.891-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:02:03.894-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 2
+10:02:03.896-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:02:03.897-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:02:03.900-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:02:03.902-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:02:03.903-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:02:03.906-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 1
+10:02:03.907-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:02:03.907-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:02:03.911-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 2
+10:02:03.912-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:02:03.913-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:02:03.915-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:02:59.570-[LinPro][sys]--DEBUG 912 --- [enerContainer-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:02:59.571-[LinPro][sys]--DEBUG 912 --- [enerContainer-6] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+10:02:59.574-[LinPro][sys]--DEBUG 912 --- [enerContainer-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:02:59.575-[LinPro][sys]--DEBUG 912 --- [enerContainer-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:02:59.577-[LinPro][sys]--DEBUG 912 --- [enerContainer-6] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:02:59.580-[LinPro][sys]--DEBUG 912 --- [enerContainer-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:02:59.582-[LinPro][sys]--DEBUG 912 --- [enerContainer-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:02:59.582-[LinPro][sys]--DEBUG 912 --- [enerContainer-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:02:59.585-[LinPro][sys]--DEBUG 912 --- [enerContainer-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:02:59.796-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:02:59.796-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+10:02:59.800-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : <==      Total: 2
+10:02:59.801-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:02:59.802-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:02:59.804-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:02:59.806-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:02:59.807-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:02:59.812-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : <==      Total: 2
+10:02:59.813-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:02:59.814-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+10:02:59.816-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:02:59.817-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:02:59.818-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:02:59.821-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : <==      Total: 2
+10:02:59.822-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:02:59.823-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:02:59.826-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:02:59.867-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:02:59.868-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+10:02:59.871-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : <==      Total: 2
+10:02:59.873-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:02:59.874-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:02:59.877-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:02:59.879-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:02:59.880-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:02:59.883-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : <==      Total: 2
+10:02:59.884-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:02:59.885-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+10:02:59.888-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:02:59.889-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:02:59.890-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:02:59.892-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : <==      Total: 2
+10:02:59.894-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:02:59.895-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:02:59.897-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:03:01.915-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:03:01.916-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+10:03:01.918-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 2
+10:03:01.919-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:03:01.920-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:03:01.923-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:03:01.924-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:03:01.925-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:03:01.927-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 1
+10:03:01.929-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:03:01.929-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:03:01.931-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 2
+10:03:01.933-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:03:01.934-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:03:01.936-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:03:02.682-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:03:02.682-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+10:03:02.686-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 2
+10:03:02.687-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:03:02.688-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:03:02.691-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:03:02.692-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:03:02.693-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:03:02.697-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 1
+10:03:02.699-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:03:02.700-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:03:02.703-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 2
+10:03:02.704-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:03:02.705-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:03:02.707-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:03:03.246-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:03:03.247-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:03:03.250-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : <==      Total: 2
+10:03:03.252-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:03:03.252-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:03:03.255-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:03:03.257-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:03:03.258-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:03:03.261-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : <==      Total: 1
+10:03:03.263-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:03:03.264-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:03:03.267-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : <==      Total: 2
+10:03:03.268-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:03:03.269-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:03:03.272-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:03:04.869-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:03:04.871-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+10:03:04.873-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : <==      Total: 2
+10:03:04.874-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:03:04.874-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:03:04.877-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:03:04.878-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:03:04.879-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:03:04.881-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : <==      Total: 1
+10:03:04.883-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:03:04.883-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:03:04.885-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : <==      Total: 2
+10:03:04.887-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:03:04.888-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:03:04.889-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1

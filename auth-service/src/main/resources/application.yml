@@ -5,13 +5,14 @@ server:
 
 spring:
   application:
-    name: auth
+    name: auth-service
   cloud:
     nacos:
       server-addr: ${NACOS_SERVER_ADDR}:8848
       config:
         group: DEFAULT_GROUP
         file-extension: yaml
+        encode: UTF-8
         namespace: ${NACOS_NAMESPACE}
       discovery:
         namespace: ${NACOS_NAMESPACE}
@@ -22,10 +23,33 @@ spring:
       - optional:nacos:common-logs.yaml
       - optional:nacos:common-mybatis.yaml
 
+# 不复用 common-dubbo.yaml：本服务需要和 user/family/chat 各自在同一台机器上跑（本地联调），
+# Dubbo 协议端口/QoS 端口若都用默认值（20880/22222）会互相抢占，这里每个服务显式指定不同端口。
+dubbo:
+  application:
+    name: lia-auth-service-dubbo
+    qos-port: 22220
+  protocol:
+    name: dubbo
+    port: 20880
+  registry:
+    address: nacos://${NACOS_SERVER_ADDR}:8848
+  consumer:
+    timeout: 5000
+  provider:
+    timeout: 5000
 
 sh:
   jdbc:
-    database: sh_auth
+    host: ${MYSQL_SERVER_ADDR}
+    password: ${MYSQL_ROOT_PASSWORD}
+    database: sweethome
+  nacos:
+    server-addr: ${NACOS_SERVER_ADDR}
+
+jwt:
+  private-key: ${JWT_PRIVATE_KEY}
+  public-key: ${JWT_PUBLIC_KEY}
 
 logging:
   level:

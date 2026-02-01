@@ -1,0 +1,386 @@
+03:31:47.222-[LinPro][sys]-- INFO 23528 --- [tTimer-thread-1] o.a.d.m.store.nacos.NacosMetadataReport  :  [DUBBO] start to publish all metadata., dubbo version: 3.3.3, current host: 192.168.150.1
+03:31:54.391-[LinPro][sys]-- INFO 23528 --- [Report-thread-1] o.a.d.m.store.nacos.NacosMetadataReport  :  [DUBBO] store provider metadata. Identifier : MetadataIdentifier{application='lia-family-service-dubbo', serviceInterface='asia.sweethome.api.FamilyApi', version='', group='', side='provider'}; definition: FullServiceDefinition{parameters={side=provider, anyhost=true, application=lia-family-service-dubbo, dubbo=2.0.2, pid=23528, release=3.3.3, interface=asia.sweethome.api.FamilyApi, executor-management-mode=isolation, file-cache=true, methods=createFamily,getFamilyByUserId,getFamilyRoleByUserId,getGenderByUserId,getRelation,joinFamily, deprecated=false, qos.port=22222, service-name-mapping=true, timeout=5000, generic=false, bind.port=20882, bind.ip=192.168.150.1, prefer.serialization=hessian2,fastjson2, background=false, dynamic=true, timestamp=1783005629352}} ServiceDefinition [canonicalName=asia.sweethome.api.FamilyApi, codeSource=file:/Z:/PUBLIC/_GitProjects/SweetHome_backend/sh/api/target/classes/, methods=[MethodDefinition [name=joinFamily, parameterTypes=[asia.sweethome.api.entity.dto.FamilyJoinInfoDTO], returnType=asia.sweethome.api.entity.dto.FamilyDTO], MethodDefinition [name=createFamily, parameterTypes=[asia.sweethome.api.entity.dto.FamilyCreateInfoDTO], returnType=asia.sweethome.api.entity.dto.FamilyDTO], MethodDefinition [name=getGenderByUserId, parameterTypes=[java.lang.Long], returnType=java.lang.String], MethodDefinition [name=getFamilyByUserId, parameterTypes=[java.lang.Long], returnType=asia.sweethome.api.entity.dto.FamilyDTO], MethodDefinition [name=getRelation, parameterTypes=[asia.sweethome.api.entity.dto.RelationQueryDTO], returnType=asia.sweethome.api.entity.dto.RelationDTO], MethodDefinition [name=getFamilyRoleByUserId, parameterTypes=[java.lang.Long], returnType=java.lang.String]]], dubbo version: 3.3.3, current host: 192.168.150.1
+03:31:54.427-[LinPro][sys]-- INFO 23528 --- [Report-thread-1] c.a.n.client.config.impl.ClientWorker    : [Config-fixed-public-127.0.0.1_8848] [publish-single] ok, dataId=asia.sweethome.api.FamilyApi:::provider:lia-family-service-dubbo, group=dubbo, tenant=public
+03:31:54.430-[LinPro][sys]-- INFO 23528 --- [Report-thread-1] o.a.d.m.store.nacos.NacosMetadataReport  :  [DUBBO] store consumer metadata. Identifier : MetadataIdentifier{application='lia-family-service-dubbo', serviceInterface='asia.sweethome.api.ChatApi', version='', group='', side='consumer'}; definition: {side=consumer, application=lia-family-service-dubbo, dubbo=2.0.2, pid=23528, release=3.3.3, interface=asia.sweethome.api.ChatApi, executor-management-mode=isolation, file-cache=true, register.ip=192.168.150.1, methods=addMemberToGroupConversation,createGroupConversation,filterOnlineUserIds,removeMemberFromGroupConversation, background=false, qos.port=22222, sticky=false, timeout=5000, unloadClusterRelated=false, timestamp=1783005632823}, dubbo version: 3.3.3, current host: 192.168.150.1
+03:31:54.432-[LinPro][sys]-- INFO 23528 --- [Report-thread-1] o.a.d.m.store.nacos.NacosMetadataReport  :  [DUBBO] store consumer metadata. Identifier : MetadataIdentifier{application='lia-family-service-dubbo', serviceInterface='asia.sweethome.api.UserApi', version='', group='', side='consumer'}; definition: {side=consumer, application=lia-family-service-dubbo, dubbo=2.0.2, pid=23528, release=3.3.3, interface=asia.sweethome.api.UserApi, executor-management-mode=isolation, file-cache=true, register.ip=192.168.150.1, methods=createUser,findUserAndFamilyByPhone,findUserById,findUsersByIds, background=false, qos.port=22222, sticky=false, timeout=5000, unloadClusterRelated=false, timestamp=1783005632006}, dubbo version: 3.3.3, current host: 192.168.150.1
+09:47:00.404-[LinPro][sys]--DEBUG 23528 --- [:20882-thread-9] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+09:47:00.405-[LinPro][sys]--DEBUG 23528 --- [:20882-thread-9] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+09:47:00.413-[LinPro][sys]--DEBUG 23528 --- [:20882-thread-9] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+09:47:00.413-[LinPro][sys]--DEBUG 23528 --- [:20882-thread-9] a.s.f.mapper.FamiliesMapper.selectById   : ==>  Preparing: SELECT id,name,invite_code,invite_expires_at,created_by,created_at,updated_at,deleted_at FROM families WHERE id=? AND deleted_at IS NULL
+09:47:00.414-[LinPro][sys]--DEBUG 23528 --- [:20882-thread-9] a.s.f.mapper.FamiliesMapper.selectById   : ==> Parameters: 11(Long)
+09:47:00.419-[LinPro][sys]--DEBUG 23528 --- [:20882-thread-9] a.s.f.mapper.FamiliesMapper.selectById   : <==      Total: 1
+09:47:00.427-[LinPro][sys]--DEBUG 23528 --- [20882-thread-10] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+09:47:00.428-[LinPro][sys]--DEBUG 23528 --- [20882-thread-10] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+09:47:00.430-[LinPro][sys]--DEBUG 23528 --- [20882-thread-10] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+09:47:04.754-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-2] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND user_id = ? AND deleted_at IS NULL)
+09:47:04.754-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-2] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long), 10(Long)
+09:47:04.771-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-2] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+09:47:04.774-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-2] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+09:47:04.775-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-2] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+09:47:04.779-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-2] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+09:47:04.796-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-2] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+09:47:04.797-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-2] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+09:47:04.802-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-2] a.s.f.m.F.selectList                     : <==      Total: 1
+09:47:05.775-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND user_id = ? AND deleted_at IS NULL)
+09:47:05.775-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long), 10(Long)
+09:47:05.778-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+09:47:05.779-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.mapper.FamiliesMapper.selectById   : ==>  Preparing: SELECT id,name,invite_code,invite_expires_at,created_by,created_at,updated_at,deleted_at FROM families WHERE id=? AND deleted_at IS NULL
+09:47:05.780-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.mapper.FamiliesMapper.selectById   : ==> Parameters: 11(Long)
+09:47:05.782-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.mapper.FamiliesMapper.selectById   : <==      Total: 1
+09:47:13.219-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-4] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND user_id = ? AND deleted_at IS NULL)
+09:47:13.220-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-4] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long), 10(Long)
+09:47:13.223-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-4] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+09:47:13.225-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-4] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+09:47:13.226-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-4] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+09:47:13.228-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-4] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+09:47:13.241-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-4] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+09:47:13.242-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-4] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+09:47:13.245-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-4] a.s.f.m.F.selectList                     : <==      Total: 1
+09:59:35.828-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-6] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND user_id = ? AND deleted_at IS NULL)
+09:59:35.829-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-6] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long), 10(Long)
+09:59:35.832-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-6] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+09:59:35.833-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-6] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+09:59:35.833-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-6] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+09:59:35.836-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-6] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+09:59:35.866-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-6] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+09:59:35.867-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-6] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+09:59:35.870-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-6] a.s.f.m.F.selectList                     : <==      Total: 1
+09:59:36.796-[LinPro][sys]--DEBUG 23528 --- [20882-thread-11] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+09:59:36.797-[LinPro][sys]--DEBUG 23528 --- [20882-thread-11] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+09:59:36.800-[LinPro][sys]--DEBUG 23528 --- [20882-thread-11] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+09:59:36.801-[LinPro][sys]--DEBUG 23528 --- [20882-thread-11] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+09:59:36.802-[LinPro][sys]--DEBUG 23528 --- [20882-thread-11] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+09:59:36.805-[LinPro][sys]--DEBUG 23528 --- [20882-thread-11] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+09:59:36.809-[LinPro][sys]--DEBUG 23528 --- [20882-thread-11] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+09:59:36.809-[LinPro][sys]--DEBUG 23528 --- [20882-thread-11] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+09:59:36.812-[LinPro][sys]--DEBUG 23528 --- [20882-thread-11] a.s.f.m.F.selectList                     : <==      Total: 1
+09:59:36.814-[LinPro][sys]--DEBUG 23528 --- [20882-thread-11] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+09:59:36.815-[LinPro][sys]--DEBUG 23528 --- [20882-thread-11] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+09:59:36.819-[LinPro][sys]--DEBUG 23528 --- [20882-thread-11] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+09:59:38.641-[LinPro][sys]--DEBUG 23528 --- [20882-thread-12] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+09:59:38.642-[LinPro][sys]--DEBUG 23528 --- [20882-thread-12] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+09:59:38.646-[LinPro][sys]--DEBUG 23528 --- [20882-thread-12] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+09:59:38.647-[LinPro][sys]--DEBUG 23528 --- [20882-thread-12] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+09:59:38.648-[LinPro][sys]--DEBUG 23528 --- [20882-thread-12] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+09:59:38.650-[LinPro][sys]--DEBUG 23528 --- [20882-thread-12] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+09:59:38.651-[LinPro][sys]--DEBUG 23528 --- [20882-thread-12] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+09:59:38.652-[LinPro][sys]--DEBUG 23528 --- [20882-thread-12] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+09:59:38.655-[LinPro][sys]--DEBUG 23528 --- [20882-thread-12] a.s.f.m.F.selectList                     : <==      Total: 1
+09:59:38.655-[LinPro][sys]--DEBUG 23528 --- [20882-thread-12] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+09:59:38.657-[LinPro][sys]--DEBUG 23528 --- [20882-thread-12] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+09:59:38.659-[LinPro][sys]--DEBUG 23528 --- [20882-thread-12] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+09:59:39.434-[LinPro][sys]--DEBUG 23528 --- [20882-thread-13] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+09:59:39.435-[LinPro][sys]--DEBUG 23528 --- [20882-thread-13] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+09:59:39.439-[LinPro][sys]--DEBUG 23528 --- [20882-thread-13] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+09:59:39.441-[LinPro][sys]--DEBUG 23528 --- [20882-thread-13] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+09:59:39.441-[LinPro][sys]--DEBUG 23528 --- [20882-thread-13] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+09:59:39.443-[LinPro][sys]--DEBUG 23528 --- [20882-thread-13] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+09:59:39.446-[LinPro][sys]--DEBUG 23528 --- [20882-thread-13] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+09:59:39.447-[LinPro][sys]--DEBUG 23528 --- [20882-thread-13] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+09:59:39.450-[LinPro][sys]--DEBUG 23528 --- [20882-thread-13] a.s.f.m.F.selectList                     : <==      Total: 1
+09:59:39.452-[LinPro][sys]--DEBUG 23528 --- [20882-thread-13] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+09:59:39.452-[LinPro][sys]--DEBUG 23528 --- [20882-thread-13] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+09:59:39.456-[LinPro][sys]--DEBUG 23528 --- [20882-thread-13] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:00:54.391-[LinPro][sys]--DEBUG 23528 --- [20882-thread-14] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:00:54.392-[LinPro][sys]--DEBUG 23528 --- [20882-thread-14] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:00:54.395-[LinPro][sys]--DEBUG 23528 --- [20882-thread-14] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:00:54.396-[LinPro][sys]--DEBUG 23528 --- [20882-thread-14] a.s.f.mapper.FamiliesMapper.selectById   : ==>  Preparing: SELECT id,name,invite_code,invite_expires_at,created_by,created_at,updated_at,deleted_at FROM families WHERE id=? AND deleted_at IS NULL
+10:00:54.396-[LinPro][sys]--DEBUG 23528 --- [20882-thread-14] a.s.f.mapper.FamiliesMapper.selectById   : ==> Parameters: 11(Long)
+10:00:54.399-[LinPro][sys]--DEBUG 23528 --- [20882-thread-14] a.s.f.mapper.FamiliesMapper.selectById   : <==      Total: 1
+10:00:54.405-[LinPro][sys]--DEBUG 23528 --- [20882-thread-15] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:00:54.406-[LinPro][sys]--DEBUG 23528 --- [20882-thread-15] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:00:54.409-[LinPro][sys]--DEBUG 23528 --- [20882-thread-15] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:00:54.889-[LinPro][sys]--DEBUG 23528 --- [20882-thread-16] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:00:54.889-[LinPro][sys]--DEBUG 23528 --- [20882-thread-16] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:00:54.894-[LinPro][sys]--DEBUG 23528 --- [20882-thread-16] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:00:54.895-[LinPro][sys]--DEBUG 23528 --- [20882-thread-16] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:00:54.897-[LinPro][sys]--DEBUG 23528 --- [20882-thread-16] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:00:54.901-[LinPro][sys]--DEBUG 23528 --- [20882-thread-16] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:00:54.903-[LinPro][sys]--DEBUG 23528 --- [20882-thread-16] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:00:54.904-[LinPro][sys]--DEBUG 23528 --- [20882-thread-16] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:00:54.907-[LinPro][sys]--DEBUG 23528 --- [20882-thread-16] a.s.f.m.F.selectList                     : <==      Total: 1
+10:00:54.909-[LinPro][sys]--DEBUG 23528 --- [20882-thread-16] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:00:54.910-[LinPro][sys]--DEBUG 23528 --- [20882-thread-16] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:00:54.914-[LinPro][sys]--DEBUG 23528 --- [20882-thread-16] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:00:54.983-[LinPro][sys]--DEBUG 23528 --- [20882-thread-17] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:00:54.984-[LinPro][sys]--DEBUG 23528 --- [20882-thread-17] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:00:54.987-[LinPro][sys]--DEBUG 23528 --- [20882-thread-17] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:00:54.988-[LinPro][sys]--DEBUG 23528 --- [20882-thread-17] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:00:54.989-[LinPro][sys]--DEBUG 23528 --- [20882-thread-17] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:00:54.992-[LinPro][sys]--DEBUG 23528 --- [20882-thread-17] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:00:54.993-[LinPro][sys]--DEBUG 23528 --- [20882-thread-17] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:00:54.993-[LinPro][sys]--DEBUG 23528 --- [20882-thread-17] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:00:54.997-[LinPro][sys]--DEBUG 23528 --- [20882-thread-17] a.s.f.m.F.selectList                     : <==      Total: 1
+10:00:54.998-[LinPro][sys]--DEBUG 23528 --- [20882-thread-17] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:00:54.999-[LinPro][sys]--DEBUG 23528 --- [20882-thread-17] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:00:55.001-[LinPro][sys]--DEBUG 23528 --- [20882-thread-17] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:00:58.892-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-8] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND user_id = ? AND deleted_at IS NULL)
+10:00:58.893-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-8] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long), 11(Long)
+10:00:58.896-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-8] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:00:58.897-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-8] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:00:58.898-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-8] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:00:58.901-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-8] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:00:58.920-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-8] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:00:58.921-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-8] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:00:58.924-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-8] a.s.f.m.F.selectList                     : <==      Total: 1
+10:00:59.594-[LinPro][sys]--DEBUG 23528 --- [20882-thread-18] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:00:59.594-[LinPro][sys]--DEBUG 23528 --- [20882-thread-18] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:00:59.597-[LinPro][sys]--DEBUG 23528 --- [20882-thread-18] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:00:59.598-[LinPro][sys]--DEBUG 23528 --- [20882-thread-18] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:00:59.599-[LinPro][sys]--DEBUG 23528 --- [20882-thread-18] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:00:59.602-[LinPro][sys]--DEBUG 23528 --- [20882-thread-18] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:00:59.603-[LinPro][sys]--DEBUG 23528 --- [20882-thread-18] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:00:59.604-[LinPro][sys]--DEBUG 23528 --- [20882-thread-18] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:00:59.607-[LinPro][sys]--DEBUG 23528 --- [20882-thread-18] a.s.f.m.F.selectList                     : <==      Total: 1
+10:00:59.608-[LinPro][sys]--DEBUG 23528 --- [20882-thread-18] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:00:59.609-[LinPro][sys]--DEBUG 23528 --- [20882-thread-18] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:00:59.611-[LinPro][sys]--DEBUG 23528 --- [20882-thread-18] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:01:01.175-[LinPro][sys]--DEBUG 23528 --- [20882-thread-19] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:01.176-[LinPro][sys]--DEBUG 23528 --- [20882-thread-19] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:01.179-[LinPro][sys]--DEBUG 23528 --- [20882-thread-19] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:01.180-[LinPro][sys]--DEBUG 23528 --- [20882-thread-19] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:01.181-[LinPro][sys]--DEBUG 23528 --- [20882-thread-19] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:01:01.184-[LinPro][sys]--DEBUG 23528 --- [20882-thread-19] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:01.186-[LinPro][sys]--DEBUG 23528 --- [20882-thread-19] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:01.186-[LinPro][sys]--DEBUG 23528 --- [20882-thread-19] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:01:01.189-[LinPro][sys]--DEBUG 23528 --- [20882-thread-19] a.s.f.m.F.selectList                     : <==      Total: 1
+10:01:01.190-[LinPro][sys]--DEBUG 23528 --- [20882-thread-19] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:01.191-[LinPro][sys]--DEBUG 23528 --- [20882-thread-19] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:01.194-[LinPro][sys]--DEBUG 23528 --- [20882-thread-19] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:01:01.772-[LinPro][sys]--DEBUG 23528 --- [20882-thread-20] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:01.772-[LinPro][sys]--DEBUG 23528 --- [20882-thread-20] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:01.775-[LinPro][sys]--DEBUG 23528 --- [20882-thread-20] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:01.777-[LinPro][sys]--DEBUG 23528 --- [20882-thread-20] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:01.777-[LinPro][sys]--DEBUG 23528 --- [20882-thread-20] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:01:01.780-[LinPro][sys]--DEBUG 23528 --- [20882-thread-20] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:01.781-[LinPro][sys]--DEBUG 23528 --- [20882-thread-20] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:01.782-[LinPro][sys]--DEBUG 23528 --- [20882-thread-20] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:01:01.784-[LinPro][sys]--DEBUG 23528 --- [20882-thread-20] a.s.f.m.F.selectList                     : <==      Total: 1
+10:01:01.785-[LinPro][sys]--DEBUG 23528 --- [20882-thread-20] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:01.787-[LinPro][sys]--DEBUG 23528 --- [20882-thread-20] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:01.789-[LinPro][sys]--DEBUG 23528 --- [20882-thread-20] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:01:02.200-[LinPro][sys]--DEBUG 23528 --- [20882-thread-21] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:02.201-[LinPro][sys]--DEBUG 23528 --- [20882-thread-21] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:02.204-[LinPro][sys]--DEBUG 23528 --- [20882-thread-21] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:02.205-[LinPro][sys]--DEBUG 23528 --- [20882-thread-21] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:02.206-[LinPro][sys]--DEBUG 23528 --- [20882-thread-21] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:01:02.209-[LinPro][sys]--DEBUG 23528 --- [20882-thread-21] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:02.211-[LinPro][sys]--DEBUG 23528 --- [20882-thread-21] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:02.211-[LinPro][sys]--DEBUG 23528 --- [20882-thread-21] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:01:02.214-[LinPro][sys]--DEBUG 23528 --- [20882-thread-21] a.s.f.m.F.selectList                     : <==      Total: 1
+10:01:02.215-[LinPro][sys]--DEBUG 23528 --- [20882-thread-21] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:02.216-[LinPro][sys]--DEBUG 23528 --- [20882-thread-21] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:02.219-[LinPro][sys]--DEBUG 23528 --- [20882-thread-21] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:01:02.432-[LinPro][sys]--DEBUG 23528 --- [20882-thread-22] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:02.433-[LinPro][sys]--DEBUG 23528 --- [20882-thread-22] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:02.437-[LinPro][sys]--DEBUG 23528 --- [20882-thread-22] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:02.438-[LinPro][sys]--DEBUG 23528 --- [20882-thread-22] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:02.439-[LinPro][sys]--DEBUG 23528 --- [20882-thread-22] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:01:02.442-[LinPro][sys]--DEBUG 23528 --- [20882-thread-22] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:02.444-[LinPro][sys]--DEBUG 23528 --- [20882-thread-22] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:02.444-[LinPro][sys]--DEBUG 23528 --- [20882-thread-22] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:01:02.447-[LinPro][sys]--DEBUG 23528 --- [20882-thread-22] a.s.f.m.F.selectList                     : <==      Total: 1
+10:01:02.449-[LinPro][sys]--DEBUG 23528 --- [20882-thread-22] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:02.450-[LinPro][sys]--DEBUG 23528 --- [20882-thread-22] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:02.452-[LinPro][sys]--DEBUG 23528 --- [20882-thread-22] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:01:03.010-[LinPro][sys]--DEBUG 23528 --- [20882-thread-23] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:03.011-[LinPro][sys]--DEBUG 23528 --- [20882-thread-23] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:03.014-[LinPro][sys]--DEBUG 23528 --- [20882-thread-23] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:03.015-[LinPro][sys]--DEBUG 23528 --- [20882-thread-23] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:03.016-[LinPro][sys]--DEBUG 23528 --- [20882-thread-23] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:01:03.018-[LinPro][sys]--DEBUG 23528 --- [20882-thread-23] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:03.020-[LinPro][sys]--DEBUG 23528 --- [20882-thread-23] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:03.021-[LinPro][sys]--DEBUG 23528 --- [20882-thread-23] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:01:03.023-[LinPro][sys]--DEBUG 23528 --- [20882-thread-23] a.s.f.m.F.selectList                     : <==      Total: 1
+10:01:03.024-[LinPro][sys]--DEBUG 23528 --- [20882-thread-23] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:03.026-[LinPro][sys]--DEBUG 23528 --- [20882-thread-23] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:03.028-[LinPro][sys]--DEBUG 23528 --- [20882-thread-23] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:01:07.661-[LinPro][sys]--DEBUG 23528 --- [20882-thread-24] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:07.661-[LinPro][sys]--DEBUG 23528 --- [20882-thread-24] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:07.667-[LinPro][sys]--DEBUG 23528 --- [20882-thread-24] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:07.670-[LinPro][sys]--DEBUG 23528 --- [20882-thread-24] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:07.670-[LinPro][sys]--DEBUG 23528 --- [20882-thread-24] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:01:07.674-[LinPro][sys]--DEBUG 23528 --- [20882-thread-24] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:07.676-[LinPro][sys]--DEBUG 23528 --- [20882-thread-24] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:07.677-[LinPro][sys]--DEBUG 23528 --- [20882-thread-24] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:01:07.681-[LinPro][sys]--DEBUG 23528 --- [20882-thread-24] a.s.f.m.F.selectList                     : <==      Total: 1
+10:01:07.683-[LinPro][sys]--DEBUG 23528 --- [20882-thread-24] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:07.683-[LinPro][sys]--DEBUG 23528 --- [20882-thread-24] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:07.687-[LinPro][sys]--DEBUG 23528 --- [20882-thread-24] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:01:18.458-[LinPro][sys]--DEBUG 23528 --- [20882-thread-25] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:18.459-[LinPro][sys]--DEBUG 23528 --- [20882-thread-25] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:18.462-[LinPro][sys]--DEBUG 23528 --- [20882-thread-25] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:18.463-[LinPro][sys]--DEBUG 23528 --- [20882-thread-25] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:18.464-[LinPro][sys]--DEBUG 23528 --- [20882-thread-25] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:01:18.466-[LinPro][sys]--DEBUG 23528 --- [20882-thread-25] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:18.468-[LinPro][sys]--DEBUG 23528 --- [20882-thread-25] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:18.468-[LinPro][sys]--DEBUG 23528 --- [20882-thread-25] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:01:18.471-[LinPro][sys]--DEBUG 23528 --- [20882-thread-25] a.s.f.m.F.selectList                     : <==      Total: 1
+10:01:18.472-[LinPro][sys]--DEBUG 23528 --- [20882-thread-25] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:18.473-[LinPro][sys]--DEBUG 23528 --- [20882-thread-25] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:18.475-[LinPro][sys]--DEBUG 23528 --- [20882-thread-25] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:01:21.841-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-9] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND user_id = ? AND deleted_at IS NULL)
+10:01:21.842-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-9] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long), 11(Long)
+10:01:21.846-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-9] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:21.848-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-9] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:21.849-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-9] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:21.853-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-9] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:01:21.873-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-9] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:21.875-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-9] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:01:21.878-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-9] a.s.f.m.F.selectList                     : <==      Total: 1
+10:01:26.399-[LinPro][sys]--DEBUG 23528 --- [io-8083-exec-10] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND user_id = ? AND deleted_at IS NULL)
+10:01:26.401-[LinPro][sys]--DEBUG 23528 --- [io-8083-exec-10] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long), 11(Long)
+10:01:26.404-[LinPro][sys]--DEBUG 23528 --- [io-8083-exec-10] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:26.405-[LinPro][sys]--DEBUG 23528 --- [io-8083-exec-10] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:26.406-[LinPro][sys]--DEBUG 23528 --- [io-8083-exec-10] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:26.409-[LinPro][sys]--DEBUG 23528 --- [io-8083-exec-10] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:01:26.422-[LinPro][sys]--DEBUG 23528 --- [io-8083-exec-10] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:26.423-[LinPro][sys]--DEBUG 23528 --- [io-8083-exec-10] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:01:26.426-[LinPro][sys]--DEBUG 23528 --- [io-8083-exec-10] a.s.f.m.F.selectList                     : <==      Total: 1
+10:01:27.082-[LinPro][sys]--DEBUG 23528 --- [20882-thread-26] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:27.083-[LinPro][sys]--DEBUG 23528 --- [20882-thread-26] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:27.086-[LinPro][sys]--DEBUG 23528 --- [20882-thread-26] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:27.087-[LinPro][sys]--DEBUG 23528 --- [20882-thread-26] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:27.088-[LinPro][sys]--DEBUG 23528 --- [20882-thread-26] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:01:27.090-[LinPro][sys]--DEBUG 23528 --- [20882-thread-26] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:27.091-[LinPro][sys]--DEBUG 23528 --- [20882-thread-26] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:27.092-[LinPro][sys]--DEBUG 23528 --- [20882-thread-26] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:01:27.096-[LinPro][sys]--DEBUG 23528 --- [20882-thread-26] a.s.f.m.F.selectList                     : <==      Total: 1
+10:01:27.098-[LinPro][sys]--DEBUG 23528 --- [20882-thread-26] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:27.098-[LinPro][sys]--DEBUG 23528 --- [20882-thread-26] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:27.101-[LinPro][sys]--DEBUG 23528 --- [20882-thread-26] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:01:27.645-[LinPro][sys]--DEBUG 23528 --- [20882-thread-27] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:27.646-[LinPro][sys]--DEBUG 23528 --- [20882-thread-27] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:27.649-[LinPro][sys]--DEBUG 23528 --- [20882-thread-27] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:27.650-[LinPro][sys]--DEBUG 23528 --- [20882-thread-27] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:27.651-[LinPro][sys]--DEBUG 23528 --- [20882-thread-27] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:01:27.654-[LinPro][sys]--DEBUG 23528 --- [20882-thread-27] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:27.655-[LinPro][sys]--DEBUG 23528 --- [20882-thread-27] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:27.656-[LinPro][sys]--DEBUG 23528 --- [20882-thread-27] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:01:27.659-[LinPro][sys]--DEBUG 23528 --- [20882-thread-27] a.s.f.m.F.selectList                     : <==      Total: 1
+10:01:27.660-[LinPro][sys]--DEBUG 23528 --- [20882-thread-27] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:27.661-[LinPro][sys]--DEBUG 23528 --- [20882-thread-27] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:27.664-[LinPro][sys]--DEBUG 23528 --- [20882-thread-27] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:01:36.398-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-1] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND user_id = ? AND deleted_at IS NULL)
+10:01:36.399-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-1] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long), 11(Long)
+10:01:36.402-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-1] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:36.403-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-1] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:36.404-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-1] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:36.406-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-1] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:01:36.418-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-1] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:36.419-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-1] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:01:36.422-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-1] a.s.f.m.F.selectList                     : <==      Total: 1
+10:01:36.901-[LinPro][sys]--DEBUG 23528 --- [20882-thread-28] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:36.902-[LinPro][sys]--DEBUG 23528 --- [20882-thread-28] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:36.905-[LinPro][sys]--DEBUG 23528 --- [20882-thread-28] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:36.907-[LinPro][sys]--DEBUG 23528 --- [20882-thread-28] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:01:36.908-[LinPro][sys]--DEBUG 23528 --- [20882-thread-28] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:01:36.911-[LinPro][sys]--DEBUG 23528 --- [20882-thread-28] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:01:36.912-[LinPro][sys]--DEBUG 23528 --- [20882-thread-28] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:36.913-[LinPro][sys]--DEBUG 23528 --- [20882-thread-28] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:01:36.916-[LinPro][sys]--DEBUG 23528 --- [20882-thread-28] a.s.f.m.F.selectList                     : <==      Total: 1
+10:01:36.918-[LinPro][sys]--DEBUG 23528 --- [20882-thread-28] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:01:36.919-[LinPro][sys]--DEBUG 23528 --- [20882-thread-28] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:01:36.922-[LinPro][sys]--DEBUG 23528 --- [20882-thread-28] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:02:03.931-[LinPro][sys]--DEBUG 23528 --- [20882-thread-29] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:02:03.932-[LinPro][sys]--DEBUG 23528 --- [20882-thread-29] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:02:03.935-[LinPro][sys]--DEBUG 23528 --- [20882-thread-29] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:02:03.937-[LinPro][sys]--DEBUG 23528 --- [20882-thread-29] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:02:03.937-[LinPro][sys]--DEBUG 23528 --- [20882-thread-29] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:02:03.941-[LinPro][sys]--DEBUG 23528 --- [20882-thread-29] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:02:03.943-[LinPro][sys]--DEBUG 23528 --- [20882-thread-29] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:02:03.944-[LinPro][sys]--DEBUG 23528 --- [20882-thread-29] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:02:03.947-[LinPro][sys]--DEBUG 23528 --- [20882-thread-29] a.s.f.m.F.selectList                     : <==      Total: 1
+10:02:03.948-[LinPro][sys]--DEBUG 23528 --- [20882-thread-29] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:02:03.949-[LinPro][sys]--DEBUG 23528 --- [20882-thread-29] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:02:03.951-[LinPro][sys]--DEBUG 23528 --- [20882-thread-29] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:02:59.355-[LinPro][sys]--DEBUG 23528 --- [20882-thread-30] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:02:59.355-[LinPro][sys]--DEBUG 23528 --- [20882-thread-30] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:02:59.359-[LinPro][sys]--DEBUG 23528 --- [20882-thread-30] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:02:59.360-[LinPro][sys]--DEBUG 23528 --- [20882-thread-30] a.s.f.mapper.FamiliesMapper.selectById   : ==>  Preparing: SELECT id,name,invite_code,invite_expires_at,created_by,created_at,updated_at,deleted_at FROM families WHERE id=? AND deleted_at IS NULL
+10:02:59.360-[LinPro][sys]--DEBUG 23528 --- [20882-thread-30] a.s.f.mapper.FamiliesMapper.selectById   : ==> Parameters: 11(Long)
+10:02:59.363-[LinPro][sys]--DEBUG 23528 --- [20882-thread-30] a.s.f.mapper.FamiliesMapper.selectById   : <==      Total: 1
+10:02:59.368-[LinPro][sys]--DEBUG 23528 --- [20882-thread-31] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:02:59.369-[LinPro][sys]--DEBUG 23528 --- [20882-thread-31] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:02:59.371-[LinPro][sys]--DEBUG 23528 --- [20882-thread-31] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:02:59.839-[LinPro][sys]--DEBUG 23528 --- [20882-thread-32] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:02:59.839-[LinPro][sys]--DEBUG 23528 --- [20882-thread-32] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:02:59.842-[LinPro][sys]--DEBUG 23528 --- [20882-thread-32] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:02:59.844-[LinPro][sys]--DEBUG 23528 --- [20882-thread-32] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:02:59.844-[LinPro][sys]--DEBUG 23528 --- [20882-thread-32] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:02:59.847-[LinPro][sys]--DEBUG 23528 --- [20882-thread-32] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:02:59.848-[LinPro][sys]--DEBUG 23528 --- [20882-thread-32] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:02:59.850-[LinPro][sys]--DEBUG 23528 --- [20882-thread-32] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:02:59.852-[LinPro][sys]--DEBUG 23528 --- [20882-thread-32] a.s.f.m.F.selectList                     : <==      Total: 1
+10:02:59.853-[LinPro][sys]--DEBUG 23528 --- [20882-thread-32] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:02:59.855-[LinPro][sys]--DEBUG 23528 --- [20882-thread-32] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:02:59.857-[LinPro][sys]--DEBUG 23528 --- [20882-thread-32] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:02:59.910-[LinPro][sys]--DEBUG 23528 --- [20882-thread-33] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:02:59.911-[LinPro][sys]--DEBUG 23528 --- [20882-thread-33] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:02:59.914-[LinPro][sys]--DEBUG 23528 --- [20882-thread-33] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:02:59.916-[LinPro][sys]--DEBUG 23528 --- [20882-thread-33] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:02:59.917-[LinPro][sys]--DEBUG 23528 --- [20882-thread-33] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:02:59.920-[LinPro][sys]--DEBUG 23528 --- [20882-thread-33] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:02:59.922-[LinPro][sys]--DEBUG 23528 --- [20882-thread-33] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:02:59.922-[LinPro][sys]--DEBUG 23528 --- [20882-thread-33] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:02:59.925-[LinPro][sys]--DEBUG 23528 --- [20882-thread-33] a.s.f.m.F.selectList                     : <==      Total: 1
+10:02:59.926-[LinPro][sys]--DEBUG 23528 --- [20882-thread-33] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:02:59.927-[LinPro][sys]--DEBUG 23528 --- [20882-thread-33] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:02:59.930-[LinPro][sys]--DEBUG 23528 --- [20882-thread-33] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:03:01.427-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND user_id = ? AND deleted_at IS NULL)
+10:03:01.427-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long), 10(Long)
+10:03:01.430-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:03:01.431-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:03:01.432-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:03:01.434-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:03:01.447-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:03:01.448-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:03:01.451-[LinPro][sys]--DEBUG 23528 --- [nio-8083-exec-3] a.s.f.m.F.selectList                     : <==      Total: 1
+10:03:01.948-[LinPro][sys]--DEBUG 23528 --- [20882-thread-34] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:03:01.949-[LinPro][sys]--DEBUG 23528 --- [20882-thread-34] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:03:01.952-[LinPro][sys]--DEBUG 23528 --- [20882-thread-34] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:03:01.954-[LinPro][sys]--DEBUG 23528 --- [20882-thread-34] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:03:01.954-[LinPro][sys]--DEBUG 23528 --- [20882-thread-34] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:03:01.958-[LinPro][sys]--DEBUG 23528 --- [20882-thread-34] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:03:01.960-[LinPro][sys]--DEBUG 23528 --- [20882-thread-34] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:03:01.961-[LinPro][sys]--DEBUG 23528 --- [20882-thread-34] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:03:01.964-[LinPro][sys]--DEBUG 23528 --- [20882-thread-34] a.s.f.m.F.selectList                     : <==      Total: 1
+10:03:01.966-[LinPro][sys]--DEBUG 23528 --- [20882-thread-34] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:03:01.966-[LinPro][sys]--DEBUG 23528 --- [20882-thread-34] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:03:01.969-[LinPro][sys]--DEBUG 23528 --- [20882-thread-34] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:03:02.723-[LinPro][sys]--DEBUG 23528 --- [20882-thread-35] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:03:02.724-[LinPro][sys]--DEBUG 23528 --- [20882-thread-35] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:03:02.727-[LinPro][sys]--DEBUG 23528 --- [20882-thread-35] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:03:02.728-[LinPro][sys]--DEBUG 23528 --- [20882-thread-35] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:03:02.730-[LinPro][sys]--DEBUG 23528 --- [20882-thread-35] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:03:02.732-[LinPro][sys]--DEBUG 23528 --- [20882-thread-35] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:03:02.733-[LinPro][sys]--DEBUG 23528 --- [20882-thread-35] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:03:02.734-[LinPro][sys]--DEBUG 23528 --- [20882-thread-35] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:03:02.737-[LinPro][sys]--DEBUG 23528 --- [20882-thread-35] a.s.f.m.F.selectList                     : <==      Total: 1
+10:03:02.739-[LinPro][sys]--DEBUG 23528 --- [20882-thread-35] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:03:02.740-[LinPro][sys]--DEBUG 23528 --- [20882-thread-35] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:03:02.742-[LinPro][sys]--DEBUG 23528 --- [20882-thread-35] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:03:03.290-[LinPro][sys]--DEBUG 23528 --- [20882-thread-36] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:03:03.293-[LinPro][sys]--DEBUG 23528 --- [20882-thread-36] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:03:03.296-[LinPro][sys]--DEBUG 23528 --- [20882-thread-36] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:03:03.298-[LinPro][sys]--DEBUG 23528 --- [20882-thread-36] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:03:03.299-[LinPro][sys]--DEBUG 23528 --- [20882-thread-36] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:03:03.305-[LinPro][sys]--DEBUG 23528 --- [20882-thread-36] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:03:03.306-[LinPro][sys]--DEBUG 23528 --- [20882-thread-36] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:03:03.306-[LinPro][sys]--DEBUG 23528 --- [20882-thread-36] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:03:03.311-[LinPro][sys]--DEBUG 23528 --- [20882-thread-36] a.s.f.m.F.selectList                     : <==      Total: 1
+10:03:03.312-[LinPro][sys]--DEBUG 23528 --- [20882-thread-36] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:03:03.314-[LinPro][sys]--DEBUG 23528 --- [20882-thread-36] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:03:03.318-[LinPro][sys]--DEBUG 23528 --- [20882-thread-36] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2
+10:03:04.904-[LinPro][sys]--DEBUG 23528 --- [20882-thread-37] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:03:04.905-[LinPro][sys]--DEBUG 23528 --- [20882-thread-37] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 10(Long)
+10:03:04.924-[LinPro][sys]--DEBUG 23528 --- [20882-thread-37] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:03:04.925-[LinPro][sys]--DEBUG 23528 --- [20882-thread-37] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (user_id = ? AND deleted_at IS NULL)
+10:03:04.926-[LinPro][sys]--DEBUG 23528 --- [20882-thread-37] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:03:04.929-[LinPro][sys]--DEBUG 23528 --- [20882-thread-37] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 1
+10:03:04.930-[LinPro][sys]--DEBUG 23528 --- [20882-thread-37] a.s.f.m.F.selectList                     : ==>  Preparing: SELECT id,family_id,subject_member_id,relation_type,object_member_id,created_at,deleted_at FROM family_relations WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:03:04.931-[LinPro][sys]--DEBUG 23528 --- [20882-thread-37] a.s.f.m.F.selectList                     : ==> Parameters: 11(Long)
+10:03:04.934-[LinPro][sys]--DEBUG 23528 --- [20882-thread-37] a.s.f.m.F.selectList                     : <==      Total: 1
+10:03:04.935-[LinPro][sys]--DEBUG 23528 --- [20882-thread-37] a.s.f.m.FamilyMembersMapper.selectList   : ==>  Preparing: SELECT id,family_id,user_id,role,joined_at,deleted_at,gender,birth_order FROM family_members WHERE deleted_at IS NULL AND (family_id = ? AND deleted_at IS NULL)
+10:03:04.936-[LinPro][sys]--DEBUG 23528 --- [20882-thread-37] a.s.f.m.FamilyMembersMapper.selectList   : ==> Parameters: 11(Long)
+10:03:04.939-[LinPro][sys]--DEBUG 23528 --- [20882-thread-37] a.s.f.m.FamilyMembersMapper.selectList   : <==      Total: 2

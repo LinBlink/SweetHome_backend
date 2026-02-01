@@ -27,6 +27,8 @@
         <module>gateway</module>
         <module>user-service</module>
         <module>api</module>
+        <module>family-service</module>
+        <module>chat-service</module>
     </modules>
     <scm>
         <connection/>
@@ -60,8 +62,7 @@
 
     <dependencyManagement>
         <dependencies>
-
-
+            <!-- 1. SpringBoot 基础版本 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -70,6 +71,7 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- 2. Spring Cloud 云原生基础 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -77,6 +79,16 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- 3. Spring Cloud Alibaba 阿里全套依赖核心（关键！） -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2025.0.0.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
 
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -109,6 +121,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- JDK 17 平台默认字符集不保证是 UTF-8（JEP 400 从 JDK 18 才开始生效）。
+                         Nacos 配置内容（含中文注释）经本地客户端解码时若落到非 UTF-8 的平台默认字符集，
+                         会在 SnakeYAML 读取阶段抛 MalformedInputException。显式固定为 UTF-8，避免依赖系统区域设置。 -->
+                    <jvmArguments>-Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8</jvmArguments>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -1,0 +1,106 @@
+05:36:38.508-[LinPro][sys]-- INFO 27924 --- [tTimer-thread-1] o.a.d.m.store.nacos.NacosMetadataReport  :  [DUBBO] start to publish all metadata., dubbo version: 3.3.3, current host: 192.168.150.1
+05:36:38.523-[LinPro][sys]-- INFO 27924 --- [Report-thread-1] o.a.d.m.store.nacos.NacosMetadataReport  :  [DUBBO] store provider metadata. Identifier : MetadataIdentifier{application='lia-user-service-dubbo', serviceInterface='asia.sweethome.api.UserApi', version='', group='', side='provider'}; definition: FullServiceDefinition{parameters={application=lia-user-service-dubbo, pid=27924, side=provider, anyhost=true, dubbo=2.0.2, release=3.3.3, interface=asia.sweethome.api.UserApi, executor-management-mode=isolation, file-cache=true, methods=createUser,findUserAndFamilyByPhone,findUserById,findUsersByIds, deprecated=false, qos.port=22221, service-name-mapping=true, timeout=5000, generic=false, bind.port=20881, bind.ip=192.168.150.1, prefer.serialization=hessian2,fastjson2, background=false, dynamic=true, timestamp=1783005960035}} ServiceDefinition [canonicalName=asia.sweethome.api.UserApi, codeSource=file:/Z:/PUBLIC/_GitProjects/SweetHome_backend/sh/api/target/classes/, methods=[MethodDefinition [name=findUserById, parameterTypes=[java.lang.Long], returnType=asia.sweethome.api.entity.dto.UserDTO], MethodDefinition [name=findUsersByIds, parameterTypes=[java.util.List<java.lang.Long>], returnType=java.util.List<asia.sweethome.api.entity.dto.UserDTO>], MethodDefinition [name=createUser, parameterTypes=[asia.sweethome.api.entity.dto.UserRegisterDTO], returnType=asia.sweethome.api.entity.vo.UserInfoVO], MethodDefinition [name=findUserAndFamilyByPhone, parameterTypes=[java.lang.String], returnType=asia.sweethome.api.entity.dto.UserDTO]]], dubbo version: 3.3.3, current host: 192.168.150.1
+05:36:38.545-[LinPro][sys]-- INFO 27924 --- [Report-thread-1] c.a.n.client.config.impl.ClientWorker    : [Config-fixed-public-127.0.0.1_8848] [publish-single] ok, dataId=asia.sweethome.api.UserApi:::provider:lia-user-service-dubbo, group=dubbo, tenant=public
+05:36:38.547-[LinPro][sys]-- INFO 27924 --- [Report-thread-1] o.a.d.m.store.nacos.NacosMetadataReport  :  [DUBBO] store consumer metadata. Identifier : MetadataIdentifier{application='lia-user-service-dubbo', serviceInterface='asia.sweethome.api.FamilyApi', version='', group='', side='consumer'}; definition: {application=lia-user-service-dubbo, pid=27924, side=consumer, dubbo=2.0.2, release=3.3.3, interface=asia.sweethome.api.FamilyApi, executor-management-mode=isolation, file-cache=true, register.ip=192.168.150.1, methods=createFamily,getFamilyByUserId,getFamilyRoleByUserId,getGenderByUserId,getRelation,joinFamily, background=false, qos.port=22221, sticky=false, timeout=5000, unloadClusterRelated=false, timestamp=1783005962439}, dubbo version: 3.3.3, current host: 192.168.150.1
+09:47:00.383-[LinPro][sys]--DEBUG 27924 --- [:20881-thread-7] a.s.user.mapper.UsersMapper.selectList   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE deleted_at IS NULL AND (phone = ?)
+09:47:00.384-[LinPro][sys]--DEBUG 27924 --- [:20881-thread-7] a.s.user.mapper.UsersMapper.selectList   : ==> Parameters: +8618952320405(String)
+09:47:00.393-[LinPro][sys]--DEBUG 27924 --- [:20881-thread-7] a.s.user.mapper.UsersMapper.selectList   : <==      Total: 1
+09:47:04.785-[LinPro][sys]--DEBUG 27924 --- [:20881-thread-8] a.s.u.mapper.UsersMapper.selectBatchIds  : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+09:47:04.787-[LinPro][sys]--DEBUG 27924 --- [:20881-thread-8] a.s.u.mapper.UsersMapper.selectBatchIds  : ==> Parameters: 10(Long), 11(Long)
+09:47:04.790-[LinPro][sys]--DEBUG 27924 --- [:20881-thread-8] a.s.u.mapper.UsersMapper.selectBatchIds  : <==      Total: 2
+09:47:13.232-[LinPro][sys]--DEBUG 27924 --- [:20881-thread-9] a.s.u.mapper.UsersMapper.selectBatchIds  : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+09:47:13.233-[LinPro][sys]--DEBUG 27924 --- [:20881-thread-9] a.s.u.mapper.UsersMapper.selectBatchIds  : ==> Parameters: 10(Long), 11(Long)
+09:47:13.236-[LinPro][sys]--DEBUG 27924 --- [:20881-thread-9] a.s.u.mapper.UsersMapper.selectBatchIds  : <==      Total: 2
+09:59:35.843-[LinPro][sys]--DEBUG 27924 --- [20881-thread-10] a.s.u.mapper.UsersMapper.selectBatchIds  : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+09:59:35.843-[LinPro][sys]--DEBUG 27924 --- [20881-thread-10] a.s.u.mapper.UsersMapper.selectBatchIds  : ==> Parameters: 10(Long), 11(Long)
+09:59:35.860-[LinPro][sys]--DEBUG 27924 --- [20881-thread-10] a.s.u.mapper.UsersMapper.selectBatchIds  : <==      Total: 2
+09:59:36.749-[LinPro][sys]--DEBUG 27924 --- [20881-thread-11] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+09:59:36.750-[LinPro][sys]--DEBUG 27924 --- [20881-thread-11] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+09:59:36.754-[LinPro][sys]--DEBUG 27924 --- [20881-thread-11] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+09:59:38.630-[LinPro][sys]--DEBUG 27924 --- [20881-thread-12] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+09:59:38.630-[LinPro][sys]--DEBUG 27924 --- [20881-thread-12] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+09:59:38.633-[LinPro][sys]--DEBUG 27924 --- [20881-thread-12] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+09:59:39.421-[LinPro][sys]--DEBUG 27924 --- [20881-thread-13] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+09:59:39.422-[LinPro][sys]--DEBUG 27924 --- [20881-thread-13] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+09:59:39.425-[LinPro][sys]--DEBUG 27924 --- [20881-thread-13] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:00:54.378-[LinPro][sys]--DEBUG 27924 --- [20881-thread-14] a.s.user.mapper.UsersMapper.selectList   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE deleted_at IS NULL AND (phone = ?)
+10:00:54.379-[LinPro][sys]--DEBUG 27924 --- [20881-thread-14] a.s.user.mapper.UsersMapper.selectList   : ==> Parameters: +8618952322405(String)
+10:00:54.384-[LinPro][sys]--DEBUG 27924 --- [20881-thread-14] a.s.user.mapper.UsersMapper.selectList   : <==      Total: 1
+10:00:54.875-[LinPro][sys]--DEBUG 27924 --- [20881-thread-15] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:00:54.876-[LinPro][sys]--DEBUG 27924 --- [20881-thread-15] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:00:54.880-[LinPro][sys]--DEBUG 27924 --- [20881-thread-15] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:00:54.970-[LinPro][sys]--DEBUG 27924 --- [20881-thread-16] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:00:54.971-[LinPro][sys]--DEBUG 27924 --- [20881-thread-16] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:00:54.974-[LinPro][sys]--DEBUG 27924 --- [20881-thread-16] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:00:58.908-[LinPro][sys]--DEBUG 27924 --- [20881-thread-17] a.s.u.mapper.UsersMapper.selectBatchIds  : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:00:58.910-[LinPro][sys]--DEBUG 27924 --- [20881-thread-17] a.s.u.mapper.UsersMapper.selectBatchIds  : ==> Parameters: 10(Long), 11(Long)
+10:00:58.912-[LinPro][sys]--DEBUG 27924 --- [20881-thread-17] a.s.u.mapper.UsersMapper.selectBatchIds  : <==      Total: 2
+10:00:59.582-[LinPro][sys]--DEBUG 27924 --- [20881-thread-18] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:00:59.583-[LinPro][sys]--DEBUG 27924 --- [20881-thread-18] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:00:59.586-[LinPro][sys]--DEBUG 27924 --- [20881-thread-18] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:01:01.160-[LinPro][sys]--DEBUG 27924 --- [20881-thread-19] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:01:01.161-[LinPro][sys]--DEBUG 27924 --- [20881-thread-19] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:01:01.166-[LinPro][sys]--DEBUG 27924 --- [20881-thread-19] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:01:01.759-[LinPro][sys]--DEBUG 27924 --- [20881-thread-20] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:01:01.759-[LinPro][sys]--DEBUG 27924 --- [20881-thread-20] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:01:01.762-[LinPro][sys]--DEBUG 27924 --- [20881-thread-20] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:01:02.189-[LinPro][sys]--DEBUG 27924 --- [20881-thread-21] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:01:02.190-[LinPro][sys]--DEBUG 27924 --- [20881-thread-21] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:01:02.192-[LinPro][sys]--DEBUG 27924 --- [20881-thread-21] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:01:02.421-[LinPro][sys]--DEBUG 27924 --- [20881-thread-22] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:01:02.423-[LinPro][sys]--DEBUG 27924 --- [20881-thread-22] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:01:02.425-[LinPro][sys]--DEBUG 27924 --- [20881-thread-22] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:01:02.999-[LinPro][sys]--DEBUG 27924 --- [20881-thread-23] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:01:03.000-[LinPro][sys]--DEBUG 27924 --- [20881-thread-23] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:01:03.001-[LinPro][sys]--DEBUG 27924 --- [20881-thread-23] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:01:07.641-[LinPro][sys]--DEBUG 27924 --- [20881-thread-24] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:01:07.642-[LinPro][sys]--DEBUG 27924 --- [20881-thread-24] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:01:07.644-[LinPro][sys]--DEBUG 27924 --- [20881-thread-24] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:01:18.447-[LinPro][sys]--DEBUG 27924 --- [20881-thread-25] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:01:18.447-[LinPro][sys]--DEBUG 27924 --- [20881-thread-25] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:01:18.450-[LinPro][sys]--DEBUG 27924 --- [20881-thread-25] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:01:21.860-[LinPro][sys]--DEBUG 27924 --- [20881-thread-26] a.s.u.mapper.UsersMapper.selectBatchIds  : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:01:21.861-[LinPro][sys]--DEBUG 27924 --- [20881-thread-26] a.s.u.mapper.UsersMapper.selectBatchIds  : ==> Parameters: 10(Long), 11(Long)
+10:01:21.865-[LinPro][sys]--DEBUG 27924 --- [20881-thread-26] a.s.u.mapper.UsersMapper.selectBatchIds  : <==      Total: 2
+10:01:26.414-[LinPro][sys]--DEBUG 27924 --- [20881-thread-27] a.s.u.mapper.UsersMapper.selectBatchIds  : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:01:26.414-[LinPro][sys]--DEBUG 27924 --- [20881-thread-27] a.s.u.mapper.UsersMapper.selectBatchIds  : ==> Parameters: 10(Long), 11(Long)
+10:01:26.418-[LinPro][sys]--DEBUG 27924 --- [20881-thread-27] a.s.u.mapper.UsersMapper.selectBatchIds  : <==      Total: 2
+10:01:27.070-[LinPro][sys]--DEBUG 27924 --- [20881-thread-28] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:01:27.071-[LinPro][sys]--DEBUG 27924 --- [20881-thread-28] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:01:27.074-[LinPro][sys]--DEBUG 27924 --- [20881-thread-28] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:01:27.633-[LinPro][sys]--DEBUG 27924 --- [20881-thread-29] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:01:27.634-[LinPro][sys]--DEBUG 27924 --- [20881-thread-29] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:01:27.637-[LinPro][sys]--DEBUG 27924 --- [20881-thread-29] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:01:36.411-[LinPro][sys]--DEBUG 27924 --- [20881-thread-30] a.s.u.mapper.UsersMapper.selectBatchIds  : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:01:36.411-[LinPro][sys]--DEBUG 27924 --- [20881-thread-30] a.s.u.mapper.UsersMapper.selectBatchIds  : ==> Parameters: 10(Long), 11(Long)
+10:01:36.414-[LinPro][sys]--DEBUG 27924 --- [20881-thread-30] a.s.u.mapper.UsersMapper.selectBatchIds  : <==      Total: 2
+10:01:36.890-[LinPro][sys]--DEBUG 27924 --- [20881-thread-31] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:01:36.891-[LinPro][sys]--DEBUG 27924 --- [20881-thread-31] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:01:36.894-[LinPro][sys]--DEBUG 27924 --- [20881-thread-31] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:02:03.921-[LinPro][sys]--DEBUG 27924 --- [20881-thread-32] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:02:03.922-[LinPro][sys]--DEBUG 27924 --- [20881-thread-32] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:02:03.924-[LinPro][sys]--DEBUG 27924 --- [20881-thread-32] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:02:59.345-[LinPro][sys]--DEBUG 27924 --- [20881-thread-33] a.s.user.mapper.UsersMapper.selectList   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE deleted_at IS NULL AND (phone = ?)
+10:02:59.346-[LinPro][sys]--DEBUG 27924 --- [20881-thread-33] a.s.user.mapper.UsersMapper.selectList   : ==> Parameters: +8618952320405(String)
+10:02:59.349-[LinPro][sys]--DEBUG 27924 --- [20881-thread-33] a.s.user.mapper.UsersMapper.selectList   : <==      Total: 1
+10:02:59.828-[LinPro][sys]--DEBUG 27924 --- [20881-thread-34] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:02:59.830-[LinPro][sys]--DEBUG 27924 --- [20881-thread-34] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:02:59.832-[LinPro][sys]--DEBUG 27924 --- [20881-thread-34] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:02:59.900-[LinPro][sys]--DEBUG 27924 --- [20881-thread-35] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:02:59.901-[LinPro][sys]--DEBUG 27924 --- [20881-thread-35] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:02:59.904-[LinPro][sys]--DEBUG 27924 --- [20881-thread-35] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:03:01.439-[LinPro][sys]--DEBUG 27924 --- [20881-thread-36] a.s.u.mapper.UsersMapper.selectBatchIds  : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:03:01.440-[LinPro][sys]--DEBUG 27924 --- [20881-thread-36] a.s.u.mapper.UsersMapper.selectBatchIds  : ==> Parameters: 10(Long), 11(Long)
+10:03:01.444-[LinPro][sys]--DEBUG 27924 --- [20881-thread-36] a.s.u.mapper.UsersMapper.selectBatchIds  : <==      Total: 2
+10:03:01.938-[LinPro][sys]--DEBUG 27924 --- [20881-thread-37] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:03:01.939-[LinPro][sys]--DEBUG 27924 --- [20881-thread-37] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:03:01.942-[LinPro][sys]--DEBUG 27924 --- [20881-thread-37] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:03:02.711-[LinPro][sys]--DEBUG 27924 --- [20881-thread-38] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:03:02.713-[LinPro][sys]--DEBUG 27924 --- [20881-thread-38] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:03:02.715-[LinPro][sys]--DEBUG 27924 --- [20881-thread-38] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:03:03.279-[LinPro][sys]--DEBUG 27924 --- [20881-thread-39] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:03:03.280-[LinPro][sys]--DEBUG 27924 --- [20881-thread-39] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:03:03.283-[LinPro][sys]--DEBUG 27924 --- [20881-thread-39] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:03:04.894-[LinPro][sys]--DEBUG 27924 --- [20881-thread-40] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:03:04.895-[LinPro][sys]--DEBUG 27924 --- [20881-thread-40] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:03:04.897-[LinPro][sys]--DEBUG 27924 --- [20881-thread-40] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1

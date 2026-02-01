@@ -1,6 +1,10 @@
 package asia.sweethome.auth.service;
 
-import asia.sweethome.auth.entity.dto.UserRegisterDTO;
+import asia.sweethome.api.entity.dto.UserRegisterDTO;
+import asia.sweethome.auth.entity.dto.LoginRequestDTO;
+import asia.sweethome.auth.entity.vo.TokenRefreshResponseVO;
+import asia.sweethome.auth.entity.vo.loginResponse.LoginResponseVO;
+import asia.sweethome.auth.entity.vo.registerResponse.RegisterResponseVO;
 
 /**
  * @description:
@@ -8,5 +12,12 @@ import asia.sweethome.auth.entity.dto.UserRegisterDTO;
  * @date: 6/29/2026 10:45 PM
  */
 public interface AuthService {
-    void register(UserRegisterDTO userRegisterDTO);
+
+    RegisterResponseVO register(UserRegisterDTO userRegisterDTO, String deviceInfo);
+
+    LoginResponseVO login(LoginRequestDTO loginRequestDTO, String deviceInfo);
+
+    TokenRefreshResponseVO refresh(String refreshToken);
+
+    void logout(String refreshToken);
 }

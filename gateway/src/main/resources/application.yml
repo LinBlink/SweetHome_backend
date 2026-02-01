@@ -12,19 +12,59 @@ spring:
       config:
         group: DEFAULT_GROUP
         file-extension: yaml
+        encode: UTF-8
         namespace: ${NACOS_NAMESPACE}
       discovery:
         namespace: ${NACOS_NAMESPACE}
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: auth-route
+              uri: lb://auth-service
+              predicates:
+                - Path=/v1/auth/**
+              filters:
+                - RewritePath=/(?<segment>.*), /${segment}
+            - id: user-route
+              uri: lb://user-service
+              predicates:
+                - Path=/v1/users/**
+              filters:
+                - RewritePath=/(?<segment>.*), /${segment}
+            - id: family-route
+              uri: lb://family-service
+              predicates:
+                - Path=/v1/families/**
+              filters:
+                - RewritePath=/(?<segment>.*), /${segment}
+            - id: chat-route
+              uri: lb://chat-service
+              predicates:
+                - Path=/v1/conversations/**
+              filters:
+                - RewritePath=/(?<segment>.*), /${segment}
+            - id: ws-route
+              uri: lb:ws://chat-service
+              predicates:
+                - Path=/v1/ws
+              filters:
+                - RewritePath=/(?<segment>.*), /${segment}
+          discovery:
+            locator:
+              enabled: false
+
+
   config:
     import:
       - optional:file:.env[.properties]
       - optional:nacos:common-spring.yaml
       - optional:nacos:common-logs.yaml
 
-sh:
-  jdbc:
-    database: sh_auth
+jwt:
+  public-key: ${JWT_PUBLIC_KEY}
 
 logging:
   level:
     asia.sweethome: debug
+

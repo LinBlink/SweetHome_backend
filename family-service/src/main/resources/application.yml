@@ -1,0 +1,53 @@
+server:
+  port: 8083
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: family-service
+
+  cloud:
+    nacos:
+      server-addr: ${NACOS_SERVER_ADDR}:8848
+      config:
+        group: DEFAULT_GROUP
+        file-extension: yaml
+        encode: UTF-8
+        namespace: ${NACOS_NAMESPACE}
+      discovery:
+        namespace: ${NACOS_NAMESPACE}
+  config:
+    import:
+      - optional:file:.env[.properties]
+      - optional:nacos:common-spring.yaml
+      - optional:nacos:common-logs.yaml
+      - optional:nacos:common-mybatis.yaml
+
+dubbo:
+  application:
+    name: lia-family-service-dubbo        # Dubbo 应用名
+    qos-port: 22222
+  protocol:
+    name: dubbo                 # 用 Dubbo 协议
+    port: 20882                 # 显式指定，避免本机同时跑多个服务时都落在默认 20880 互相抢占
+  registry:
+    address: nacos://${NACOS_SERVER_ADDR}:8848   # 复用你的 Nacos 作注册中心
+  consumer:
+    timeout: 5000
+  provider:
+    timeout: 5000
+
+
+sh:
+  jdbc:
+    host: ${MYSQL_SERVER_ADDR}
+    password: ${MYSQL_ROOT_PASSWORD}
+    database: sweethome
+  nacos:
+    server-addr: ${NACOS_SERVER_ADDR}
+
+logging:
+  level:
+    asia.sweethome: debug
+

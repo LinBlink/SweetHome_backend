@@ -1,6 +1,7 @@
 package asia.sweethome.auth;
 
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -16,6 +17,7 @@ import java.net.UnknownHostException;
  */
 @SpringBootApplication
 @Slf4j
+@MapperScan("asia.sweethome.auth.mapper")
 public class AuthApplication {
     public static void main(String[] args) throws UnknownHostException {
         ConfigurableApplicationContext app = SpringApplication.run(AuthApplication.class);

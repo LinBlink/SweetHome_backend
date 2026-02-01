@@ -13,6 +13,13 @@
 
     <dependencies>
 
+        <!--自家包-->
+        <dependency>
+            <groupId>asia.sweethome</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
         <!--dubbo-->
         <dependency>
             <groupId>org.apache.dubbo</groupId>

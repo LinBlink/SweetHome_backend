@@ -2,6 +2,9 @@ package asia.sweethome.api.entity.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
  * @description:
  * @author: LOCRIAN_V
@@ -9,7 +12,7 @@ import lombok.Data;
  */
 
 @Data
-public class UserDTO {
+public class UserDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -17,5 +20,11 @@ public class UserDTO {
     private String phone;
     private String passwordHash;
     private String name;
+    private String avatarUrl;
+    private String role;
+    private Long familyId;
+    private String familyName;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
 }

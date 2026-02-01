@@ -1,0 +1,63 @@
+server:
+  port: 8084
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: chat-service
+
+  cloud:
+    nacos:
+      server-addr: ${NACOS_SERVER_ADDR}:8848
+      config:
+        group: DEFAULT_GROUP
+        file-extension: yaml
+        encode: UTF-8
+        namespace: ${NACOS_NAMESPACE}
+      discovery:
+        namespace: ${NACOS_NAMESPACE}
+  config:
+    import:
+      - optional:file:.env[.properties]
+      - optional:nacos:common-spring.yaml
+      - optional:nacos:common-logs.yaml
+      - optional:nacos:common-mybatis.yaml
+
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:794211}
+
+dubbo:
+  application:
+    name: lia-chat-service-dubbo
+    qos-port: 22223
+  protocol:
+    name: dubbo
+    port: 20883                 # 显式指定，避免本机同时跑多个服务时都落在默认 20880 互相抢占
+  registry:
+    address: nacos://${NACOS_SERVER_ADDR}:8848
+  consumer:
+    timeout: 5000
+  provider:
+    timeout: 5000
+
+sh:
+  jdbc:
+    host: ${MYSQL_SERVER_ADDR}
+    password: ${MYSQL_ROOT_PASSWORD}
+    database: sweethome
+  nacos:
+    server-addr: ${NACOS_SERVER_ADDR}
+  ws:
+    max-message-length: 2000
+
+jwt:
+  public-key: ${JWT_PUBLIC_KEY}
+
+logging:
+  level:
+    asia.sweethome: debug
+

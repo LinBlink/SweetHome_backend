@@ -31,8 +31,7 @@ services:
     # 5. 数据持久化与配置挂载
     volumes:
       - mysql_data:/var/lib/mysql # 数据文件
-      - ./docker/mysql/mysql-config/my.cnf:/etc/mysql/conf.d/my.cnf # 自定义配置文件
-      - ./docker/mysql/mysql-init:/docker-entrypoint-initdb.d # 初始化脚本目录
+      - ./docker/mysql/mysql-init:/docker-entrypoint-initdb.d # 首次启动自动执行 doc/schema.sql 建表
 
     # 7. 健康检查（极为重要！）
     healthcheck:
@@ -44,10 +43,27 @@ services:
     networks:
       - backend_network
 
+  # chat-service 多实例 WebSocket 广播 / 在线状态依赖 Redis Pub/Sub
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - backend_network
+
 # 定义持久化卷
 volumes:
   mysql_data:
-    driver: local
+  redis_data:
 
 # 定义安全网络
 networks:

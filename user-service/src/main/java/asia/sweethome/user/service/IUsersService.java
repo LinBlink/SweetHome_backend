@@ -12,5 +12,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2026-06-30
  */
 public interface IUsersService extends IService<User> {
+    User findUserByPhone(String phone);
 
+    User updateProfile(Long userId, String name, String avatarUrl);
 }
