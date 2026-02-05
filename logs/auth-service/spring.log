@@ -15,3 +15,15 @@
 10:02:59.470-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-8] a.s.a.mapper.RefreshTokensMapper.insert  : ==>  Preparing: INSERT INTO refresh_tokens ( user_id, token_hash, device_info, expires_at, created_at ) VALUES ( ?, ?, ?, ?, ? )
 10:02:59.472-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-8] a.s.a.mapper.RefreshTokensMapper.insert  : ==> Parameters: 10(Long), 718567a3f73725ca16356bb12734546f42a2ea3ca733ff7d66ac96308019525e(String), Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36(String), 2026-08-02T10:02:59.467350900(LocalDateTime), 2026-07-03T10:02:59.467350900(LocalDateTime)
 10:02:59.508-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-8] a.s.a.mapper.RefreshTokensMapper.insert  : <==    Updates: 1
+10:36:40.976-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-1] a.s.a.m.RefreshTokensMapper.selectList   : ==>  Preparing: SELECT id,user_id,token_hash,device_info,expires_at,created_at,revoked_at FROM refresh_tokens WHERE (token_hash = ?)
+10:36:40.976-[LinPro][sys]--DEBUG 15956 --- [io-8081-exec-10] a.s.a.m.RefreshTokensMapper.selectList   : ==>  Preparing: SELECT id,user_id,token_hash,device_info,expires_at,created_at,revoked_at FROM refresh_tokens WHERE (token_hash = ?)
+10:36:40.978-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-1] a.s.a.m.RefreshTokensMapper.selectList   : ==> Parameters: 82bbb53f4685ca3200b86c7e3493962d488a5c22499ad5b7816785d033892287(String)
+10:36:40.978-[LinPro][sys]--DEBUG 15956 --- [io-8081-exec-10] a.s.a.m.RefreshTokensMapper.selectList   : ==> Parameters: 82bbb53f4685ca3200b86c7e3493962d488a5c22499ad5b7816785d033892287(String)
+10:36:40.982-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-1] a.s.a.m.RefreshTokensMapper.selectList   : <==      Total: 1
+10:36:40.997-[LinPro][sys]--DEBUG 15956 --- [io-8081-exec-10] a.s.a.m.RefreshTokensMapper.selectList   : <==      Total: 1
+10:36:41.013-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-2] a.s.a.m.RefreshTokensMapper.selectList   : ==>  Preparing: SELECT id,user_id,token_hash,device_info,expires_at,created_at,revoked_at FROM refresh_tokens WHERE (token_hash = ?)
+10:36:41.015-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-2] a.s.a.m.RefreshTokensMapper.selectList   : ==> Parameters: 718567a3f73725ca16356bb12734546f42a2ea3ca733ff7d66ac96308019525e(String)
+10:36:41.022-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-2] a.s.a.m.RefreshTokensMapper.selectList   : <==      Total: 1
+10:36:41.026-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-4] a.s.a.m.RefreshTokensMapper.selectList   : ==>  Preparing: SELECT id,user_id,token_hash,device_info,expires_at,created_at,revoked_at FROM refresh_tokens WHERE (token_hash = ?)
+10:36:41.027-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-4] a.s.a.m.RefreshTokensMapper.selectList   : ==> Parameters: 718567a3f73725ca16356bb12734546f42a2ea3ca733ff7d66ac96308019525e(String)
+10:36:41.033-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-4] a.s.a.m.RefreshTokensMapper.selectList   : <==      Total: 1
