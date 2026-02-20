@@ -11,9 +11,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * 【users 表实体（PO）】
  * <p>
- * 用户表
- * </p>
+ * 对应数据库 users 表，一个 User 对象 = 表里一行。字段与列一一对应，
+ * MyBatis-Plus 靠 @TableName / @TableId 建立映射关系。
  *
  * @author author
  * @since 2026-06-30
@@ -27,7 +28,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户 ID
+     * 用户 ID（主键，数据库自增）
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;

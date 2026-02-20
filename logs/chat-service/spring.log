@@ -456,3 +456,989 @@
 10:03:04.887-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
 10:03:04.888-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
 10:03:04.889-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:38:08.660-[LinPro][sys]--DEBUG 912 --- [enerContainer-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:38:08.661-[LinPro][sys]--DEBUG 912 --- [enerContainer-7] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:38:08.666-[LinPro][sys]--DEBUG 912 --- [enerContainer-7] a.s.c.m.C.selectList                     : <==      Total: 2
+10:38:08.668-[LinPro][sys]--DEBUG 912 --- [enerContainer-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:38:08.669-[LinPro][sys]--DEBUG 912 --- [enerContainer-7] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:38:08.673-[LinPro][sys]--DEBUG 912 --- [enerContainer-7] a.s.c.m.C.selectList                     : <==      Total: 2
+10:38:08.675-[LinPro][sys]--DEBUG 912 --- [enerContainer-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:38:08.676-[LinPro][sys]--DEBUG 912 --- [enerContainer-7] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:38:08.679-[LinPro][sys]--DEBUG 912 --- [enerContainer-7] a.s.c.m.C.selectList                     : <==      Total: 2
+10:38:10.135-[LinPro][sys]--DEBUG 912 --- [enerContainer-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:38:10.137-[LinPro][sys]--DEBUG 912 --- [enerContainer-8] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+10:38:10.141-[LinPro][sys]--DEBUG 912 --- [enerContainer-8] a.s.c.m.C.selectList                     : <==      Total: 2
+10:38:10.142-[LinPro][sys]--DEBUG 912 --- [enerContainer-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:38:10.143-[LinPro][sys]--DEBUG 912 --- [enerContainer-8] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:38:10.146-[LinPro][sys]--DEBUG 912 --- [enerContainer-8] a.s.c.m.C.selectList                     : <==      Total: 2
+10:38:10.147-[LinPro][sys]--DEBUG 912 --- [enerContainer-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:38:10.148-[LinPro][sys]--DEBUG 912 --- [enerContainer-8] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:38:10.151-[LinPro][sys]--DEBUG 912 --- [enerContainer-8] a.s.c.m.C.selectList                     : <==      Total: 2
+10:50:34.703-[LinPro][sys]--DEBUG 912 --- [enerContainer-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:50:34.705-[LinPro][sys]--DEBUG 912 --- [enerContainer-9] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+10:50:34.710-[LinPro][sys]--DEBUG 912 --- [enerContainer-9] a.s.c.m.C.selectList                     : <==      Total: 2
+10:50:34.711-[LinPro][sys]--DEBUG 912 --- [enerContainer-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:50:34.712-[LinPro][sys]--DEBUG 912 --- [enerContainer-9] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:50:34.719-[LinPro][sys]--DEBUG 912 --- [enerContainer-9] a.s.c.m.C.selectList                     : <==      Total: 2
+10:50:34.722-[LinPro][sys]--DEBUG 912 --- [enerContainer-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:50:34.723-[LinPro][sys]--DEBUG 912 --- [enerContainer-9] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:50:34.727-[LinPro][sys]--DEBUG 912 --- [enerContainer-9] a.s.c.m.C.selectList                     : <==      Total: 2
+10:50:35.030-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:50:35.032-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+10:50:35.036-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : <==      Total: 2
+10:50:35.037-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:50:35.039-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:50:35.043-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:50:35.044-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:50:35.045-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:50:35.048-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : <==      Total: 2
+10:50:35.050-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:50:35.051-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+10:50:35.056-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:50:35.059-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:50:35.060-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:50:35.064-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : <==      Total: 2
+10:50:35.066-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:50:35.067-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:50:35.071-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:50:35.122-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:50:35.123-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+10:50:35.129-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 2
+10:50:35.130-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:50:35.131-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:50:35.134-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:50:35.136-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:50:35.137-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:50:35.139-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 2
+10:50:35.141-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:50:35.142-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+10:50:35.144-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:50:35.145-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:50:35.146-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:50:35.149-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 2
+10:50:35.151-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:50:35.152-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:50:35.155-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:51:33.654-[LinPro][sys]--DEBUG 912 --- [nerContainer-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:51:33.655-[LinPro][sys]--DEBUG 912 --- [nerContainer-10] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:51:33.657-[LinPro][sys]--DEBUG 912 --- [nerContainer-10] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:33.659-[LinPro][sys]--DEBUG 912 --- [nerContainer-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:51:33.660-[LinPro][sys]--DEBUG 912 --- [nerContainer-10] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:51:33.662-[LinPro][sys]--DEBUG 912 --- [nerContainer-10] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:33.664-[LinPro][sys]--DEBUG 912 --- [nerContainer-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:51:33.665-[LinPro][sys]--DEBUG 912 --- [nerContainer-10] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:51:33.667-[LinPro][sys]--DEBUG 912 --- [nerContainer-10] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:33.928-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:51:33.929-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:51:33.932-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:33.933-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:51:33.934-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:51:33.937-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:51:33.938-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:51:33.939-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:51:33.942-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:33.943-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:51:33.943-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+10:51:33.946-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:51:33.947-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:51:33.948-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:51:33.950-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:33.952-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:51:33.952-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:51:33.955-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:51:33.994-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:51:33.995-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:51:34.000-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:34.001-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:51:34.002-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:51:34.005-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:51:34.006-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:51:34.007-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:51:34.010-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:34.011-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:51:34.013-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+10:51:34.016-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:51:34.017-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:51:34.018-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:51:34.022-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:34.023-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:51:34.024-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:51:34.027-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:51:37.425-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:51:37.426-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:51:37.428-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:37.429-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:51:37.429-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:51:37.432-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:51:37.434-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:51:37.435-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:51:37.437-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 1
+10:51:37.439-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:51:37.439-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:51:37.441-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:37.443-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:51:37.443-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:51:37.445-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:51:43.163-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:51:43.164-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:51:43.166-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:43.167-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:51:43.168-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:51:43.171-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:51:43.173-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:51:43.173-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:51:43.176-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 1
+10:51:43.178-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:51:43.178-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:51:43.181-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:43.182-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:51:43.183-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:51:43.187-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:51:59.326-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:51:59.326-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:51:59.329-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:59.330-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:51:59.331-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:51:59.334-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:51:59.335-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:51:59.336-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:51:59.339-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 1
+10:51:59.340-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:51:59.341-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:51:59.345-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 2
+10:51:59.347-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:51:59.347-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:51:59.350-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:52:00.236-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:52:00.237-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:52:00.239-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 2
+10:52:00.240-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:52:00.241-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:52:00.245-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:52:00.246-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:52:00.246-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:52:00.249-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 1
+10:52:00.250-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:52:00.250-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:52:00.253-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 2
+10:52:00.254-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:52:00.254-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:52:00.257-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:52:42.034-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:52:42.034-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:52:42.038-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 2
+10:52:42.039-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:52:42.041-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:52:42.044-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:52:42.045-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:52:42.046-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:52:42.049-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 1
+10:52:42.050-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:52:42.051-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:52:42.053-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 2
+10:52:42.055-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:52:42.055-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:52:42.058-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:53:02.736-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:53:02.737-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:53:02.741-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 2
+10:53:02.742-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:53:02.743-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:53:02.746-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:53:02.748-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:53:02.750-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:53:02.752-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 1
+10:53:02.754-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:53:02.755-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:53:02.759-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 2
+10:53:02.761-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:53:02.762-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:53:02.765-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:53:03.263-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:53:03.263-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:53:03.266-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : <==      Total: 2
+10:53:03.268-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:53:03.269-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:53:03.285-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:53:03.287-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:53:03.288-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:53:03.291-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : <==      Total: 1
+10:53:03.292-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:53:03.294-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:53:03.296-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : <==      Total: 2
+10:53:03.297-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:53:03.299-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:53:03.301-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:54:02.509-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:54:02.511-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:54:02.513-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : <==      Total: 2
+10:54:02.514-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:54:02.515-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:54:02.518-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:54:02.519-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:54:02.520-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:54:02.525-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : <==      Total: 1
+10:54:02.526-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:54:02.527-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:54:02.531-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : <==      Total: 2
+10:54:02.533-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:54:02.534-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:54:02.536-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:57:55.180-[LinPro][sys]--DEBUG 912 --- [nerContainer-11] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:57:55.181-[LinPro][sys]--DEBUG 912 --- [nerContainer-11] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:57:55.184-[LinPro][sys]--DEBUG 912 --- [nerContainer-11] a.s.c.m.C.selectList                     : <==      Total: 2
+10:57:55.185-[LinPro][sys]--DEBUG 912 --- [nerContainer-11] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:57:55.186-[LinPro][sys]--DEBUG 912 --- [nerContainer-11] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:57:55.189-[LinPro][sys]--DEBUG 912 --- [nerContainer-11] a.s.c.m.C.selectList                     : <==      Total: 2
+10:57:55.190-[LinPro][sys]--DEBUG 912 --- [nerContainer-11] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:57:55.191-[LinPro][sys]--DEBUG 912 --- [nerContainer-11] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:57:55.194-[LinPro][sys]--DEBUG 912 --- [nerContainer-11] a.s.c.m.C.selectList                     : <==      Total: 2
+10:57:55.618-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:57:55.620-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:57:55.623-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:57:55.625-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:57:55.626-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:57:55.628-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:57:55.630-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:57:55.631-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:57:55.634-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:57:55.635-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:57:55.637-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+10:57:55.639-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:57:55.640-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:57:55.641-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:57:55.645-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:57:55.646-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:57:55.647-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:57:55.650-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:57:55.692-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:57:55.693-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+10:57:55.695-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 2
+10:57:55.695-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:57:55.697-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:57:55.700-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:57:55.701-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:57:55.702-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:57:55.704-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 2
+10:57:55.705-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:57:55.705-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+10:57:55.708-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:57:55.709-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:57:55.709-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:57:55.713-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 2
+10:57:55.714-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:57:55.715-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:57:55.718-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:57:55.922-[LinPro][sys]--DEBUG 912 --- [nerContainer-12] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:57:55.924-[LinPro][sys]--DEBUG 912 --- [nerContainer-12] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+10:57:55.927-[LinPro][sys]--DEBUG 912 --- [nerContainer-12] a.s.c.m.C.selectList                     : <==      Total: 2
+10:57:55.929-[LinPro][sys]--DEBUG 912 --- [nerContainer-12] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:57:55.930-[LinPro][sys]--DEBUG 912 --- [nerContainer-12] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:57:55.933-[LinPro][sys]--DEBUG 912 --- [nerContainer-12] a.s.c.m.C.selectList                     : <==      Total: 2
+10:57:55.935-[LinPro][sys]--DEBUG 912 --- [nerContainer-12] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:57:55.936-[LinPro][sys]--DEBUG 912 --- [nerContainer-12] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:57:55.939-[LinPro][sys]--DEBUG 912 --- [nerContainer-12] a.s.c.m.C.selectList                     : <==      Total: 2
+10:58:00.739-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:58:00.740-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long), 11(Long)
+10:58:00.744-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 1
+10:58:00.754-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL) ORDER BY id DESC limit 51
+10:58:00.755-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 6(Long)
+10:58:00.774-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 0
+10:58:02.610-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:58:02.610-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:58:02.613-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : <==      Total: 1
+10:58:02.615-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL) ORDER BY id DESC limit 51
+10:58:02.616-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 7(Long)
+10:58:02.619-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 0
+10:58:15.023-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:58:15.024-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:58:15.027-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : <==      Total: 1
+10:58:15.028-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL) ORDER BY id DESC limit 51
+10:58:15.029-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 7(Long)
+10:58:15.031-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 0
+10:58:20.809-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:58:20.809-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:58:20.812-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 1
+10:58:20.875-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (client_id = ?)
+10:58:20.876-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 0363937c-a666-4d69-843e-935ff447f415(String)
+10:58:20.892-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 0
+10:58:20.894-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.chat.mapper.MessagesMapper.insert    : ==>  Preparing: INSERT INTO messages ( conversation_id, sender_id, type, content, client_id, sent_at ) VALUES ( ?, ?, ?, ?, ?, ? )
+10:58:20.895-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.chat.mapper.MessagesMapper.insert    : ==> Parameters: 7(Long), 11(Long), text(String), hello(String), 0363937c-a666-4d69-843e-935ff447f415(String), 2026-07-03T10:58:20.893841500(LocalDateTime)
+10:58:20.900-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.chat.mapper.MessagesMapper.insert    : <==    Updates: 1
+10:58:20.901-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.ConversationsMapper.selectById   : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id=? AND deleted_at IS NULL
+10:58:20.902-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.ConversationsMapper.selectById   : ==> Parameters: 7(Long)
+10:58:20.904-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.ConversationsMapper.selectById   : <==      Total: 1
+10:58:20.908-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.ConversationsMapper.updateById   : ==>  Preparing: UPDATE conversations SET type=?, last_message_id=?, last_message_at=?, created_at=?, updated_at=? WHERE id=? AND deleted_at IS NULL
+10:58:20.909-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.ConversationsMapper.updateById   : ==> Parameters: direct(String), 2(Long), 2026-07-03T10:58:20.893841500(LocalDateTime), 2026-07-03T09:59:36.611(LocalDateTime), 2026-07-03T09:59:36.611(LocalDateTime), 7(Long)
+10:58:20.913-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.ConversationsMapper.updateById   : <==    Updates: 1
+10:58:20.929-[LinPro][sys]--DEBUG 912 --- [nerContainer-13] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:58:20.929-[LinPro][sys]--DEBUG 912 --- [nerContainer-13] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:58:20.931-[LinPro][sys]--DEBUG 912 --- [nerContainer-13] a.s.c.m.C.selectList                     : <==      Total: 2
+10:58:20.933-[LinPro][sys]--DEBUG 912 --- [nerContainer-13] a.s.c.mapper.MessagesMapper.selectById   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE id=? AND deleted_at IS NULL
+10:58:20.934-[LinPro][sys]--DEBUG 912 --- [nerContainer-13] a.s.c.mapper.MessagesMapper.selectById   : ==> Parameters: 2(Long)
+10:58:20.944-[LinPro][sys]--DEBUG 912 --- [nerContainer-13] a.s.c.mapper.MessagesMapper.selectById   : <==      Total: 1
+10:58:25.122-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:58:25.123-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:58:25.125-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : <==      Total: 1
+10:58:25.127-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL) ORDER BY id DESC limit 51
+10:58:25.128-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 7(Long)
+10:58:25.131-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 1
+10:58:25.220-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ?)
+10:58:25.221-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:58:25.225-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : <==      Total: 1
+10:58:25.227-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.updateById                     : ==>  Preparing: UPDATE conversation_members SET conversation_id=?, user_id=?, last_read_message_id=?, last_read_at=?, joined_at=? WHERE id=?
+10:58:25.228-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.updateById                     : ==> Parameters: 7(Long), 11(Long), 2(Long), 2026-07-03T10:58:25.225970100(LocalDateTime), 2026-07-03T09:59:36.681(LocalDateTime), 14(Long)
+10:58:25.231-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:58:25.232-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:58:25.235-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 1
+10:58:25.237-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ?)
+10:58:25.238-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:58:25.240-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 1
+10:58:25.242-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.updateById                     : ==>  Preparing: UPDATE conversation_members SET conversation_id=?, user_id=?, last_read_message_id=?, last_read_at=?, joined_at=? WHERE id=?
+10:58:25.243-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.updateById                     : ==> Parameters: 7(Long), 11(Long), 2(Long), 2026-07-03T10:58:25.241955900(LocalDateTime), 2026-07-03T09:59:36.681(LocalDateTime), 14(Long)
+10:58:25.252-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.updateById                     : <==    Updates: 1
+10:58:25.258-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.updateById                     : <==    Updates: 1
+10:58:27.574-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:58:27.575-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long), 11(Long)
+10:58:27.579-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : <==      Total: 1
+10:58:27.580-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL) ORDER BY id DESC limit 51
+10:58:27.581-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 6(Long)
+10:58:27.584-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 0
+10:59:09.145-[LinPro][sys]--DEBUG 912 --- [nerContainer-14] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:59:09.145-[LinPro][sys]--DEBUG 912 --- [nerContainer-14] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+10:59:09.147-[LinPro][sys]--DEBUG 912 --- [nerContainer-14] a.s.c.m.C.selectList                     : <==      Total: 2
+10:59:09.148-[LinPro][sys]--DEBUG 912 --- [nerContainer-14] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:59:09.149-[LinPro][sys]--DEBUG 912 --- [nerContainer-14] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:59:09.152-[LinPro][sys]--DEBUG 912 --- [nerContainer-14] a.s.c.m.C.selectList                     : <==      Total: 2
+10:59:09.153-[LinPro][sys]--DEBUG 912 --- [nerContainer-14] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:59:09.154-[LinPro][sys]--DEBUG 912 --- [nerContainer-14] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:59:09.157-[LinPro][sys]--DEBUG 912 --- [nerContainer-14] a.s.c.m.C.selectList                     : <==      Total: 2
+10:59:09.429-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:59:09.430-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+10:59:09.433-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 2
+10:59:09.434-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:59:09.435-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:59:09.438-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:59:09.439-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:59:09.440-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:59:09.443-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 2
+10:59:09.445-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:59:09.445-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:59:09.451-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:59:09.451-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectById   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE id=? AND deleted_at IS NULL
+10:59:09.453-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectById   : ==> Parameters: 2(Long)
+10:59:09.455-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectById   : <==      Total: 1
+10:59:09.485-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:59:09.486-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:59:09.488-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 2
+10:59:09.490-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:59:09.490-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+10:59:09.493-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:59:09.500-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+10:59:09.501-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+10:59:09.504-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:59:09.505-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:59:09.506-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : ==> Parameters: 6(Long), 7(Long)
+10:59:09.508-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectBatchIds                 : <==      Total: 2
+10:59:09.509-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:59:09.510-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:59:09.512-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:59:09.514-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:59:09.515-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 7(Long), 0(Long)
+10:59:09.517-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:59:09.518-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectById   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE id=? AND deleted_at IS NULL
+10:59:09.518-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectById   : ==> Parameters: 2(Long)
+10:59:09.520-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectById   : <==      Total: 1
+10:59:09.549-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:59:09.549-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+10:59:09.553-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 2
+10:59:09.554-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==>  Preparing: SELECT COUNT( * ) AS total FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL AND id > ?)
+10:59:09.554-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : ==> Parameters: 6(Long), 0(Long)
+10:59:09.557-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.mapper.MessagesMapper.selectCount  : <==      Total: 1
+10:59:10.930-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:59:10.931-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:59:10.934-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:10.935-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL) ORDER BY id DESC limit 51
+10:59:10.935-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 7(Long)
+10:59:10.938-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 1
+10:59:11.022-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ?)
+10:59:11.024-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:59:11.026-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:11.027-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.updateById                     : ==>  Preparing: UPDATE conversation_members SET conversation_id=?, user_id=?, last_read_message_id=?, last_read_at=?, joined_at=? WHERE id=?
+10:59:11.028-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.updateById                     : ==> Parameters: 7(Long), 10(Long), 2(Long), 2026-07-03T10:59:11.027902900(LocalDateTime), 2026-07-03T09:59:36.664(LocalDateTime), 13(Long)
+10:59:11.033-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:59:11.034-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:59:11.037-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:11.039-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ?)
+10:59:11.039-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:59:11.040-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.updateById                     : <==    Updates: 1
+10:59:11.042-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:11.043-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.updateById                     : ==>  Preparing: UPDATE conversation_members SET conversation_id=?, user_id=?, last_read_message_id=?, last_read_at=?, joined_at=? WHERE id=?
+10:59:11.044-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.updateById                     : ==> Parameters: 7(Long), 10(Long), 2(Long), 2026-07-03T10:59:11.043488600(LocalDateTime), 2026-07-03T09:59:36.664(LocalDateTime), 13(Long)
+10:59:11.056-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.updateById                     : <==    Updates: 1
+10:59:17.359-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:59:17.360-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:59:17.362-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:17.364-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (client_id = ?)
+10:59:17.365-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 8d1d5728-3d42-4d1d-a172-a41f002fc98a(String)
+10:59:17.367-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 0
+10:59:17.368-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.chat.mapper.MessagesMapper.insert    : ==>  Preparing: INSERT INTO messages ( conversation_id, sender_id, type, content, client_id, sent_at ) VALUES ( ?, ?, ?, ?, ?, ? )
+10:59:17.369-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.chat.mapper.MessagesMapper.insert    : ==> Parameters: 7(Long), 10(Long), text(String), omg no shit(String), 8d1d5728-3d42-4d1d-a172-a41f002fc98a(String), 2026-07-03T10:59:17.367601500(LocalDateTime)
+10:59:17.372-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.chat.mapper.MessagesMapper.insert    : <==    Updates: 1
+10:59:17.373-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.ConversationsMapper.selectById   : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id=? AND deleted_at IS NULL
+10:59:17.374-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.ConversationsMapper.selectById   : ==> Parameters: 7(Long)
+10:59:17.376-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.ConversationsMapper.selectById   : <==      Total: 1
+10:59:17.377-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.ConversationsMapper.updateById   : ==>  Preparing: UPDATE conversations SET type=?, last_message_id=?, last_message_at=?, created_at=?, updated_at=? WHERE id=? AND deleted_at IS NULL
+10:59:17.377-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.ConversationsMapper.updateById   : ==> Parameters: direct(String), 3(Long), 2026-07-03T10:59:17.367601500(LocalDateTime), 2026-07-03T09:59:36.611(LocalDateTime), 2026-07-03T09:59:36.611(LocalDateTime), 7(Long)
+10:59:17.387-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.ConversationsMapper.updateById   : <==    Updates: 1
+10:59:17.402-[LinPro][sys]--DEBUG 912 --- [nerContainer-15] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:59:17.403-[LinPro][sys]--DEBUG 912 --- [nerContainer-15] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:59:17.405-[LinPro][sys]--DEBUG 912 --- [nerContainer-15] a.s.c.m.C.selectList                     : <==      Total: 2
+10:59:17.406-[LinPro][sys]--DEBUG 912 --- [nerContainer-15] a.s.c.mapper.MessagesMapper.selectById   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE id=? AND deleted_at IS NULL
+10:59:17.407-[LinPro][sys]--DEBUG 912 --- [nerContainer-15] a.s.c.mapper.MessagesMapper.selectById   : ==> Parameters: 3(Long)
+10:59:17.410-[LinPro][sys]--DEBUG 912 --- [nerContainer-15] a.s.c.mapper.MessagesMapper.selectById   : <==      Total: 1
+10:59:18.990-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:59:18.991-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:59:18.994-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:18.995-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL) ORDER BY id DESC limit 51
+10:59:18.995-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 7(Long)
+10:59:18.998-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 2
+10:59:19.148-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ?)
+10:59:19.149-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:59:19.152-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:19.153-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.updateById                     : ==>  Preparing: UPDATE conversation_members SET conversation_id=?, user_id=?, last_read_message_id=?, last_read_at=?, joined_at=? WHERE id=?
+10:59:19.154-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.updateById                     : ==> Parameters: 7(Long), 11(Long), 3(Long), 2026-07-03T10:59:19.153269100(LocalDateTime), 2026-07-03T09:59:36.681(LocalDateTime), 14(Long)
+10:59:19.165-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:59:19.166-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:59:19.167-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.updateById                     : <==    Updates: 1
+10:59:19.169-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:19.170-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ?)
+10:59:19.171-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:59:19.174-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:19.176-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.updateById                     : ==>  Preparing: UPDATE conversation_members SET conversation_id=?, user_id=?, last_read_message_id=?, last_read_at=?, joined_at=? WHERE id=?
+10:59:19.177-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.updateById                     : ==> Parameters: 7(Long), 11(Long), 3(Long), 2026-07-03T10:59:19.175545300(LocalDateTime), 2026-07-03T09:59:36.681(LocalDateTime), 14(Long)
+10:59:19.188-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.updateById                     : <==    Updates: 1
+10:59:28.613-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:59:28.613-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:59:28.616-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:28.617-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (client_id = ?)
+10:59:28.618-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 816c6f6e-6304-4397-a58f-f7b2600cc636(String)
+10:59:28.620-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 0
+10:59:28.621-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.chat.mapper.MessagesMapper.insert    : ==>  Preparing: INSERT INTO messages ( conversation_id, sender_id, type, content, client_id, sent_at ) VALUES ( ?, ?, ?, ?, ?, ? )
+10:59:28.622-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.chat.mapper.MessagesMapper.insert    : ==> Parameters: 7(Long), 10(Long), text(String), yes yes(String), 816c6f6e-6304-4397-a58f-f7b2600cc636(String), 2026-07-03T10:59:28.621228800(LocalDateTime)
+10:59:28.626-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.chat.mapper.MessagesMapper.insert    : <==    Updates: 1
+10:59:28.626-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.ConversationsMapper.selectById   : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id=? AND deleted_at IS NULL
+10:59:28.627-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.ConversationsMapper.selectById   : ==> Parameters: 7(Long)
+10:59:28.628-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.ConversationsMapper.selectById   : <==      Total: 1
+10:59:28.630-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.ConversationsMapper.updateById   : ==>  Preparing: UPDATE conversations SET type=?, last_message_id=?, last_message_at=?, created_at=?, updated_at=? WHERE id=? AND deleted_at IS NULL
+10:59:28.630-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.ConversationsMapper.updateById   : ==> Parameters: direct(String), 4(Long), 2026-07-03T10:59:28.621228800(LocalDateTime), 2026-07-03T09:59:36.611(LocalDateTime), 2026-07-03T09:59:36.611(LocalDateTime), 7(Long)
+10:59:28.633-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.ConversationsMapper.updateById   : <==    Updates: 1
+10:59:28.659-[LinPro][sys]--DEBUG 912 --- [nerContainer-16] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:59:28.660-[LinPro][sys]--DEBUG 912 --- [nerContainer-16] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:59:28.663-[LinPro][sys]--DEBUG 912 --- [nerContainer-16] a.s.c.m.C.selectList                     : <==      Total: 2
+10:59:28.664-[LinPro][sys]--DEBUG 912 --- [nerContainer-16] a.s.c.mapper.MessagesMapper.selectById   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE id=? AND deleted_at IS NULL
+10:59:28.664-[LinPro][sys]--DEBUG 912 --- [nerContainer-16] a.s.c.mapper.MessagesMapper.selectById   : ==> Parameters: 4(Long)
+10:59:28.666-[LinPro][sys]--DEBUG 912 --- [nerContainer-16] a.s.c.mapper.MessagesMapper.selectById   : <==      Total: 1
+10:59:41.419-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:59:41.419-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:59:41.423-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:41.424-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL) ORDER BY id DESC limit 51
+10:59:41.426-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 7(Long)
+10:59:41.428-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 3
+10:59:41.675-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ?)
+10:59:41.676-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:59:41.679-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:41.681-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.updateById                     : ==>  Preparing: UPDATE conversation_members SET conversation_id=?, user_id=?, last_read_message_id=?, last_read_at=?, joined_at=? WHERE id=?
+10:59:41.681-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:59:41.682-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.updateById                     : ==> Parameters: 7(Long), 11(Long), 4(Long), 2026-07-03T10:59:41.680454300(LocalDateTime), 2026-07-03T09:59:36.681(LocalDateTime), 14(Long)
+10:59:41.682-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:59:41.685-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:41.687-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ?)
+10:59:41.688-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:59:41.702-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:41.704-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.updateById                     : ==>  Preparing: UPDATE conversation_members SET conversation_id=?, user_id=?, last_read_message_id=?, last_read_at=?, joined_at=? WHERE id=?
+10:59:41.705-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.updateById                     : ==> Parameters: 7(Long), 11(Long), 4(Long), 2026-07-03T10:59:41.703557700(LocalDateTime), 2026-07-03T09:59:36.681(LocalDateTime), 14(Long)
+10:59:41.720-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.updateById                     : <==    Updates: 1
+10:59:41.726-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.updateById                     : <==    Updates: 1
+10:59:43.502-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:59:43.503-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:59:43.505-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:43.507-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL) ORDER BY id DESC limit 51
+10:59:43.508-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 7(Long)
+10:59:43.512-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-4] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 3
+10:59:43.947-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ?)
+10:59:43.948-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:59:43.950-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:43.951-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.updateById                     : ==>  Preparing: UPDATE conversation_members SET conversation_id=?, user_id=?, last_read_message_id=?, last_read_at=?, joined_at=? WHERE id=?
+10:59:43.952-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:59:43.952-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.updateById                     : ==> Parameters: 7(Long), 11(Long), 4(Long), 2026-07-03T10:59:43.950897200(LocalDateTime), 2026-07-03T09:59:36.681(LocalDateTime), 14(Long)
+10:59:43.952-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:59:43.954-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:43.955-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ?)
+10:59:43.956-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:59:43.959-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:43.960-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.updateById                     : ==>  Preparing: UPDATE conversation_members SET conversation_id=?, user_id=?, last_read_message_id=?, last_read_at=?, joined_at=? WHERE id=?
+10:59:43.961-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.updateById                     : ==> Parameters: 7(Long), 11(Long), 4(Long), 2026-07-03T10:59:43.960284400(LocalDateTime), 2026-07-03T09:59:36.681(LocalDateTime), 14(Long)
+10:59:43.967-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-6] a.s.c.m.C.updateById                     : <==    Updates: 1
+10:59:43.974-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.updateById                     : <==    Updates: 1
+10:59:50.189-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:59:50.190-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 11(Long)
+10:59:50.192-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:50.195-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (client_id = ?)
+10:59:50.196-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 09ad7b05-f2ba-4290-b9fa-932b9b1bb676(String)
+10:59:50.198-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 0
+10:59:50.199-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.chat.mapper.MessagesMapper.insert    : ==>  Preparing: INSERT INTO messages ( conversation_id, sender_id, type, content, client_id, sent_at ) VALUES ( ?, ?, ?, ?, ?, ? )
+10:59:50.201-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.chat.mapper.MessagesMapper.insert    : ==> Parameters: 7(Long), 11(Long), text(String), how are you(String), 09ad7b05-f2ba-4290-b9fa-932b9b1bb676(String), 2026-07-03T10:59:50.199369900(LocalDateTime)
+10:59:50.204-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.chat.mapper.MessagesMapper.insert    : <==    Updates: 1
+10:59:50.205-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.ConversationsMapper.selectById   : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id=? AND deleted_at IS NULL
+10:59:50.206-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.ConversationsMapper.selectById   : ==> Parameters: 7(Long)
+10:59:50.208-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.ConversationsMapper.selectById   : <==      Total: 1
+10:59:50.208-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.ConversationsMapper.updateById   : ==>  Preparing: UPDATE conversations SET type=?, last_message_id=?, last_message_at=?, created_at=?, updated_at=? WHERE id=? AND deleted_at IS NULL
+10:59:50.209-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.ConversationsMapper.updateById   : ==> Parameters: direct(String), 5(Long), 2026-07-03T10:59:50.199369900(LocalDateTime), 2026-07-03T09:59:36.611(LocalDateTime), 2026-07-03T09:59:36.611(LocalDateTime), 7(Long)
+10:59:50.213-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.ConversationsMapper.updateById   : <==    Updates: 1
+10:59:50.226-[LinPro][sys]--DEBUG 912 --- [nerContainer-17] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:59:50.228-[LinPro][sys]--DEBUG 912 --- [nerContainer-17] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:59:50.230-[LinPro][sys]--DEBUG 912 --- [nerContainer-17] a.s.c.m.C.selectList                     : <==      Total: 2
+10:59:50.231-[LinPro][sys]--DEBUG 912 --- [nerContainer-17] a.s.c.mapper.MessagesMapper.selectById   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE id=? AND deleted_at IS NULL
+10:59:50.232-[LinPro][sys]--DEBUG 912 --- [nerContainer-17] a.s.c.mapper.MessagesMapper.selectById   : ==> Parameters: 5(Long)
+10:59:50.235-[LinPro][sys]--DEBUG 912 --- [nerContainer-17] a.s.c.mapper.MessagesMapper.selectById   : <==      Total: 1
+10:59:54.736-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:59:54.737-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long), 10(Long)
+10:59:54.740-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:54.742-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (client_id = ?)
+10:59:54.744-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 1f229d26-62bd-466e-b962-5324f7d25672(String)
+10:59:54.745-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 0
+10:59:54.746-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.chat.mapper.MessagesMapper.insert    : ==>  Preparing: INSERT INTO messages ( conversation_id, sender_id, type, content, client_id, sent_at ) VALUES ( ?, ?, ?, ?, ?, ? )
+10:59:54.747-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.chat.mapper.MessagesMapper.insert    : ==> Parameters: 7(Long), 10(Long), text(String), good(String), 1f229d26-62bd-466e-b962-5324f7d25672(String), 2026-07-03T10:59:54.746777500(LocalDateTime)
+10:59:54.750-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.chat.mapper.MessagesMapper.insert    : <==    Updates: 1
+10:59:54.750-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.ConversationsMapper.selectById   : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id=? AND deleted_at IS NULL
+10:59:54.751-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.ConversationsMapper.selectById   : ==> Parameters: 7(Long)
+10:59:54.753-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.ConversationsMapper.selectById   : <==      Total: 1
+10:59:54.754-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.ConversationsMapper.updateById   : ==>  Preparing: UPDATE conversations SET type=?, last_message_id=?, last_message_at=?, created_at=?, updated_at=? WHERE id=? AND deleted_at IS NULL
+10:59:54.755-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.ConversationsMapper.updateById   : ==> Parameters: direct(String), 6(Long), 2026-07-03T10:59:54.746777500(LocalDateTime), 2026-07-03T09:59:36.611(LocalDateTime), 2026-07-03T09:59:36.611(LocalDateTime), 7(Long)
+10:59:54.757-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-7] a.s.c.m.ConversationsMapper.updateById   : <==    Updates: 1
+10:59:54.771-[LinPro][sys]--DEBUG 912 --- [nerContainer-18] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+10:59:54.771-[LinPro][sys]--DEBUG 912 --- [nerContainer-18] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+10:59:54.773-[LinPro][sys]--DEBUG 912 --- [nerContainer-18] a.s.c.m.C.selectList                     : <==      Total: 2
+10:59:54.775-[LinPro][sys]--DEBUG 912 --- [nerContainer-18] a.s.c.mapper.MessagesMapper.selectById   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE id=? AND deleted_at IS NULL
+10:59:54.775-[LinPro][sys]--DEBUG 912 --- [nerContainer-18] a.s.c.mapper.MessagesMapper.selectById   : ==> Parameters: 6(Long)
+10:59:54.777-[LinPro][sys]--DEBUG 912 --- [nerContainer-18] a.s.c.mapper.MessagesMapper.selectById   : <==      Total: 1
+10:59:58.148-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:59:58.149-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long), 10(Long)
+10:59:58.151-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:58.152-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL) ORDER BY id DESC limit 51
+10:59:58.153-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 6(Long)
+10:59:58.155-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 0
+10:59:59.783-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+10:59:59.784-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long), 10(Long)
+10:59:59.785-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.m.C.selectList                     : <==      Total: 1
+10:59:59.787-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL) ORDER BY id DESC limit 51
+10:59:59.788-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 6(Long)
+10:59:59.790-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-1] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 0
+11:00:01.403-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+11:00:01.404-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long), 10(Long)
+11:00:01.406-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.m.C.selectList                     : <==      Total: 1
+11:00:01.407-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL) ORDER BY id DESC limit 51
+11:00:01.408-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 6(Long)
+11:00:01.410-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-5] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 0
+11:00:07.595-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+11:00:07.596-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long), 10(Long)
+11:00:07.597-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.C.selectList                     : <==      Total: 1
+11:00:07.600-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (client_id = ?)
+11:00:07.600-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: ffdc4b4d-4a1e-4c8b-928c-3ddeeec056e8(String)
+11:00:07.602-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 0
+11:00:07.605-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.chat.mapper.MessagesMapper.insert    : ==>  Preparing: INSERT INTO messages ( conversation_id, sender_id, type, content, client_id, sent_at ) VALUES ( ?, ?, ?, ?, ?, ? )
+11:00:07.605-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.chat.mapper.MessagesMapper.insert    : ==> Parameters: 6(Long), 10(Long), text(String), hi everyone(String), ffdc4b4d-4a1e-4c8b-928c-3ddeeec056e8(String), 2026-07-03T11:00:07.603396400(LocalDateTime)
+11:00:07.621-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.chat.mapper.MessagesMapper.insert    : <==    Updates: 1
+11:00:07.622-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.ConversationsMapper.selectById   : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id=? AND deleted_at IS NULL
+11:00:07.623-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.ConversationsMapper.selectById   : ==> Parameters: 6(Long)
+11:00:07.625-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.ConversationsMapper.selectById   : <==      Total: 1
+11:00:07.627-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.ConversationsMapper.updateById   : ==>  Preparing: UPDATE conversations SET type=?, name=?, family_id=?, last_message_id=?, last_message_at=?, created_at=?, updated_at=? WHERE id=? AND deleted_at IS NULL
+11:00:07.627-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.ConversationsMapper.updateById   : ==> Parameters: group(String), FAMILY WANG群聊(String), 11(Long), 7(Long), 2026-07-03T11:00:07.603396400(LocalDateTime), 2026-07-02T21:47:55.178(LocalDateTime), 2026-07-02T21:47:55.178(LocalDateTime), 6(Long)
+11:00:07.630-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-8] a.s.c.m.ConversationsMapper.updateById   : <==    Updates: 1
+11:00:07.642-[LinPro][sys]--DEBUG 912 --- [nerContainer-19] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+11:00:07.642-[LinPro][sys]--DEBUG 912 --- [nerContainer-19] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+11:00:07.646-[LinPro][sys]--DEBUG 912 --- [nerContainer-19] a.s.c.m.C.selectList                     : <==      Total: 2
+11:00:07.647-[LinPro][sys]--DEBUG 912 --- [nerContainer-19] a.s.c.mapper.MessagesMapper.selectById   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE id=? AND deleted_at IS NULL
+11:00:07.648-[LinPro][sys]--DEBUG 912 --- [nerContainer-19] a.s.c.mapper.MessagesMapper.selectById   : ==> Parameters: 7(Long)
+11:00:07.650-[LinPro][sys]--DEBUG 912 --- [nerContainer-19] a.s.c.mapper.MessagesMapper.selectById   : <==      Total: 1
+11:00:10.167-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+11:00:10.168-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long), 11(Long)
+11:00:10.170-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.m.C.selectList                     : <==      Total: 1
+11:00:10.172-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (conversation_id = ? AND deleted_at IS NULL) ORDER BY id DESC limit 51
+11:00:10.172-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 6(Long)
+11:00:10.175-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-9] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 1
+11:00:10.281-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ?)
+11:00:10.281-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long), 11(Long)
+11:00:10.284-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.selectList                     : <==      Total: 1
+11:00:10.285-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.updateById                     : ==>  Preparing: UPDATE conversation_members SET conversation_id=?, user_id=?, last_read_message_id=?, last_read_at=?, joined_at=? WHERE id=?
+11:00:10.286-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.updateById                     : ==> Parameters: 6(Long), 11(Long), 7(Long), 2026-07-03T11:00:10.284972800(LocalDateTime), 2026-07-02T23:05:56.080(LocalDateTime), 12(Long)
+11:00:10.287-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+11:00:10.288-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long), 11(Long)
+11:00:10.290-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : <==      Total: 1
+11:00:10.292-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ?)
+11:00:10.292-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long), 11(Long)
+11:00:10.294-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.selectList                     : <==      Total: 1
+11:00:10.296-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.updateById                     : ==>  Preparing: UPDATE conversation_members SET conversation_id=?, user_id=?, last_read_message_id=?, last_read_at=?, joined_at=? WHERE id=?
+11:00:10.298-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.updateById                     : ==> Parameters: 6(Long), 11(Long), 7(Long), 2026-07-03T11:00:10.296004900(LocalDateTime), 2026-07-02T23:05:56.080(LocalDateTime), 12(Long)
+11:00:10.310-[LinPro][sys]--DEBUG 912 --- [io-8084-exec-10] a.s.c.m.C.updateById                     : <==    Updates: 1
+11:00:10.321-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-2] a.s.c.m.C.updateById                     : <==    Updates: 1
+11:00:13.553-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND user_id = ? AND left_at IS NULL)
+11:00:13.554-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long), 11(Long)
+11:00:13.556-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.C.selectList                     : <==      Total: 1
+11:00:13.558-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectList   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE deleted_at IS NULL AND (client_id = ?)
+11:00:13.560-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectList   : ==> Parameters: 1b2c06de-8a2e-4baa-90d9-89aaa001f321(String)
+11:00:13.562-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.mapper.MessagesMapper.selectList   : <==      Total: 0
+11:00:13.563-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.chat.mapper.MessagesMapper.insert    : ==>  Preparing: INSERT INTO messages ( conversation_id, sender_id, type, content, client_id, sent_at ) VALUES ( ?, ?, ?, ?, ?, ? )
+11:00:13.564-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.chat.mapper.MessagesMapper.insert    : ==> Parameters: 6(Long), 11(Long), text(String), hi(String), 1b2c06de-8a2e-4baa-90d9-89aaa001f321(String), 2026-07-03T11:00:13.562895500(LocalDateTime)
+11:00:13.567-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.chat.mapper.MessagesMapper.insert    : <==    Updates: 1
+11:00:13.567-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.ConversationsMapper.selectById   : ==>  Preparing: SELECT id,type,name,family_id,last_message_id,last_message_at,created_at,updated_at,deleted_at FROM conversations WHERE id=? AND deleted_at IS NULL
+11:00:13.568-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.ConversationsMapper.selectById   : ==> Parameters: 6(Long)
+11:00:13.570-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.ConversationsMapper.selectById   : <==      Total: 1
+11:00:13.571-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.ConversationsMapper.updateById   : ==>  Preparing: UPDATE conversations SET type=?, name=?, family_id=?, last_message_id=?, last_message_at=?, created_at=?, updated_at=? WHERE id=? AND deleted_at IS NULL
+11:00:13.572-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.ConversationsMapper.updateById   : ==> Parameters: group(String), FAMILY WANG群聊(String), 11(Long), 8(Long), 2026-07-03T11:00:13.562895500(LocalDateTime), 2026-07-02T21:47:55.178(LocalDateTime), 2026-07-02T21:47:55.178(LocalDateTime), 6(Long)
+11:00:13.575-[LinPro][sys]--DEBUG 912 --- [nio-8084-exec-3] a.s.c.m.ConversationsMapper.updateById   : <==    Updates: 1
+11:00:13.597-[LinPro][sys]--DEBUG 912 --- [nerContainer-20] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+11:00:13.597-[LinPro][sys]--DEBUG 912 --- [nerContainer-20] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+11:00:13.600-[LinPro][sys]--DEBUG 912 --- [nerContainer-20] a.s.c.m.C.selectList                     : <==      Total: 2
+11:00:13.601-[LinPro][sys]--DEBUG 912 --- [nerContainer-20] a.s.c.mapper.MessagesMapper.selectById   : ==>  Preparing: SELECT id,conversation_id,sender_id,type,content,client_id,reply_to_id,sent_at,deleted_at FROM messages WHERE id=? AND deleted_at IS NULL
+11:00:13.602-[LinPro][sys]--DEBUG 912 --- [nerContainer-20] a.s.c.mapper.MessagesMapper.selectById   : ==> Parameters: 8(Long)
+11:00:13.604-[LinPro][sys]--DEBUG 912 --- [nerContainer-20] a.s.c.mapper.MessagesMapper.selectById   : <==      Total: 1
+11:00:32.390-[LinPro][sys]--DEBUG 912 --- [nerContainer-21] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+11:00:32.391-[LinPro][sys]--DEBUG 912 --- [nerContainer-21] a.s.c.m.C.selectList                     : ==> Parameters: 10(Long)
+11:00:32.394-[LinPro][sys]--DEBUG 912 --- [nerContainer-21] a.s.c.m.C.selectList                     : <==      Total: 2
+11:00:32.396-[LinPro][sys]--DEBUG 912 --- [nerContainer-21] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+11:00:32.397-[LinPro][sys]--DEBUG 912 --- [nerContainer-21] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+11:00:32.400-[LinPro][sys]--DEBUG 912 --- [nerContainer-21] a.s.c.m.C.selectList                     : <==      Total: 2
+11:00:32.401-[LinPro][sys]--DEBUG 912 --- [nerContainer-21] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+11:00:32.403-[LinPro][sys]--DEBUG 912 --- [nerContainer-21] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+11:00:32.405-[LinPro][sys]--DEBUG 912 --- [nerContainer-21] a.s.c.m.C.selectList                     : <==      Total: 2
+11:00:33.043-[LinPro][sys]--DEBUG 912 --- [nerContainer-22] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (user_id = ? AND left_at IS NULL)
+11:00:33.044-[LinPro][sys]--DEBUG 912 --- [nerContainer-22] a.s.c.m.C.selectList                     : ==> Parameters: 11(Long)
+11:00:33.047-[LinPro][sys]--DEBUG 912 --- [nerContainer-22] a.s.c.m.C.selectList                     : <==      Total: 2
+11:00:33.049-[LinPro][sys]--DEBUG 912 --- [nerContainer-22] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+11:00:33.050-[LinPro][sys]--DEBUG 912 --- [nerContainer-22] a.s.c.m.C.selectList                     : ==> Parameters: 6(Long)
+11:00:33.053-[LinPro][sys]--DEBUG 912 --- [nerContainer-22] a.s.c.m.C.selectList                     : <==      Total: 2
+11:00:33.054-[LinPro][sys]--DEBUG 912 --- [nerContainer-22] a.s.c.m.C.selectList                     : ==>  Preparing: SELECT id,conversation_id,user_id,last_read_message_id,last_read_at,joined_at,left_at FROM conversation_members WHERE (conversation_id = ? AND left_at IS NULL)
+11:00:33.055-[LinPro][sys]--DEBUG 912 --- [nerContainer-22] a.s.c.m.C.selectList                     : ==> Parameters: 7(Long)
+11:00:33.057-[LinPro][sys]--DEBUG 912 --- [nerContainer-22] a.s.c.m.C.selectList                     : <==      Total: 2
+11:33:39.845-[LinPro][sys]-- INFO 912 --- [       Thread-7] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+11:33:39.847-[LinPro][sys]-- INFO 912 --- [bboShutdownHook] o.apache.dubbo.config.DubboShutdownHook  :  [DUBBO] Run shutdown hook now., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.848-[LinPro][sys]-- INFO 912 --- [andler-thread-4] o.a.d.r.e.s.h.HeaderExchangeHandler      :  [DUBBO] ChannelReadOnly set true for channel: NettyChannel [channel=[id: 0xffc51ba0, L:/192.168.150.1:58372 - R:/192.168.150.1:20881]], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.848-[LinPro][sys]-- INFO 912 --- [       Thread-1] c.a.n.common.executor.ThreadPoolManager  : [ThreadPoolManager] Start destroying ThreadPool
+11:33:39.848-[LinPro][sys]-- INFO 912 --- [       Thread-9] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+11:33:39.852-[LinPro][sys]-- INFO 912 --- [       Thread-1] c.a.n.common.executor.ThreadPoolManager  : [ThreadPoolManager] Completed destruction of ThreadPool
+11:33:39.853-[LinPro][sys]-- INFO 912 --- [       Thread-9] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Completed destruction of Publisher
+11:33:39.854-[LinPro][sys]-- INFO 912 --- [bboShutdownHook] o.apache.dubbo.config.DubboShutdownHook  :  [DUBBO] Waiting for modules(Dubbo Application[1.1](lia-chat-service-dubbo)) managed by Spring to be shutdown., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.857-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.1.1] is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.858-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](lia-chat-service-dubbo) has completed., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.858-[LinPro][sys]-- INFO 912 --- [       Thread-7] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Completed destruction of HttpClient
+11:33:39.863-[LinPro][sys]-- INFO 912 --- [andler-thread-4] o.a.d.r.e.s.h.HeaderExchangeHandler      :  [DUBBO] ChannelReadOnly set true for channel: NettyChannel [channel=[id: 0xe9ac2b9c, L:/192.168.150.1:60677 - R:/192.168.150.1:20882]], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.865-[LinPro][sys]-- INFO 912 --- [bboShutdownHook] o.apache.dubbo.config.DubboShutdownHook  :  [DUBBO] Dubbo wait for application(Dubbo Application[1.1](lia-chat-service-dubbo)) managed by Spring to be shutdown failed, time usage: 12ms, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.866-[LinPro][sys]-- INFO 912 --- [bboShutdownHook] o.apache.dubbo.config.DubboShutdownHook  :  [DUBBO] Dubbo shutdown hooks execute now. Dubbo Application[1.1](lia-chat-service-dubbo), dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.868-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.dubbo.registry.nacos.NacosRegistry   :  [DUBBO] Unregister: dubbo://192.168.150.1:20883/asia.sweethome.api.ChatApi?application=lia-chat-service-dubbo&deprecated=false&dubbo=2.0.2&dynamic=true&generic=false&interface=asia.sweethome.api.ChatApi&methods=addMemberToGroupConversation,createGroupConversation,filterOnlineUserIds,removeMemberFromGroupConversation&prefer.serialization=hessian2,fastjson2&release=3.3.3&service-name-mapping=true&side=provider&timeout=5000&timestamp=1783005637660, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.871-[LinPro][sys]-- INFO 912 --- [eduler-thread-6] o.a.d.r.client.AbstractServiceDiscovery  :  [DUBBO] Metadata of instance changed, updating instance with revision 0., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.875-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [DEREGISTER-SERVICE] public deregistering service providers:asia.sweethome.api.ChatApi:: with instance: Instance{instanceId='null', ip='192.168.150.1', port=20883, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='null', serviceName='null', metadata={side=provider, release=3.3.3, methods=addMemberToGroupConversation,createGroupConversation,filterOnlineUserIds,removeMemberFromGroupConversation, deprecated=false, dubbo=2.0.2, interface=asia.sweethome.api.ChatApi, service-name-mapping=true, timeout=5000, generic=false, path=asia.sweethome.api.ChatApi, protocol=dubbo, application=lia-chat-service-dubbo, prefer.serialization=hessian2,fastjson2, dynamic=true, category=providers, timestamp=1783005637660}}
+11:33:39.875-[LinPro][sys]-- INFO 912 --- [eduler-thread-6] com.alibaba.nacos.client.naming          : [DEREGISTER-SERVICE] public deregistering service lia-chat-service-dubbo with instance: Instance{instanceId='null', ip='192.168.150.1', port=20883, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='null', serviceName='lia-chat-service-dubbo', metadata={dubbo.endpoints=[{"port":20883,"protocol":"dubbo"}], dubbo.metadata-service.url-params={"prefer.serialization":"hessian2,fastjson2","timeout":"5000","version":"1.0.0","dubbo":"2.0.2","release":"3.3.3","side":"provider","port":"20883","protocol":"dubbo"}, dubbo.metadata.revision=830297fd446965358678f36872e73829, dubbo.metadata.storage-type=local, meta-v=1.0.0, timestamp=1783005637660}}
+11:33:39.853-[LinPro][sys]--ERROR 912 --- [atchNotifyEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.853-[LinPro][sys]--ERROR 912 --- [lityUpdateEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.853-[LinPro][sys]--ERROR 912 --- [otify.SlowEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.853-[LinPro][sys]--ERROR 912 --- [yWatchLoadEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.853-[LinPro][sys]--ERROR 912 --- [ncesChangeEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.853-[LinPro][sys]--ERROR 912 --- [yWatchLoadEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.853-[LinPro][sys]--ERROR 912 --- [atchNotifyEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.918-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.dubbo.registry.nacos.NacosRegistry   :  [DUBBO] Unsubscribe: provider://192.168.150.1:20883/asia.sweethome.api.ChatApi?anyhost=true&application=lia-chat-service-dubbo&background=false&bind.ip=192.168.150.1&bind.port=20883&category=configurators&check=false&deprecated=false&dubbo=2.0.2&dynamic=true&executor-management-mode=isolation&file-cache=true&generic=false&interface=asia.sweethome.api.ChatApi&methods=addMemberToGroupConversation,createGroupConversation,filterOnlineUserIds,removeMemberFromGroupConversation&pid=912&prefer.serialization=hessian2,fastjson2&qos.port=22223&release=3.3.3&service-name-mapping=true&side=provider&timeout=5000&timestamp=1783005637660, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.921-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [GRPC-UNSUBSCRIBE] service:providers:asia.sweethome.api.ChatApi::, group:DEFAULT_GROUP, cluster: 
+11:33:39.934-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.dubbo.registry.nacos.NacosRegistry   :  [DUBBO] Unsubscribe: consumer://192.168.150.1/asia.sweethome.api.FamilyApi?application=lia-chat-service-dubbo&background=false&category=providers,configurators,routers&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=asia.sweethome.api.FamilyApi&methods=createFamily,getFamilyByUserId,getFamilyRoleByUserId,getGenderByUserId,getRelation,joinFamily&pid=912&qos.port=22223&release=3.3.3&side=consumer&sticky=false&timeout=5000&timestamp=1783005639430&unloadClusterRelated=false, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.940-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [GRPC-UNSUBSCRIBE] service:providers:asia.sweethome.api.FamilyApi::, group:DEFAULT_GROUP, cluster: 
+11:33:39.969-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.nacos.client.config.impl.CacheData   : [Config-fixed-public-127.0.0.1_8848] [remove-listener] ok, dataId=asia.sweethome.api.FamilyApi, group=mapping,tenant=public, cnt=0
+11:33:39.971-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] .r.c.e.l.ServiceInstancesChangedListener :  [DUBBO] Destroying instance listener of  [lia-family-service-dubbo, lia-user-dubbo], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.972-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [GRPC-UNSUBSCRIBE] service:lia-family-service-dubbo, group:DEFAULT_GROUP, cluster: 
+11:33:39.977-[LinPro][sys]-- INFO 912 --- [listener.task-0] c.a.n.client.config.impl.ClientWorker    : [Config-fixed-public-127.0.0.1_8848] [unsubscribe] asia.sweethome.api.FamilyApi+mapping+public
+11:33:39.983-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.r.transport.netty4.NettyChannel    :  [DUBBO] Close netty channel [id: 0xe9ac2b9c, L:/192.168.150.1:60677 - R:/192.168.150.1:20882], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.985-[LinPro][sys]-- INFO 912 --- [lientWorker-9-1] o.a.d.r.t.netty4.NettyClientHandler      :  [DUBBO] The connection [id: 0xe9ac2b9c, L:/192.168.150.1:60677 ! R:/192.168.150.1:20882] of 192.168.150.1:60677 -> 192.168.150.1:20882 is disconnected., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.986-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.dubbo.registry.nacos.NacosRegistry   :  [DUBBO] Unsubscribe: consumer://192.168.150.1/asia.sweethome.api.UserApi?application=lia-chat-service-dubbo&background=false&category=providers,configurators,routers&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=asia.sweethome.api.UserApi&methods=createUser,findUserAndFamilyByPhone,findUserById,findUsersByIds&pid=912&qos.port=22223&release=3.3.3&side=consumer&sticky=false&timeout=5000&timestamp=1783005640423&unloadClusterRelated=false, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.987-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [GRPC-UNSUBSCRIBE] service:providers:asia.sweethome.api.UserApi::, group:DEFAULT_GROUP, cluster: 
+11:33:40.002-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.nacos.client.config.impl.CacheData   : [Config-fixed-public-127.0.0.1_8848] [remove-listener] ok, dataId=asia.sweethome.api.UserApi, group=mapping,tenant=public, cnt=0
+11:33:40.003-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] .r.c.e.l.ServiceInstancesChangedListener :  [DUBBO] Destroying instance listener of  [lia-user-dubbo, lia-user-service-dubbo], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.004-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [GRPC-UNSUBSCRIBE] service:lia-user-dubbo, group:DEFAULT_GROUP, cluster: 
+11:33:40.007-[LinPro][sys]-- WARN 912 --- [erverWorker-8-1] o.a.d.r.transport.netty4.NettyServer     :  [DUBBO] All clients has disconnected from /192.168.150.1:20883. You can graceful shutdown now., dubbo version: 3.3.3, current host: 192.168.150.1, error code: 99-0. This may be caused by unknown error in remoting module, go to https://dubbo.apache.org/faq/99/0 to find instructions. 
+11:33:40.008-[LinPro][sys]-- INFO 912 --- [listener.task-0] c.a.n.client.config.impl.ClientWorker    : [Config-fixed-public-127.0.0.1_8848] [unsubscribe] asia.sweethome.api.UserApi+mapping+public
+11:33:40.008-[LinPro][sys]-- INFO 912 --- [erverWorker-8-1] o.a.d.r.t.netty4.NettyServerHandler      :  [DUBBO] The connection [id: 0xfa28af9b, L:/192.168.150.1:20883 ! R:/192.168.150.1:60682] of 192.168.150.1:60682 -> 192.168.150.1:20883 is disconnected., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.009-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [GRPC-UNSUBSCRIBE] service:lia-user-service-dubbo, group:DEFAULT_GROUP, cluster: 
+11:33:40.015-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.r.transport.netty4.NettyChannel    :  [DUBBO] Close netty channel [id: 0xffc51ba0, L:/192.168.150.1:58372 - R:/192.168.150.1:20881], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.016-[LinPro][sys]-- INFO 912 --- [lientWorker-9-4] o.a.d.r.t.netty4.NettyClientHandler      :  [DUBBO] The connection [id: 0xffc51ba0, L:/192.168.150.1:58372 ! R:/192.168.150.1:20881] of 192.168.150.1:58372 -> 192.168.150.1:20881 is disconnected., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.017-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.1.1] has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.017-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](lia-chat-service-dubbo) has completed., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.018-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Reset global default application from Dubbo Application[1.1](lia-chat-service-dubbo) to null, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.019-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](lia-chat-service-dubbo) is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.021-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.rpc.protocol.dubbo.DubboProtocol   :  [DUBBO] Destroying protocol [DubboProtocol] ..., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.022-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.rpc.protocol.dubbo.DubboProtocol   :  [DUBBO] Closing dubbo server: /192.168.150.1:20883, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.024-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.r.transport.netty4.NettyServer     :  [DUBBO] Close NettyServer bind /0.0.0.0:20883, export /192.168.150.1:20883, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:41.703-[LinPro][sys]-- INFO 912 --- [ing.grpc.redo.0] com.alibaba.nacos.client.naming          : Redo instance operation REMOVE for DEFAULT_GROUP@@providers:asia.sweethome.api.ChatApi::
+11:33:42.047-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.rpc.protocol.dubbo.DubboProtocol   :  [DUBBO] Unexport service: dubbo://192.168.150.1:20883/org.apache.dubbo.metadata.MetadataService?anyhost=true&application=lia-chat-service-dubbo&background=false&bind.ip=192.168.150.1&bind.port=20883&delay=0&deprecated=false&dubbo=2.0.2&dynamic=true&executor-management-mode=isolation&file-cache=true&generic=false&getAndListenInstanceMetadata.1.callback=true&getAndListenInstanceMetadata.return=true&getAndListenInstanceMetadata.sent=true&group=lia-chat-service-dubbo&interface=org.apache.dubbo.metadata.MetadataService&methods=exportInstanceMetadata,getAndListenInstanceMetadata,getExportedServiceURLs,getExportedURLs,getInstanceMetadataChangedListenerMap,getMetadataInfo,getMetadataInfos,getMetadataURL,getOpenAPI,getServiceDefinition,getSubscribedURLs,isMetadataService,serviceName,toSortedStrings,version&pid=912&prefer.serialization=hessian2,fastjson2&qos.port=22223&register=false&release=3.3.3&revision=3.3.3&service.filter=-default&side=provider&timeout=5000&timestamp=1783005639345&version=1.0.0, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.047-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] org.apache.dubbo.qos.server.Server       :  [DUBBO] qos-server stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.052-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.rpc.protocol.injvm.InjvmProtocol   :  [DUBBO] Unexport service: injvm://127.0.0.1/org.apache.dubbo.metadata.MetadataService?anyhost=true&application=lia-chat-service-dubbo&background=false&bind.ip=192.168.150.1&bind.port=20883&delay=0&deprecated=false&dubbo=2.0.2&dynamic=true&executor-management-mode=isolation&exporter.listener=injvm&file-cache=true&generic=false&getAndListenInstanceMetadata.1.callback=true&getAndListenInstanceMetadata.return=true&getAndListenInstanceMetadata.sent=true&group=lia-chat-service-dubbo&interface=org.apache.dubbo.metadata.MetadataService&methods=exportInstanceMetadata,getAndListenInstanceMetadata,getExportedServiceURLs,getExportedURLs,getInstanceMetadataChangedListenerMap,getMetadataInfo,getMetadataInfos,getMetadataURL,getOpenAPI,getServiceDefinition,getSubscribedURLs,isMetadataService,serviceName,toSortedStrings,version&pid=912&prefer.serialization=hessian2,fastjson2&qos.port=22223&register=false&release=3.3.3&revision=3.3.3&service.filter=-default&side=provider&timeout=5000&timestamp=1783005639345&version=1.0.0, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.053-[LinPro][sys]-- INFO 912 --- [ing.grpc.redo.0] com.alibaba.nacos.client.naming          : Redo instance operation REMOVE for DEFAULT_GROUP@@lia-chat-service-dubbo
+11:33:42.053-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.1.0] is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.053-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.1.0] has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.056-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.registry.support.RegistryManager   :  [DUBBO] Close all registries [nacos://127.0.0.1:8848/org.apache.dubbo.registry.RegistryService?REGISTRY_CLUSTER=default&application=lia-chat-service-dubbo&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=org.apache.dubbo.registry.RegistryService&pid=912&qos.port=22223&register=false&release=3.3.3, nacos://127.0.0.1:8848/org.apache.dubbo.registry.RegistryService?REGISTRY_CLUSTER=default&application=lia-chat-service-dubbo&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=org.apache.dubbo.registry.RegistryService&pid=912&qos.port=22223&release=3.3.3, nacos://127.0.0.1:8848/org.apache.dubbo.registry.RegistryService?REGISTRY_CLUSTER=default&application=lia-chat-service-dubbo&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=org.apache.dubbo.registry.RegistryService&pid=912&qos.port=22223&register=false&release=3.3.3], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.056-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.dubbo.registry.nacos.NacosRegistry   :  [DUBBO] Destroy registry:nacos://127.0.0.1:8848/org.apache.dubbo.registry.RegistryService?REGISTRY_CLUSTER=default&application=lia-chat-service-dubbo&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=org.apache.dubbo.registry.RegistryService&pid=912&qos.port=22223&register=false&release=3.3.3, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.057-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+11:33:42.058-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+11:33:42.058-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+11:33:42.059-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+11:33:42.059-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+11:33:42.060-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+11:33:42.060-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+11:33:42.061-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown begin
+11:33:42.061-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown stop
+11:33:42.061-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+11:33:42.062-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+11:33:42.063-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Completed destruction of NacosRestTemplate
+11:33:42.063-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+11:33:42.063-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->683ec8f5-eb2e-48c5-b059-01ae54e1d39e
+11:33:42.064-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@67c0ae8b[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 14657]
+11:33:42.065-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+11:33:42.065-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@68fdee[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+11:33:42.066-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1783005639145_172.18.0.1_55346
+11:33:42.082-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@285e840[Running, pool size = 13, active threads = 0, queued tasks = 0, completed tasks = 16766]
+11:33:42.083-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->683ec8f5-eb2e-48c5-b059-01ae54e1d39e
+11:33:42.083-[LinPro][sys]-- WARN 912 --- [ionShutdownHook] o.a.d.r.n.util.NacosNamingServiceUtils   :  [DUBBO] Unable to shutdown nacos naming service, dubbo version: 3.3.3, current host: 192.168.150.1, error code: 1-37. This may be caused by , go to https://dubbo.apache.org/faq/1/37 to find instructions. 
+java.lang.NullPointerException: Cannot read field "sharePublisher" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+	at com.alibaba.nacos.common.notify.NotifyCenter.deregisterSubscriber(NotifyCenter.java:242) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.gprc.NamingGrpcClientProxy.shutdown(NamingGrpcClientProxy.java:537) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate.shutdown(NamingClientProxyDelegate.java:212) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.NacosNamingService.shutDown(NacosNamingService.java:637) ~[nacos-client-3.0.3.jar:na]
+	at org.apache.dubbo.registry.nacos.NacosConnectionManager.shutdownAll(NacosConnectionManager.java:105) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.nacos.NacosNamingServiceWrapper.shutdown(NacosNamingServiceWrapper.java:301) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.nacos.NacosRegistry.destroy(NacosRegistry.java:603) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.support.RegistryManager.destroyAll(RegistryManager.java:107) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.deploy.DefaultApplicationDeployer.destroyRegistries(DefaultApplicationDeployer.java:1426) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.deploy.DefaultApplicationDeployer.postDestroy(DefaultApplicationDeployer.java:1145) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.onDestroy(ApplicationModel.java:172) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.tryDestroy(ApplicationModel.java:276) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ModuleModel.onDestroy(ModuleModel.java:133) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onContextClosedEvent(DubboDeployApplicationListener.java:199) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:155) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:52) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:454) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1163) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+11:33:42.089-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+11:33:42.089-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+11:33:42.090-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+11:33:42.090-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+11:33:42.091-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+11:33:42.092-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+11:33:42.092-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+11:33:42.092-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown begin
+11:33:42.092-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown stop
+11:33:42.093-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+11:33:42.093-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+11:33:42.093-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Completed destruction of NacosRestTemplate
+11:33:42.094-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+11:33:42.094-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->e240c456-54c4-4f70-994e-4ca2783065c6
+11:33:42.094-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@26cd2a00[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 14657]
+11:33:42.095-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+11:33:42.096-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@cc7fddb[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+11:33:42.096-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1783005638951_172.18.0.1_55322
+11:33:42.096-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@5a53445f[Running, pool size = 19, active threads = 0, queued tasks = 0, completed tasks = 16788]
+11:33:42.097-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->e240c456-54c4-4f70-994e-4ca2783065c6
+11:33:42.097-[LinPro][sys]-- WARN 912 --- [ionShutdownHook] o.a.d.r.n.util.NacosNamingServiceUtils   :  [DUBBO] Unable to shutdown nacos naming service, dubbo version: 3.3.3, current host: 192.168.150.1, error code: 1-37. This may be caused by , go to https://dubbo.apache.org/faq/1/37 to find instructions. 
+java.lang.NullPointerException: Cannot read field "sharePublisher" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+	at com.alibaba.nacos.common.notify.NotifyCenter.deregisterSubscriber(NotifyCenter.java:242) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.gprc.NamingGrpcClientProxy.shutdown(NamingGrpcClientProxy.java:537) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate.shutdown(NamingClientProxyDelegate.java:212) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.NacosNamingService.shutDown(NacosNamingService.java:637) ~[nacos-client-3.0.3.jar:na]
+	at org.apache.dubbo.registry.nacos.NacosConnectionManager.shutdownAll(NacosConnectionManager.java:105) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.nacos.NacosNamingServiceWrapper.shutdown(NacosNamingServiceWrapper.java:301) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.nacos.NacosServiceDiscovery.doDestroy(NacosServiceDiscovery.java:89) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.client.AbstractServiceDiscovery.destroy(AbstractServiceDiscovery.java:297) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.common.function.ThrowableAction.execute(ThrowableAction.java:46) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.client.ServiceDiscoveryRegistry.destroy(ServiceDiscoveryRegistry.java:326) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.support.RegistryManager.destroyAll(RegistryManager.java:107) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.deploy.DefaultApplicationDeployer.destroyRegistries(DefaultApplicationDeployer.java:1426) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.deploy.DefaultApplicationDeployer.postDestroy(DefaultApplicationDeployer.java:1145) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.onDestroy(ApplicationModel.java:172) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.tryDestroy(ApplicationModel.java:276) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ModuleModel.onDestroy(ModuleModel.java:133) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onContextClosedEvent(DubboDeployApplicationListener.java:199) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:155) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:52) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:454) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1163) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+11:33:42.101-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.t.m.DefaultExecutorRepository    :  [DUBBO] destroying application executor repository .., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.102-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](lia-chat-service-dubbo) has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.102-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.n.client.config.impl.ClientWorker    : com.alibaba.nacos.client.config.impl.ClientWorker do shutdown begin
+11:33:42.103-[LinPro][sys]-- WARN 912 --- [ionShutdownHook] .d.c.c.c.w.CompositeDynamicConfiguration :  [DUBBO] close dynamic configuration org.apache.dubbo.configcenter.support.nacos.NacosDynamicConfigurationfailed: Cannot read field "publisherMap" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null, dubbo version: 3.3.3, current host: 192.168.150.1, error code: 99-0. This may be caused by unknown error in configuration-center related code in common module, go to https://dubbo.apache.org/faq/99/0 to find instructions. 
+java.lang.NullPointerException: Cannot read field "publisherMap" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+	at com.alibaba.nacos.common.notify.NotifyCenter.removeSubscriber(NotifyCenter.java:262) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.NotifyCenter.deregisterSubscriber(NotifyCenter.java:234) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.config.impl.ConfigFuzzyWatchGroupKeyHolder.shutdown(ConfigFuzzyWatchGroupKeyHolder.java:137) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.config.impl.ClientWorker.shutdown(ClientWorker.java:619) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.config.NacosConfigService.shutDown(NacosConfigService.java:308) ~[nacos-client-3.0.3.jar:na]
+	at org.apache.dubbo.configcenter.support.nacos.NacosConfigServiceWrapper.shutdown(NacosConfigServiceWrapper.java:69) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.configcenter.support.nacos.NacosDynamicConfiguration.close(NacosDynamicConfiguration.java:228) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.common.config.configcenter.wrapper.CompositeDynamicConfiguration.close(CompositeDynamicConfiguration.java:93) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.common.config.Environment.destroy(Environment.java:274) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.onDestroy(ApplicationModel.java:179) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.tryDestroy(ApplicationModel.java:276) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ModuleModel.onDestroy(ModuleModel.java:133) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onContextClosedEvent(DubboDeployApplicationListener.java:199) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:155) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:52) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:454) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1163) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+11:33:42.105-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Destroying default framework model: Dubbo Framework[1], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.105-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Dubbo Framework[1] is destroying ..., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.106-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.0](DUBBO_INTERNAL_APPLICATION) is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.106-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.0.0] is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.107-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.0.0] has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.108-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.registry.support.RegistryManager   :  [DUBBO] Close all registries [], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.108-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.t.m.DefaultExecutorRepository    :  [DUBBO] destroying application executor repository .., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.108-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.0](DUBBO_INTERNAL_APPLICATION) has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.109-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Dubbo Framework[1] is destroyed, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.110-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Reset global default framework from Dubbo Framework[1] to null, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.111-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.r.GlobalResourcesRepository      :  [DUBBO] Destroying global resources ..., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.113-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.r.GlobalResourcesRepository      :  [DUBBO] Dubbo is completely destroyed, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.114-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.t.m.FrameworkExecutorRepository  :  [DUBBO] destroying framework executor repository .., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.118-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.a.d.c.s.c.DubboSpringInitializer       :  [DUBBO] Unbind Dubbo Module[1.1.1] from spring container: org.springframework.beans.factory.support.DefaultListableBeanFactory@4d1ff6b1, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.119-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registering from Nacos Server now...
+11:33:42.120-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [DEREGISTER-SERVICE] 8b1e6396-6460-4270-9a8a-8a40b71a4d46 deregistering service chat-service with instance: Instance{instanceId='null', ip='192.168.150.1', port=8084, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='', serviceName='null', metadata={}}
+11:33:42.124-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registration finished.
+11:33:42.125-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+11:33:42.125-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+11:33:42.126-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+11:33:42.127-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+11:33:42.127-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+11:33:42.127-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+11:33:42.128-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+11:33:42.128-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown begin
+11:33:42.128-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown stop
+11:33:42.129-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+11:33:42.129-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+11:33:42.129-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Completed destruction of NacosRestTemplate
+11:33:42.130-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+11:33:42.131-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->b34db7e0-c30e-4809-b3fe-c4cd6259f05e
+11:33:42.131-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@59bb7990[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 14658]
+11:33:42.131-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+11:33:42.132-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@3a8f2ba9[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+11:33:42.132-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1783005634173_172.18.0.1_55292
+11:33:42.133-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@5eafcaaf[Running, pool size = 6, active threads = 0, queued tasks = 0, completed tasks = 16776]
+11:33:42.133-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->b34db7e0-c30e-4809-b3fe-c4cd6259f05e
+11:33:42.134-[LinPro][sys]--ERROR 912 --- [ionShutdownHook] c.a.c.n.r.NacosGracefulShutdownDelegate  : Error occurred while performing Nacos client graceful shutdown
+java.lang.NullPointerException: Cannot read field "sharePublisher" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+	at com.alibaba.nacos.common.notify.NotifyCenter.deregisterSubscriber(NotifyCenter.java:242) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.gprc.NamingGrpcClientProxy.shutdown(NamingGrpcClientProxy.java:537) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate.shutdown(NamingClientProxyDelegate.java:212) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.NacosNamingService.shutDown(NacosNamingService.java:637) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:117) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:120) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.stop(AbstractAutoServiceRegistration.java:311) ~[spring-cloud-commons-4.3.0.jar:4.3.0]
+	at com.alibaba.cloud.nacos.registry.NacosGracefulShutdownDelegate.doGracefulShutdown(NacosGracefulShutdownDelegate.java:69) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at com.alibaba.cloud.nacos.registry.NacosGracefulShutdownDelegate.onApplicationEvent(NacosGracefulShutdownDelegate.java:64) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at com.alibaba.cloud.nacos.registry.NacosGracefulShutdownDelegate.onApplicationEvent(NacosGracefulShutdownDelegate.java:34) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:454) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1163) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+11:33:42.156-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+11:33:42.402-[LinPro][sys]-- INFO 912 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+11:33:42.439-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+11:33:42.441-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+11:33:42.441-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+11:33:42.442-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+11:33:42.443-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+11:33:42.443-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+11:33:42.443-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+11:33:42.444-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown begin
+11:33:42.444-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown stop
+11:33:42.445-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+11:33:42.445-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+11:33:42.446-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Completed destruction of NacosRestTemplate
+11:33:42.446-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+11:33:42.447-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->b34db7e0-c30e-4809-b3fe-c4cd6259f05e
+11:33:42.447-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@59bb7990[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 14658]
+11:33:42.447-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->b34db7e0-c30e-4809-b3fe-c4cd6259f05e
+11:33:42.449-[LinPro][sys]-- WARN 912 --- [ionShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Custom destroy method 'close' on bean with name 'nacosServiceRegistry' propagated an exception: java.lang.NullPointerException: Cannot read field "sharePublisher" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+11:33:42.469-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+11:33:42.474-[LinPro][sys]-- INFO 912 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

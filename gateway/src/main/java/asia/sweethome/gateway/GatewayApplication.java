@@ -11,11 +11,14 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * @description:
+ * 【gateway 网关启动类】
+ * <p>
+ * 网关是整个后端的统一入口，负责鉴权、跨域、把请求路由到各个业务服务。
+ *
  * @author: LOCRIAN_V
  * @date: 7/1/2026 7:14 PM
  */
-
+// ⚠️ 这里显式声明 @ComponentScan("asia.sweethome") 至关重要：
 // AuthGlobalFilter / JwtVerifier / CorsConfig 都在 asia.sweethome.{filter,util,config} 下，
 // 是 asia.sweethome.gateway 的兄弟包而非子包 —— @SpringBootApplication 默认只扫描自身所在包
 // 及子包，不显式声明 basePackages 的话，这三个类完全不会被注册为 Bean，网关会在没有任何报错的
@@ -25,6 +28,7 @@ import java.net.UnknownHostException;
 @Slf4j
 public class GatewayApplication {
     public static void main(String[] args) throws UnknownHostException {
+        // 启动 Spring 容器
         ConfigurableApplicationContext app = SpringApplication.run(GatewayApplication.class, args);
         ConfigurableEnvironment env = app.getEnvironment();
         String protocol = "http";

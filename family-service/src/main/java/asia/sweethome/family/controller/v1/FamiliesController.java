@@ -33,9 +33,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
+ * 【家庭控制器】
  * <p>
- * 家庭表 前端控制器
- * </p>
+ * 面向前端 App 的家庭相关接口：凭邀请码预览家庭、看家庭详情、看成员列表（含称谓/在线状态）、
+ * 生成邀请码、加入家庭。
+ * <p>
+ * 家庭成员数据在本服务，但「昵称/头像」在 user-service、「在线状态」在 chat-service，
+ * 所以本控制器会用 Dubbo 分别去这两个服务取数据再拼装——这是微服务里典型的「数据聚合」。
  *
  * @author LocrianFifth
  * @since 2026-07-01
@@ -52,17 +56,23 @@ public class FamiliesController {
     private final KinshipEngine kinshipEngine;
 
     @DubboReference
-    private UserApi userApi;
+    private UserApi userApi;   // 远程取用户昵称/头像
 
     @DubboReference
-    private ChatApi chatApi;
+    private ChatApi chatApi;   // 远程取在线状态
 
+    /**
+     * 凭邀请码「预览」家庭（还没真正加入）。前端加入前先看看这是哪个家、都有谁，
+     * 以便选择「和谁建立什么关系」。
+     */
     @GetMapping("/lookup")
     public Result<FamilyLookupVO> lookupByInviteCode(
             @RequestParam("inviteCode") String inviteCode
     ) {
         Family family = familiesService.lookupByInviteCode(inviteCode);
 
+        // 拿到成员后，批量去 user-service 查这些成员的昵称/头像，做成 userId -> 用户 的字典。
+        // 「批量查 + 字典」是为了避免在循环里逐个远程调用（N+1 问题）。
         List<FamilyMemeber> members = familiesService.listActiveMembers(family.getId());
         Map<Long, UserDTO> usersById = userApi.findUsersByIds(
                 members.stream().map(FamilyMemeber::getUserId).toList()
@@ -86,6 +96,11 @@ public class FamiliesController {
         return Result.success(vo);
     }
 
+    /**
+     * 家庭详情（名称、人数、创建时间）。
+     * {@code @PathVariable} 把 URL 里的 {familyId} 取出来作为参数。
+     * 访问前先校验「当前登录者是这个家庭的成员」，不是成员直接拒绝。
+     */
     @GetMapping("/{familyId}")
     public Result<FamilyDetailVO> getFamilyDetail(
             @PathVariable("familyId") Long familyId
@@ -113,11 +128,17 @@ public class FamiliesController {
 
     }
 
+    /**
+     * 家庭成员列表。这是本控制器最"重"的接口，一次性聚合了四类信息：
+     * 成员基本信息（本服务）、昵称头像（user-service）、在线状态（chat-service）、
+     * 以及「我」对每位成员的亲属称谓（本地 KinshipEngine 计算）。
+     */
     @GetMapping("/{familyId}/members")
     public Result<List<FamilyMemberVO>> getFamilyMembers(
             @PathVariable("familyId") Long familyId,
             @RequestHeader(value = "Accept-Language", required = false) String acceptLanguage
     ) {
+        // viewerMember 就是「我」，后面要以我的视角计算对每个人的称谓
         Long viewerUserId = UserContext.getUserId();
         FamilyMemeber viewerMember = requireActiveMember(familyId, viewerUserId);
 
@@ -135,6 +156,8 @@ public class FamiliesController {
         Map<Long, FamilyMemeber> membersById = members.stream()
                 .collect(Collectors.toMap(FamilyMemeber::getId, m -> m));
 
+        // 查在线状态属于"锦上添花"，即便 chat-service 挂了也不该让整个成员列表打不开。
+        // 所以用 try-catch 兜底：失败就当作大家都离线，保证主流程可用（优雅降级）。
         List<Long> resolvedOnlineUserIds;
         try {
             resolvedOnlineUserIds = chatApi.filterOnlineUserIds(
@@ -144,6 +167,7 @@ public class FamiliesController {
             log.warn("查询在线状态失败，本次成员列表将全部返回离线", e);
             resolvedOnlineUserIds = List.of();
         }
+        // lambda 里要用的外部变量必须是 final（或事实 final），故另赋一个不可变引用
         final List<Long> onlineUserIds = resolvedOnlineUserIds;
 
         List<FamilyMemberVO> result = members.stream().map(m -> {
@@ -171,6 +195,7 @@ public class FamiliesController {
         return Result.success(result);
     }
 
+    /** 生成（或复用）本家庭的邀请码，仅管理员可操作（权限校验在 Service 里做） */
     @PostMapping("/{familyId}/invite")
     public Result<InviteCodeVO> generateInviteCode(
             @PathVariable("familyId") Long familyId
@@ -179,6 +204,7 @@ public class FamiliesController {
         return Result.success(new InviteCodeVO(family.getInviteCode(), family.getInviteExpiresAt()));
     }
 
+    /** 凭邀请码正式加入家庭。加入成功后复用 getFamilyDetail 返回新家庭详情 */
     @PostMapping("/join")
     public Result<FamilyDetailVO> joinFamilyByInviteCode(
             @RequestBody JoinFamilyByInviteCodeDTO joinFamilyByInviteCodeDTO
@@ -208,6 +234,10 @@ public class FamiliesController {
 
     }
 
+    /**
+     * 权限小工具：确认 userId 确实是 familyId 的在册成员，是则返回其成员记录，
+     * 不是则抛 NOT_FAMILY_MEMBER。避免非成员偷看别人家的信息。
+     */
     private FamilyMemeber requireActiveMember(Long familyId, Long userId) {
         FamilyMemeber member = familyMembersService.lambdaQuery()
                 .eq(FamilyMemeber::getFamilyId, familyId)

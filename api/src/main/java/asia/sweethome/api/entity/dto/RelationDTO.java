@@ -16,6 +16,6 @@ public class RelationDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String relationCode;
-    private String relationLabel;
+    private String relationCode;  // 关系编码（程序内部用），如 "FATHER"
+    private String relationLabel; // 关系称谓（给人看），如「爸爸」
 }

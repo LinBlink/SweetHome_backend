@@ -11,9 +11,14 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * 【family_relations 表实体（PO）】家庭关系图的「边」。
  * <p>
- * 家庭成员关系图（血亲 PARENT_OF 有向边 + 姻亲 SPOUSE_OF 无向边）
- * </p>
+ * 每一行是关系网络里的一条连线，配合 {@link FamilyMemeber}（节点）构成整张家谱图，
+ * 供 {@link asia.sweethome.family.kinship.KinshipEngine} 计算称谓。两类边：
+ * <ul>
+ *   <li>PARENT_OF：有向，subject 是 object 的父/母；</li>
+ *   <li>SPOUSE_OF：无向，互为配偶（写入时规范化 subject &lt; object，避免重复行）。</li>
+ * </ul>
  *
  * @author LocrianFifth
  * @since 2026-07-02

@@ -4,9 +4,7 @@ import asia.sweethome.family.entity.po.FamilyRelation;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
- * <p>
- * 家庭成员关系图（血亲 PARENT_OF 有向边 + 姻亲 SPOUSE_OF 无向边） 服务类
- * </p>
+ * 【家庭关系图 服务接口】仅继承 MyBatis-Plus 通用 CRUD，无自定义方法。
  *
  * @author LocrianFifth
  * @since 2026-07-02

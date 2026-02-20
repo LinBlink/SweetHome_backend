@@ -27,3 +27,312 @@
 10:36:41.026-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-4] a.s.a.m.RefreshTokensMapper.selectList   : ==>  Preparing: SELECT id,user_id,token_hash,device_info,expires_at,created_at,revoked_at FROM refresh_tokens WHERE (token_hash = ?)
 10:36:41.027-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-4] a.s.a.m.RefreshTokensMapper.selectList   : ==> Parameters: 718567a3f73725ca16356bb12734546f42a2ea3ca733ff7d66ac96308019525e(String)
 10:36:41.033-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-4] a.s.a.m.RefreshTokensMapper.selectList   : <==      Total: 1
+10:50:34.515-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-5] a.s.a.mapper.RefreshTokensMapper.insert  : ==>  Preparing: INSERT INTO refresh_tokens ( user_id, token_hash, device_info, expires_at, created_at ) VALUES ( ?, ?, ?, ?, ? )
+10:50:34.516-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-5] a.s.a.mapper.RefreshTokensMapper.insert  : ==> Parameters: 10(Long), c334850dde4d52273b954a71278a53dc7373e55fb08b171317fc6de57830ff05(String), Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36(String), 2026-08-02T10:50:34.512470800(LocalDateTime), 2026-07-03T10:50:34.512470800(LocalDateTime)
+10:50:34.526-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-5] a.s.a.mapper.RefreshTokensMapper.insert  : <==    Updates: 1
+10:51:33.586-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-8] a.s.a.mapper.RefreshTokensMapper.insert  : ==>  Preparing: INSERT INTO refresh_tokens ( user_id, token_hash, device_info, expires_at, created_at ) VALUES ( ?, ?, ?, ?, ? )
+10:51:33.588-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-8] a.s.a.mapper.RefreshTokensMapper.insert  : ==> Parameters: 11(Long), e4ba339e2fa8373f6c768419b882c9c6abc20ea51433cb06fdea920c8fabe98b(String), Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36(String), 2026-08-02T10:51:33.582823900(LocalDateTime), 2026-07-03T10:51:33.582823900(LocalDateTime)
+10:51:33.600-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-8] a.s.a.mapper.RefreshTokensMapper.insert  : <==    Updates: 1
+10:59:09.088-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-1] a.s.a.mapper.RefreshTokensMapper.insert  : ==>  Preparing: INSERT INTO refresh_tokens ( user_id, token_hash, device_info, expires_at, created_at ) VALUES ( ?, ?, ?, ?, ? )
+10:59:09.090-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-1] a.s.a.mapper.RefreshTokensMapper.insert  : ==> Parameters: 10(Long), 6b4ed80cc4de368b81ac610db7ac93293b4bd38d98b7c592a38ac7988a859c6b(String), Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36(String), 2026-08-02T10:59:09.086942100(LocalDateTime), 2026-07-03T10:59:09.086942100(LocalDateTime)
+10:59:09.100-[LinPro][sys]--DEBUG 15956 --- [nio-8081-exec-1] a.s.a.mapper.RefreshTokensMapper.insert  : <==    Updates: 1
+11:33:39.849-[LinPro][sys]-- INFO 15956 --- [       Thread-9] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+11:33:39.849-[LinPro][sys]-- INFO 15956 --- [       Thread-1] c.a.n.common.executor.ThreadPoolManager  : [ThreadPoolManager] Start destroying ThreadPool
+11:33:39.851-[LinPro][sys]-- INFO 15956 --- [       Thread-7] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+11:33:39.851-[LinPro][sys]-- INFO 15956 --- [andler-thread-4] o.a.d.r.e.s.h.HeaderExchangeHandler      :  [DUBBO] ChannelReadOnly set true for channel: NettyChannel [channel=[id: 0x36ddb61f, L:/192.168.150.1:58373 - R:/192.168.150.1:20881]], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.852-[LinPro][sys]-- INFO 15956 --- [bboShutdownHook] o.apache.dubbo.config.DubboShutdownHook  :  [DUBBO] Run shutdown hook now., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.853-[LinPro][sys]-- INFO 15956 --- [       Thread-9] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Completed destruction of Publisher
+11:33:39.854-[LinPro][sys]-- INFO 15956 --- [       Thread-1] c.a.n.common.executor.ThreadPoolManager  : [ThreadPoolManager] Completed destruction of ThreadPool
+11:33:39.858-[LinPro][sys]-- INFO 15956 --- [bboShutdownHook] o.apache.dubbo.config.DubboShutdownHook  :  [DUBBO] Waiting for modules(Dubbo Application[1.1](lia-auth-service-dubbo)) managed by Spring to be shutdown., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.862-[LinPro][sys]-- INFO 15956 --- [       Thread-7] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Completed destruction of HttpClient
+11:33:39.884-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registering from Nacos Server now...
+11:33:39.887-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [DEREGISTER-SERVICE] 8b1e6396-6460-4270-9a8a-8a40b71a4d46 deregistering service auth-service with instance: Instance{instanceId='null', ip='192.168.150.1', port=8081, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='', serviceName='null', metadata={}}
+11:33:39.854-[LinPro][sys]--ERROR 15956 --- [lityUpdateEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.854-[LinPro][sys]--ERROR 15956 --- [yWatchLoadEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.854-[LinPro][sys]--ERROR 15956 --- [atchNotifyEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.854-[LinPro][sys]--ERROR 15956 --- [otify.SlowEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.853-[LinPro][sys]--ERROR 15956 --- [atchNotifyEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.854-[LinPro][sys]--ERROR 15956 --- [yWatchLoadEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.854-[LinPro][sys]--ERROR 15956 --- [ncesChangeEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.919-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registration finished.
+11:33:39.921-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+11:33:39.922-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+11:33:39.922-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+11:33:39.923-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+11:33:39.923-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+11:33:39.924-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+11:33:39.924-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+11:33:39.925-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown begin
+11:33:39.926-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown stop
+11:33:39.926-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+11:33:39.927-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+11:33:39.927-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Completed destruction of NacosRestTemplate
+11:33:39.928-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+11:33:39.929-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->bcb90219-e77a-471e-bf9d-253d243228a6
+11:33:39.930-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@433232b[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 14657]
+11:33:39.931-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+11:33:39.932-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@2f8f8708[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+11:33:39.933-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1783005637087_172.18.0.1_55312
+11:33:39.943-[LinPro][sys]-- INFO 15956 --- [127.0.0.1-16758] c.a.n.c.remote.client.grpc.GrpcClient    : [1783005637087_172.18.0.1_55312]Ignore complete event,isRunning:false,isAbandon=false
+11:33:39.979-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@56766d54[Running, pool size = 7, active threads = 0, queued tasks = 0, completed tasks = 16759]
+11:33:39.980-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->bcb90219-e77a-471e-bf9d-253d243228a6
+11:33:39.981-[LinPro][sys]--ERROR 15956 --- [ionShutdownHook] c.a.c.n.r.NacosGracefulShutdownDelegate  : Error occurred while performing Nacos client graceful shutdown
+java.lang.NullPointerException: Cannot read field "sharePublisher" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+	at com.alibaba.nacos.common.notify.NotifyCenter.deregisterSubscriber(NotifyCenter.java:242) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.gprc.NamingGrpcClientProxy.shutdown(NamingGrpcClientProxy.java:537) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate.shutdown(NamingClientProxyDelegate.java:212) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.NacosNamingService.shutDown(NacosNamingService.java:637) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:117) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:120) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.stop(AbstractAutoServiceRegistration.java:311) ~[spring-cloud-commons-4.3.0.jar:4.3.0]
+	at com.alibaba.cloud.nacos.registry.NacosGracefulShutdownDelegate.doGracefulShutdown(NacosGracefulShutdownDelegate.java:69) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at com.alibaba.cloud.nacos.registry.NacosGracefulShutdownDelegate.onApplicationEvent(NacosGracefulShutdownDelegate.java:64) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at com.alibaba.cloud.nacos.registry.NacosGracefulShutdownDelegate.onApplicationEvent(NacosGracefulShutdownDelegate.java:34) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:454) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1163) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+11:33:39.985-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.1.1] is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.986-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](lia-auth-service-dubbo) has completed., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.987-[LinPro][sys]-- INFO 15956 --- [bboShutdownHook] o.apache.dubbo.config.DubboShutdownHook  :  [DUBBO] Dubbo wait for application(Dubbo Application[1.1](lia-auth-service-dubbo)) managed by Spring to be shutdown failed, time usage: 129ms, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.988-[LinPro][sys]-- INFO 15956 --- [bboShutdownHook] o.apache.dubbo.config.DubboShutdownHook  :  [DUBBO] Dubbo shutdown hooks execute now. Dubbo Application[1.1](lia-auth-service-dubbo), dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.005-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.dubbo.registry.nacos.NacosRegistry   :  [DUBBO] Unsubscribe: consumer://192.168.150.1/asia.sweethome.api.UserApi?application=lia-auth-service-dubbo&background=false&category=providers,configurators,routers&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=asia.sweethome.api.UserApi&methods=createUser,findUserAndFamilyByPhone,findUserById,findUsersByIds&pid=15956&qos.port=22220&release=3.3.3&side=consumer&sticky=false&timeout=5000&timestamp=1783005638298&unloadClusterRelated=false, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.008-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [GRPC-UNSUBSCRIBE] service:providers:asia.sweethome.api.UserApi::, group:DEFAULT_GROUP, cluster: 
+11:33:40.041-[LinPro][sys]-- INFO 15956 --- [andler-thread-4] o.a.d.r.e.s.h.HeaderExchangeHandler      :  [DUBBO] ChannelReadOnly set true for channel: NettyChannel [channel=[id: 0x36ddb61f, L:/192.168.150.1:58373 - R:/192.168.150.1:20881]], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.050-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.nacos.client.config.impl.CacheData   : [Config-fixed-public-127.0.0.1_8848] [remove-listener] ok, dataId=asia.sweethome.api.UserApi, group=mapping,tenant=public, cnt=0
+11:33:40.053-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] .r.c.e.l.ServiceInstancesChangedListener :  [DUBBO] Destroying instance listener of  [lia-user-dubbo, lia-user-service-dubbo], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.054-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [GRPC-UNSUBSCRIBE] service:lia-user-dubbo, group:DEFAULT_GROUP, cluster: 
+11:33:40.058-[LinPro][sys]-- INFO 15956 --- [listener.task-0] c.a.n.client.config.impl.ClientWorker    : [Config-fixed-public-127.0.0.1_8848] [unsubscribe] asia.sweethome.api.UserApi+mapping+public
+11:33:40.060-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [GRPC-UNSUBSCRIBE] service:lia-user-service-dubbo, group:DEFAULT_GROUP, cluster: 
+11:33:40.074-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.r.transport.netty4.NettyChannel    :  [DUBBO] Close netty channel [id: 0x36ddb61f, L:/192.168.150.1:58373 - R:/192.168.150.1:20881], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.077-[LinPro][sys]-- INFO 15956 --- [lientWorker-4-3] o.a.d.r.t.netty4.NettyClientHandler      :  [DUBBO] The connection [id: 0x36ddb61f, L:/192.168.150.1:58373 ! R:/192.168.150.1:20881] of 192.168.150.1:58373 -> 192.168.150.1:20881 is disconnected., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.078-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.1.1] has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.079-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](lia-auth-service-dubbo) has completed., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.080-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Reset global default application from Dubbo Application[1.1](lia-auth-service-dubbo) to null, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.081-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](lia-auth-service-dubbo) is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.082-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.rpc.protocol.dubbo.DubboProtocol   :  [DUBBO] Destroying protocol [DubboProtocol] ..., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.088-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] org.apache.dubbo.qos.server.Server       :  [DUBBO] qos-server stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.096-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.1.0] is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.097-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.1.0] has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.099-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.registry.support.RegistryManager   :  [DUBBO] Close all registries [nacos://127.0.0.1:8848/org.apache.dubbo.registry.RegistryService?REGISTRY_CLUSTER=default&application=lia-auth-service-dubbo&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=org.apache.dubbo.registry.RegistryService&pid=15956&qos.port=22220&release=3.3.3, nacos://127.0.0.1:8848/org.apache.dubbo.registry.RegistryService?REGISTRY_CLUSTER=default&application=lia-auth-service-dubbo&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=org.apache.dubbo.registry.RegistryService&pid=15956&qos.port=22220&release=3.3.3], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.100-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.dubbo.registry.nacos.NacosRegistry   :  [DUBBO] Destroy registry:nacos://127.0.0.1:8848/org.apache.dubbo.registry.RegistryService?REGISTRY_CLUSTER=default&application=lia-auth-service-dubbo&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=org.apache.dubbo.registry.RegistryService&pid=15956&qos.port=22220&release=3.3.3, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.102-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+11:33:40.102-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+11:33:40.103-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+11:33:40.104-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+11:33:40.104-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+11:33:40.105-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+11:33:40.105-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+11:33:40.107-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown begin
+11:33:40.107-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown stop
+11:33:40.108-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+11:33:40.108-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+11:33:40.108-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Completed destruction of NacosRestTemplate
+11:33:40.109-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+11:33:40.110-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->f4323d51-9c08-4a00-94c3-a6edea20f2a9
+11:33:40.110-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@63b51219[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 14656]
+11:33:40.111-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+11:33:40.111-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@156a69e6[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+11:33:40.112-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1783005639058_172.18.0.1_55332
+11:33:40.113-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@5bb37282[Running, pool size = 6, active threads = 0, queued tasks = 0, completed tasks = 16768]
+11:33:40.114-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->f4323d51-9c08-4a00-94c3-a6edea20f2a9
+11:33:40.115-[LinPro][sys]-- WARN 15956 --- [ionShutdownHook] o.a.d.r.n.util.NacosNamingServiceUtils   :  [DUBBO] Unable to shutdown nacos naming service, dubbo version: 3.3.3, current host: 192.168.150.1, error code: 1-37. This may be caused by , go to https://dubbo.apache.org/faq/1/37 to find instructions. 
+java.lang.NullPointerException: Cannot read field "sharePublisher" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+	at com.alibaba.nacos.common.notify.NotifyCenter.deregisterSubscriber(NotifyCenter.java:242) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.gprc.NamingGrpcClientProxy.shutdown(NamingGrpcClientProxy.java:537) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate.shutdown(NamingClientProxyDelegate.java:212) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.NacosNamingService.shutDown(NacosNamingService.java:637) ~[nacos-client-3.0.3.jar:na]
+	at org.apache.dubbo.registry.nacos.NacosConnectionManager.shutdownAll(NacosConnectionManager.java:105) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.nacos.NacosNamingServiceWrapper.shutdown(NacosNamingServiceWrapper.java:301) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.nacos.NacosRegistry.destroy(NacosRegistry.java:603) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.support.RegistryManager.destroyAll(RegistryManager.java:107) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.deploy.DefaultApplicationDeployer.destroyRegistries(DefaultApplicationDeployer.java:1426) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.deploy.DefaultApplicationDeployer.postDestroy(DefaultApplicationDeployer.java:1145) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.onDestroy(ApplicationModel.java:172) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.tryDestroy(ApplicationModel.java:276) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ModuleModel.onDestroy(ModuleModel.java:133) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onContextClosedEvent(DubboDeployApplicationListener.java:199) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:155) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:52) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:454) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1163) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+11:33:40.122-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+11:33:40.122-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+11:33:40.123-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+11:33:40.123-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+11:33:40.124-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+11:33:40.125-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+11:33:40.125-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+11:33:40.126-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown begin
+11:33:40.126-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown stop
+11:33:40.127-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+11:33:40.127-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+11:33:40.128-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Completed destruction of NacosRestTemplate
+11:33:40.128-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+11:33:40.129-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->4bfce027-67fd-4cdd-9421-6d37329d39f7
+11:33:40.129-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@431e54e0[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 14655]
+11:33:40.130-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+11:33:40.131-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@41f39a2b[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+11:33:40.131-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1783005641249_172.18.0.1_58444
+11:33:40.133-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@39930183[Running, pool size = 13, active threads = 0, queued tasks = 0, completed tasks = 16765]
+11:33:40.133-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->4bfce027-67fd-4cdd-9421-6d37329d39f7
+11:33:40.134-[LinPro][sys]-- WARN 15956 --- [127.0.0.1-16765] c.a.n.c.remote.client.grpc.GrpcClient    : [1783005641249_172.18.0.1_58444]Ignore error event,isRunning:false,isAbandon=false
+11:33:40.134-[LinPro][sys]-- WARN 15956 --- [ionShutdownHook] o.a.d.r.n.util.NacosNamingServiceUtils   :  [DUBBO] Unable to shutdown nacos naming service, dubbo version: 3.3.3, current host: 192.168.150.1, error code: 1-37. This may be caused by , go to https://dubbo.apache.org/faq/1/37 to find instructions. 
+java.lang.NullPointerException: Cannot read field "sharePublisher" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+	at com.alibaba.nacos.common.notify.NotifyCenter.deregisterSubscriber(NotifyCenter.java:242) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.gprc.NamingGrpcClientProxy.shutdown(NamingGrpcClientProxy.java:537) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate.shutdown(NamingClientProxyDelegate.java:212) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.NacosNamingService.shutDown(NacosNamingService.java:637) ~[nacos-client-3.0.3.jar:na]
+	at org.apache.dubbo.registry.nacos.NacosConnectionManager.shutdownAll(NacosConnectionManager.java:105) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.nacos.NacosNamingServiceWrapper.shutdown(NacosNamingServiceWrapper.java:301) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.nacos.NacosServiceDiscovery.doDestroy(NacosServiceDiscovery.java:89) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.client.AbstractServiceDiscovery.destroy(AbstractServiceDiscovery.java:297) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.common.function.ThrowableAction.execute(ThrowableAction.java:46) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.client.ServiceDiscoveryRegistry.destroy(ServiceDiscoveryRegistry.java:326) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.support.RegistryManager.destroyAll(RegistryManager.java:107) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.deploy.DefaultApplicationDeployer.destroyRegistries(DefaultApplicationDeployer.java:1426) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.deploy.DefaultApplicationDeployer.postDestroy(DefaultApplicationDeployer.java:1145) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.onDestroy(ApplicationModel.java:172) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.tryDestroy(ApplicationModel.java:276) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ModuleModel.onDestroy(ModuleModel.java:133) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onContextClosedEvent(DubboDeployApplicationListener.java:199) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:155) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:52) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:454) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1163) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+11:33:40.139-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.t.m.DefaultExecutorRepository    :  [DUBBO] destroying application executor repository .., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.144-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](lia-auth-service-dubbo) has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.144-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.n.client.config.impl.ClientWorker    : com.alibaba.nacos.client.config.impl.ClientWorker do shutdown begin
+11:33:40.146-[LinPro][sys]-- WARN 15956 --- [ionShutdownHook] .d.c.c.c.w.CompositeDynamicConfiguration :  [DUBBO] close dynamic configuration org.apache.dubbo.configcenter.support.nacos.NacosDynamicConfigurationfailed: Cannot read field "publisherMap" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null, dubbo version: 3.3.3, current host: 192.168.150.1, error code: 99-0. This may be caused by unknown error in configuration-center related code in common module, go to https://dubbo.apache.org/faq/99/0 to find instructions. 
+java.lang.NullPointerException: Cannot read field "publisherMap" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+	at com.alibaba.nacos.common.notify.NotifyCenter.removeSubscriber(NotifyCenter.java:262) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.NotifyCenter.deregisterSubscriber(NotifyCenter.java:234) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.config.impl.ConfigFuzzyWatchGroupKeyHolder.shutdown(ConfigFuzzyWatchGroupKeyHolder.java:137) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.config.impl.ClientWorker.shutdown(ClientWorker.java:619) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.config.NacosConfigService.shutDown(NacosConfigService.java:308) ~[nacos-client-3.0.3.jar:na]
+	at org.apache.dubbo.configcenter.support.nacos.NacosConfigServiceWrapper.shutdown(NacosConfigServiceWrapper.java:69) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.configcenter.support.nacos.NacosDynamicConfiguration.close(NacosDynamicConfiguration.java:228) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.common.config.configcenter.wrapper.CompositeDynamicConfiguration.close(CompositeDynamicConfiguration.java:93) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.common.config.Environment.destroy(Environment.java:274) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.onDestroy(ApplicationModel.java:179) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.tryDestroy(ApplicationModel.java:276) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ModuleModel.onDestroy(ModuleModel.java:133) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onContextClosedEvent(DubboDeployApplicationListener.java:199) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:155) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:52) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:454) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1163) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+11:33:40.147-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Destroying default framework model: Dubbo Framework[1], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.148-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Dubbo Framework[1] is destroying ..., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.148-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.0](DUBBO_INTERNAL_APPLICATION) is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.149-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.0.0] is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.150-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.0.0] has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.151-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.registry.support.RegistryManager   :  [DUBBO] Close all registries [], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.151-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.t.m.DefaultExecutorRepository    :  [DUBBO] destroying application executor repository .., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.152-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.0](DUBBO_INTERNAL_APPLICATION) has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.153-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Dubbo Framework[1] is destroyed, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.153-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Reset global default framework from Dubbo Framework[1] to null, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.155-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.r.GlobalResourcesRepository      :  [DUBBO] Destroying global resources ..., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.158-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.r.GlobalResourcesRepository      :  [DUBBO] Dubbo is completely destroyed, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.159-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.t.m.FrameworkExecutorRepository  :  [DUBBO] destroying framework executor repository .., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.163-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.a.d.c.s.c.DubboSpringInitializer       :  [DUBBO] Unbind Dubbo Module[1.1.1] from spring container: org.springframework.beans.factory.support.DefaultListableBeanFactory@490c7a83, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.177-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+11:33:40.368-[LinPro][sys]-- INFO 15956 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+11:33:40.376-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+11:33:40.376-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+11:33:40.377-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+11:33:40.378-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+11:33:40.378-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+11:33:40.379-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+11:33:40.379-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+11:33:40.380-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown begin
+11:33:40.380-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown stop
+11:33:40.381-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+11:33:40.381-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+11:33:40.381-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Completed destruction of NacosRestTemplate
+11:33:40.381-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+11:33:40.382-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->bcb90219-e77a-471e-bf9d-253d243228a6
+11:33:40.382-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@433232b[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 14657]
+11:33:40.383-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->bcb90219-e77a-471e-bf9d-253d243228a6
+11:33:40.384-[LinPro][sys]-- WARN 15956 --- [ionShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Custom destroy method 'close' on bean with name 'nacosServiceRegistry' propagated an exception: java.lang.NullPointerException: Cannot read field "sharePublisher" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+11:33:40.388-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+11:33:40.392-[LinPro][sys]-- INFO 15956 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

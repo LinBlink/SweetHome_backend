@@ -104,3 +104,479 @@
 10:03:04.894-[LinPro][sys]--DEBUG 27924 --- [20881-thread-40] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
 10:03:04.895-[LinPro][sys]--DEBUG 27924 --- [20881-thread-40] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
 10:03:04.897-[LinPro][sys]--DEBUG 27924 --- [20881-thread-40] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:50:34.370-[LinPro][sys]--DEBUG 27924 --- [20881-thread-41] a.s.user.mapper.UsersMapper.selectList   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE deleted_at IS NULL AND (phone = ?)
+10:50:34.371-[LinPro][sys]--DEBUG 27924 --- [20881-thread-41] a.s.user.mapper.UsersMapper.selectList   : ==> Parameters: +8618952320405(String)
+10:50:34.375-[LinPro][sys]--DEBUG 27924 --- [20881-thread-41] a.s.user.mapper.UsersMapper.selectList   : <==      Total: 1
+10:50:35.077-[LinPro][sys]--DEBUG 27924 --- [20881-thread-42] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:50:35.078-[LinPro][sys]--DEBUG 27924 --- [20881-thread-42] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:50:35.082-[LinPro][sys]--DEBUG 27924 --- [20881-thread-42] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:50:35.159-[LinPro][sys]--DEBUG 27924 --- [20881-thread-43] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:50:35.160-[LinPro][sys]--DEBUG 27924 --- [20881-thread-43] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:50:35.163-[LinPro][sys]--DEBUG 27924 --- [20881-thread-43] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:50:38.461-[LinPro][sys]--DEBUG 27924 --- [20881-thread-44] a.s.u.mapper.UsersMapper.selectBatchIds  : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:50:38.462-[LinPro][sys]--DEBUG 27924 --- [20881-thread-44] a.s.u.mapper.UsersMapper.selectBatchIds  : ==> Parameters: 10(Long), 11(Long)
+10:50:38.466-[LinPro][sys]--DEBUG 27924 --- [20881-thread-44] a.s.u.mapper.UsersMapper.selectBatchIds  : <==      Total: 2
+10:50:44.320-[LinPro][sys]--DEBUG 27924 --- [20881-thread-45] a.s.u.mapper.UsersMapper.selectBatchIds  : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:50:44.321-[LinPro][sys]--DEBUG 27924 --- [20881-thread-45] a.s.u.mapper.UsersMapper.selectBatchIds  : ==> Parameters: 10(Long), 11(Long)
+10:50:44.323-[LinPro][sys]--DEBUG 27924 --- [20881-thread-45] a.s.u.mapper.UsersMapper.selectBatchIds  : <==      Total: 2
+10:51:33.463-[LinPro][sys]--DEBUG 27924 --- [20881-thread-46] a.s.user.mapper.UsersMapper.selectList   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE deleted_at IS NULL AND (phone = ?)
+10:51:33.464-[LinPro][sys]--DEBUG 27924 --- [20881-thread-46] a.s.user.mapper.UsersMapper.selectList   : ==> Parameters: +8618952322405(String)
+10:51:33.466-[LinPro][sys]--DEBUG 27924 --- [20881-thread-46] a.s.user.mapper.UsersMapper.selectList   : <==      Total: 1
+10:51:33.957-[LinPro][sys]--DEBUG 27924 --- [20881-thread-47] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:51:33.958-[LinPro][sys]--DEBUG 27924 --- [20881-thread-47] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:51:33.961-[LinPro][sys]--DEBUG 27924 --- [20881-thread-47] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:51:34.030-[LinPro][sys]--DEBUG 27924 --- [20881-thread-48] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:51:34.032-[LinPro][sys]--DEBUG 27924 --- [20881-thread-48] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:51:34.034-[LinPro][sys]--DEBUG 27924 --- [20881-thread-48] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:51:35.794-[LinPro][sys]--DEBUG 27924 --- [20881-thread-49] a.s.u.mapper.UsersMapper.selectBatchIds  : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+10:51:35.795-[LinPro][sys]--DEBUG 27924 --- [20881-thread-49] a.s.u.mapper.UsersMapper.selectBatchIds  : ==> Parameters: 10(Long), 11(Long)
+10:51:35.797-[LinPro][sys]--DEBUG 27924 --- [20881-thread-49] a.s.u.mapper.UsersMapper.selectBatchIds  : <==      Total: 2
+10:51:37.450-[LinPro][sys]--DEBUG 27924 --- [20881-thread-50] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:51:37.450-[LinPro][sys]--DEBUG 27924 --- [20881-thread-50] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:51:37.453-[LinPro][sys]--DEBUG 27924 --- [20881-thread-50] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:51:43.191-[LinPro][sys]--DEBUG 27924 --- [20881-thread-51] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:51:43.192-[LinPro][sys]--DEBUG 27924 --- [20881-thread-51] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:51:43.195-[LinPro][sys]--DEBUG 27924 --- [20881-thread-51] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:51:59.354-[LinPro][sys]--DEBUG 27924 --- [20881-thread-52] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:51:59.356-[LinPro][sys]--DEBUG 27924 --- [20881-thread-52] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:51:59.358-[LinPro][sys]--DEBUG 27924 --- [20881-thread-52] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:52:00.261-[LinPro][sys]--DEBUG 27924 --- [20881-thread-53] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:52:00.262-[LinPro][sys]--DEBUG 27924 --- [20881-thread-53] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:52:00.264-[LinPro][sys]--DEBUG 27924 --- [20881-thread-53] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:52:42.063-[LinPro][sys]--DEBUG 27924 --- [20881-thread-54] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:52:42.063-[LinPro][sys]--DEBUG 27924 --- [20881-thread-54] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:52:42.066-[LinPro][sys]--DEBUG 27924 --- [20881-thread-54] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:53:02.770-[LinPro][sys]--DEBUG 27924 --- [20881-thread-55] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:53:02.771-[LinPro][sys]--DEBUG 27924 --- [20881-thread-55] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:53:02.774-[LinPro][sys]--DEBUG 27924 --- [20881-thread-55] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:53:03.306-[LinPro][sys]--DEBUG 27924 --- [20881-thread-56] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:53:03.306-[LinPro][sys]--DEBUG 27924 --- [20881-thread-56] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:53:03.309-[LinPro][sys]--DEBUG 27924 --- [20881-thread-56] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:54:02.541-[LinPro][sys]--DEBUG 27924 --- [20881-thread-57] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:54:02.542-[LinPro][sys]--DEBUG 27924 --- [20881-thread-57] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:54:02.545-[LinPro][sys]--DEBUG 27924 --- [20881-thread-57] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:57:55.654-[LinPro][sys]--DEBUG 27924 --- [20881-thread-58] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:57:55.655-[LinPro][sys]--DEBUG 27924 --- [20881-thread-58] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:57:55.657-[LinPro][sys]--DEBUG 27924 --- [20881-thread-58] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:57:55.720-[LinPro][sys]--DEBUG 27924 --- [20881-thread-59] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:57:55.721-[LinPro][sys]--DEBUG 27924 --- [20881-thread-59] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:57:55.724-[LinPro][sys]--DEBUG 27924 --- [20881-thread-59] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:58:20.950-[LinPro][sys]--DEBUG 27924 --- [20881-thread-60] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:58:20.951-[LinPro][sys]--DEBUG 27924 --- [20881-thread-60] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:58:20.953-[LinPro][sys]--DEBUG 27924 --- [20881-thread-60] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:58:20.980-[LinPro][sys]--DEBUG 27924 --- [20881-thread-61] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:58:20.981-[LinPro][sys]--DEBUG 27924 --- [20881-thread-61] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:58:20.983-[LinPro][sys]--DEBUG 27924 --- [20881-thread-61] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:58:25.136-[LinPro][sys]--DEBUG 27924 --- [20881-thread-62] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:58:25.137-[LinPro][sys]--DEBUG 27924 --- [20881-thread-62] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:58:25.140-[LinPro][sys]--DEBUG 27924 --- [20881-thread-62] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:08.970-[LinPro][sys]--DEBUG 27924 --- [20881-thread-63] a.s.user.mapper.UsersMapper.selectList   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE deleted_at IS NULL AND (phone = ?)
+10:59:08.971-[LinPro][sys]--DEBUG 27924 --- [20881-thread-63] a.s.user.mapper.UsersMapper.selectList   : ==> Parameters: +8618952320405(String)
+10:59:08.973-[LinPro][sys]--DEBUG 27924 --- [20881-thread-63] a.s.user.mapper.UsersMapper.selectList   : <==      Total: 1
+10:59:09.458-[LinPro][sys]--DEBUG 27924 --- [20881-thread-64] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:09.459-[LinPro][sys]--DEBUG 27924 --- [20881-thread-64] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:59:09.461-[LinPro][sys]--DEBUG 27924 --- [20881-thread-64] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:09.523-[LinPro][sys]--DEBUG 27924 --- [20881-thread-65] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:09.524-[LinPro][sys]--DEBUG 27924 --- [20881-thread-65] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:59:09.526-[LinPro][sys]--DEBUG 27924 --- [20881-thread-65] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:10.942-[LinPro][sys]--DEBUG 27924 --- [20881-thread-66] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:10.943-[LinPro][sys]--DEBUG 27924 --- [20881-thread-66] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:59:10.945-[LinPro][sys]--DEBUG 27924 --- [20881-thread-66] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:17.415-[LinPro][sys]--DEBUG 27924 --- [20881-thread-67] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:17.417-[LinPro][sys]--DEBUG 27924 --- [20881-thread-67] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:59:17.419-[LinPro][sys]--DEBUG 27924 --- [20881-thread-67] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:17.450-[LinPro][sys]--DEBUG 27924 --- [20881-thread-68] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:17.450-[LinPro][sys]--DEBUG 27924 --- [20881-thread-68] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:59:17.453-[LinPro][sys]--DEBUG 27924 --- [20881-thread-68] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:17.482-[LinPro][sys]--DEBUG 27924 --- [20881-thread-69] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:17.483-[LinPro][sys]--DEBUG 27924 --- [20881-thread-69] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:59:17.485-[LinPro][sys]--DEBUG 27924 --- [20881-thread-69] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:19.002-[LinPro][sys]--DEBUG 27924 --- [20881-thread-70] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:19.003-[LinPro][sys]--DEBUG 27924 --- [20881-thread-70] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:59:19.007-[LinPro][sys]--DEBUG 27924 --- [20881-thread-70] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:19.036-[LinPro][sys]--DEBUG 27924 --- [20881-thread-71] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:19.036-[LinPro][sys]--DEBUG 27924 --- [20881-thread-71] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:59:19.039-[LinPro][sys]--DEBUG 27924 --- [20881-thread-71] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:28.670-[LinPro][sys]--DEBUG 27924 --- [20881-thread-72] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:28.671-[LinPro][sys]--DEBUG 27924 --- [20881-thread-72] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:59:28.674-[LinPro][sys]--DEBUG 27924 --- [20881-thread-72] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:28.700-[LinPro][sys]--DEBUG 27924 --- [20881-thread-73] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:28.700-[LinPro][sys]--DEBUG 27924 --- [20881-thread-73] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:59:28.704-[LinPro][sys]--DEBUG 27924 --- [20881-thread-73] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:28.727-[LinPro][sys]--DEBUG 27924 --- [20881-thread-74] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:28.727-[LinPro][sys]--DEBUG 27924 --- [20881-thread-74] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:59:28.730-[LinPro][sys]--DEBUG 27924 --- [20881-thread-74] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:41.434-[LinPro][sys]--DEBUG 27924 --- [20881-thread-75] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:41.436-[LinPro][sys]--DEBUG 27924 --- [20881-thread-75] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:59:41.438-[LinPro][sys]--DEBUG 27924 --- [20881-thread-75] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:41.470-[LinPro][sys]--DEBUG 27924 --- [20881-thread-76] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:41.470-[LinPro][sys]--DEBUG 27924 --- [20881-thread-76] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:59:41.474-[LinPro][sys]--DEBUG 27924 --- [20881-thread-76] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:41.501-[LinPro][sys]--DEBUG 27924 --- [20881-thread-77] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:41.501-[LinPro][sys]--DEBUG 27924 --- [20881-thread-77] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:59:41.504-[LinPro][sys]--DEBUG 27924 --- [20881-thread-77] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:43.518-[LinPro][sys]--DEBUG 27924 --- [20881-thread-78] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:43.519-[LinPro][sys]--DEBUG 27924 --- [20881-thread-78] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:59:43.523-[LinPro][sys]--DEBUG 27924 --- [20881-thread-78] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:43.552-[LinPro][sys]--DEBUG 27924 --- [20881-thread-79] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:43.553-[LinPro][sys]--DEBUG 27924 --- [20881-thread-79] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:59:43.556-[LinPro][sys]--DEBUG 27924 --- [20881-thread-79] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:43.583-[LinPro][sys]--DEBUG 27924 --- [20881-thread-80] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:43.584-[LinPro][sys]--DEBUG 27924 --- [20881-thread-80] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:59:43.586-[LinPro][sys]--DEBUG 27924 --- [20881-thread-80] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:50.239-[LinPro][sys]--DEBUG 27924 --- [20881-thread-81] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:50.240-[LinPro][sys]--DEBUG 27924 --- [20881-thread-81] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:59:50.242-[LinPro][sys]--DEBUG 27924 --- [20881-thread-81] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:50.266-[LinPro][sys]--DEBUG 27924 --- [20881-thread-82] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:50.267-[LinPro][sys]--DEBUG 27924 --- [20881-thread-82] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:59:50.269-[LinPro][sys]--DEBUG 27924 --- [20881-thread-82] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:50.291-[LinPro][sys]--DEBUG 27924 --- [20881-thread-83] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:50.291-[LinPro][sys]--DEBUG 27924 --- [20881-thread-83] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+10:59:50.294-[LinPro][sys]--DEBUG 27924 --- [20881-thread-83] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:54.781-[LinPro][sys]--DEBUG 27924 --- [20881-thread-84] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:54.782-[LinPro][sys]--DEBUG 27924 --- [20881-thread-84] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:59:54.784-[LinPro][sys]--DEBUG 27924 --- [20881-thread-84] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:54.807-[LinPro][sys]--DEBUG 27924 --- [20881-thread-85] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:54.807-[LinPro][sys]--DEBUG 27924 --- [20881-thread-85] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:59:54.809-[LinPro][sys]--DEBUG 27924 --- [20881-thread-85] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+10:59:54.833-[LinPro][sys]--DEBUG 27924 --- [20881-thread-86] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+10:59:54.834-[LinPro][sys]--DEBUG 27924 --- [20881-thread-86] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+10:59:54.837-[LinPro][sys]--DEBUG 27924 --- [20881-thread-86] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+11:00:07.653-[LinPro][sys]--DEBUG 27924 --- [20881-thread-87] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+11:00:07.654-[LinPro][sys]--DEBUG 27924 --- [20881-thread-87] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+11:00:07.657-[LinPro][sys]--DEBUG 27924 --- [20881-thread-87] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+11:00:07.680-[LinPro][sys]--DEBUG 27924 --- [20881-thread-88] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+11:00:07.681-[LinPro][sys]--DEBUG 27924 --- [20881-thread-88] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+11:00:07.683-[LinPro][sys]--DEBUG 27924 --- [20881-thread-88] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+11:00:07.705-[LinPro][sys]--DEBUG 27924 --- [20881-thread-89] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+11:00:07.706-[LinPro][sys]--DEBUG 27924 --- [20881-thread-89] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+11:00:07.709-[LinPro][sys]--DEBUG 27924 --- [20881-thread-89] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+11:00:10.178-[LinPro][sys]--DEBUG 27924 --- [20881-thread-90] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+11:00:10.180-[LinPro][sys]--DEBUG 27924 --- [20881-thread-90] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 10(Long)
+11:00:10.182-[LinPro][sys]--DEBUG 27924 --- [20881-thread-90] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+11:00:13.607-[LinPro][sys]--DEBUG 27924 --- [20881-thread-91] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+11:00:13.609-[LinPro][sys]--DEBUG 27924 --- [20881-thread-91] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+11:00:13.611-[LinPro][sys]--DEBUG 27924 --- [20881-thread-91] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+11:00:13.636-[LinPro][sys]--DEBUG 27924 --- [20881-thread-92] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+11:00:13.636-[LinPro][sys]--DEBUG 27924 --- [20881-thread-92] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+11:00:13.639-[LinPro][sys]--DEBUG 27924 --- [20881-thread-92] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+11:00:13.666-[LinPro][sys]--DEBUG 27924 --- [20881-thread-93] a.s.user.mapper.UsersMapper.selectById   : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id=? AND deleted_at IS NULL
+11:00:13.667-[LinPro][sys]--DEBUG 27924 --- [20881-thread-93] a.s.user.mapper.UsersMapper.selectById   : ==> Parameters: 11(Long)
+11:00:13.669-[LinPro][sys]--DEBUG 27924 --- [20881-thread-93] a.s.user.mapper.UsersMapper.selectById   : <==      Total: 1
+11:00:17.377-[LinPro][sys]--DEBUG 27924 --- [20881-thread-94] a.s.u.mapper.UsersMapper.selectBatchIds  : ==>  Preparing: SELECT id,phone,password_hash,name,avatar_url,created_at,updated_at,deleted_at FROM users WHERE id IN ( ? , ? ) AND deleted_at IS NULL
+11:00:17.378-[LinPro][sys]--DEBUG 27924 --- [20881-thread-94] a.s.u.mapper.UsersMapper.selectBatchIds  : ==> Parameters: 10(Long), 11(Long)
+11:00:17.381-[LinPro][sys]--DEBUG 27924 --- [20881-thread-94] a.s.u.mapper.UsersMapper.selectBatchIds  : <==      Total: 2
+11:33:39.834-[LinPro][sys]-- INFO 27924 --- [       Thread-7] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+11:33:39.834-[LinPro][sys]-- INFO 27924 --- [       Thread-1] c.a.n.common.executor.ThreadPoolManager  : [ThreadPoolManager] Start destroying ThreadPool
+11:33:39.835-[LinPro][sys]-- INFO 27924 --- [       Thread-9] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+11:33:39.836-[LinPro][sys]-- INFO 27924 --- [bboShutdownHook] o.apache.dubbo.config.DubboShutdownHook  :  [DUBBO] Run shutdown hook now., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.838-[LinPro][sys]-- INFO 27924 --- [       Thread-1] c.a.n.common.executor.ThreadPoolManager  : [ThreadPoolManager] Completed destruction of ThreadPool
+11:33:39.838-[LinPro][sys]-- INFO 27924 --- [       Thread-9] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Completed destruction of Publisher
+11:33:39.846-[LinPro][sys]-- INFO 27924 --- [bboShutdownHook] o.apache.dubbo.config.DubboShutdownHook  :  [DUBBO] Waiting for modules(Dubbo Application[1.1](lia-user-service-dubbo)) managed by Spring to be shutdown., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.846-[LinPro][sys]-- INFO 27924 --- [       Thread-7] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Completed destruction of HttpClient
+11:33:39.864-[LinPro][sys]-- INFO 27924 --- [andler-thread-2] o.a.d.r.e.s.h.HeaderExchangeHandler      :  [DUBBO] ChannelReadOnly set true for channel: NettyChannel [channel=[id: 0xcad7998b, L:/192.168.150.1:58369 - R:/192.168.150.1:20882]], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.881-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.1.1] is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.883-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](lia-user-service-dubbo) has completed., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.839-[LinPro][sys]--ERROR 27924 --- [yWatchLoadEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.838-[LinPro][sys]--ERROR 27924 --- [yWatchLoadEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.839-[LinPro][sys]--ERROR 27924 --- [atchNotifyEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.839-[LinPro][sys]--ERROR 27924 --- [atchNotifyEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.839-[LinPro][sys]--ERROR 27924 --- [otify.SlowEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.839-[LinPro][sys]--ERROR 27924 --- [lityUpdateEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.839-[LinPro][sys]--ERROR 27924 --- [ncesChangeEvent] c.a.nacos.common.notify.NotifyCenter     : Event listener exception : 
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1638) ~[na:na]
+	at java.base/java.util.concurrent.ArrayBlockingQueue.take(ArrayBlockingQueue.java:420) ~[na:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.openEventHandler(DefaultPublisher.java:111) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.DefaultPublisher.run(DefaultPublisher.java:95) ~[nacos-client-3.0.3.jar:na]
+11:33:39.889-[LinPro][sys]-- INFO 27924 --- [bboShutdownHook] o.apache.dubbo.config.DubboShutdownHook  :  [DUBBO] Dubbo wait for application(Dubbo Application[1.1](lia-user-service-dubbo)) managed by Spring to be shutdown failed, time usage: 44ms, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.889-[LinPro][sys]-- INFO 27924 --- [bboShutdownHook] o.apache.dubbo.config.DubboShutdownHook  :  [DUBBO] Dubbo shutdown hooks execute now. Dubbo Application[1.1](lia-user-service-dubbo), dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.891-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.dubbo.registry.nacos.NacosRegistry   :  [DUBBO] Unregister: dubbo://192.168.150.1:20881/asia.sweethome.api.UserApi?application=lia-user-service-dubbo&deprecated=false&dubbo=2.0.2&dynamic=true&generic=false&interface=asia.sweethome.api.UserApi&methods=createUser,findUserAndFamilyByPhone,findUserById,findUsersByIds&prefer.serialization=hessian2,fastjson2&release=3.3.3&service-name-mapping=true&side=provider&timeout=5000&timestamp=1783005960035, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.904-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [DEREGISTER-SERVICE] public deregistering service providers:asia.sweethome.api.UserApi:: with instance: Instance{instanceId='null', ip='192.168.150.1', port=20881, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='null', serviceName='null', metadata={side=provider, release=3.3.3, methods=createUser,findUserAndFamilyByPhone,findUserById,findUsersByIds, deprecated=false, dubbo=2.0.2, interface=asia.sweethome.api.UserApi, service-name-mapping=true, timeout=5000, generic=false, path=asia.sweethome.api.UserApi, protocol=dubbo, application=lia-user-service-dubbo, prefer.serialization=hessian2,fastjson2, dynamic=true, category=providers, timestamp=1783005960035}}
+11:33:39.938-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.dubbo.registry.nacos.NacosRegistry   :  [DUBBO] Unsubscribe: provider://192.168.150.1:20881/asia.sweethome.api.UserApi?anyhost=true&application=lia-user-service-dubbo&background=false&bind.ip=192.168.150.1&bind.port=20881&category=configurators&check=false&deprecated=false&dubbo=2.0.2&dynamic=true&executor-management-mode=isolation&file-cache=true&generic=false&interface=asia.sweethome.api.UserApi&methods=createUser,findUserAndFamilyByPhone,findUserById,findUsersByIds&pid=27924&prefer.serialization=hessian2,fastjson2&qos.port=22221&release=3.3.3&service-name-mapping=true&side=provider&timeout=5000&timestamp=1783005960035, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.942-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [GRPC-UNSUBSCRIBE] service:providers:asia.sweethome.api.UserApi::, group:DEFAULT_GROUP, cluster: 
+11:33:39.954-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.dubbo.registry.nacos.NacosRegistry   :  [DUBBO] Unsubscribe: consumer://192.168.150.1/asia.sweethome.api.FamilyApi?application=lia-user-service-dubbo&background=false&category=providers,configurators,routers&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=asia.sweethome.api.FamilyApi&methods=createFamily,getFamilyByUserId,getFamilyRoleByUserId,getGenderByUserId,getRelation,joinFamily&pid=27924&qos.port=22221&release=3.3.3&side=consumer&sticky=false&timeout=5000&timestamp=1783005962439&unloadClusterRelated=false, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.955-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [GRPC-UNSUBSCRIBE] service:providers:asia.sweethome.api.FamilyApi::, group:DEFAULT_GROUP, cluster: 
+11:33:39.993-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.nacos.client.config.impl.CacheData   : [Config-fixed-public-127.0.0.1_8848] [remove-listener] ok, dataId=asia.sweethome.api.FamilyApi, group=mapping,tenant=public, cnt=0
+11:33:39.995-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] .r.c.e.l.ServiceInstancesChangedListener :  [DUBBO] Destroying instance listener of  [lia-family-service-dubbo, lia-user-dubbo], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:39.996-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [GRPC-UNSUBSCRIBE] service:lia-family-service-dubbo, group:DEFAULT_GROUP, cluster: 
+11:33:40.002-[LinPro][sys]-- INFO 27924 --- [listener.task-0] c.a.n.client.config.impl.ClientWorker    : [Config-fixed-public-127.0.0.1_8848] [unsubscribe] asia.sweethome.api.FamilyApi+mapping+public
+11:33:40.002-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [GRPC-UNSUBSCRIBE] service:lia-user-dubbo, group:DEFAULT_GROUP, cluster: 
+11:33:40.009-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.r.transport.netty4.NettyChannel    :  [DUBBO] Close netty channel [id: 0xcad7998b, L:/192.168.150.1:58369 - R:/192.168.150.1:20882], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.019-[LinPro][sys]-- INFO 27924 --- [erverWorker-5-1] o.a.d.r.t.netty4.NettyServerHandler      :  [DUBBO] The connection [id: 0x5fcd5be8, L:/192.168.150.1:20881 ! R:/192.168.150.1:58372] of 192.168.150.1:58372 -> 192.168.150.1:20881 is disconnected., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.019-[LinPro][sys]-- INFO 27924 --- [lientWorker-6-1] o.a.d.r.t.netty4.NettyClientHandler      :  [DUBBO] The connection [id: 0xcad7998b, L:/192.168.150.1:58369 ! R:/192.168.150.1:20882] of 192.168.150.1:58369 -> 192.168.150.1:20882 is disconnected., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.021-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.1.1] has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.022-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](lia-user-service-dubbo) has completed., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.022-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Reset global default application from Dubbo Application[1.1](lia-user-service-dubbo) to null, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.023-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](lia-user-service-dubbo) is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.025-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [DEREGISTER-SERVICE] public deregistering service lia-user-service-dubbo with instance: Instance{instanceId='null', ip='192.168.150.1', port=20881, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='null', serviceName='lia-user-service-dubbo', metadata={dubbo.endpoints=[{"port":20881,"protocol":"dubbo"}], dubbo.metadata-service.url-params={"prefer.serialization":"hessian2,fastjson2","timeout":"5000","version":"1.0.0","dubbo":"2.0.2","release":"3.3.3","side":"provider","port":"20881","protocol":"dubbo"}, dubbo.metadata.revision=9cd27babcedfbf495a46640a1f0ac149, dubbo.metadata.storage-type=local, meta-v=1.0.0, timestamp=1783005960035}}
+11:33:40.037-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.rpc.protocol.dubbo.DubboProtocol   :  [DUBBO] Destroying protocol [DubboProtocol] ..., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.038-[LinPro][sys]-- INFO 27924 --- [erverWorker-5-2] o.a.d.r.t.netty4.NettyServerHandler      :  [DUBBO] The connection [id: 0xc19a13a6, L:/192.168.150.1:20881 ! R:/192.168.150.1:58374] of 192.168.150.1:58374 -> 192.168.150.1:20881 is disconnected., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.038-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.rpc.protocol.dubbo.DubboProtocol   :  [DUBBO] Closing dubbo server: /192.168.150.1:20881, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.077-[LinPro][sys]-- WARN 27924 --- [erverWorker-5-3] o.a.d.r.transport.netty4.NettyServer     :  [DUBBO] All clients has disconnected from /192.168.150.1:20881. You can graceful shutdown now., dubbo version: 3.3.3, current host: 192.168.150.1, error code: 99-0. This may be caused by unknown error in remoting module, go to https://dubbo.apache.org/faq/99/0 to find instructions. 
+11:33:40.078-[LinPro][sys]-- INFO 27924 --- [erverWorker-5-3] o.a.d.r.t.netty4.NettyServerHandler      :  [DUBBO] The connection [id: 0xbb06f226, L:/192.168.150.1:20881 ! R:/192.168.150.1:58373] of 192.168.150.1:58373 -> 192.168.150.1:20881 is disconnected., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.091-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.r.transport.netty4.NettyServer     :  [DUBBO] Close NettyServer bind /0.0.0.0:20881, export /192.168.150.1:20881, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:40.588-[LinPro][sys]-- INFO 27924 --- [ing.grpc.redo.0] com.alibaba.nacos.client.naming          : Redo instance operation REMOVE for DEFAULT_GROUP@@lia-user-service-dubbo
+11:33:40.740-[LinPro][sys]-- INFO 27924 --- [ing.grpc.redo.0] com.alibaba.nacos.client.naming          : Redo instance operation REMOVE for DEFAULT_GROUP@@providers:asia.sweethome.api.UserApi::
+11:33:42.114-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.rpc.protocol.dubbo.DubboProtocol   :  [DUBBO] Unexport service: dubbo://192.168.150.1:20881/org.apache.dubbo.metadata.MetadataService?anyhost=true&application=lia-user-service-dubbo&background=false&bind.ip=192.168.150.1&bind.port=20881&delay=0&deprecated=false&dubbo=2.0.2&dynamic=true&executor-management-mode=isolation&file-cache=true&generic=false&getAndListenInstanceMetadata.1.callback=true&getAndListenInstanceMetadata.return=true&getAndListenInstanceMetadata.sent=true&group=lia-user-service-dubbo&interface=org.apache.dubbo.metadata.MetadataService&methods=exportInstanceMetadata,getAndListenInstanceMetadata,getExportedServiceURLs,getExportedURLs,getInstanceMetadataChangedListenerMap,getMetadataInfo,getMetadataInfos,getMetadataURL,getOpenAPI,getServiceDefinition,getSubscribedURLs,isMetadataService,serviceName,toSortedStrings,version&pid=27924&prefer.serialization=hessian2,fastjson2&qos.port=22221&register=false&release=3.3.3&revision=3.3.3&service.filter=-default&side=provider&timeout=5000&timestamp=1783005962357&version=1.0.0, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.114-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] org.apache.dubbo.qos.server.Server       :  [DUBBO] qos-server stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.118-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.rpc.protocol.injvm.InjvmProtocol   :  [DUBBO] Unexport service: injvm://127.0.0.1/org.apache.dubbo.metadata.MetadataService?anyhost=true&application=lia-user-service-dubbo&background=false&bind.ip=192.168.150.1&bind.port=20881&delay=0&deprecated=false&dubbo=2.0.2&dynamic=true&executor-management-mode=isolation&exporter.listener=injvm&file-cache=true&generic=false&getAndListenInstanceMetadata.1.callback=true&getAndListenInstanceMetadata.return=true&getAndListenInstanceMetadata.sent=true&group=lia-user-service-dubbo&interface=org.apache.dubbo.metadata.MetadataService&methods=exportInstanceMetadata,getAndListenInstanceMetadata,getExportedServiceURLs,getExportedURLs,getInstanceMetadataChangedListenerMap,getMetadataInfo,getMetadataInfos,getMetadataURL,getOpenAPI,getServiceDefinition,getSubscribedURLs,isMetadataService,serviceName,toSortedStrings,version&pid=27924&prefer.serialization=hessian2,fastjson2&qos.port=22221&register=false&release=3.3.3&revision=3.3.3&service.filter=-default&side=provider&timeout=5000&timestamp=1783005962357&version=1.0.0, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.119-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.1.0] is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.120-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.1.0] has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.121-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.registry.support.RegistryManager   :  [DUBBO] Close all registries [nacos://127.0.0.1:8848/org.apache.dubbo.registry.RegistryService?REGISTRY_CLUSTER=default&application=lia-user-service-dubbo&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=org.apache.dubbo.registry.RegistryService&pid=27924&qos.port=22221&register=false&release=3.3.3, nacos://127.0.0.1:8848/org.apache.dubbo.registry.RegistryService?REGISTRY_CLUSTER=default&application=lia-user-service-dubbo&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=org.apache.dubbo.registry.RegistryService&pid=27924&qos.port=22221&register=false&release=3.3.3, nacos://127.0.0.1:8848/org.apache.dubbo.registry.RegistryService?REGISTRY_CLUSTER=default&application=lia-user-service-dubbo&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=org.apache.dubbo.registry.RegistryService&pid=27924&qos.port=22221&release=3.3.3], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.122-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.dubbo.registry.nacos.NacosRegistry   :  [DUBBO] Destroy registry:nacos://127.0.0.1:8848/org.apache.dubbo.registry.RegistryService?REGISTRY_CLUSTER=default&application=lia-user-service-dubbo&dubbo=2.0.2&executor-management-mode=isolation&file-cache=true&interface=org.apache.dubbo.registry.RegistryService&pid=27924&qos.port=22221&register=false&release=3.3.3, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.124-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+11:33:42.124-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+11:33:42.125-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+11:33:42.125-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+11:33:42.126-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+11:33:42.126-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+11:33:42.127-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+11:33:42.127-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown begin
+11:33:42.128-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown stop
+11:33:42.128-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+11:33:42.128-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+11:33:42.129-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Completed destruction of NacosRestTemplate
+11:33:42.129-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+11:33:42.129-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->16f66ced-2422-440c-8083-09e1f8e2766d
+11:33:42.130-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@49f03295[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 14549]
+11:33:42.131-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+11:33:42.131-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@4b12f4b4[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+11:33:42.132-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1783005962157_172.18.0.1_58906
+11:33:42.136-[LinPro][sys]-- INFO 27924 --- [127.0.0.1-16651] c.a.n.c.remote.client.grpc.GrpcClient    : [1783005962157_172.18.0.1_58906]Ignore complete event,isRunning:false,isAbandon=false
+11:33:42.157-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@4b223eae[Running, pool size = 10, active threads = 0, queued tasks = 0, completed tasks = 16652]
+11:33:42.157-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->16f66ced-2422-440c-8083-09e1f8e2766d
+11:33:42.159-[LinPro][sys]-- WARN 27924 --- [ionShutdownHook] o.a.d.r.n.util.NacosNamingServiceUtils   :  [DUBBO] Unable to shutdown nacos naming service, dubbo version: 3.3.3, current host: 192.168.150.1, error code: 1-37. This may be caused by , go to https://dubbo.apache.org/faq/1/37 to find instructions. 
+java.lang.NullPointerException: Cannot read field "sharePublisher" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+	at com.alibaba.nacos.common.notify.NotifyCenter.deregisterSubscriber(NotifyCenter.java:242) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.gprc.NamingGrpcClientProxy.shutdown(NamingGrpcClientProxy.java:537) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate.shutdown(NamingClientProxyDelegate.java:212) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.NacosNamingService.shutDown(NacosNamingService.java:637) ~[nacos-client-3.0.3.jar:na]
+	at org.apache.dubbo.registry.nacos.NacosConnectionManager.shutdownAll(NacosConnectionManager.java:105) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.nacos.NacosNamingServiceWrapper.shutdown(NacosNamingServiceWrapper.java:301) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.nacos.NacosRegistry.destroy(NacosRegistry.java:603) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.support.RegistryManager.destroyAll(RegistryManager.java:107) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.deploy.DefaultApplicationDeployer.destroyRegistries(DefaultApplicationDeployer.java:1426) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.deploy.DefaultApplicationDeployer.postDestroy(DefaultApplicationDeployer.java:1145) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.onDestroy(ApplicationModel.java:172) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.tryDestroy(ApplicationModel.java:276) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ModuleModel.onDestroy(ModuleModel.java:133) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onContextClosedEvent(DubboDeployApplicationListener.java:199) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:155) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:52) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:454) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1163) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+11:33:42.164-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+11:33:42.165-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+11:33:42.166-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+11:33:42.166-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+11:33:42.166-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+11:33:42.168-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+11:33:42.168-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+11:33:42.169-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown begin
+11:33:42.169-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown stop
+11:33:42.169-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+11:33:42.169-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+11:33:42.170-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Completed destruction of NacosRestTemplate
+11:33:42.170-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+11:33:42.171-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->6ca998b5-faa6-4689-b8e7-6f0e9a64b5db
+11:33:42.171-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@20cc502b[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 14549]
+11:33:42.171-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+11:33:42.172-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@78b1d2ae[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+11:33:42.172-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1783005961977_172.18.0.1_58898
+11:33:42.173-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@16a675e9[Running, pool size = 12, active threads = 0, queued tasks = 0, completed tasks = 16667]
+11:33:42.174-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->6ca998b5-faa6-4689-b8e7-6f0e9a64b5db
+11:33:42.174-[LinPro][sys]-- WARN 27924 --- [ionShutdownHook] o.a.d.r.n.util.NacosNamingServiceUtils   :  [DUBBO] Unable to shutdown nacos naming service, dubbo version: 3.3.3, current host: 192.168.150.1, error code: 1-37. This may be caused by , go to https://dubbo.apache.org/faq/1/37 to find instructions. 
+java.lang.NullPointerException: Cannot read field "sharePublisher" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+	at com.alibaba.nacos.common.notify.NotifyCenter.deregisterSubscriber(NotifyCenter.java:242) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.gprc.NamingGrpcClientProxy.shutdown(NamingGrpcClientProxy.java:537) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate.shutdown(NamingClientProxyDelegate.java:212) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.NacosNamingService.shutDown(NacosNamingService.java:637) ~[nacos-client-3.0.3.jar:na]
+	at org.apache.dubbo.registry.nacos.NacosConnectionManager.shutdownAll(NacosConnectionManager.java:105) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.nacos.NacosNamingServiceWrapper.shutdown(NacosNamingServiceWrapper.java:301) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.nacos.NacosServiceDiscovery.doDestroy(NacosServiceDiscovery.java:89) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.client.AbstractServiceDiscovery.destroy(AbstractServiceDiscovery.java:297) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.common.function.ThrowableAction.execute(ThrowableAction.java:46) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.client.ServiceDiscoveryRegistry.destroy(ServiceDiscoveryRegistry.java:326) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.registry.support.RegistryManager.destroyAll(RegistryManager.java:107) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.deploy.DefaultApplicationDeployer.destroyRegistries(DefaultApplicationDeployer.java:1426) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.deploy.DefaultApplicationDeployer.postDestroy(DefaultApplicationDeployer.java:1145) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.onDestroy(ApplicationModel.java:172) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.tryDestroy(ApplicationModel.java:276) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ModuleModel.onDestroy(ModuleModel.java:133) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onContextClosedEvent(DubboDeployApplicationListener.java:199) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:155) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:52) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:454) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1163) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+11:33:42.178-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.t.m.DefaultExecutorRepository    :  [DUBBO] destroying application executor repository .., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.180-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](lia-user-service-dubbo) has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.181-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.n.client.config.impl.ClientWorker    : com.alibaba.nacos.client.config.impl.ClientWorker do shutdown begin
+11:33:42.181-[LinPro][sys]-- WARN 27924 --- [ionShutdownHook] .d.c.c.c.w.CompositeDynamicConfiguration :  [DUBBO] close dynamic configuration org.apache.dubbo.configcenter.support.nacos.NacosDynamicConfigurationfailed: Cannot read field "publisherMap" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null, dubbo version: 3.3.3, current host: 192.168.150.1, error code: 99-0. This may be caused by unknown error in configuration-center related code in common module, go to https://dubbo.apache.org/faq/99/0 to find instructions. 
+java.lang.NullPointerException: Cannot read field "publisherMap" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+	at com.alibaba.nacos.common.notify.NotifyCenter.removeSubscriber(NotifyCenter.java:262) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.common.notify.NotifyCenter.deregisterSubscriber(NotifyCenter.java:234) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.config.impl.ConfigFuzzyWatchGroupKeyHolder.shutdown(ConfigFuzzyWatchGroupKeyHolder.java:137) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.config.impl.ClientWorker.shutdown(ClientWorker.java:619) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.config.NacosConfigService.shutDown(NacosConfigService.java:308) ~[nacos-client-3.0.3.jar:na]
+	at org.apache.dubbo.configcenter.support.nacos.NacosConfigServiceWrapper.shutdown(NacosConfigServiceWrapper.java:69) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.configcenter.support.nacos.NacosDynamicConfiguration.close(NacosDynamicConfiguration.java:228) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.common.config.configcenter.wrapper.CompositeDynamicConfiguration.close(CompositeDynamicConfiguration.java:93) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.common.config.Environment.destroy(Environment.java:274) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.onDestroy(ApplicationModel.java:179) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ApplicationModel.tryDestroy(ApplicationModel.java:276) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ModuleModel.onDestroy(ModuleModel.java:133) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.rpc.model.ScopeModel.destroy(ScopeModel.java:123) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onContextClosedEvent(DubboDeployApplicationListener.java:199) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:155) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.apache.dubbo.config.spring.context.DubboDeployApplicationListener.onApplicationEvent(DubboDeployApplicationListener.java:52) ~[dubbo-3.3.3.jar:3.3.3]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:454) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1163) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+11:33:42.183-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Destroying default framework model: Dubbo Framework[1], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.183-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Dubbo Framework[1] is destroying ..., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.185-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.0](DUBBO_INTERNAL_APPLICATION) is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.185-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.0.0] is stopping., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.186-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.0.0] has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.186-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.registry.support.RegistryManager   :  [DUBBO] Close all registries [], dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.187-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.t.m.DefaultExecutorRepository    :  [DUBBO] destroying application executor repository .., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.187-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.0](DUBBO_INTERNAL_APPLICATION) has stopped., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.189-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Dubbo Framework[1] is destroyed, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.189-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.apache.dubbo.rpc.model.FrameworkModel  :  [DUBBO] Reset global default framework from Dubbo Framework[1] to null, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.189-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.r.GlobalResourcesRepository      :  [DUBBO] Destroying global resources ..., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.194-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.r.GlobalResourcesRepository      :  [DUBBO] Dubbo is completely destroyed, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.195-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.t.m.FrameworkExecutorRepository  :  [DUBBO] destroying framework executor repository .., dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.199-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.a.d.c.s.c.DubboSpringInitializer       :  [DUBBO] Unbind Dubbo Module[1.1.1] from spring container: org.springframework.beans.factory.support.DefaultListableBeanFactory@7d70638, dubbo version: 3.3.3, current host: 192.168.150.1
+11:33:42.200-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registering from Nacos Server now...
+11:33:42.201-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [DEREGISTER-SERVICE] 8b1e6396-6460-4270-9a8a-8a40b71a4d46 deregistering service user-service with instance: Instance{instanceId='null', ip='192.168.150.1', port=8082, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='', serviceName='null', metadata={}}
+11:33:42.205-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registration finished.
+11:33:42.205-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+11:33:42.206-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+11:33:42.206-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+11:33:42.207-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+11:33:42.207-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+11:33:42.207-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+11:33:42.207-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+11:33:42.209-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown begin
+11:33:42.209-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown stop
+11:33:42.209-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+11:33:42.210-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+11:33:42.210-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Completed destruction of NacosRestTemplate
+11:33:42.211-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+11:33:42.211-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->c64dca13-8b87-400b-98a1-e873d3c68eba
+11:33:42.211-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@4c68a767[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 14550]
+11:33:42.212-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+11:33:42.212-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@1ea14f05[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+11:33:42.213-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1783005958338_172.18.0.1_55424
+11:33:42.213-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@411425aa[Running, pool size = 6, active threads = 0, queued tasks = 0, completed tasks = 16641]
+11:33:42.214-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->c64dca13-8b87-400b-98a1-e873d3c68eba
+11:33:42.214-[LinPro][sys]-- WARN 27924 --- [127.0.0.1-16641] c.a.n.c.remote.client.grpc.GrpcClient    : [1783005958338_172.18.0.1_55424]Ignore error event,isRunning:false,isAbandon=false
+11:33:42.214-[LinPro][sys]--ERROR 27924 --- [ionShutdownHook] c.a.c.n.r.NacosGracefulShutdownDelegate  : Error occurred while performing Nacos client graceful shutdown
+java.lang.NullPointerException: Cannot read field "sharePublisher" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+	at com.alibaba.nacos.common.notify.NotifyCenter.deregisterSubscriber(NotifyCenter.java:242) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.gprc.NamingGrpcClientProxy.shutdown(NamingGrpcClientProxy.java:537) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate.shutdown(NamingClientProxyDelegate.java:212) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.nacos.client.naming.NacosNamingService.shutDown(NacosNamingService.java:637) ~[nacos-client-3.0.3.jar:na]
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:117) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:120) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.stop(AbstractAutoServiceRegistration.java:311) ~[spring-cloud-commons-4.3.0.jar:4.3.0]
+	at com.alibaba.cloud.nacos.registry.NacosGracefulShutdownDelegate.doGracefulShutdown(NacosGracefulShutdownDelegate.java:69) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at com.alibaba.cloud.nacos.registry.NacosGracefulShutdownDelegate.onApplicationEvent(NacosGracefulShutdownDelegate.java:64) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at com.alibaba.cloud.nacos.registry.NacosGracefulShutdownDelegate.onApplicationEvent(NacosGracefulShutdownDelegate.java:34) ~[spring-cloud-starter-alibaba-nacos-discovery-2025.0.0.0.jar:2025.0.0.0]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:454) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1163) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-3.5.0.jar:3.5.0]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+11:33:42.227-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+11:33:42.478-[LinPro][sys]-- INFO 27924 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+11:33:42.485-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+11:33:42.485-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+11:33:42.485-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+11:33:42.486-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+11:33:42.486-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+11:33:42.486-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+11:33:42.487-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+11:33:42.487-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown begin
+11:33:42.488-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] c.a.n.c.a.AbstractServerListManager      : com.alibaba.nacos.client.naming.core.NamingServerListManager do shutdown stop
+11:33:42.489-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+11:33:42.489-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+11:33:42.489-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Completed destruction of NacosRestTemplate
+11:33:42.490-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+11:33:42.490-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->c64dca13-8b87-400b-98a1-e873d3c68eba
+11:33:42.490-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@4c68a767[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 14550]
+11:33:42.491-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->c64dca13-8b87-400b-98a1-e873d3c68eba
+11:33:42.492-[LinPro][sys]-- WARN 27924 --- [ionShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Custom destroy method 'close' on bean with name 'nacosServiceRegistry' propagated an exception: java.lang.NullPointerException: Cannot read field "sharePublisher" because "com.alibaba.nacos.common.notify.NotifyCenter.INSTANCE" is null
+11:33:42.494-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+11:33:42.499-[LinPro][sys]-- INFO 27924 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

@@ -11,9 +11,12 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * 【family_members 表实体（PO）】
  * <p>
- * 家庭成员关系表
- * </p>
+ * 表示「某用户是某家庭的成员」，一条记录 = 一个成员身份。它是关系图上的「节点」，
+ * 亲属关系（边）则存在 family_relations（{@link FamilyRelation}）。
+ * <p>
+ * 注意：类名 FamilyMemeber 是拼写笔误（应为 FamilyMember），因已被各处引用，暂保持原样不改名。
  *
  * @author LocrianFifth
  * @since 2026-07-01

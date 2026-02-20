@@ -25,7 +25,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * @description:
+ * 【FamilyApi 的 Dubbo 实现】
+ * <p>
+ * family-service 对外（主要给 user-service、auth-service）提供的远程接口实现。
+ * 大多是「查某用户在家庭里的信息」以及「注册时联动建/入家庭」，具体家庭业务委托给
+ * {@link IFamiliesService} 等本服务的 Service 完成。
+ *
  * @author: LOCRIAN_V
  * @date: 7/1/2026 11:32 下午
  */
@@ -35,7 +40,7 @@ public class FamilyApiImpl implements FamilyApi {
     private final IFamiliesService familiesService;
     private final IFamilyMembersService familyMembersService;
     private final IFamilyRelationsService familyRelationsService;
-    private final KinshipEngine kinshipEngine;
+    private final KinshipEngine kinshipEngine;   // 亲属称谓计算引擎
 
 
     @Override
@@ -131,6 +136,10 @@ public class FamilyApiImpl implements FamilyApi {
         return member == null ? null : member.getGender();
     }
 
+    /**
+     * 计算 viewer 相对 target 的亲属称谓（如「爸爸」「表哥」）。
+     * 若两人不在同一家庭（无关系路径），返回空的称谓（NONE）。
+     */
     @Override
     public RelationDTO getRelation(RelationQueryDTO relationQueryDTO) {
 
@@ -140,6 +149,7 @@ public class FamilyApiImpl implements FamilyApi {
         FamilyMemeber viewerMember = activeFamilyMemberByUserId(viewerUserId);
         FamilyMemeber targetMember = activeFamilyMemberByUserId(targetUserId);
 
+        // 任一方不在家庭、或两人不在同一家庭 → 无称谓
         if (viewerMember == null || targetMember == null
                 || !viewerMember.getFamilyId().equals(targetMember.getFamilyId())) {
             RelationResult none = RelationResult.NONE;
@@ -148,11 +158,13 @@ public class FamilyApiImpl implements FamilyApi {
 
         Long familyId = viewerMember.getFamilyId();
 
+        // 取出整张家庭关系图的所有边
         List<FamilyRelation> relations = familyRelationsService.lambdaQuery()
                 .eq(FamilyRelation::getFamilyId, familyId)
                 .isNull(FamilyRelation::getDeletedAt)
                 .list();
 
+        // 取出所有成员，做成 id -> 成员 的字典，供引擎按 id 快速查性别/排行
         Map<Long, FamilyMemeber> membersById = familyMembersService.lambdaQuery()
                 .eq(FamilyMemeber::getFamilyId, familyId)
                 .isNull(FamilyMemeber::getDeletedAt)
@@ -160,6 +172,7 @@ public class FamilyApiImpl implements FamilyApi {
                 .stream()
                 .collect(Collectors.toMap(FamilyMemeber::getId, m -> m));
 
+        // 交给引擎在图上找路径并翻译成称谓
         RelationResult result = kinshipEngine.computeRelation(
                 relations, membersById, viewerMember.getId(), targetMember.getId(),
                 relationQueryDTO.getAcceptLanguage()
@@ -168,6 +181,7 @@ public class FamilyApiImpl implements FamilyApi {
         return new RelationDTO(result.relationCode(), result.relationLabel());
     }
 
+    /** 按用户 id 查其「在册」的家庭成员记录（一个用户同一时刻至多属于一个家庭，故用 one()） */
     private FamilyMemeber activeFamilyMemberByUserId(Long userId) {
         return familyMembersService.lambdaQuery()
                 .eq(FamilyMemeber::getUserId, userId)

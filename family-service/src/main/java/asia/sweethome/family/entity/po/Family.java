@@ -11,9 +11,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * 【families 表实体（PO）】
  * <p>
- * 家庭表
- * </p>
+ * 一个家庭一行。邀请码相关的两个字段（inviteCode / inviteExpiresAt）在生成邀请码时才会填。
  *
  * @author LocrianFifth
  * @since 2026-07-01

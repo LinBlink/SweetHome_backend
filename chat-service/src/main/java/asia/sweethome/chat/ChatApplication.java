@@ -11,12 +11,19 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+/**
+ * 【chat-service 启动类】
+ * <p>
+ * {@code @EnableDubbo} 暴露 ChatApiImpl、引用 UserApi/FamilyApi；{@code @MapperScan} 扫描 Mapper。
+ * 本服务还额外承载 WebSocket 端点与 Redis 订阅（见 config 包）。
+ */
 @SpringBootApplication
 @Slf4j
 @EnableDubbo
 @MapperScan("asia.sweethome.chat.mapper")
 public class ChatApplication {
     public static void main(String[] args) throws UnknownHostException {
+        // 启动 Spring 容器
         ConfigurableApplicationContext app = SpringApplication.run(ChatApplication.class);
         ConfigurableEnvironment env = app.getEnvironment();
         String protocol = "http";

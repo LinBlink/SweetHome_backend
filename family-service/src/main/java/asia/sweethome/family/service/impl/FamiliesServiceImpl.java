@@ -23,38 +23,51 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * 【家庭核心业务实现】
+ * <p>
+ * 这是全项目最复杂的一块：家庭的创建、加入（含退出旧家庭级联）、邀请码、关系图维护，
+ * 都在这里。理解它的关键是把「家庭成员」看作图上的节点、「亲属关系」看作节点之间的边
+ * （见 family_relations 表），加入家庭时要正确地往这张图里补边。
+ *
+ * @author LocrianFifth
+ */
 @Service
 public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> implements IFamiliesService {
 
+    // 邀请码使用的字符表（去掉了容易混淆的字符可按需调整）
     private static final String INVITE_CODE_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    private static final int INVITE_CODE_LENGTH = 8;
-    private static final long INVITE_CODE_TTL_HOURS = 48;
+    private static final int INVITE_CODE_LENGTH = 8;   // 邀请码长度
+    private static final long INVITE_CODE_TTL_HOURS = 48; // 邀请码有效期（小时）
+
+    // 这三者都是同一个 family-service 内的其它 Service / 远程服务
+    @Autowired
+    private IFamilyMembersService familyMembersService;   // 成员表业务
 
     @Autowired
-    private IFamilyMembersService familyMembersService;
-
-    @Autowired
-    private IFamilyRelationsService familyRelationsService;
+    private IFamilyRelationsService familyRelationsService; // 关系图业务
 
     @DubboReference
-    private ChatApi chatApi;
+    private ChatApi chatApi;   // 远程聊天服务（建群/加群/退群）
 
-    @Override
     /**
-     * 加入一个家庭需要经过的步骤
-     *      邀请码有效性检查
-     *      退出旧家庭（级联）
-     *      新增 FamilyMemeber
-     *      根据锚点完善 FamilyRelation
-     *      加入新家庭群聊
-     *      返回家庭 id
-     *
-     * 注意：不加 @Transactional —— 本方法末尾及 leaveOldFamily 内部都会跨服务调用 chat-service
+     * 加入一个家庭，依次完成：
+     * <ol>
+     *   <li>邀请码有效性检查（存在且未过期）；</li>
+     *   <li>锚点成员校验（要和家里谁建立关系，那个人必须真实存在于该家庭）；</li>
+     *   <li>若用户已在别的家庭，先级联退出旧家庭；</li>
+     *   <li>新增 family_members 记录；</li>
+     *   <li>按 relationType 往关系图补边（父子/夫妻/兄弟姐妹）；</li>
+     *   <li>加入新家庭群聊；返回家庭 id。</li>
+     * </ol>
+     * <p>
+     * 关于「为什么不加 @Transactional」：本方法末尾及 leaveOldFamily 内部都会跨服务调用 chat-service
      * （建群聊/加入群聊/退出群聊），chat-service 对应的外键（conversations.family_id 等）要求
      * family-service 这边的写入已经真正落库。若整体包一层本地事务，跨服务调用发起时这边的数据
      * 在其他连接看来仍是未提交状态，外键约束会失败。这里依赖各次 save/update 的单语句自动提交，
      * 代价是中途失败不会整体回滚（无分布式事务，属已知取舍，与 UserApiImpl.createUser 一致）。
      */
+    @Override
     public Long joinFamily(
             Long userId,
             String inviteCode,
@@ -115,8 +128,9 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
         // 新成员的 memeberId
         Long newMemberId = newMember.getId();
 
-        // 2. 按 relationType 写 family_relations
+        // 2. 按 relationType 往关系图补边。注意 relationType 描述的是「新成员相对锚点」的关系。
         switch (relationType) {
+            // 新成员是锚点的「孩子」：补一条 锚点 --PARENT_OF--> 新成员 的边
             case RelationTypeConstants.CHILD_OF -> {
                 addParentOf(familyId, anchor.getId(), newMemberId);
                 // 若锚点已有配偶，同时给配偶也补一条直接血亲边，
@@ -126,13 +140,17 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
                     addParentOf(familyId, anchorSpouseId, newMemberId);
                 }
             }
+            // 新成员是锚点的「父/母」：方向反过来，新成员 --PARENT_OF--> 锚点
             case RelationTypeConstants.PARENT_OF -> addParentOf(familyId, newMemberId, anchor.getId());
+            // 新成员是锚点的「配偶」：一夫一妻，锚点已有配偶则报错
             case RelationTypeConstants.SPOUSE_OF -> {
                 if (findSpouseId(anchor.getId()) != null) {
                     throw new BusinessException(ErrorCode.SPOUSE_ALREADY_EXISTS);
                 }
                 addSpouseOf(familyId, newMemberId, anchor.getId());
             }
+            // 新成员是锚点的「兄弟姐妹」：本质是「和锚点共享父母」，
+            // 所以把锚点的每一位父母，也都设为新成员的父母
             case RelationTypeConstants.SIBLING_OF -> {
                 List<Long> anchorParentIds = familyRelationsService.lambdaQuery()
                         .eq(FamilyRelation::getRelationType, RelationTypeConstants.PARENT_OF)
@@ -156,6 +174,10 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
         return familyId;
     }
 
+    /**
+     * 创建家庭：建家庭记录 → 把创建者作为管理员加入成员表 → 自动建家庭群聊 → 返回家庭 id。
+     * 同样不加 @Transactional，原因见 joinFamily 的说明。
+     */
     @Override
     public Long createFamily(
             Long userId,
@@ -191,10 +213,15 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
         return family.getId();
     }
 
+    /**
+     * 生成邀请码（仅管理员可操作）。若当前已有未过期的邀请码则直接复用，避免频繁刷新。
+     * 这个方法只改自己一张表、不跨服务，所以可以安全地加 @Transactional 保证原子性。
+     */
     @Override
     @Transactional
     public Family generateInviteCode(Long familyId, Long requesterUserId) {
 
+        // 先确认请求者确实是这个家庭的成员，且角色是管理员
         FamilyMemeber requester = familyMembersService.lambdaQuery()
                 .eq(FamilyMemeber::getFamilyId, familyId)
                 .eq(FamilyMemeber::getUserId, requesterUserId)
@@ -229,6 +256,10 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
         return family;
     }
 
+    /**
+     * 凭邀请码查家庭（加入前的「预览」用）。邀请码不区分大小写，统一转大写再查；
+     * 家庭不存在或邀请码已过期都抛 INVITE_CODE_INVALID。
+     */
     @Override
     public Family lookupByInviteCode(String inviteCode) {
         String code = inviteCode == null ? null : inviteCode.trim().toUpperCase();
@@ -244,6 +275,7 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
         return family;
     }
 
+    /** 列出某家庭所有「在册」成员（deletedAt 为全局逻辑删除字段，已退出的会被自动过滤） */
     @Override
     public List<FamilyMemeber> listActiveMembers(Long familyId) {
         return familyMembersService.lambdaQuery()
@@ -300,38 +332,44 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
         }
     }
 
-    // 找到配偶的 memeberId
+    /**
+     * 找出某成员的配偶 id。配偶边是「无向」的（谁是 subject 谁是 object 不固定），
+     * 所以要同时匹配 subject=memberId 或 object=memberId 两种情况，命中后返回「另一头」。
+     * 没有配偶时返回 null。
+     */
     private Long findSpouseId(Long memberId) {
 
         FamilyRelation rel = familyRelationsService.lambdaQuery()
-                // 先查所有的 SPOUSE_OF 关系
+                // 先限定关系类型为「配偶」
                 .eq(FamilyRelation::getRelationType, RelationTypeConstants.SPOUSE_OF)
                 .and(
-                        // AND 下面的语句
-                        w ->
-                                // 配偶的双向性
-                                w.eq(FamilyRelation::getSubjectMemberId, memberId)
-                                        .or()
-                                        .eq(FamilyRelation::getObjectMemberId, memberId)
+                        // 再要求 memberId 出现在边的任意一端（配偶边无向）
+                        w -> w.eq(FamilyRelation::getSubjectMemberId, memberId)
+                                .or()
+                                .eq(FamilyRelation::getObjectMemberId, memberId)
                 )
                 .isNull(FamilyRelation::getDeletedAt)
                 .one();
         if (rel == null) return null;
+        // 返回边上「不是自己」的那一端，即配偶
         return rel.getSubjectMemberId().equals(memberId) ? rel.getObjectMemberId() : rel.getSubjectMemberId();
     }
 
+    /** 往关系图写一条有向的父子边：parent --PARENT_OF--> child */
     private void addParentOf(Long familyId, Long parentMemberId, Long childMemberId) {
         FamilyRelation rel = new FamilyRelation();
         rel.setFamilyId(familyId);
-        rel.setSubjectMemberId(parentMemberId);
+        rel.setSubjectMemberId(parentMemberId);   // subject = 父/母
         rel.setRelationType(RelationTypeConstants.PARENT_OF);
-        rel.setObjectMemberId(childMemberId);
+        rel.setObjectMemberId(childMemberId);     // object = 子/女
         rel.setCreatedAt(LocalDateTime.now());
         familyRelationsService.save(rel);
     }
 
+    /** 往关系图写一条无向的配偶边 */
     private void addSpouseOf(Long familyId, Long memberIdA, Long memberIdB) {
-        // 规范化，保证 SPOUSE_OF 无向边不会存两次
+        // 规范化：始终让较小的 id 当 subject、较大的当 object。
+        // 这样 (3,5) 和 (5,3) 都会存成 (3,5)，避免同一对配偶被存成两行重复数据。
         long subject = Math.min(memberIdA, memberIdB);
         long object = Math.max(memberIdA, memberIdB);
         FamilyRelation rel = new FamilyRelation();

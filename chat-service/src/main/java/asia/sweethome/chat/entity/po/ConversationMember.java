@@ -11,9 +11,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * <p>
- * 会话成员表（记录每个用户的已读进度）
- * </p>
+ * 【conversation_members 表实体（PO）】记录「某用户在某会话里」的成员关系与已读进度。
+ * lastReadMessageId 记住读到哪了，用来算未读数；leftAt 非空表示已退出（软退出）。
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

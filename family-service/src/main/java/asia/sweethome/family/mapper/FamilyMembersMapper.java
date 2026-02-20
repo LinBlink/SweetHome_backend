@@ -4,9 +4,7 @@ import asia.sweethome.family.entity.po.FamilyMemeber;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
- * <p>
- * 家庭成员关系表 Mapper 接口
- * </p>
+ * 【family_members 表 Mapper】继承 BaseMapper 获得基础 CRUD。
  *
  * @author LocrianFifth
  * @since 2026-07-01

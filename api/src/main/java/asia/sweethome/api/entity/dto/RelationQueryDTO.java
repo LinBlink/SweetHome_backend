@@ -16,7 +16,7 @@ public class RelationQueryDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long viewerUserId;
-    private Long targetUserId;
-    private String acceptLanguage;
+    private Long viewerUserId;     // 观察者：站在谁的视角来称呼（「我」）
+    private Long targetUserId;     // 目标：要称呼的是谁（「对方」）
+    private String acceptLanguage; // 语言偏好（HTTP Accept-Language），决定称谓用哪种语言/方言
 }

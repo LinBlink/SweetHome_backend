@@ -6,9 +6,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * 【家庭信息（跨服务返回值）】
  * <p>
- * 家庭表
- * </p>
+ * family-service 查询/创建/加入家庭后，返回给调用方的家庭数据。字段与数据库 families 表对应。
  *
  * @author LocrianFifth
  * @since 2026-07-01

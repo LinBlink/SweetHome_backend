@@ -11,9 +11,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * <p>
- * 聊天会话表（群聊 & 私聊）
- * </p>
+ * 【conversations 表实体（PO）】一次「会话」= 一个聊天窗口（群聊或单聊）。
+ * lastMessageId / lastMessageAt 是冗余字段，用于会话列表快速展示「最后一条消息」和排序，
+ * 避免每次都去 messages 表现算。
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

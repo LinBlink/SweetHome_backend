@@ -4,9 +4,9 @@ import asia.sweethome.user.entity.po.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
+ * 【users 表的数据访问接口（Mapper）】
  * <p>
- * 用户表 Mapper 接口
- * </p>
+ * 继承 MyBatis-Plus 的 {@link BaseMapper} 即自动获得针对 User 的基础增删改查 SQL，无需手写。
  *
  * @author author
  * @since 2026-06-30

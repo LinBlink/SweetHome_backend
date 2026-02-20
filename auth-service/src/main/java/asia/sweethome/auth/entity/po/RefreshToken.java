@@ -11,9 +11,15 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * 【refresh_tokens 表实体（PO）】
  * <p>
- * Refresh Token 表（支持多设备登录）
- * </p>
+ * PO = Persistent Object，与数据库表一一对应，一个对象就是表里的一行。
+ * 支持多设备登录：同一用户在手机、平板各登录一次，就会有多条记录（deviceInfo 区分）。
+ * <ul>
+ *   <li>{@code @TableName}：指明对应的表名；</li>
+ *   <li>{@code @Accessors(chain = true)}：让 setter 返回自身，可以 a.setX().setY() 链式调用；</li>
+ *   <li>{@code @EqualsAndHashCode(callSuper = false)}：equals/hashCode 不考虑父类字段。</li>
+ * </ul>
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -23,6 +29,7 @@ public class RefreshToken implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    // 主键，type = AUTO 表示由数据库自增生成
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 

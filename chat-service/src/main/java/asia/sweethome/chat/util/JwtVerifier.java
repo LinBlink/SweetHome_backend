@@ -14,8 +14,11 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 /**
- * 与 gateway 使用同一把 RSA 公钥验签；用于 WebSocket 握手阶段兜底解析 ?token= 查询参数
- * （正常路径下网关已经验证过并把身份写进 X-User-Id 请求头，这里只是脱离网关直连调试时的兜底）。
+ * 【JWT 验签器（仅公钥）】
+ * <p>
+ * 只持有公钥、只能「验签」不能「签发」（签发是 auth-service 私钥的事，见 auth 模块的 JwtUtil）。
+ * 用于 WebSocket 握手阶段兜底解析 URL 上的 ?token=（正常路径下网关已验过并写入 X-User-Id，
+ * 这里只是脱离网关直连调试时的备用方案）。原理见 auth-service 的 JwtUtil 说明。
  */
 @Component
 public class JwtVerifier {
@@ -25,6 +28,7 @@ public class JwtVerifier {
 
     private PublicKey publicKey;
 
+    /** Bean 初始化时把 Base64 公钥字符串还原成 PublicKey 对象，只做一次 */
     @PostConstruct
     public void init() throws NoSuchAlgorithmException, InvalidKeySpecException {
         KeyFactory kf = KeyFactory.getInstance("RSA");
@@ -33,6 +37,7 @@ public class JwtVerifier {
         this.publicKey = kf.generatePublic(spec);
     }
 
+    /** 验签并解析出载荷；令牌被篡改/过期会抛异常 */
     public Claims verify(String token) {
         return Jwts.parser()
                 .verifyWith(publicKey)

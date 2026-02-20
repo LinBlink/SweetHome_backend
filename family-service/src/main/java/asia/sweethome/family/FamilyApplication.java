@@ -12,17 +12,21 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * @description:
+ * 【family-service 启动类】
+ * <p>
+ * {@code @EnableDubbo} 开启 Dubbo（暴露 FamilyApiImpl，同时引用 UserApi/ChatApi）；
+ * {@code @MapperScan} 扫描 Mapper 接口。
+ *
  * @author: LOCRIAN_V
  * @date: 7/2/2026 3:51 下午
  */
-
 @SpringBootApplication
 @Slf4j
 @EnableDubbo
 @MapperScan("asia.sweethome.family.mapper")
 public class FamilyApplication {
     public static void main(String[] args) throws UnknownHostException {
+        // 启动 Spring 容器
         ConfigurableApplicationContext app = SpringApplication.run(FamilyApplication.class);
         ConfigurableEnvironment env = app.getEnvironment();
         String protocol = "http";
