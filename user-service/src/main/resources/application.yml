@@ -19,10 +19,11 @@ spring:
         namespace: ${NACOS_NAMESPACE}
   config:
     import:
-      - optional:file:.env[.properties]
-      - optional:nacos:common-spring.yaml
-      - optional:nacos:common-logs.yaml
-      - optional:nacos:common-mybatis.yaml
+      - file:.env[.properties]
+      - nacos:common-spring.yaml
+      - nacos:common-logs.yaml
+      - nacos:common-mybatis.yaml
+      - nacos:common-redis.yaml
 
 dubbo:
   application:
@@ -32,7 +33,7 @@ dubbo:
     name: dubbo                 # 用 Dubbo 协议
     port: 20881                 # 显式指定，避免本机同时跑多个服务时都落在默认 20880 互相抢占
   registry:
-    address: nacos://${NACOS_SERVER_ADDR}:8848   # 复用你的 Nacos 作注册中心
+    address: nacos://${NACOS_SERVER_ADDR}:8848   # 复用 Nacos 作注册中心
   # 默认 1000ms 对本项目 auth->user->family->chat 最深 3 跳的调用链偏紧，尤其是本地冷启动首次调用；
   # 调宽到 5s 避免偶发超时被误判为系统异常。
   consumer:
@@ -41,6 +42,10 @@ dubbo:
     timeout: 5000
 
 sh:
+  redis:
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
+    password: ${REDIS_PASSWORD}
   jdbc:
     host: ${MYSQL_SERVER_ADDR}
     password: ${MYSQL_ROOT_PASSWORD}

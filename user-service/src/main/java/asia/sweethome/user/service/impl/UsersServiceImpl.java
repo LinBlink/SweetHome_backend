@@ -1,15 +1,20 @@
 package asia.sweethome.user.service.impl;
 
+import asia.sweethome.api.entity.dto.UserDTO;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
+import asia.sweethome.user.constants.RedisConstants;
 import asia.sweethome.user.entity.po.User;
 import asia.sweethome.user.mapper.UsersMapper;
 import asia.sweethome.user.service.IUsersService;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.benmanes.caffeine.cache.Cache;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * 【用户表 服务实现类】
@@ -21,6 +26,14 @@ import java.time.LocalDateTime;
  */
 @Service
 public class UsersServiceImpl extends ServiceImpl<UsersMapper, User> implements IUsersService {
+
+    private final StringRedisTemplate stringRedisTemplate;
+    private final Cache<Long, Optional<UserDTO>> userDTOCache;
+
+    public UsersServiceImpl(StringRedisTemplate stringRedisTemplate, Cache<Long, Optional<UserDTO>> userDTOCache) {
+        this.stringRedisTemplate = stringRedisTemplate;
+        this.userDTOCache = userDTOCache;
+    }
 
     /** 按手机号查用户，查不到直接抛「用户不存在」，让调用方不必重复判空 */
     @Override
@@ -44,6 +57,8 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, User> implements 
      */
     @Override
     public User updateProfile(Long userId, String name, String avatarUrl) {
+
+
         User user = getById(userId);
         if (user == null) {
             throw new BusinessException(ErrorCode.USER_NOT_FOUND);
@@ -59,6 +74,18 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, User> implements 
         }
         user.setUpdatedAt(LocalDateTime.now());
         updateById(user);   // 按主键更新这条记录
+
+        // 清空L2 缓存
+        stringRedisTemplate
+                .delete(
+                        RedisConstants.userDTOCacheKey( userId )
+                );
+
+        // 清空L1 缓存
+        userDTOCache
+                .invalidate(userId);
+
+
         return user;
     }
 

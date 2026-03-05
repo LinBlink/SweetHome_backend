@@ -19,16 +19,11 @@ spring:
         namespace: ${NACOS_NAMESPACE}
   config:
     import:
-      - optional:file:.env[.properties]
-      - optional:nacos:common-spring.yaml
-      - optional:nacos:common-logs.yaml
-      - optional:nacos:common-mybatis.yaml
-
-  data:
-    redis:
-      host: ${REDIS_HOST:127.0.0.1}
-      port: ${REDIS_PORT:6379}
-      password: ${REDIS_PASSWORD:794211}
+      - file:.env[.properties]
+      - nacos:common-spring.yaml
+      - nacos:common-logs.yaml
+      - nacos:common-mybatis.yaml
+      - nacos:common-redis.yaml
 
 dubbo:
   application:
@@ -45,6 +40,10 @@ dubbo:
     timeout: 5000
 
 sh:
+  redis:
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
+    password: ${REDIS_PASSWORD}
   jdbc:
     host: ${MYSQL_SERVER_ADDR}
     password: ${MYSQL_ROOT_PASSWORD}

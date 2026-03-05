@@ -7,17 +7,25 @@ import asia.sweethome.api.entity.vo.UserInfoVO;
 import asia.sweethome.common.constants.RoleConstants;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
+import asia.sweethome.user.constants.RedisConstants;
 import asia.sweethome.user.entity.po.User;
 import asia.sweethome.user.service.IUsersService;
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.benmanes.caffeine.cache.Cache;
 import lombok.RequiredArgsConstructor;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
-import cn.hutool.core.bean.BeanUtil;
+import java.util.Optional;
+
+import static asia.sweethome.user.constants.RedisConstants.*;
 
 /**
  * 【UserApi 的 Dubbo 实现】
@@ -37,6 +45,12 @@ public class UserApiImpl implements UserApi {
 
     @DubboReference
     private FamilyApi familyApi;                 // 远程的家庭服务
+
+    private final Cache<Long, Optional<UserDTO>> userDTOCache;
+
+    private final StringRedisTemplate stringRedisTemplate;
+
+    private final ObjectMapper objectMapper;
 
     /**
      * 按手机号查「用户 + 家庭」信息，供 auth-service 登录时比对密码用。
@@ -168,11 +182,118 @@ public class UserApiImpl implements UserApi {
     /** 按 id 查单个用户，转成 UserDTO。BeanUtil.copyProperties 会把同名字段自动拷贝过去 */
     @Override
     public UserDTO findUserById(Long userId) {
-        User user = usersService.getById(userId);
-        if (user == null) {
+
+        // 不直接访问数据库，先访问缓存
+        Optional<UserDTO> cache = userDTOCache.getIfPresent(userId);
+
+        // L1没有
+        if (cache==null) {
+
+            // Caffeine -> Redis -> DB
+            //              👆
+
+            String redisKey = RedisConstants.userDTOCacheKey( userId );
+
+            String redisUserDTOStr = stringRedisTemplate.opsForValue()
+                    .get(redisKey);
+
+            // L2没有
+            if (redisUserDTOStr == null) {
+
+                // Caffeine -> Redis -> DB
+                //                      👆
+
+                // 拿到空值，没办法只能DB
+                User user = usersService.getById( userId );
+
+                // 没找到的话，缓存空值
+                if (user == null) {
+                    // L1
+                    userDTOCache.put(
+                            userId,
+                            Optional.empty()
+                    );
+
+                    // L2
+                    stringRedisTemplate.opsForValue()
+                            .set(
+                                    redisKey,
+                                    "",
+                                    USER_DTO_NULL_TTL
+                            );
+                    throw new BusinessException(ErrorCode.USER_NOT_FOUND);
+                }
+
+                // 找到了，缓存用户
+                UserDTO userDTO = BeanUtil.copyProperties(user, UserDTO.class);
+                userDTO.setPasswordHash(null);
+
+                // L1
+                userDTOCache.put(
+                        userId,
+                        Optional.of(userDTO)
+                );
+                // L2
+                try {
+                    stringRedisTemplate.opsForValue()
+                            .set(
+                                    redisKey,
+                                    objectMapper.writeValueAsString( userDTO ),
+                                    USER_DTO_TTL
+                            );
+                } catch (JsonProcessingException e) {
+                    // TODO 自定义 Exception
+                    throw new RuntimeException(e);
+                }
+
+                return userDTO ;
+            }
+
+            // L2空值
+            if (redisUserDTOStr.equals("")) {
+                // 拿到空值哨兵
+                // 回填L1
+                userDTOCache.put(
+                        userId,
+                        Optional.empty()
+                );
+                throw new BusinessException(ErrorCode.USER_NOT_FOUND);
+            }
+
+            // L2有值
+
+            UserDTO redisUserDTO;
+            try {
+                redisUserDTO = objectMapper.readValue(redisUserDTOStr, UserDTO.class);
+            } catch (JsonProcessingException e) {
+                // TODO 自定义 Exception
+                throw new RuntimeException(e);
+            }
+
+            // 写回L1
+            userDTOCache.put(
+                    userId,
+                    Optional.of( redisUserDTO )
+            );
+
+            // 返回
+
+            return redisUserDTO;
+
+        }
+
+        // L1有值
+        if (cache.isPresent()) {
+            return cache.get();
+        }
+
+        // L1空值，说明数据库不存在
+        if (cache.isEmpty()) {
             throw new BusinessException(ErrorCode.USER_NOT_FOUND);
         }
-        return BeanUtil.copyProperties(user, UserDTO.class);
+
+        throw new BusinessException(ErrorCode.USER_NOT_FOUND);
+
     }
 
     /** 按一批 id 批量查用户；空列表直接返回空，避免无意义的数据库查询 */

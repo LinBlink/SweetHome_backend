@@ -25,6 +25,18 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <!--redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!--caffeine-->
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+        </dependency>
+
         <!--spring-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
