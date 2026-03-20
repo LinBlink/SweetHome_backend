@@ -3,18 +3,23 @@ package asia.sweethome.user.service.impl;
 import asia.sweethome.api.entity.dto.UserDTO;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
-import asia.sweethome.user.constants.RedisConstants;
+import asia.sweethome.user.constant.RedisConstants;
 import asia.sweethome.user.entity.po.User;
 import asia.sweethome.user.mapper.UsersMapper;
 import asia.sweethome.user.service.IUsersService;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.benmanes.caffeine.cache.Cache;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+
+import static asia.sweethome.user.constant.KafkaConstants.TOPIC_USER_PROFILE_CHANGED;
 
 /**
  * 【用户表 服务实现类】
@@ -25,15 +30,13 @@ import java.util.Optional;
  * @since 2026-06-30
  */
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class UsersServiceImpl extends ServiceImpl<UsersMapper, User> implements IUsersService {
 
     private final StringRedisTemplate stringRedisTemplate;
     private final Cache<Long, Optional<UserDTO>> userDTOCache;
-
-    public UsersServiceImpl(StringRedisTemplate stringRedisTemplate, Cache<Long, Optional<UserDTO>> userDTOCache) {
-        this.stringRedisTemplate = stringRedisTemplate;
-        this.userDTOCache = userDTOCache;
-    }
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
     /** 按手机号查用户，查不到直接抛「用户不存在」，让调用方不必重复判空 */
     @Override
@@ -84,6 +87,19 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, User> implements 
         // 清空L1 缓存
         userDTOCache
                 .invalidate(userId);
+
+        log.info("🏠 完成了user信息更新，kafka 完成消息通知，告知其他实例");
+
+        // 告知其他相同微服务实例，该user完成了更新
+        kafkaTemplate.send( TOPIC_USER_PROFILE_CHANGED,
+                String.valueOf(userId),
+                String.valueOf(userId)).whenComplete(
+                (result, ex)->{
+                    if (ex != null){
+                        log.error("发送用户变更消息失败，userId = {} ", userId, ex);
+                    }
+                }
+        );
 
 
         return user;

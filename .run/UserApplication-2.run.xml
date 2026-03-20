@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="UserApplication-2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ALTERNATIVE_JRE_PATH" value="17" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <module name="user-service" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="asia.sweethome.user.UserApplication" />
+    <option name="VM_PARAMETERS" value="-DServer.port=8092 -Ddubbo.protocol.port=20891" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

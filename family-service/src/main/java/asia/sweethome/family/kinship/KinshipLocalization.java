@@ -26,6 +26,7 @@ public final class KinshipLocalization {
         EXACT.put("SELF", "Self");
         EXACT.put("F", "Father");
         EXACT.put("M", "Mother");
+        // TODO Spouse 要加性别，否则前端不知道是丈夫还是妻子
         EXACT.put("S", "Spouse");
         EXACT.put("Son", "Son");
         EXACT.put("Dau", "Daughter");

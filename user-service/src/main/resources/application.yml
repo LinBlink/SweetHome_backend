@@ -7,6 +7,12 @@ spring:
   application:
     name: user-service
 
+  kafka:
+    consumer:
+      group-id: user-cache-invalidate-${random.uuid}
+      auto-offset-reset: latest
+    bootstrap-servers: localhost:9092
+
   cloud:
     nacos:
       server-addr: ${NACOS_SERVER_ADDR}:8848
@@ -20,9 +26,9 @@ spring:
   config:
     import:
       - file:.env[.properties]
+      - nacos:common-mybatis.yaml
       - nacos:common-spring.yaml
       - nacos:common-logs.yaml
-      - nacos:common-mybatis.yaml
       - nacos:common-redis.yaml
 
 dubbo:
@@ -49,7 +55,7 @@ sh:
   jdbc:
     host: ${MYSQL_SERVER_ADDR}
     password: ${MYSQL_ROOT_PASSWORD}
-    database: sweethome
+    database: sh_user
   nacos:
     server-addr: ${NACOS_SERVER_ADDR}
 

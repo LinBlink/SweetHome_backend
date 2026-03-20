@@ -7,7 +7,7 @@ import asia.sweethome.api.entity.vo.UserInfoVO;
 import asia.sweethome.common.constants.RoleConstants;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
-import asia.sweethome.user.constants.RedisConstants;
+import asia.sweethome.user.constant.RedisConstants;
 import asia.sweethome.user.entity.po.User;
 import asia.sweethome.user.service.IUsersService;
 import cn.hutool.core.bean.BeanUtil;
@@ -25,7 +25,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static asia.sweethome.user.constants.RedisConstants.*;
+import static asia.sweethome.user.constant.RedisConstants.*;
 
 /**
  * 【UserApi 的 Dubbo 实现】

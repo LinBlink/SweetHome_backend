@@ -60,10 +60,56 @@ services:
     networks:
       - backend_network
 
+  # user-service 多实例广播 L1 缓存失效 / 事件驱动依赖 Kafka
+  # KRaft 模式:单节点同时兼任 broker + controller，不再需要 Zookeeper（面试题 192）
+  kafka:
+    image: apache/kafka:3.9.0
+    container_name: kafka
+    hostname: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      # 三个监听口:9092 给宿主机客户端、29092 给容器内客户端、9093 给 controller 选举
+      KAFKA_LISTENERS: PLAINTEXT://:9092,INTERNAL://:29092,CONTROLLER://:9093
+      # 广播地址:两种客户端各拿各的
+      #   宿主机(user-service)→ localhost:9092
+      #   容器(kafdrop 等)     → kafka:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,INTERNAL://kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,INTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+    restart: unless-stopped
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    networks:
+      - backend_network
+
+  # Kafka GUI(浏览器 http://localhost:9000 看 topic / 消息)
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    container_name: kafdrop
+    ports:
+      - "9000:9000"
+    environment:
+      # kafdrop 在容器网络里，走 INTERNAL 广播地址 kafka:29092（不是 9092）
+      KAFKA_BROKERCONNECT: "kafka:29092"
+      SERVER_SERVLET_CONTEXTPATH: "/"
+    restart: unless-stopped
+    networks:
+      - backend_network
+
 # 定义持久化卷
 volumes:
   mysql_data:
   redis_data:
+  kafka_data:
 
 # 定义安全网络
 networks:

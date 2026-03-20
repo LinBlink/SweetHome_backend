@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  kafka:
+    image: apache/kafka:3.9.0
+    container_name: kafka
+    restart: always
+    ports:
+      - "9092:9092"
+    environment:
+      # KRaft 集群身份:单节点，既当 broker 又当 controller
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+
+      # 两个监听器:9092 给客户端连、9093 给 controller 自己选举
+      # LISTENERS 用 0.0.0.0(对内:监听本机所有网卡)——这里可以用 0.0.0.0
+      # ADVERTISED 用 localhost:9092(对外:回给客户端的真实地址)——这里绝不能是 0.0.0.0
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+
+      # 单节点:副本因子都设 1（生产环境至少 3）
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    networks:
+      - backend_network
+
+
+
+volumes:
+  kafka_data:
+
+networks:
+  backend_network:
+    driver: bridge

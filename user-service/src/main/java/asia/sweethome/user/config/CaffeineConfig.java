@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-import static asia.sweethome.user.constants.CaffeineConstants.USER_DTO_CACHE_EXPIRE_AFTER_WRITE_SECOND;
-import static asia.sweethome.user.constants.CaffeineConstants.USER_DTO_CACHE_MAX_SIZE;
+import static asia.sweethome.user.constant.CaffeineConstants.USER_DTO_CACHE_EXPIRE_AFTER_WRITE_SECOND;
+import static asia.sweethome.user.constant.CaffeineConstants.USER_DTO_CACHE_MAX_SIZE;
 
 /**
  * @description:

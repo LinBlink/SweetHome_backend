@@ -215,6 +215,7 @@ public class FamiliesController {
         Long relationToMemberId = joinFamilyByInviteCodeDTO.getRelationToMemberId();
         String relationType = joinFamilyByInviteCodeDTO.getRelationType();
 
+        // invite code 验证
         if (StrUtil.isBlank(inviteCode)) {
             throw new BusinessException(ErrorCode.FAMILY_INVITE_CODE_EMPTY);
         }

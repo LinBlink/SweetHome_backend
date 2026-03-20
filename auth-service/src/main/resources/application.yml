@@ -43,7 +43,7 @@ sh:
   jdbc:
     host: ${MYSQL_SERVER_ADDR}
     password: ${MYSQL_ROOT_PASSWORD}
-    database: sweethome
+    database: sh_auth
   nacos:
     server-addr: ${NACOS_SERVER_ADDR}
 
