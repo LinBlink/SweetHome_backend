@@ -2,7 +2,7 @@ package asia.sweethome.family.kinship;
 
 import asia.sweethome.common.constants.RelationTypeConstants;
 import asia.sweethome.common.constants.UserConstants;
-import asia.sweethome.family.entity.po.FamilyMemeber;
+import asia.sweethome.family.entity.po.FamilyMember;
 import asia.sweethome.family.entity.po.FamilyRelation;
 import org.springframework.stereotype.Component;
 
@@ -50,21 +50,29 @@ public class KinshipEngine {
 
     /**
      * 计算 viewer 对 target 的称谓。返回关系编码 + 可读称谓；无路径则返回 NONE。
+     * @param relations 关系原材料
+     * @param membersById 家庭成员id原材料
+     * @param viewerMemberId 称呼的主体
+     * @param targetMemberId 称呼的对象
+     * @param acceptLanguage 保留参数，当前未使用（称谓本地化已下放前端，后端只产出 relationCode）
+     * @return 返回对象对于主体是什么关系
      */
     public RelationResult computeRelation(
             List<FamilyRelation> relations,
-            Map<Long, FamilyMemeber> membersById,
+            Map<Long, FamilyMember> membersById,
             Long viewerMemberId,
             Long targetMemberId,
             String acceptLanguage
     ) {
+
+        // 规范检查
         if (viewerMemberId == null || targetMemberId == null) {
             return RelationResult.NONE;
         }
 
         // 特例：查自己对自己 → SELF
         if (viewerMemberId.equals(targetMemberId)) {
-            return new RelationResult("SELF", KinshipLocalization.localize("SELF", acceptLanguage));
+            return new RelationResult("SELF");
         }
 
         // 1. 建图
@@ -82,14 +90,19 @@ public class KinshipEngine {
         // 3. 折叠化简（把绕路的同辈关系合并成兄弟姐妹）
         reduce(nodes, tokens, membersById);
 
-        // 4. 用「.」把 tokens 连起来得到关系编码，再翻译成可读称谓
+        // 4. 用「.」把 tokens 连起来得到关系编码。可读称谓交给前端按 code 本地化，后端不再翻译。
         String relationCode = String.join(".", tokens);
-        String relationLabel = KinshipLocalization.localize(relationCode, acceptLanguage);
 
-        return new RelationResult(relationCode, relationLabel);
+        return new RelationResult(relationCode);
     }
 
-    private Map<Long, List<Edge>> buildGraph(List<FamilyRelation> relations, Map<Long, FamilyMemeber> membersById) {
+    /**
+     * 完成关系图构建
+     * @param relations 关系（边）
+     * @param membersById 节点
+     * @return
+     */
+    private Map<Long, List<Edge>> buildGraph(List<FamilyRelation> relations, Map<Long, FamilyMember> membersById) {
         Map<Long, List<Edge>> graph = new HashMap<>();
 
         // 先加全部血亲边（PARENT_OF），保证同一节点的邻接表中血亲边排在姻亲边之前
@@ -100,8 +113,8 @@ public class KinshipEngine {
             Long parentId = rel.getSubjectMemberId();
             Long childId = rel.getObjectMemberId();
 
-            FamilyMemeber child = membersById.get(childId);
-            FamilyMemeber parent = membersById.get(parentId);
+            FamilyMember child = membersById.get(childId);
+            FamilyMember parent = membersById.get(parentId);
             if (child == null || parent == null) {
                 continue;
             }
@@ -193,7 +206,7 @@ public class KinshipEngine {
     /**
      * 反复折叠相邻的 (F|M)+(Son|Dau) 为同辈 token（eB/yB/eZ/yZ），直至一轮扫描无法再折叠。
      */
-    private void reduce(List<Long> nodes, List<String> tokens, Map<Long, FamilyMemeber> membersById) {
+    private void reduce(List<Long> nodes, List<String> tokens, Map<Long, FamilyMember> membersById) {
         boolean collapsedAny = true;
         while (collapsedAny) {
             collapsedAny = false;
@@ -231,7 +244,7 @@ public class KinshipEngine {
      * @param start 折叠路径的起点成员（即「我」这一侧）
      * @param end   折叠路径的终点成员（即被称呼的兄弟姐妹）
      */
-    private String siblingToken(FamilyMemeber start, FamilyMemeber end) {
+    private String siblingToken(FamilyMember start, FamilyMember end) {
         boolean endIsElder;
         Integer startOrder = start == null ? null : start.getBirthOrder();
         Integer endOrder = end == null ? null : end.getBirthOrder();

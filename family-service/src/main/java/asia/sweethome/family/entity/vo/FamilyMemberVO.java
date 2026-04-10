@@ -13,8 +13,7 @@ public class FamilyMemberVO {
     private Long userId;          // 成员的用户 id
     private String name;          // 昵称
     private String gender;        // 性别
-    private String relationCode;  // 关系编码（程序用），如 F.F
-    private String relationLabel; // 关系称谓（给人看），如 Paternal Grandfather
+    private String relationCode;  // 关系编码，如 F.F；前端据此本地化为称谓
     private String avatarUrl;     // 头像
     private Boolean isOnline;     // 是否在线（来自 chat-service）
     private String role;          // 在家庭中的角色 admin/member

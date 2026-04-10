@@ -10,7 +10,7 @@ import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 import asia.sweethome.family.entity.dto.JoinFamilyByInviteCodeDTO;
 import asia.sweethome.family.entity.po.Family;
-import asia.sweethome.family.entity.po.FamilyMemeber;
+import asia.sweethome.family.entity.po.FamilyMember;
 import asia.sweethome.family.entity.po.FamilyRelation;
 import asia.sweethome.family.entity.vo.FamilyDetailVO;
 import asia.sweethome.family.entity.vo.FamilyLookupMemberVO;
@@ -73,9 +73,9 @@ public class FamiliesController {
 
         // 拿到成员后，批量去 user-service 查这些成员的昵称/头像，做成 userId -> 用户 的字典。
         // 「批量查 + 字典」是为了避免在循环里逐个远程调用（N+1 问题）。
-        List<FamilyMemeber> members = familiesService.listActiveMembers(family.getId());
+        List<FamilyMember> members = familiesService.listActiveMembers(family.getId());
         Map<Long, UserDTO> usersById = userApi.findUsersByIds(
-                members.stream().map(FamilyMemeber::getUserId).toList()
+                members.stream().map(FamilyMember::getUserId).toList()
         ).stream().collect(Collectors.toMap(UserDTO::getId, u -> u));
 
         FamilyLookupVO vo = new FamilyLookupVO();
@@ -140,12 +140,12 @@ public class FamiliesController {
     ) {
         // viewerMember 就是「我」，后面要以我的视角计算对每个人的称谓
         Long viewerUserId = UserContext.getUserId();
-        FamilyMemeber viewerMember = requireActiveMember(familyId, viewerUserId);
+        FamilyMember viewerMember = requireActiveMember(familyId, viewerUserId);
 
-        List<FamilyMemeber> members = familiesService.listActiveMembers(familyId);
+        List<FamilyMember> members = familiesService.listActiveMembers(familyId);
 
         Map<Long, UserDTO> usersById = userApi.findUsersByIds(
-                members.stream().map(FamilyMemeber::getUserId).toList()
+                members.stream().map(FamilyMember::getUserId).toList()
         ).stream().collect(Collectors.toMap(UserDTO::getId, u -> u));
 
         List<FamilyRelation> relations = familyRelationsService.lambdaQuery()
@@ -153,15 +153,15 @@ public class FamiliesController {
                 .isNull(FamilyRelation::getDeletedAt)
                 .list();
 
-        Map<Long, FamilyMemeber> membersById = members.stream()
-                .collect(Collectors.toMap(FamilyMemeber::getId, m -> m));
+        Map<Long, FamilyMember> membersById = members.stream()
+                .collect(Collectors.toMap(FamilyMember::getId, m -> m));
 
         // 查在线状态属于"锦上添花"，即便 chat-service 挂了也不该让整个成员列表打不开。
         // 所以用 try-catch 兜底：失败就当作大家都离线，保证主流程可用（优雅降级）。
         List<Long> resolvedOnlineUserIds;
         try {
             resolvedOnlineUserIds = chatApi.filterOnlineUserIds(
-                    members.stream().map(FamilyMemeber::getUserId).toList()
+                    members.stream().map(FamilyMember::getUserId).toList()
             );
         } catch (Exception e) {
             log.warn("查询在线状态失败，本次成员列表将全部返回离线", e);
@@ -187,7 +187,6 @@ public class FamiliesController {
                     relations, membersById, viewerMember.getId(), m.getId(), acceptLanguage
             );
             vo.setRelationCode(relation.relationCode());
-            vo.setRelationLabel(relation.relationLabel());
 
             return vo;
         }).toList();
@@ -239,11 +238,11 @@ public class FamiliesController {
      * 权限小工具：确认 userId 确实是 familyId 的在册成员，是则返回其成员记录，
      * 不是则抛 NOT_FAMILY_MEMBER。避免非成员偷看别人家的信息。
      */
-    private FamilyMemeber requireActiveMember(Long familyId, Long userId) {
-        FamilyMemeber member = familyMembersService.lambdaQuery()
-                .eq(FamilyMemeber::getFamilyId, familyId)
-                .eq(FamilyMemeber::getUserId, userId)
-                .isNull(FamilyMemeber::getDeletedAt)
+    private FamilyMember requireActiveMember(Long familyId, Long userId) {
+        FamilyMember member = familyMembersService.lambdaQuery()
+                .eq(FamilyMember::getFamilyId, familyId)
+                .eq(FamilyMember::getUserId, userId)
+                .isNull(FamilyMember::getDeletedAt)
                 .one();
         if (member == null) {
             throw new BusinessException(ErrorCode.NOT_FAMILY_MEMBER);

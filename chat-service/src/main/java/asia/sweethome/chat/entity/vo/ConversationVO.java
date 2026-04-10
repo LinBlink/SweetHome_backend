@@ -15,9 +15,8 @@ public class ConversationVO {
     private Long familyId;             // 所属家庭 id
     private String avatarLabel;        // 头像文字
     private String avatarColor;        // 头像颜色
-    // 仅 type=direct 时返回：对方相对当前请求用户的称谓
+    // 仅 type=direct 时返回：对方相对当前请求用户的关系编码（前端据此本地化为称谓）
     private String relationCode;
-    private String relationLabel;
     private String lastMessage;        // 最后一条消息预览
     private LocalDateTime lastMessageAt;// 最后消息时间（列表排序用）
     private Long unreadCount;          // 我的未读数

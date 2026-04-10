@@ -1,6 +1,6 @@
 package asia.sweethome.family.service;
 
-import asia.sweethome.family.entity.po.FamilyMemeber;
+import asia.sweethome.family.entity.po.FamilyMember;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author LocrianFifth
  * @since 2026-07-01
  */
-public interface IFamilyMembersService extends IService<FamilyMemeber> {
+public interface IFamilyMembersService extends IService<FamilyMember> {
 
     // 统计某家庭的在册成员数
     Integer getFamilyMemberCount(Long familyId);

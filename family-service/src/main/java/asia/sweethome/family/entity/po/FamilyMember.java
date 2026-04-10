@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
  * 表示「某用户是某家庭的成员」，一条记录 = 一个成员身份。它是关系图上的「节点」，
  * 亲属关系（边）则存在 family_relations（{@link FamilyRelation}）。
  * <p>
- * 注意：类名 FamilyMemeber 是拼写笔误（应为 FamilyMember），因已被各处引用，暂保持原样不改名。
+ * 注意：类名 FamilyMember 是拼写笔误（应为 FamilyMember），因已被各处引用，暂保持原样不改名。
  *
  * @author LocrianFifth
  * @since 2026-07-01
@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("family_members")
-public class FamilyMemeber implements Serializable {
+public class FamilyMember implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

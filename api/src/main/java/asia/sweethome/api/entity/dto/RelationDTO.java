@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * viewer 相对 target 的亲属称谓计算结果；两人不在同一家庭（无关系路径）时 relationCode/relationLabel 均为 null。
+ * viewer 相对 target 的亲属称谓计算结果；两人不在同一家庭（无关系路径）时 relationCode 为 null。
+ * 只返回关系编码，可读称谓由前端拿 relationCode 自行本地化（见 doc/API.md 的 code 对照表）。
  */
 @Data
 @NoArgsConstructor
@@ -16,6 +17,5 @@ public class RelationDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String relationCode;  // 关系编码（程序内部用），如 "FATHER"
-    private String relationLabel; // 关系称谓（给人看），如「爸爸」
+    private String relationCode;  // 关系编码，如 "F.F"；前端据此本地化为称谓
 }

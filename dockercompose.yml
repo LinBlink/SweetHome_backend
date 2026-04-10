@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   nacos:
-    image: nacos/nacos-server:v2.3.2
+    image: nacos/nacos-server:v2.4.3
     container_name: nacos
     restart: always
     environment:
@@ -12,6 +12,14 @@ services:
       - "9848:9848"
     networks:
       - backend_network
+    healthcheck:
+      # 语法解释：尝试与容器本地的 8080 端口建立 TCP 连接，失败则退出码为 1
+      test: ["CMD-SHELL", "sh -c '</dev/tcp/127.0.0.1/8848' || exit 1"]
+      interval: 10s # 10秒探一次，既保证敏锐度，又不会给系统带来TCP连接压力
+      timeout: 3s # 握手超过3秒没反应，说明网络栈或主线程已经卡死
+      retries: 3 # 连续失败3次（大约30秒内）正式宣判死刑
+      start_period: 30s # 30秒新手保护期，给服务腾出启动和绑定端口的时间
+#  防止docker卡死，设置healthcheck
 
 #  部署mysql 的最佳实践
   mysql:

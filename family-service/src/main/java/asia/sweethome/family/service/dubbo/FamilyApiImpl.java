@@ -9,7 +9,7 @@ import asia.sweethome.api.entity.dto.RelationQueryDTO;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 import asia.sweethome.family.entity.po.Family;
-import asia.sweethome.family.entity.po.FamilyMemeber;
+import asia.sweethome.family.entity.po.FamilyMember;
 import asia.sweethome.family.entity.po.FamilyRelation;
 import asia.sweethome.family.kinship.KinshipEngine;
 import asia.sweethome.family.kinship.RelationResult;
@@ -101,7 +101,7 @@ public class FamilyApiImpl implements FamilyApi {
     @Override
     public FamilyDTO getFamilyByUserId(Long userId) {
 
-        FamilyMemeber member = activeFamilyMemberByUserId(userId);
+        FamilyMember member = activeFamilyMemberByUserId(userId);
 
         if(  member == null ){
             throw new BusinessException(
@@ -126,13 +126,13 @@ public class FamilyApiImpl implements FamilyApi {
 
     @Override
     public String getFamilyRoleByUserId(Long userId) {
-        FamilyMemeber member = activeFamilyMemberByUserId(userId);
+        FamilyMember member = activeFamilyMemberByUserId(userId);
         return member == null ? null : member.getRole();
     }
 
     @Override
     public String getGenderByUserId(Long userId) {
-        FamilyMemeber member = activeFamilyMemberByUserId(userId);
+        FamilyMember member = activeFamilyMemberByUserId(userId);
         return member == null ? null : member.getGender();
     }
 
@@ -146,14 +146,14 @@ public class FamilyApiImpl implements FamilyApi {
         Long viewerUserId = relationQueryDTO.getViewerUserId();
         Long targetUserId = relationQueryDTO.getTargetUserId();
 
-        FamilyMemeber viewerMember = activeFamilyMemberByUserId(viewerUserId);
-        FamilyMemeber targetMember = activeFamilyMemberByUserId(targetUserId);
+        FamilyMember viewerMember = activeFamilyMemberByUserId(viewerUserId);
+        FamilyMember targetMember = activeFamilyMemberByUserId(targetUserId);
 
         // 任一方不在家庭、或两人不在同一家庭 → 无称谓
         if (viewerMember == null || targetMember == null
                 || !viewerMember.getFamilyId().equals(targetMember.getFamilyId())) {
             RelationResult none = RelationResult.NONE;
-            return new RelationDTO(none.relationCode(), none.relationLabel());
+            return new RelationDTO(none.relationCode());
         }
 
         Long familyId = viewerMember.getFamilyId();
@@ -165,12 +165,12 @@ public class FamilyApiImpl implements FamilyApi {
                 .list();
 
         // 取出所有成员，做成 id -> 成员 的字典，供引擎按 id 快速查性别/排行
-        Map<Long, FamilyMemeber> membersById = familyMembersService.lambdaQuery()
-                .eq(FamilyMemeber::getFamilyId, familyId)
-                .isNull(FamilyMemeber::getDeletedAt)
+        Map<Long, FamilyMember> membersById = familyMembersService.lambdaQuery()
+                .eq(FamilyMember::getFamilyId, familyId)
+                .isNull(FamilyMember::getDeletedAt)
                 .list()
                 .stream()
-                .collect(Collectors.toMap(FamilyMemeber::getId, m -> m));
+                .collect(Collectors.toMap(FamilyMember::getId, m -> m));
 
         // 交给引擎在图上找路径并翻译成称谓
         RelationResult result = kinshipEngine.computeRelation(
@@ -178,14 +178,14 @@ public class FamilyApiImpl implements FamilyApi {
                 relationQueryDTO.getAcceptLanguage()
         );
 
-        return new RelationDTO(result.relationCode(), result.relationLabel());
+        return new RelationDTO(result.relationCode());
     }
 
     /** 按用户 id 查其「在册」的家庭成员记录（一个用户同一时刻至多属于一个家庭，故用 one()） */
-    private FamilyMemeber activeFamilyMemberByUserId(Long userId) {
+    private FamilyMember activeFamilyMemberByUserId(Long userId) {
         return familyMembersService.lambdaQuery()
-                .eq(FamilyMemeber::getUserId, userId)
-                .isNull(FamilyMemeber::getDeletedAt)
+                .eq(FamilyMember::getUserId, userId)
+                .isNull(FamilyMember::getDeletedAt)
                 .one();
     }
 }

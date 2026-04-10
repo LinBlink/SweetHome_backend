@@ -16,4 +16,10 @@ public class RedisConstants {
         return USER_DTO_CACHE_KEY + ":" + userId;
     }
 
+    // OUTBOX
+    public static final String KEY_OUTBOX_RELAY_LOCK = "outbox:relay:lock";
+
+    // LOCK
+    public static final String LOCK_VALUE = "locked";
+    public static final Duration LOCK_DEFAULT_EXPIRE_TIME = Duration.ofSeconds(60);
 }

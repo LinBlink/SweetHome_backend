@@ -1,7 +1,7 @@
 package asia.sweethome.family.service;
 
 import asia.sweethome.family.entity.po.Family;
-import asia.sweethome.family.entity.po.FamilyMemeber;
+import asia.sweethome.family.entity.po.FamilyMember;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -35,5 +35,5 @@ public interface IFamiliesService extends IService<Family> {
     // 通过邀请码查找家庭（不存在或已过期抛 INVITE_CODE_INVALID）
     Family lookupByInviteCode(String inviteCode);
 
-    List<FamilyMemeber> listActiveMembers(Long familyId);
+    List<FamilyMember> listActiveMembers(Long familyId);
 }

@@ -61,7 +61,6 @@ public class ChatAssembler {
                 new RelationQueryDTO(viewerUserId, message.getSenderId(), acceptLanguage)
         );
         vo.setSenderRelationCode(relation.getRelationCode());
-        vo.setSenderRelationLabel(relation.getRelationLabel());
 
         return vo;
     }
@@ -117,7 +116,6 @@ public class ChatAssembler {
                         new RelationQueryDTO(viewerUserId, counterpartId, acceptLanguage)
                 );
                 vo.setRelationCode(relation.getRelationCode());
-                vo.setRelationLabel(relation.getRelationLabel());
                 vo.setAvatarColor(AvatarUtil.color(counterpartId));
             }
         } else {

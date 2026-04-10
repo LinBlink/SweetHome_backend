@@ -6,7 +6,7 @@ import asia.sweethome.common.constants.RoleConstants;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 import asia.sweethome.family.entity.po.Family;
-import asia.sweethome.family.entity.po.FamilyMemeber;
+import asia.sweethome.family.entity.po.FamilyMember;
 import asia.sweethome.family.entity.po.FamilyRelation;
 import asia.sweethome.family.mapper.FamiliesMapper;
 import asia.sweethome.family.service.IFamiliesService;
@@ -95,26 +95,26 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
 
         // relationToMemberId 必须属于同一个家庭，且未被软删除
         //      即，该锚点成员存在，需要凭借该锚点成员完善族谱
-        FamilyMemeber anchor = familyMembersService.lambdaQuery()
-                .eq(FamilyMemeber::getId, relationToMemberId)
-                .eq(FamilyMemeber::getFamilyId, familyId)
-                .isNull(FamilyMemeber::getDeletedAt)
+        FamilyMember anchor = familyMembersService.lambdaQuery()
+                .eq(FamilyMember::getId, relationToMemberId)
+                .eq(FamilyMember::getFamilyId, familyId)
+                .isNull(FamilyMember::getDeletedAt)
                 .one();
         if (anchor == null) {
             throw new BusinessException(ErrorCode.INVALID_RELATION_ANCHOR);
         }
 
         // 0. 同一时刻只能属于一个家庭：先级联退出旧家庭（若有）
-        FamilyMemeber existingActiveMembership = familyMembersService.lambdaQuery()
-                .eq(FamilyMemeber::getUserId, userId)
-                .isNull(FamilyMemeber::getDeletedAt)
+        FamilyMember existingActiveMembership = familyMembersService.lambdaQuery()
+                .eq(FamilyMember::getUserId, userId)
+                .isNull(FamilyMember::getDeletedAt)
                 .one();
         if (existingActiveMembership != null) {
             leaveOldFamily(existingActiveMembership);
         }
 
         // 1. 新成员加入 family_members
-        FamilyMemeber newMember = new FamilyMemeber();
+        FamilyMember newMember = new FamilyMember();
         newMember.setFamilyId(familyId);
         newMember.setUserId(userId);
         newMember.setRole(RoleConstants.FAMILY_MEMBER);
@@ -198,14 +198,14 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
         }
 
         // 保存家庭成员
-        FamilyMemeber familyMemeber = new FamilyMemeber();
-        familyMemeber.setFamilyId(family.getId());
-        familyMemeber.setUserId(userId);
-        familyMemeber.setRole(RoleConstants.FAMILY_ADMIN);
-        familyMemeber.setGender(gender);
-        familyMemeber.setJoinedAt(now);
+        FamilyMember familyMember = new FamilyMember();
+        familyMember.setFamilyId(family.getId());
+        familyMember.setUserId(userId);
+        familyMember.setRole(RoleConstants.FAMILY_ADMIN);
+        familyMember.setGender(gender);
+        familyMember.setJoinedAt(now);
 
-        familyMembersService.save(familyMemeber);
+        familyMembersService.save(familyMember);
 
         // 自动创建家庭群聊
         chatApi.createGroupConversation(family.getId(), familyName + "群聊", List.of(userId));
@@ -222,10 +222,10 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
     public Family generateInviteCode(Long familyId, Long requesterUserId) {
 
         // 先确认请求者确实是这个家庭的成员，且角色是管理员
-        FamilyMemeber requester = familyMembersService.lambdaQuery()
-                .eq(FamilyMemeber::getFamilyId, familyId)
-                .eq(FamilyMemeber::getUserId, requesterUserId)
-                .isNull(FamilyMemeber::getDeletedAt)
+        FamilyMember requester = familyMembersService.lambdaQuery()
+                .eq(FamilyMember::getFamilyId, familyId)
+                .eq(FamilyMember::getUserId, requesterUserId)
+                .isNull(FamilyMember::getDeletedAt)
                 .one();
         if (requester == null) {
             throw new BusinessException(ErrorCode.NOT_FAMILY_MEMBER);
@@ -277,10 +277,10 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
 
     /** 列出某家庭所有「在册」成员（deletedAt 为全局逻辑删除字段，已退出的会被自动过滤） */
     @Override
-    public List<FamilyMemeber> listActiveMembers(Long familyId) {
+    public List<FamilyMember> listActiveMembers(Long familyId) {
         return familyMembersService.lambdaQuery()
-                .eq(FamilyMemeber::getFamilyId, familyId)
-                .isNull(FamilyMemeber::getDeletedAt)
+                .eq(FamilyMember::getFamilyId, familyId)
+                .isNull(FamilyMember::getDeletedAt)
                 .list();
     }
 
@@ -292,7 +292,7 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
      * 由 remove()/removeById() 触发的逻辑删除 SQL 来改写），直接 entity.setDeletedAt(now)
      * 后再 updateById 不会真正落库。必须用 removeById/removeByIds 才能让 deleted_at 生效。
      */
-    private void leaveOldFamily(FamilyMemeber oldMember) {
+    private void leaveOldFamily(FamilyMember oldMember) {
 
         Long oldFamilyId = oldMember.getFamilyId();
 
@@ -316,16 +316,16 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
 
         // 4. 若退出者是管理员，需要转正下一位或软删除空家庭
         if (RoleConstants.FAMILY_ADMIN.equals(oldMember.getRole())) {
-            List<FamilyMemeber> remaining = familyMembersService.lambdaQuery()
-                    .eq(FamilyMemeber::getFamilyId, oldFamilyId)
-                    .isNull(FamilyMemeber::getDeletedAt)
-                    .orderByAsc(FamilyMemeber::getJoinedAt)
+            List<FamilyMember> remaining = familyMembersService.lambdaQuery()
+                    .eq(FamilyMember::getFamilyId, oldFamilyId)
+                    .isNull(FamilyMember::getDeletedAt)
+                    .orderByAsc(FamilyMember::getJoinedAt)
                     .list();
 
             if (remaining.isEmpty()) {
                 removeById(oldFamilyId);
             } else {
-                FamilyMemeber successor = remaining.get(0);
+                FamilyMember successor = remaining.get(0);
                 successor.setRole(RoleConstants.FAMILY_ADMIN);
                 familyMembersService.updateById(successor);
             }

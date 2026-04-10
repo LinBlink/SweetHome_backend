@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 /**
  * 【family_relations 表实体（PO）】家庭关系图的「边」。
  * <p>
- * 每一行是关系网络里的一条连线，配合 {@link FamilyMemeber}（节点）构成整张家谱图，
+ * 每一行是关系网络里的一条连线，配合 {@link FamilyMember}（节点）构成整张家谱图，
  * 供 {@link asia.sweethome.family.kinship.KinshipEngine} 计算称谓。两类边：
  * <ul>
  *   <li>PARENT_OF：有向，subject 是 object 的父/母；</li>

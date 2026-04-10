@@ -36,3 +36,8 @@ build/
 ### ENV ###
 .env
 .env.prod
+
+
+### LOG ###
+logs
+*.log
