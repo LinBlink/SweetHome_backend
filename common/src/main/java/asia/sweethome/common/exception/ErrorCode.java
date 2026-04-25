@@ -30,6 +30,14 @@ public enum ErrorCode {
     CONFLICT(409, "数据冲突"),
     SYSTEM_ERROR(500, "系统繁忙，请稍后再试"),
 
+
+    // FILE UPLOAD
+    EMPTY_FILE(400,"上传的文件为空"),
+    FILE_SIZE_ILLEGAL(400, "上传的文件大小不符合要求"),
+    FILE_TYPE_ILLEGAL(400, "上传的文件类型不符合要求"),
+    FILE_NAME_ILLEGAL(400, "上传的文件名不符合要求"),
+    FILE_UPLOAD_ERROR(400, "文件上传时服务器繁忙，请稍后再试"),
+
     // AUTH
     PHONE_FORMAT_NOT_VALID(400, "手机号码不符合要求，请检查"),
     PASSWORD_FORMAT_NOT_VALID(400, "密码格式不符合要求，请检查"),
@@ -62,7 +70,6 @@ public enum ErrorCode {
     NO_SUCH_CONVERSATION(404, "会话不存在"),
     NOT_CONVERSATION_MEMBER(403, "当前用户不是该会话成员"),
     MESSAGE_TOO_LONG(400, "消息内容超长");
-
 
 
     /** HTTP 风格的数字状态码，会写进 Result.code */

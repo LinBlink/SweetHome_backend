@@ -2,7 +2,7 @@ package asia.sweethome.user.task;
 
 import asia.sweethome.user.entity.po.OutboxMessage;
 import asia.sweethome.user.service.IOutboxMessagesService;
-import asia.sweethome.user.util.RedisDistributedLock;
+import asia.sweethome.user.util.RedisDistributedLockUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -27,7 +27,7 @@ public class OutboxRelay {
     private final IOutboxMessagesService outboxMessagesService;
     private final KafkaTemplate<String,String> kafkaTemplate;
     private final StringRedisTemplate stringRedisTemplate;
-    private final RedisDistributedLock redisDistributedLock;
+    private final RedisDistributedLockUtil redisDistributedLock;
 
     // 每隔3秒钟检查 outbox 消息
     @Scheduled(fixedDelay = 3000)
