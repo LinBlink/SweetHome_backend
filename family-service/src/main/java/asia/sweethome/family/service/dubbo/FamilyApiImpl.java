@@ -1,11 +1,13 @@
 package asia.sweethome.family.service.dubbo;
 
+import org.apache.dubbo.config.annotation.DubboService;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import asia.sweethome.api.FamilyApi;
-import asia.sweethome.api.entity.dto.FamilyCreateInfoDTO;
-import asia.sweethome.api.entity.dto.FamilyDTO;
-import asia.sweethome.api.entity.dto.FamilyJoinInfoDTO;
-import asia.sweethome.api.entity.dto.RelationDTO;
-import asia.sweethome.api.entity.dto.RelationQueryDTO;
+import asia.sweethome.api.entity.dto.*;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 import asia.sweethome.family.entity.po.Family;
@@ -18,11 +20,6 @@ import asia.sweethome.family.service.IFamilyMembersService;
 import asia.sweethome.family.service.IFamilyRelationsService;
 import cn.hutool.core.bean.BeanUtil;
 import lombok.RequiredArgsConstructor;
-import org.apache.dubbo.config.annotation.DubboService;
-
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * 【FamilyApi 的 Dubbo 实现】
@@ -179,6 +176,21 @@ public class FamilyApiImpl implements FamilyApi {
         );
 
         return new RelationDTO(result.relationCode());
+    }
+
+    @Override
+    public List<FamilyMemberDTO> getFamilyMembersByFamilyId(Long familyId) {
+
+        List<FamilyMember> familyMemberList = familyMembersService.lambdaQuery()
+                .eq(
+                        FamilyMember::getFamilyId, familyId
+                ).
+                isNull(FamilyMember::getDeletedAt)
+                .list();
+
+
+        return BeanUtil.copyToList(familyMemberList, FamilyMemberDTO.class);
+
     }
 
     /** 按用户 id 查其「在册」的家庭成员记录（一个用户同一时刻至多属于一个家庭，故用 one()） */

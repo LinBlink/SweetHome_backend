@@ -30,22 +30,7 @@ spring:
       - nacos:common-spring.yaml
       - nacos:common-logs.yaml
       - nacos:common-redis.yaml
-
-dubbo:
-  application:
-    name: lia-user-service-dubbo        # Dubbo 应用名
-    qos-port: 22221
-  protocol:
-    name: dubbo                 # 用 Dubbo 协议
-    port: 20881                 # 显式指定，避免本机同时跑多个服务时都落在默认 20880 互相抢占
-  registry:
-    address: nacos://${NACOS_SERVER_ADDR}:8848   # 复用 Nacos 作注册中心
-  # 默认 1000ms 对本项目 auth->user->family->chat 最深 3 跳的调用链偏紧，尤其是本地冷启动首次调用；
-  # 调宽到 5s 避免偶发超时被误判为系统异常。
-  consumer:
-    timeout: 5000
-  provider:
-    timeout: 5000
+      - nacos:user-service-dubbo.yaml
 
 sh:
   redis:
@@ -58,6 +43,7 @@ sh:
     database: sh_user
   nacos:
     server-addr: ${NACOS_SERVER_ADDR}
+    namespace: ${NACOS_NAMESPACE}
   r2:
     endpoint: ${R2_S3_API_ENDPOINT}
     access-key-id: ${R2_ACCESS_KEY_ID}

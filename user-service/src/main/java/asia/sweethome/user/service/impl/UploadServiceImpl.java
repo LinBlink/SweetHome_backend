@@ -1,25 +1,29 @@
 package asia.sweethome.user.service.impl;
 
-import asia.sweethome.common.context.UserContext;
-import asia.sweethome.common.exception.BusinessException;
-import asia.sweethome.common.exception.ErrorCode;
-import asia.sweethome.user.constant.FileUploadConstants;
-import asia.sweethome.user.entity.vo.UploadVO;
-import asia.sweethome.user.service.UploadService;
-import cn.hutool.core.util.StrUtil;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import static asia.sweethome.user.constant.FileUploadConstants.AVATAR_SAVE_LOCATION;
+
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.UUID;
+
+import asia.sweethome.common.context.UserContext;
+import asia.sweethome.common.exception.BusinessException;
+import asia.sweethome.common.exception.ErrorCode;
+import asia.sweethome.user.constant.FileUploadConstants;
+import asia.sweethome.user.entity.po.User;
+import asia.sweethome.user.entity.vo.UploadVO;
+import asia.sweethome.user.service.IUsersService;
+import asia.sweethome.user.service.UploadService;
+import cn.hutool.core.util.StrUtil;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
-
-import java.io.IOException;
-
-import static asia.sweethome.user.constant.FileUploadConstants.AVATAR_SAVE_LOCATION;
 
 /**
  * @description:
@@ -32,8 +36,6 @@ import static asia.sweethome.user.constant.FileUploadConstants.AVATAR_SAVE_LOCAT
 public class UploadServiceImpl implements UploadService {
 
 
-    private final S3Client r2Client;
-
     @Value("${sh.r2.bucket-name}")
     private String r2BucketName;
 
@@ -41,6 +43,9 @@ public class UploadServiceImpl implements UploadService {
     @Value("${sh.r2.public-base-url}")
     private String r2PublicBaseUrl;
 
+
+    private final S3Client r2Client;
+    private final IUsersService usersService;
 
     /**
      * 上传用户头像
@@ -54,6 +59,7 @@ public class UploadServiceImpl implements UploadService {
 
         // 用户验证
         Long userId = UserContext.getUserId();
+
         if (userId==null) {
             throw new BusinessException(ErrorCode.UNAUTHORIZED);
         }
@@ -87,7 +93,7 @@ public class UploadServiceImpl implements UploadService {
         fileType = fileType.toLowerCase();
 
         // 文件名就是用户id，很清楚，很大胆。
-        String key = AVATAR_SAVE_LOCATION + "/" + userId + "." + fileType;
+        String key = AVATAR_SAVE_LOCATION + "/" + userId + "/" + UUID.randomUUID() + "." + fileType;
 
         try {
             r2Client.putObject(
@@ -110,6 +116,13 @@ public class UploadServiceImpl implements UploadService {
 
         UploadVO vo = new UploadVO();
         vo.setAddressReturn( publicBaseUrl );
+
+        // 落库
+        usersService.lambdaUpdate()
+                .eq(User::getId, userId)
+                .set(User::getAvatarUrl, publicBaseUrl)
+                .update();
+
 
         return vo;
     }

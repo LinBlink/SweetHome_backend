@@ -24,32 +24,26 @@ spring:
               uri: lb://auth-service
               predicates:
                 - Path=/v1/auth/**
-              filters:
-                - RewritePath=/(?<segment>.*), /${segment}
             - id: user-route
               uri: lb://user-service
               predicates:
                 - Path=/v1/users/**
-              filters:
-                - RewritePath=/(?<segment>.*), /${segment}
             - id: family-route
               uri: lb://family-service
               predicates:
                 - Path=/v1/families/**
-              filters:
-                - RewritePath=/(?<segment>.*), /${segment}
             - id: chat-route
               uri: lb://chat-service
               predicates:
                 - Path=/v1/conversations/**
-              filters:
-                - RewritePath=/(?<segment>.*), /${segment}
             - id: ws-route
               uri: lb:ws://chat-service
               predicates:
                 - Path=/v1/ws
-              filters:
-                - RewritePath=/(?<segment>.*), /${segment}
+            - id: location-route
+              uri: lb://location-service
+              predicates:
+                - Path=/v1/location/**
           discovery:
             locator:
               enabled: false
@@ -57,9 +51,9 @@ spring:
 
   config:
     import:
-      - optional:file:.env[.properties]
-      - optional:nacos:common-spring.yaml
-      - optional:nacos:common-logs.yaml
+      - file:.env[.properties]
+      - nacos:common-spring.yaml
+      - nacos:common-logs.yaml
 
 jwt:
   public-key: ${JWT_PUBLIC_KEY}

@@ -7,18 +7,20 @@ services:
     restart: always
     environment:
       MODE: standalone
+      # 官方镜像支持这几个变量显式收窄堆大小，不给默认的自动探测值（会按宿主机内存算，白白吃掉几个G）
+      JVM_XMS: 256m
+      JVM_XMX: 512m
+      JVM_XMN: 256m
     ports:
       - "8848:8848"
       - "9848:9848"
     networks:
       - backend_network
-    healthcheck:
-      # 语法解释：尝试与容器本地的 8080 端口建立 TCP 连接，失败则退出码为 1
-      test: ["CMD-SHELL", "sh -c '</dev/tcp/127.0.0.1/8848' || exit 1"]
-      interval: 10s # 10秒探一次，既保证敏锐度，又不会给系统带来TCP连接压力
-      timeout: 3s # 握手超过3秒没反应，说明网络栈或主线程已经卡死
-      retries: 3 # 连续失败3次（大约30秒内）正式宣判死刑
-      start_period: 30s # 30秒新手保护期，给服务腾出启动和绑定端口的时间
+    deploy:
+      resources:
+        limits:
+          memory: 768m   # ≈ JVM_XMX(512m) × 1.5，留堆外内存余量
+          cpus: "1.0"
 #  防止docker卡死，设置healthcheck
 
 #  部署mysql 的最佳实践
@@ -50,12 +52,19 @@ services:
       start_period: 30s # 给数据库初始化留出足够的时间
     networks:
       - backend_network
+    deploy:
+      resources:
+        limits:
+          memory: 512m   # 本地开发数据量小，默认 innodb_buffer_pool_size(128m) 就够，留够堆外/连接开销即可
+          cpus: "1.0"
 
   # chat-service 多实例 WebSocket 广播 / 在线状态依赖 Redis Pub/Sub
   redis:
     image: redis:7-alpine
     container_name: redis
     restart: always
+    # 显式给 Redis 自己设内存上限，让它按 LRU 优雅淘汰 key，而不是被容器 mem_limit 硬 OOM Kill
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
     ports:
       - "6379:6379"
     volumes:
@@ -67,6 +76,11 @@ services:
       retries: 5
     networks:
       - backend_network
+    deploy:
+      resources:
+        limits:
+          memory: 384m   # ≈ maxmemory(256mb) + 堆外/持久化开销余量
+          cpus: "0.5"
 
   # user-service 多实例广播 L1 缓存失效 / 事件驱动依赖 Kafka
   # KRaft 模式:单节点同时兼任 broker + controller，不再需要 Zookeeper（面试题 192）
@@ -77,6 +91,7 @@ services:
     ports:
       - "9092:9092"
     environment:
+      KAFKA_HEAP_OPTS: "-Xms256m -Xmx512m"
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
@@ -98,6 +113,11 @@ services:
       - kafka_data:/var/lib/kafka/data
     networks:
       - backend_network
+    deploy:
+      resources:
+        limits:
+          memory: 768m
+          cpus: "1.0"
 
   # Kafka GUI(浏览器 http://localhost:9000 看 topic / 消息)
   kafdrop:
@@ -112,6 +132,11 @@ services:
     restart: unless-stopped
     networks:
       - backend_network
+    deploy:
+      resources:
+        limits:
+          memory: 256m   # 只是个查看 topic 的轻量 Web UI，够用
+          cpus: "0.5"
 
 # 定义持久化卷
 volumes:

@@ -19,25 +19,11 @@ spring:
         namespace: ${NACOS_NAMESPACE}
   config:
     import:
-      - optional:file:.env[.properties]
-      - optional:nacos:common-spring.yaml
-      - optional:nacos:common-logs.yaml
-      - optional:nacos:common-mybatis.yaml
-
-dubbo:
-  application:
-    name: lia-family-service-dubbo        # Dubbo 应用名
-    qos-port: 22222
-  protocol:
-    name: dubbo                 # 用 Dubbo 协议
-    port: 20882                 # 显式指定，避免本机同时跑多个服务时都落在默认 20880 互相抢占
-  registry:
-    address: nacos://${NACOS_SERVER_ADDR}:8848   # 复用你的 Nacos 作注册中心
-  consumer:
-    timeout: 5000
-  provider:
-    timeout: 5000
-
+      - file:.env[.properties]
+      - nacos:common-spring.yaml
+      - nacos:common-logs.yaml
+      - nacos:common-mybatis.yaml
+      - nacos:family-service-dubbo.yaml
 
 sh:
   jdbc:
@@ -46,6 +32,7 @@ sh:
     database: sh_family
   nacos:
     server-addr: ${NACOS_SERVER_ADDR}
+    namespace: ${NACOS_NAMESPACE}
 
 logging:
   level:

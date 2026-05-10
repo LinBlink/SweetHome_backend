@@ -45,7 +45,7 @@ public class OutboxRelay {
         // 只要一加锁就来个大 try
         try {
 
-            log.info("✉️ LOCKBOX 查阅有无未发信件");
+            // log.info("✉️ LOCKBOX 查阅有无未发信件");
 
             List<OutboxMessage> outboxMessageList = outboxMessagesService.lambdaQuery()
                     .eq(OutboxMessage::getStatus,

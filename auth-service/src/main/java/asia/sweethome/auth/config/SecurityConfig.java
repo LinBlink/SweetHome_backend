@@ -46,7 +46,16 @@ public class SecurityConfig {
                 // 我们是无状态的 Token 认证（不靠 Cookie），用不到，关掉以免拦截接口
                 .csrf(csrf -> csrf.disable())
                 // 放行认证相关接口：注册/登录本就该匿名访问
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/v1/auth/**").permitAll())
+                .authorizeHttpRequests(
+                        auth -> auth.requestMatchers("/v1/auth/**").permitAll()
+                                .requestMatchers(
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html",
+                                        "/v3/api-docs/**",
+                                        "/doc.html"
+                                )
+                                .permitAll()
+                )
                 // 关闭 Spring Security 自带的登录页表单和浏览器弹窗式 Basic 认证
                 .formLogin(form -> form.disable())
                 .httpBasic(basic -> basic.disable());

@@ -24,20 +24,7 @@ spring:
       - nacos:common-logs.yaml
       - nacos:common-mybatis.yaml
       - nacos:common-redis.yaml
-
-dubbo:
-  application:
-    name: lia-chat-service-dubbo
-    qos-port: 22223
-  protocol:
-    name: dubbo
-    port: 20883                 # 显式指定，避免本机同时跑多个服务时都落在默认 20880 互相抢占
-  registry:
-    address: nacos://${NACOS_SERVER_ADDR}:8848
-  consumer:
-    timeout: 5000
-  provider:
-    timeout: 5000
+      - nacos:chat-service-dubbo.yaml
 
 sh:
   redis:
@@ -50,6 +37,7 @@ sh:
     database: sh_chat
   nacos:
     server-addr: ${NACOS_SERVER_ADDR}
+    namespace: ${NACOS_NAMESPACE}
   ws:
     max-message-length: 2000
 

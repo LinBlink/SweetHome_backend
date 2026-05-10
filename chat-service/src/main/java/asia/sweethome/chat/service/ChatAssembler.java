@@ -55,6 +55,7 @@ public class ChatAssembler {
         if (sender != null) {
             vo.setSenderName(sender.getName());
             vo.setSenderAvatarLabel(AvatarUtil.label(sender.getName()));
+            vo.setSenderAvatarUrl(sender.getAvatarUrl());
         }
 
         RelationDTO relation = familyApi.getRelation(
@@ -98,6 +99,7 @@ public class ChatAssembler {
             }
         }
 
+        // 如果是单聊对话
         if ("direct".equals(conversation.getType())) {
             // 单聊：会话名/头像应显示为「对方」——从成员里挑出不是我自己的那个人
             Long counterpartId = activeMembers.stream()
@@ -106,17 +108,22 @@ public class ChatAssembler {
                     .findFirst()
                     .orElse(null);
 
+            // 解析对方
             if (counterpartId != null) {
                 UserDTO counterpart = userApi.findUserById(counterpartId);
                 if (counterpart != null) {
+
                     vo.setName(counterpart.getName());
                     vo.setAvatarLabel(AvatarUtil.label(counterpart.getName()));
+                    vo.setAvatarUrl(counterpart.getAvatarUrl());
+
                 }
                 RelationDTO relation = familyApi.getRelation(
                         new RelationQueryDTO(viewerUserId, counterpartId, acceptLanguage)
                 );
                 vo.setRelationCode(relation.getRelationCode());
                 vo.setAvatarColor(AvatarUtil.color(counterpartId));
+
             }
         } else {
             // 群聊：直接用群名，头像用一个「家」字占位

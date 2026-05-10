@@ -16,6 +16,7 @@ public class MessageVO {
     private Long senderId;             // 发送者 id
     private String senderName;         // 发送者昵称
     private String senderAvatarLabel;  // 发送者头像文字
+    private String senderAvatarUrl;    // 发生者头像
     private String senderRelationCode; // 我对发送者的关系编码；前端据此本地化为称谓
     private String content;            // 消息内容
     private String type;               // 消息类型 text/image/voice/system

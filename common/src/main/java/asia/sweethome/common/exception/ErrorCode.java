@@ -69,7 +69,13 @@ public enum ErrorCode {
     // CHAT
     NO_SUCH_CONVERSATION(404, "会话不存在"),
     NOT_CONVERSATION_MEMBER(403, "当前用户不是该会话成员"),
-    MESSAGE_TOO_LONG(400, "消息内容超长");
+    MESSAGE_TOO_LONG(400, "消息内容超长"),
+
+    // LOCATION
+    LOCATION_COORDINATE_INVALID(400, "经纬度不能为空"),
+    LOCATION_BATTERY_INVALID(400, "电量数值不合法"),
+    LOCATION_TIMESTAMP_MISSING(400, "定位时间戳不能为空"),
+    LOCATION_TIMESTAMP_STALE(400, "定位数据已过期，请重新上报");
 
 
     /** HTTP 风格的数字状态码，会写进 Result.code */

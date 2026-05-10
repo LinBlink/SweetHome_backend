@@ -1,10 +1,8 @@
 package asia.sweethome.api;
 
-import asia.sweethome.api.entity.dto.FamilyCreateInfoDTO;
-import asia.sweethome.api.entity.dto.FamilyDTO;
-import asia.sweethome.api.entity.dto.FamilyJoinInfoDTO;
-import asia.sweethome.api.entity.dto.RelationDTO;
-import asia.sweethome.api.entity.dto.RelationQueryDTO;
+import java.util.List;
+
+import asia.sweethome.api.entity.dto.*;
 
 /**
  * 【family-service 对外暴露的 Dubbo 接口】
@@ -51,4 +49,9 @@ public interface FamilyApi {
     RelationDTO getRelation(
             RelationQueryDTO relationQueryDTO
     );
+
+    // 得到一个家庭的所有成员
+    List<FamilyMemberDTO> getFamilyMembersByFamilyId(Long familyId);
+
+
 }

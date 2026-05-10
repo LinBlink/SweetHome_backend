@@ -49,9 +49,9 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
         Long userId = userId(session);
-        localSessionRegistry.register(userId, session);
-        onlineUserRegistry.markOnline(userId);
-        redisMessageRelay.publishPresence(userId, true);
+        localSessionRegistry.register(userId, session); // 连接登录本机
+        onlineUserRegistry.markOnline(userId); // 标记用户在线
+        redisMessageRelay.publishPresence(userId, true); // 广播上线事件
     }
 
     /**
@@ -79,7 +79,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
         // 解析 JSON 帧，解析失败说明格式不对，回一个错误帧
         InboundFrame frame;
         try {
-            frame = objectMapper.readValue(message.getPayload(), InboundFrame.class);
+            frame = objectMapper.readValue(message.getPayload(), InboundFrame.class); // message -> JSON
         } catch (Exception e) {
             sendError(session, "PARAM_ERROR", "无法解析的消息帧");
             return;
