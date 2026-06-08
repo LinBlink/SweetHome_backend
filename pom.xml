@@ -30,6 +30,7 @@
         <module>family-service</module>
         <module>chat-service</module>
         <module>location-service</module>
+        <module>moment-service</module>
     </modules>
     <scm>
         <connection/>

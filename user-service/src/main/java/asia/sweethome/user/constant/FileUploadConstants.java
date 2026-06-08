@@ -8,7 +8,7 @@ package asia.sweethome.user.constant;
 public class FileUploadConstants {
 
     public static final int MAX_AVATAR_SIZE = 500 * 1024; // Byte - 500KB
-    public static final int MAX_PHOTO_SIZE = 500 * 1024; // Byte - 500KB
+    public static final int MAX_PHOTO_SIZE =  1024 * 1024; // Byte - 1MB
     public static final int MAX_VIDEO_SIZE = 50 * 1024 * 1024; // Byte - 50MB
 
     public static final String AVATAR_SAVE_LOCATION = "users/avatars";

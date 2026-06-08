@@ -1,7 +1,8 @@
 package asia.sweethome.user.service;
 
-import asia.sweethome.user.entity.vo.UploadVO;
 import org.springframework.web.multipart.MultipartFile;
+
+import asia.sweethome.user.entity.vo.UploadVO;
 
 /**
  * @description:
@@ -10,4 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface UploadService {
     UploadVO uploadAvatar(MultipartFile avatarFile);
+
+    UploadVO uploadImage(MultipartFile imageFile);
 }

@@ -3,12 +3,13 @@ package asia.sweethome.chat.entity.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
  * 【conversations 表实体（PO）】一次「会话」= 一个聊天窗口（群聊或单聊）。
@@ -44,6 +45,8 @@ public class Conversation implements Serializable {
     private Long lastMessageId;
 
     private LocalDateTime lastMessageAt;
+
+    private String lastMessageType;
 
     private LocalDateTime createdAt;
 

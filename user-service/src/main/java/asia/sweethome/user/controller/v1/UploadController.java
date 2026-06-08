@@ -37,6 +37,16 @@ public class UploadController {
         );
     }
 
+    @Operation(summary = "图片上传接口",
+            description = "用户图片上传之前，前端要保证发来的文件是极致压缩后的格式webp")
+    @PostMapping("/image")
+    public Result<UploadVO> uploadImage(
+            @RequestParam("file") MultipartFile imageFile
+    ) {
+        return Result.success(
+                uploadService.uploadImage(imageFile)
+        );
+    }
 
 
 }

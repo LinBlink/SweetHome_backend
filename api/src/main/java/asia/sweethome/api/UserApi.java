@@ -1,10 +1,10 @@
 package asia.sweethome.api;
 
+import java.util.List;
+
 import asia.sweethome.api.entity.dto.UserDTO;
 import asia.sweethome.api.entity.dto.UserRegisterDTO;
 import asia.sweethome.api.entity.vo.UserInfoVO;
-
-import java.util.List;
 
 /**
  * 【user-service 对外暴露的 Dubbo 接口】
@@ -28,4 +28,5 @@ public interface UserApi {
 
     // 按一批用户 id 批量查用户（如群成员列表），避免逐个查询的 N 次网络往返
     List<UserDTO> findUsersByIds(List<Long> userIds);
+
 }

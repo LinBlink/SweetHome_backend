@@ -1,6 +1,7 @@
 package asia.sweethome.user.service.impl;
 
 import static asia.sweethome.user.constant.FileUploadConstants.AVATAR_SAVE_LOCATION;
+import static asia.sweethome.user.constant.FileUploadConstants.PHOTO_SAVE_LOCATION;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -123,6 +124,77 @@ public class UploadServiceImpl implements UploadService {
                 .set(User::getAvatarUrl, publicBaseUrl)
                 .update();
 
+
+        return vo;
+    }
+
+
+    /**
+     * 上传图片
+     */
+    @Override
+    public UploadVO uploadImage(MultipartFile imageFile) {
+
+        // --- 验证环节
+
+        // 用户验证
+        Long userId = UserContext.getUserId();
+
+        if (userId==null) {
+            throw new BusinessException(ErrorCode.UNAUTHORIZED);
+        }
+
+        // 非空验证
+        if (imageFile == null || imageFile.isEmpty()) {
+            throw new BusinessException(ErrorCode.EMPTY_FILE );
+        }
+
+        // 类型验证
+        String contentType = imageFile.getContentType();
+        if (StrUtil.isBlank(contentType) || !contentType.startsWith("image/")) {
+            throw new BusinessException(ErrorCode.FILE_TYPE_ILLEGAL);
+        }
+
+        // 大小验证
+        if (imageFile.getSize() > FileUploadConstants.MAX_PHOTO_SIZE) {
+            throw new BusinessException(ErrorCode.FILE_SIZE_ILLEGAL);
+        }
+
+        // --- 上传环节
+
+        String fileType =  FilenameUtils.getExtension(
+                imageFile.getOriginalFilename()
+        );
+
+        if (StrUtil.isBlank( fileType )) {
+            throw new BusinessException( ErrorCode.FILE_TYPE_ILLEGAL );
+        }
+
+        fileType = fileType.toLowerCase();
+
+        String key = PHOTO_SAVE_LOCATION + "/" + userId + "/" + UUID.randomUUID() + "." + fileType;
+
+        try {
+            r2Client.putObject(
+                    PutObjectRequest.builder()
+                            .bucket( r2BucketName )
+                            .key( key )
+                            .contentType(imageFile.getContentType() )
+                            .build(),
+                    RequestBody.fromInputStream(
+                            imageFile.getInputStream(),
+                            imageFile.getSize()
+                    )
+            );
+        } catch (IOException e) {
+            log.error("🚧文件上传出现异常", e);
+            throw new BusinessException( ErrorCode.FILE_UPLOAD_ERROR );
+        }
+
+        String publicBaseUrl = r2PublicBaseUrl + "/" + key;
+
+        UploadVO vo = new UploadVO();
+        vo.setAddressReturn( publicBaseUrl );
 
         return vo;
     }

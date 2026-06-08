@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +21,11 @@ import asia.sweethome.location.entity.po.Location;
 import asia.sweethome.location.entity.ro.CurrentLocationRO;
 import asia.sweethome.location.entity.vo.FamilyMemberLocationVO;
 import asia.sweethome.location.entity.vo.FamilyMemberLocationsVO;
+import asia.sweethome.location.entity.vo.LocationPointVO;
+import asia.sweethome.location.entity.vo.UserLocationHistoryVO;
 import asia.sweethome.location.mapper.LocationMapper;
 import asia.sweethome.location.registry.CurrentLocationRegistry;
+import asia.sweethome.location.service.IFenceAlarmService;
 import asia.sweethome.location.service.ILocationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,6 +51,7 @@ public class LocationServiceImpl extends ServiceImpl<LocationMapper, Location> i
 
     private final CurrentLocationRegistry currentLocationRegistry;
 
+    private final IFenceAlarmService fenceAlarmService;
 
 
     @Override
@@ -71,11 +74,15 @@ public class LocationServiceImpl extends ServiceImpl<LocationMapper, Location> i
 
         // 时间校验
 
-        LocalDateTime updateTime = dto.getUpdateTime();
+        LocalDateTime updateTime = LocalDateTime.now();
 
         if (updateTime == null) {
             throw new BusinessException(ErrorCode.LOCATION_TIMESTAMP_MISSING);
         }
+
+
+        // todo 时区问题，改用 instant
+/*
 
         LocalDateTime now = LocalDateTime.now();
 
@@ -91,9 +98,26 @@ public class LocationServiceImpl extends ServiceImpl<LocationMapper, Location> i
         if (Math.abs( duration.getSeconds()) > 600) {
             throw new BusinessException(ErrorCode.LOCATION_TIMESTAMP_STALE);
         }
+ */
+
+
+        // redis 取数据
+        CurrentLocationRO current = currentLocationRegistry.getCurrent(userId);
+
+        // 越界校验
+        fenceAlarmService.checkAndRecordCrossing(
+                userId,
+                current,
+                lng,
+                lat
+        );
+
 
         // FamilyApi 契约：非家庭成员时直接抛 NO_SUCH_FAMILY_MEMBER（经 Dubbo 透传），不会返回 null，故这里无需再判空
         Long familyId = familyApi.getFamilyByUserId(userId).getId();
+
+
+
 
         // 入 redis
 
@@ -121,6 +145,7 @@ public class LocationServiceImpl extends ServiceImpl<LocationMapper, Location> i
         location.setUpdatedAt(updateTime);
 
         save( location );
+
 
     }
 
@@ -198,4 +223,56 @@ public class LocationServiceImpl extends ServiceImpl<LocationMapper, Location> i
 
         return vo;
     }
+
+    @Override
+    public UserLocationHistoryVO getUserLocationHistoryBetween(Long userId, Long targetUserId, LocalDateTime dayStart, LocalDateTime dayEnd) {
+
+        FamilyDTO currentUserFamily = familyApi.getFamilyByUserId(userId);
+        FamilyDTO targetFamily = familyApi.getFamilyByUserId(targetUserId);
+        UserDTO targetUser = userApi.findUserById(targetUserId);
+
+        if (!currentUserFamily.getId().equals(targetFamily.getId())) {
+            throw new BusinessException(ErrorCode.LOCATION_TARGET_NOT_FAMILY_MEMBER);
+        }
+
+        List<Location> locations = lambdaQuery().eq(
+                        Location::getUserId, targetUserId  // 查询的target
+                ).eq(
+                        Location::getFamilyId, currentUserFamily.getId() // 保证查询对方和自己在同一个家庭
+                )
+                .ge(
+                        Location::getUpdatedAt, dayStart
+                ).le(
+                        Location::getUpdatedAt, dayEnd
+                ).orderByAsc(
+                        Location::getUpdatedAt
+                ).list();
+
+        UserLocationHistoryVO vo = new UserLocationHistoryVO();
+        vo.setFamilyId(targetFamily.getId());
+        vo.setFamilyName(targetFamily.getName());
+        vo.setUserId(targetUserId);
+        vo.setUsername(targetUser.getName());
+        vo.setUserAvatarUrl(targetUser.getAvatarUrl());
+
+        List<LocationPointVO> locationPointVOS = new ArrayList<>(locations.size());
+
+        for (Location location : locations) {
+
+            LocationPointVO locationPointVO = new LocationPointVO();
+            locationPointVO.setLng(location.getLng());
+            locationPointVO.setLat(location.getLat());
+            locationPointVO.setBattery(location.getBattery());
+            locationPointVO.setUpdatedAt(location.getUpdatedAt());
+
+            locationPointVOS.add(locationPointVO);
+
+        }
+
+        vo.setLocations(locationPointVOS);
+
+
+        return vo;
+    }
+
 }

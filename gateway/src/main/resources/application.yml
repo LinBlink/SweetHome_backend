@@ -24,26 +24,37 @@ spring:
               uri: lb://auth-service
               predicates:
                 - Path=/v1/auth/**
+
             - id: user-route
               uri: lb://user-service
               predicates:
                 - Path=/v1/users/**
+
             - id: family-route
               uri: lb://family-service
               predicates:
                 - Path=/v1/families/**
+
             - id: chat-route
               uri: lb://chat-service
               predicates:
                 - Path=/v1/conversations/**
+
             - id: ws-route
               uri: lb:ws://chat-service
               predicates:
                 - Path=/v1/ws
+
             - id: location-route
               uri: lb://location-service
               predicates:
                 - Path=/v1/location/**
+
+            - id: moment-route
+              uri: lb://moment-service
+              predicates:
+                - Path=/v1/moment/**
+
           discovery:
             locator:
               enabled: false

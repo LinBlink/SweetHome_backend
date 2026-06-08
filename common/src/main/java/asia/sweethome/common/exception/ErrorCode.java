@@ -70,12 +70,17 @@ public enum ErrorCode {
     NO_SUCH_CONVERSATION(404, "会话不存在"),
     NOT_CONVERSATION_MEMBER(403, "当前用户不是该会话成员"),
     MESSAGE_TOO_LONG(400, "消息内容超长"),
+    INVALID_MESSAGE_TYPE(400, "消息类型不正确"),
 
     // LOCATION
     LOCATION_COORDINATE_INVALID(400, "经纬度不能为空"),
     LOCATION_BATTERY_INVALID(400, "电量数值不合法"),
     LOCATION_TIMESTAMP_MISSING(400, "定位时间戳不能为空"),
-    LOCATION_TIMESTAMP_STALE(400, "定位数据已过期，请重新上报");
+    LOCATION_TIMESTAMP_STALE(400, "定位数据已过期，请重新上报"),
+    LOCATION_TARGET_NOT_FAMILY_MEMBER(403, "目标用户不是同一家庭成员"),
+    LOCATION_FENCE_RANGE_INVALID(400, "围栏半径不合法"),
+    NO_SUCH_FENCE(404, "围栏不存在"),
+    NOT_FENCE_SETTER(403, "仅围栏设置者可执行该操作");
 
 
     /** HTTP 风格的数字状态码，会写进 Result.code */

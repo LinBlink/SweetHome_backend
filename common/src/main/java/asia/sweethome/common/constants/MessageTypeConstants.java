@@ -1,5 +1,7 @@
 package asia.sweethome.common.constants;
 
+import java.util.List;
+
 /**
  * 【消息类型】
  * <p>
@@ -10,4 +12,12 @@ public class MessageTypeConstants {
     public static final String IMAGE = "image";   // 图片消息
     public static final String VOICE = "voice";   // 语音消息
     public static final String SYSTEM = "system"; // 系统消息（如「XX 加入了家庭」）
+
+    public static final List<String> MESSAGE_TYPE_LIST = List.of(
+            MessageTypeConstants.IMAGE,
+            MessageTypeConstants.TEXT,
+            MessageTypeConstants.VOICE,
+            MessageTypeConstants.SYSTEM
+    );
+
 }

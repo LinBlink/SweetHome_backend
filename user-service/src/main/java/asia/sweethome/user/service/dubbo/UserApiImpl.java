@@ -1,5 +1,21 @@
 package asia.sweethome.user.service.dubbo;
 
+import static asia.sweethome.user.constant.RedisConstants.USER_DTO_NULL_TTL;
+import static asia.sweethome.user.constant.RedisConstants.USER_DTO_TTL;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.benmanes.caffeine.cache.Cache;
+
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.data.redis.core.StringRedisTemplate;
+
+import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
 import asia.sweethome.api.FamilyApi;
 import asia.sweethome.api.UserApi;
 import asia.sweethome.api.entity.dto.*;
@@ -10,22 +26,10 @@ import asia.sweethome.common.exception.ErrorCode;
 import asia.sweethome.user.constant.RedisConstants;
 import asia.sweethome.user.entity.po.User;
 import asia.sweethome.user.service.IUsersService;
+import asia.sweethome.user.service.UploadService;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.benmanes.caffeine.cache.Cache;
 import lombok.RequiredArgsConstructor;
-import org.apache.dubbo.config.annotation.DubboReference;
-import org.apache.dubbo.config.annotation.DubboService;
-import org.springframework.data.redis.core.StringRedisTemplate;
-
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-
-import static asia.sweethome.user.constant.RedisConstants.*;
 
 /**
  * 【UserApi 的 Dubbo 实现】
@@ -47,6 +51,8 @@ public class UserApiImpl implements UserApi {
     private FamilyApi familyApi;                 // 远程的家庭服务
 
     private final Cache<Long, Optional<UserDTO>> userDTOCache;
+
+    private final UploadService uploadService;
 
     private final StringRedisTemplate stringRedisTemplate;
 
@@ -307,5 +313,6 @@ public class UserApiImpl implements UserApi {
                 .map(u -> BeanUtil.copyProperties(u, UserDTO.class))
                 .toList();
     }
+
 
 }

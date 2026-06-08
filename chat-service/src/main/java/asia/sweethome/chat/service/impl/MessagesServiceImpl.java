@@ -1,19 +1,22 @@
 package asia.sweethome.chat.service.impl;
 
-import asia.sweethome.chat.entity.po.Conversation;
-import asia.sweethome.chat.entity.po.Message;
-import asia.sweethome.chat.mapper.MessagesMapper;
-import asia.sweethome.chat.service.IConversationsService;
-import asia.sweethome.chat.service.IMessagesService;
-import asia.sweethome.common.exception.BusinessException;
-import asia.sweethome.common.exception.ErrorCode;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import asia.sweethome.chat.entity.po.Conversation;
+import asia.sweethome.chat.entity.po.Message;
+import asia.sweethome.chat.mapper.MessagesMapper;
+import asia.sweethome.chat.service.IConversationsService;
+import asia.sweethome.chat.service.IMessagesService;
+import asia.sweethome.common.constants.MessageTypeConstants;
+import asia.sweethome.common.exception.BusinessException;
+import asia.sweethome.common.exception.ErrorCode;
+import lombok.RequiredArgsConstructor;
 
 /**
  * 【消息 服务实现类】负责消息的落库、分页查询、未读统计。
@@ -70,6 +73,13 @@ public class MessagesServiceImpl extends ServiceImpl<MessagesMapper, Message> im
     @Override
     @Transactional
     public Message send(Long conversationId, Long senderId, String type, String content, String clientId, Long replyToId) {
+
+        // 判断消息类型
+        if (!MessageTypeConstants.MESSAGE_TYPE_LIST.contains(
+                type
+        )) {
+            throw new BusinessException(ErrorCode.INVALID_MESSAGE_TYPE);
+        }
 
         if (content != null && content.length() > MAX_CONTENT_LENGTH) {
             throw new BusinessException(ErrorCode.MESSAGE_TOO_LONG);

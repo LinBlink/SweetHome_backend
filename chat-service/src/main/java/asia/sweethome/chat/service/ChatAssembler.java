@@ -1,5 +1,10 @@
 package asia.sweethome.chat.service;
 
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
 import asia.sweethome.api.FamilyApi;
 import asia.sweethome.api.UserApi;
 import asia.sweethome.api.entity.dto.RelationDTO;
@@ -12,10 +17,6 @@ import asia.sweethome.chat.entity.vo.ConversationVO;
 import asia.sweethome.chat.entity.vo.MessageVO;
 import asia.sweethome.chat.util.AvatarUtil;
 import lombok.RequiredArgsConstructor;
-import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 /**
  * 【聊天数据组装器】
@@ -76,6 +77,7 @@ public class ChatAssembler {
         vo.setType(conversation.getType());
         vo.setFamilyId(conversation.getFamilyId());
         vo.setLastMessageAt(conversation.getLastMessageAt());
+        vo.setLastMessageType(conversation.getLastMessageType());
 
         List<ConversationMember> activeMembers = conversationMembersService.listActiveMembers(conversation.getId());
         vo.setMemberCount(activeMembers.size());
@@ -96,6 +98,9 @@ public class ChatAssembler {
             Message lastMessage = messagesService.getById(conversation.getLastMessageId());
             if (lastMessage != null) {
                 vo.setLastMessage(lastMessage.getContent());
+                vo.setLastMessageType(
+                        lastMessage.getType()
+                );
             }
         }
 

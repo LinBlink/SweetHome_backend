@@ -1,8 +1,8 @@
 package asia.sweethome.chat.entity.vo;
 
-import lombok.Data;
-
 import java.time.LocalDateTime;
+
+import lombok.Data;
 
 /**
  * 【会话（对外展示）】会话列表里的一项，字段基本对应聊天列表页每一行要显示的内容。
@@ -20,6 +20,7 @@ public class ConversationVO {
     private String relationCode;
     private String lastMessage;        // 最后一条消息预览
     private LocalDateTime lastMessageAt;// 最后消息时间（列表排序用）
+    private String lastMessageType;
     private Long unreadCount;          // 我的未读数
     private Integer memberCount;       // 成员数
 }
