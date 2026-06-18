@@ -4,14 +4,24 @@ server:
     uri-encoding: UTF-8
 
 spring:
+
   application:
     name: user-service
+
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 60MB
+      max-request-size: 500MB
+      # 关键！Servlet3 Part文件阈值，超过该值写入磁盘，同时控制内存限制
+      file-size-threshold: 10MB
 
   kafka:
     consumer:
       group-id: user-cache-invalidate-${random.uuid}
       auto-offset-reset: latest
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_SERVER_ADDR}:${KAFKA_SERVER_PORT}
 
   cloud:
     nacos:
@@ -50,6 +60,10 @@ sh:
     secret-access-key: ${R2_SECRET_ACCESS_KEY}
     bucket-name: ${R2_BUCKET_NAME}
     public-base-url: ${R2_PUBLIC_BASE_URL}
+  jpush:
+    app-key: ${JGTS_APP_KEY}
+    master-secret: ${JGTS_MASTER_SECRET}
+
 
 logging:
   level:

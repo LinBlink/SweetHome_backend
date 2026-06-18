@@ -48,5 +48,29 @@ public class UploadController {
         );
     }
 
+    @Operation(summary = "视频上传接口",
+            description = "视频上传之前，前端要保证发来的文件是极致压缩后的格式mp4")
+    @PostMapping("/video")
+    public Result<UploadVO> uploadVideo(
+            @RequestParam("file") MultipartFile videoFile
+    ) {
+        return Result.success(
+                uploadService.uploadVideo(videoFile)
+        );
+    }
+
+    @Operation(summary = "语音上传接口",
+            description = "语音上传之前，前端要保证发来的文件是极致压缩后的格式opus")
+    @PostMapping("/audio")
+    public Result<UploadVO> uploadAudio(
+            @RequestParam("file") MultipartFile audioFile
+    ) {
+        return Result.success(
+                uploadService.uploadAudio(audioFile)
+        );
+    }
+
+
+
 
 }

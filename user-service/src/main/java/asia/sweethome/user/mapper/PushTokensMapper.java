@@ -1,6 +1,6 @@
 package asia.sweethome.user.mapper;
 
-import asia.sweethome.user.entity.po.PushTokens;
+import asia.sweethome.user.entity.po.PushToken;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author LocrianFifth
  * @since 2026-07-14
  */
-public interface PushTokensMapper extends BaseMapper<PushTokens> {
+public interface PushTokensMapper extends BaseMapper<PushToken> {
 
 }

@@ -1,4 +1,4 @@
-package asia.sweethome.user.entity.po;
+package asia.sweethome.moment.entity.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -11,28 +11,32 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author LocrianFifth
- * @since 2026-07-14
+ * @since 2026-07-15
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("push_tokens")
-public class PushTokens implements Serializable {
+@TableName("comment")
+public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
+    private Long momentId;
+
     private Long userId;
 
-    private String registrationId;
+    private String content;
 
-    private String platform;
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
 
     private LocalDateTime deletedAt;
 

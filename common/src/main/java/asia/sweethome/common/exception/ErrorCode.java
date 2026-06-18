@@ -80,7 +80,17 @@ public enum ErrorCode {
     LOCATION_TARGET_NOT_FAMILY_MEMBER(403, "目标用户不是同一家庭成员"),
     LOCATION_FENCE_RANGE_INVALID(400, "围栏半径不合法"),
     NO_SUCH_FENCE(404, "围栏不存在"),
-    NOT_FENCE_SETTER(403, "仅围栏设置者可执行该操作");
+    NOT_FENCE_SETTER(403, "仅围栏设置者可执行该操作"),
+
+    // MOMENT
+    MOMENT_CONTENT_EMPTY(400, "动态内容和媒体不能同时为空"),
+    INVALID_MOMENT_MEDIA_TYPE(400, "媒体类型不正确"),
+    NO_SUCH_LIKE_RECORD(404, "尚未点赞，无法取消"),
+    NO_SUCH_MOMENT(404, "动态不存在"),
+    NOT_MOMENT_OWNER(403, "仅动态发布者本人可执行该操作"),
+    COMMENT_CONTENT_EMPTY(400, "评论内容不能为空"),
+    NO_SUCH_COMMENT(404, "评论不存在"),
+    NOT_COMMENT_OWNER(403, "仅评论作者本人可执行该操作");
 
 
     /** HTTP 风格的数字状态码，会写进 Result.code */

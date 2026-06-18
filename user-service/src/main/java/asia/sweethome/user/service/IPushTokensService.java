@@ -1,7 +1,9 @@
 package asia.sweethome.user.service;
 
-import asia.sweethome.user.entity.po.PushTokens;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import asia.sweethome.user.entity.dto.PushTokenDTO;
+import asia.sweethome.user.entity.po.PushToken;
 
 /**
  * <p>
@@ -11,6 +13,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author LocrianFifth
  * @since 2026-07-14
  */
-public interface IPushTokensService extends IService<PushTokens> {
+public interface IPushTokensService extends IService<PushToken> {
 
+    void pushToken(Long userId, PushTokenDTO dto);
+
+    void deleteToken(Long userId, PushTokenDTO dto);
 }

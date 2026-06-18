@@ -4,9 +4,12 @@ import static asia.sweethome.location.constants.FenceAlarmConstants.STEPPED_INSI
 import static asia.sweethome.location.constants.FenceAlarmConstants.STEPPED_OUTSIDE;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,15 +20,21 @@ import java.util.stream.Collectors;
 import asia.sweethome.api.FamilyApi;
 import asia.sweethome.api.UserApi;
 import asia.sweethome.api.entity.dto.UserDTO;
+import asia.sweethome.common.constants.KafkaTopicConstants;
+import asia.sweethome.common.entity.ko.FenceAlarmMessageKO;
 import asia.sweethome.location.entity.po.Fence;
 import asia.sweethome.location.entity.po.FenceAlarm;
+import asia.sweethome.location.entity.po.OutboxMessage;
 import asia.sweethome.location.entity.ro.CurrentLocationRO;
 import asia.sweethome.location.entity.vo.FenceAlarmVO;
 import asia.sweethome.location.mapper.FenceAlarmMapper;
 import asia.sweethome.location.service.IFenceAlarmService;
 import asia.sweethome.location.service.IFenceService;
+import asia.sweethome.location.service.IOutboxMessagesService;
 import asia.sweethome.location.util.GeoUtil;
+import cn.hutool.core.bean.BeanUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
@@ -37,6 +46,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class FenceAlarmServiceImpl extends ServiceImpl<FenceAlarmMapper, FenceAlarm> implements IFenceAlarmService {
 
     @DubboReference
@@ -47,6 +57,10 @@ public class FenceAlarmServiceImpl extends ServiceImpl<FenceAlarmMapper, FenceAl
 
     private final IFenceService fenceService;
 
+    private final IOutboxMessagesService outboxMessagesService;
+
+    private final ObjectMapper objectMapper;
+
     /**
      * 检查是否围栏越界
      * @param targetUserId 被监视用户
@@ -54,6 +68,7 @@ public class FenceAlarmServiceImpl extends ServiceImpl<FenceAlarmMapper, FenceAl
      * @param newLng  现在的坐标
      * @param newLat  现在的坐标
      */
+    @Transactional
     @Override
     public void checkAndRecordCrossing(Long targetUserId, CurrentLocationRO previous, Double newLng, Double newLat) {
 
@@ -66,6 +81,14 @@ public class FenceAlarmServiceImpl extends ServiceImpl<FenceAlarmMapper, FenceAl
         List<Fence> fences = fenceService.lambdaQuery().eq(
                 Fence::getTargetUserId, targetUserId
         ).list();
+
+        // 得到所有围栏name
+        Map<Long, String> fenceIdNameMap = fences.stream().collect(
+                Collectors.toMap(
+                        Fence::getId,
+                        Fence::getName
+                )
+        );
 
         for (Fence fence : fences) {
             // 之前是否在围栏里
@@ -95,12 +118,6 @@ public class FenceAlarmServiceImpl extends ServiceImpl<FenceAlarmMapper, FenceAl
              */
             boolean steppedInside = !wasInside & isInside;
 
-            /**
-             * 之前在里面，现在在外面
-             * (无效代码，仅增加可读性）
-             */
-            boolean steppedOutside = !steppedInside;
-
             FenceAlarm fenceAlarm = new FenceAlarm();
 
             fenceAlarm.setFenceId(fence.getId());
@@ -123,7 +140,43 @@ public class FenceAlarmServiceImpl extends ServiceImpl<FenceAlarmMapper, FenceAl
                     fence.getFamilyId()
             );
 
+            // 将报警入表
             save( fenceAlarm );
+
+            // fenceAlarm 转为 Kafka消息负载
+            FenceAlarmMessageKO fenceAlarmMessageKO = BeanUtil.copyProperties(fenceAlarm, FenceAlarmMessageKO.class);
+
+            fenceAlarmMessageKO.setFenceName(
+                    fenceIdNameMap.get(fenceAlarm.getFenceId())
+            );
+
+            // 将消息存入 outbox
+            // 监控该用户的用户将收到该消息
+            OutboxMessage msg = new OutboxMessage();
+
+            msg.setTopic(
+                    KafkaTopicConstants.TOPIC_FENCE_ALARM_TRIGGERED
+            );
+
+            try {
+                msg.setPayload(
+                        objectMapper.writeValueAsString(
+                                fenceAlarmMessageKO
+                        )
+                );
+            } catch (JsonProcessingException e) {
+                log.warn("ObjectMapper消息解析异常", e);
+                continue;
+            }
+
+            msg.setStatus(OutboxMessage.STATUS_UNSEND);
+            msg.setRetryCount(0);
+            msg.setCreatedAt(LocalDateTime.now());
+
+            outboxMessagesService.save(
+                    msg
+            );
+
 
         }
 

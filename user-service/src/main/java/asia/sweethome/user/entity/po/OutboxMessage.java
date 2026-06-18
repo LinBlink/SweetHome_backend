@@ -3,12 +3,13 @@ package asia.sweethome.user.entity.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -35,8 +36,8 @@ public class OutboxMessage implements Serializable {
     private String payload;
 
 
-    public static final int STATUS_SENT = 1;
-    public static final int STATUS_UNSEND = 0;
+    public static final boolean STATUS_SENT = true;
+    public static final boolean STATUS_UNSEND = false;
     private Boolean status;
 
     private Integer retryCount;

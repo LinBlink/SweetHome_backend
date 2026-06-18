@@ -17,8 +17,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
  */
 @Tag(name = "动态媒体控制器")
 @RestController
-@RequestMapping("/v1/moment-media")
+@RequestMapping("/v1/moment/media")
 public class MomentMediaController {
-
 
 }

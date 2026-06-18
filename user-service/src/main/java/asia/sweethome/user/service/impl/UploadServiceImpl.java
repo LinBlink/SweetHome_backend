@@ -2,6 +2,8 @@ package asia.sweethome.user.service.impl;
 
 import static asia.sweethome.user.constant.FileUploadConstants.AVATAR_SAVE_LOCATION;
 import static asia.sweethome.user.constant.FileUploadConstants.PHOTO_SAVE_LOCATION;
+import static asia.sweethome.user.constant.FileUploadConstants.VIDEO_SAVE_LOCATION;
+import static asia.sweethome.user.constant.FileUploadConstants.AUDIO_SAVE_LOCATION;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -184,6 +186,148 @@ public class UploadServiceImpl implements UploadService {
                     RequestBody.fromInputStream(
                             imageFile.getInputStream(),
                             imageFile.getSize()
+                    )
+            );
+        } catch (IOException e) {
+            log.error("🚧文件上传出现异常", e);
+            throw new BusinessException( ErrorCode.FILE_UPLOAD_ERROR );
+        }
+
+        String publicBaseUrl = r2PublicBaseUrl + "/" + key;
+
+        UploadVO vo = new UploadVO();
+        vo.setAddressReturn( publicBaseUrl );
+
+        return vo;
+    }
+
+
+    /**
+     * 上传视频
+     */
+    @Override
+    public UploadVO uploadVideo(MultipartFile videoFile) {
+
+        // --- 验证环节
+
+        // 用户验证
+        Long userId = UserContext.getUserId();
+
+        if (userId==null) {
+            throw new BusinessException(ErrorCode.UNAUTHORIZED);
+        }
+
+        // 非空验证
+        if (videoFile == null || videoFile.isEmpty()) {
+            throw new BusinessException(ErrorCode.EMPTY_FILE );
+        }
+
+        // 类型验证
+        String contentType = videoFile.getContentType();
+        if (StrUtil.isBlank(contentType) || !contentType.startsWith("video/")) {
+            throw new BusinessException(ErrorCode.FILE_TYPE_ILLEGAL);
+        }
+
+        // 大小验证
+        if (videoFile.getSize() > FileUploadConstants.MAX_VIDEO_SIZE) {
+            throw new BusinessException(ErrorCode.FILE_SIZE_ILLEGAL);
+        }
+
+        // --- 上传环节
+
+        String fileType =  FilenameUtils.getExtension(
+                videoFile.getOriginalFilename()
+        );
+
+        if (StrUtil.isBlank( fileType )) {
+            throw new BusinessException( ErrorCode.FILE_TYPE_ILLEGAL );
+        }
+
+        fileType = fileType.toLowerCase();
+
+        String key = VIDEO_SAVE_LOCATION + "/" + userId + "/" + UUID.randomUUID() + "." + fileType;
+
+        try {
+            r2Client.putObject(
+                    PutObjectRequest.builder()
+                            .bucket( r2BucketName )
+                            .key( key )
+                            .contentType(videoFile.getContentType() )
+                            .build(),
+                    RequestBody.fromInputStream(
+                            videoFile.getInputStream(),
+                            videoFile.getSize()
+                    )
+            );
+        } catch (IOException e) {
+            log.error("🚧文件上传出现异常", e);
+            throw new BusinessException( ErrorCode.FILE_UPLOAD_ERROR );
+        }
+
+        String publicBaseUrl = r2PublicBaseUrl + "/" + key;
+
+        UploadVO vo = new UploadVO();
+        vo.setAddressReturn( publicBaseUrl );
+
+        return vo;
+    }
+
+
+    /**
+     * 上传语音
+     */
+    @Override
+    public UploadVO uploadAudio(MultipartFile audioFile) {
+
+        // --- 验证环节
+
+        // 用户验证
+        Long userId = UserContext.getUserId();
+
+        if (userId==null) {
+            throw new BusinessException(ErrorCode.UNAUTHORIZED);
+        }
+
+        // 非空验证
+        if (audioFile == null || audioFile.isEmpty()) {
+            throw new BusinessException(ErrorCode.EMPTY_FILE );
+        }
+
+        // 类型验证
+        String contentType = audioFile.getContentType();
+        if (StrUtil.isBlank(contentType) || !contentType.startsWith("audio/")) {
+            throw new BusinessException(ErrorCode.FILE_TYPE_ILLEGAL);
+        }
+
+        // 大小验证
+        if (audioFile.getSize() > FileUploadConstants.MAX_AUDIO_SIZE) {
+            throw new BusinessException(ErrorCode.FILE_SIZE_ILLEGAL);
+        }
+
+        // --- 上传环节
+
+        String fileType =  FilenameUtils.getExtension(
+                audioFile.getOriginalFilename()
+        );
+
+        if (StrUtil.isBlank( fileType )) {
+            throw new BusinessException( ErrorCode.FILE_TYPE_ILLEGAL );
+        }
+
+        fileType = fileType.toLowerCase();
+
+        String key = AUDIO_SAVE_LOCATION + "/" + userId + "/" + UUID.randomUUID() + "." + fileType;
+
+        try {
+            r2Client.putObject(
+                    PutObjectRequest.builder()
+                            .bucket( r2BucketName )
+                            .key( key )
+                            .contentType(audioFile.getContentType() )
+                            .build(),
+                    RequestBody.fromInputStream(
+                            audioFile.getInputStream(),
+                            audioFile.getSize()
                     )
             );
         } catch (IOException e) {

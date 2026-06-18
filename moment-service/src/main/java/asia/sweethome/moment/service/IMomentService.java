@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 import asia.sweethome.moment.entity.dto.PostMomentDTO;
 import asia.sweethome.moment.entity.po.Moment;
+import asia.sweethome.moment.entity.vo.QueryMyFamilyMomentVO;
 
 /**
  * <p>
@@ -16,4 +17,8 @@ import asia.sweethome.moment.entity.po.Moment;
 public interface IMomentService extends IService<Moment> {
 
     void postMoment(Long userId, PostMomentDTO dto);
+
+    QueryMyFamilyMomentVO queryMyFamilyMoment(Long userId, Integer page, Integer pageSize, Boolean asc);
+
+    void deleteMoment(Long userId , Long momentId);
 }

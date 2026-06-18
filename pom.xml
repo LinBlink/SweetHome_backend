@@ -31,6 +31,8 @@
         <module>chat-service</module>
         <module>location-service</module>
         <module>moment-service</module>
+        <module>shop-service</module>
+        <module>health-service</module>
     </modules>
     <scm>
         <connection/>

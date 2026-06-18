@@ -1,7 +1,9 @@
 package asia.sweethome.moment.service;
 
-import asia.sweethome.moment.entity.po.MomentLiker;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import asia.sweethome.moment.entity.po.MomentLiker;
+import asia.sweethome.moment.entity.vo.MomentLikeDetailsVO;
 
 /**
  * <p>
@@ -13,4 +15,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IMomentLikerService extends IService<MomentLiker> {
 
+    void likeMoment(Long momentId, Long userId);
+
+    void unlikeMoment(Long momentId, Long userId);
+
+    Integer getMomentLikeCount(Long momentId);
+
+    MomentLikeDetailsVO getMomentLikeDetails(Long momentId);
 }

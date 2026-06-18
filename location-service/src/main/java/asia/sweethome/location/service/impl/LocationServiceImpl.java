@@ -80,30 +80,12 @@ public class LocationServiceImpl extends ServiceImpl<LocationMapper, Location> i
             throw new BusinessException(ErrorCode.LOCATION_TIMESTAMP_MISSING);
         }
 
-
-        // todo 时区问题，改用 instant
-/*
-
-        LocalDateTime now = LocalDateTime.now();
-
-        Duration duration = Duration.between(updateTime, now);
-
-        // 如果时间差大于120秒，则报警做日志
-        if (Math.abs( duration.getSeconds() ) > 120) {
-            log.warn("定位上报时间戳偏差过大：userId={}, updateTime={}, now={}, 偏差秒数={}",
-                    userId, updateTime, now, duration.getSeconds());
-        }
-
-        // 如果时间差大于10分钟，无效处理
-        if (Math.abs( duration.getSeconds()) > 600) {
-            throw new BusinessException(ErrorCode.LOCATION_TIMESTAMP_STALE);
-        }
- */
-
+        // todo 前端发送时间校验？
 
         // redis 取数据
         CurrentLocationRO current = currentLocationRegistry.getCurrent(userId);
 
+        // ---------------------------------------------
         // 越界校验
         fenceAlarmService.checkAndRecordCrossing(
                 userId,
@@ -115,8 +97,6 @@ public class LocationServiceImpl extends ServiceImpl<LocationMapper, Location> i
 
         // FamilyApi 契约：非家庭成员时直接抛 NO_SUCH_FAMILY_MEMBER（经 Dubbo 透传），不会返回 null，故这里无需再判空
         Long familyId = familyApi.getFamilyByUserId(userId).getId();
-
-
 
 
         // 入 redis

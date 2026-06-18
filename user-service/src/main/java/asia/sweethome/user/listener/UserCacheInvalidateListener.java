@@ -1,15 +1,18 @@
 package asia.sweethome.user.listener;
 
-import asia.sweethome.api.entity.dto.UserDTO;
+import static asia.sweethome.common.constants.KafkaTopicConstants.TOPIC_USER_PROFILE_CHANGED;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.benmanes.caffeine.cache.Cache;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-import static asia.sweethome.user.constant.KafkaConstants.TOPIC_USER_PROFILE_CHANGED;
+import asia.sweethome.api.entity.dto.UserDTO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @description:
@@ -24,6 +27,9 @@ public class UserCacheInvalidateListener {
 
     private final Cache<Long, Optional<UserDTO>> userDTOCache;
 
+    private final ObjectMapper objectMapper;
+
+
     /**
      * 收到失效消息，清除L1缓存。L2被清理过无需操作
      * @param userIdStr
@@ -34,5 +40,6 @@ public class UserCacheInvalidateListener {
         long userId = Long.parseLong(userIdStr);
         userDTOCache.invalidate( userId );
     }
+
 
 }

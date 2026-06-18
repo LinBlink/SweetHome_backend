@@ -13,4 +13,8 @@ public interface UploadService {
     UploadVO uploadAvatar(MultipartFile avatarFile);
 
     UploadVO uploadImage(MultipartFile imageFile);
+
+    UploadVO uploadVideo(MultipartFile videoFile);
+
+    UploadVO uploadAudio(MultipartFile audioFile);
 }

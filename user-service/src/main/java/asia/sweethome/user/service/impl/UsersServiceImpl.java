@@ -1,19 +1,10 @@
 package asia.sweethome.user.service.impl;
 
-import asia.sweethome.api.entity.dto.UserDTO;
-import asia.sweethome.common.exception.BusinessException;
-import asia.sweethome.common.exception.ErrorCode;
-import asia.sweethome.user.constant.RedisConstants;
-import asia.sweethome.user.entity.po.OutboxMessage;
-import asia.sweethome.user.entity.po.User;
-import asia.sweethome.user.mapper.UsersMapper;
-import asia.sweethome.user.service.IOutboxMessagesService;
-import asia.sweethome.user.service.IUsersService;
-import cn.hutool.core.util.StrUtil;
+import static asia.sweethome.common.constants.KafkaTopicConstants.TOPIC_USER_PROFILE_CHANGED;
+
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.benmanes.caffeine.cache.Cache;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -24,7 +15,18 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static asia.sweethome.user.constant.KafkaConstants.TOPIC_USER_PROFILE_CHANGED;
+import asia.sweethome.api.entity.dto.UserDTO;
+import asia.sweethome.common.exception.BusinessException;
+import asia.sweethome.common.exception.ErrorCode;
+import asia.sweethome.user.constant.RedisConstants;
+import asia.sweethome.user.entity.po.OutboxMessage;
+import asia.sweethome.user.entity.po.User;
+import asia.sweethome.user.mapper.UsersMapper;
+import asia.sweethome.user.service.IOutboxMessagesService;
+import asia.sweethome.user.service.IUsersService;
+import cn.hutool.core.util.StrUtil;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 【用户表 服务实现类】
