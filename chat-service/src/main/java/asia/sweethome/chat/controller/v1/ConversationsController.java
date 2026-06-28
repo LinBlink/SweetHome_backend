@@ -1,5 +1,10 @@
 package asia.sweethome.chat.controller.v1;
 
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
 import asia.sweethome.chat.entity.dto.CreateConversationDTO;
 import asia.sweethome.chat.entity.dto.MarkReadDTO;
 import asia.sweethome.chat.entity.dto.SendMessageDTO;
@@ -9,21 +14,14 @@ import asia.sweethome.chat.entity.po.Message;
 import asia.sweethome.chat.entity.vo.ConversationVO;
 import asia.sweethome.chat.entity.vo.MessageHistoryVO;
 import asia.sweethome.chat.entity.vo.MessageVO;
-import asia.sweethome.chat.service.ChatAssembler;
-import asia.sweethome.chat.service.IConversationMembersService;
-import asia.sweethome.chat.service.IConversationsService;
-import asia.sweethome.chat.service.IMessagesService;
-import asia.sweethome.chat.ws.registry.RedisMessageRelay;
+import asia.sweethome.chat.service.*;
+import asia.sweethome.chat.ws.RedisMessageRelay;
 import asia.sweethome.common.constants.ConversationTypeConstants;
 import asia.sweethome.common.context.UserContext;
 import asia.sweethome.common.entity.vo.Result;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * 【会话 REST 控制器】
@@ -45,6 +43,8 @@ public class ConversationsController {
     private final IMessagesService messagesService;
     private final ChatAssembler chatAssembler;
     private final RedisMessageRelay redisMessageRelay;
+
+    private final ChatMessageKafkaDispatcher chatMessageKafkaDispatcher;
 
     /**
      * 会话列表：当前用户参与的所有会话，按「最后消息时间」倒序（最近聊的排最前）。
@@ -171,6 +171,11 @@ public class ConversationsController {
         );
 
         redisMessageRelay.publishNewMessage(conversationId, message.getId());
+
+        // Kafka 给离线成员推送消息
+        chatMessageKafkaDispatcher.dispatch(
+                message
+        );
 
         return Result.success(chatAssembler.toMessageVO(message, viewerId, acceptLanguage));
     }

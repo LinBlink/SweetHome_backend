@@ -22,4 +22,12 @@ public class KafkaTopicConstants {
 
     public static final String TOPIC_USER_PROFILE_CHANGED = "user.profile.changed";
 
+    public static final String TOPIC_CHAT_MESSAGE_OFFLINE = "chat.message.offline";
+
+    /**
+     * 健康记录提醒事件：health-service（生产者）的定时任务扫描到「到点未记录」的成员后发布，
+     * user-service（消费者）订阅后复用 PushTokensService 查推送 token 并发送极光通知。
+     */
+    public static final String TOPIC_HEALTH_REMINDER_TRIGGERED = "health.reminder.triggered";
+
 }

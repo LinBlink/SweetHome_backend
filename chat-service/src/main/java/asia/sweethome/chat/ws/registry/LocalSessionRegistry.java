@@ -9,6 +9,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 
+import asia.sweethome.chat.ws.RedisMessageRelay;
+
 /**
  * 【本机 WebSocket 连接表】
  * <p>

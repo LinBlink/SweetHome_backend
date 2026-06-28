@@ -16,10 +16,13 @@ import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 import asia.sweethome.moment.entity.dto.PostCommentDTO;
 import asia.sweethome.moment.entity.po.Comment;
+import asia.sweethome.moment.entity.po.Moment;
 import asia.sweethome.moment.entity.vo.CommentVO;
 import asia.sweethome.moment.mapper.CommentMapper;
 import asia.sweethome.moment.service.ICommentService;
+import asia.sweethome.moment.service.IMomentService;
 import cn.hutool.core.util.StrUtil;
+import lombok.RequiredArgsConstructor;
 
 /**
  * <p>
@@ -30,10 +33,13 @@ import cn.hutool.core.util.StrUtil;
  * @since 2026-07-15
  */
 @Service
+@RequiredArgsConstructor
 public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> implements ICommentService {
 
     @DubboReference
     private UserApi userApi;
+
+    private final IMomentService momentService;
 
     @Override
     public void postComment(Long userId, Long momentId, PostCommentDTO dto) {
@@ -42,12 +48,21 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
             throw new BusinessException(ErrorCode.COMMENT_CONTENT_EMPTY);
         }
 
+        // 注：moment 表的 deleted_at 目前没有配 @TableLogic，deleteMoment 走的是物理删除，
+        // 所以这里只用判空就够了，不需要再判 deletedAt（判了也是死代码，永远不会命中）
+        Moment moment = momentService.getById(momentId);
+        if (moment == null) {
+            throw new BusinessException(ErrorCode.NO_SUCH_MOMENT);
+        }
+
         LocalDateTime now = LocalDateTime.now();
 
         Comment comment = new Comment();
         comment.setMomentId(momentId);
         comment.setUserId(userId);
         comment.setContent(dto.getContent());
+        // 冗余拷贝父动态的公开状态，评论广场按 comment.is_public 过滤时不用 join moment 表
+        comment.setIsPublic(Boolean.TRUE.equals(moment.getIsPublic()));
         comment.setCreatedAt(now);
         comment.setUpdatedAt(now);
 

@@ -3,12 +3,13 @@ package asia.sweethome.chat.entity.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
  * 【messages 表实体（PO）】一条聊天消息。
@@ -31,7 +32,7 @@ public class Message implements Serializable {
     private Long senderId;
 
     /**
-     * text / image / voice / system
+     * text / image / voice / video / system
      */
     private String type;
 

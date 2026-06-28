@@ -7,7 +7,6 @@ spring:
   application:
     name: location-service
 
-
   kafka:
     bootstrap-servers: ${KAFKA_SERVER_ADDR}:${KAFKA_SERVER_PORT}
 

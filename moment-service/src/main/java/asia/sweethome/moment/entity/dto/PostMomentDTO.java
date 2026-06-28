@@ -20,4 +20,6 @@ public class PostMomentDTO implements Serializable {
 
     private List<MomentMediaDTO> media;
 
+    private Boolean isPublic;
+
 }

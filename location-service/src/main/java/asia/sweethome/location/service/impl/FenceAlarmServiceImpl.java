@@ -91,6 +91,23 @@ public class FenceAlarmServiceImpl extends ServiceImpl<FenceAlarmMapper, FenceAl
         );
 
         for (Fence fence : fences) {
+
+            log.info("当前fence坐标, lng {} lat {}", fence.getFenceLng(), fence.getFenceLat());
+
+            log.info("targetUserId {} 当前离 fence {} 距离 {} 米，阈值 {} 米",
+                    targetUserId,
+                    fence.getName(),
+                    GeoUtil.distanceMeters(
+                    previous.getLng(),
+                    previous.getLat(),
+                    fence.getFenceLng(),
+                    fence.getFenceLat()
+                    ),
+                    fence.getFenceRange()
+            );
+
+
+
             // 之前是否在围栏里
             boolean wasInside = GeoUtil.distanceMeters(
                     previous.getLng(),

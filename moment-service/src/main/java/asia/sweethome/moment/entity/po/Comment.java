@@ -34,6 +34,9 @@ public class Comment implements Serializable {
 
     private String content;
 
+    // 冗余自父 Moment 的 is_public，评论创建时一次性拷贝，避免公开动态广场里查评论要 join moment 表
+    private Boolean isPublic;
+
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;

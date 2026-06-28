@@ -11,12 +11,16 @@ public class MessageTypeConstants {
     public static final String TEXT = "text";     // 文字消息
     public static final String IMAGE = "image";   // 图片消息
     public static final String VOICE = "voice";   // 语音消息
+    public static final String AUDIO = "audio";   // 音频消息
+    public static final String VIDEO = "video";   // 视频消息
     public static final String SYSTEM = "system"; // 系统消息（如「XX 加入了家庭」）
 
     public static final List<String> MESSAGE_TYPE_LIST = List.of(
             MessageTypeConstants.IMAGE,
             MessageTypeConstants.TEXT,
             MessageTypeConstants.VOICE,
+            MessageTypeConstants.AUDIO,
+            MessageTypeConstants.VIDEO,
             MessageTypeConstants.SYSTEM
     );
 

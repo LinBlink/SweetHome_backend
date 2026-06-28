@@ -53,5 +53,8 @@ public interface FamilyApi {
     // 得到一个家庭的所有成员
     List<FamilyMemberDTO> getFamilyMembersByFamilyId(Long familyId);
 
+    // 按家庭 id 列表批量查询家庭信息，避免调用方在循环里逐个查（跨家庭动态广场展示 familyName 时用）
+    List<FamilyDTO> getFamiliesByIds(List<Long> familyIds);
+
 
 }

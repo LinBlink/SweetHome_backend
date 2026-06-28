@@ -34,6 +34,8 @@ public class Moment implements Serializable {
 
     private String content;
 
+    private Boolean isPublic;
+
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;

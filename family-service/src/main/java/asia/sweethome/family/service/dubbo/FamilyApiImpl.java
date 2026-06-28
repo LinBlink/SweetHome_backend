@@ -193,6 +193,19 @@ public class FamilyApiImpl implements FamilyApi {
 
     }
 
+    @Override
+    public List<FamilyDTO> getFamiliesByIds(List<Long> familyIds) {
+
+        if (familyIds == null || familyIds.isEmpty()) {
+            return List.of();
+        }
+
+        List<Family> families = familiesService.listByIds(familyIds);
+
+        return BeanUtil.copyToList(families, FamilyDTO.class);
+
+    }
+
     /** 按用户 id 查其「在册」的家庭成员记录（一个用户同一时刻至多属于一个家庭，故用 one()） */
     private FamilyMember activeFamilyMemberByUserId(Long userId) {
         return familyMembersService.lambdaQuery()

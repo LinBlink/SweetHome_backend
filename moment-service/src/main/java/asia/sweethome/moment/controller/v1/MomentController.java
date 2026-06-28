@@ -9,6 +9,7 @@ import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 import asia.sweethome.moment.entity.dto.PostMomentDTO;
 import asia.sweethome.moment.entity.vo.QueryMyFamilyMomentVO;
+import asia.sweethome.moment.entity.vo.QueryPublicMomentVO;
 import asia.sweethome.moment.service.IMomentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,6 +30,8 @@ import lombok.RequiredArgsConstructor;
 public class MomentController {
 
     private final IMomentService momentService;
+
+
 
     @Operation(summary = "发布动态")
     @PostMapping
@@ -70,6 +73,30 @@ public class MomentController {
 
         QueryMyFamilyMomentVO vo = momentService.queryMyFamilyMoment(
                 userId, page, pageSize, asc
+        );
+
+        return Result.success(vo);
+
+    }
+
+    @Operation(summary = "查看动态广场（跨家庭公开动态）")
+    @GetMapping("/public")
+    public Result<QueryPublicMomentVO> queryPublicMoment(
+            @RequestParam(value = "page" , required = false) Integer page,
+            @RequestParam(value = "pageSize", required = false) Integer pageSize,
+            @RequestParam(value = "asc", defaultValue = "false") Boolean asc
+    ) {
+
+        Long userId = UserContext.getUserId();
+
+        if (userId == null) {
+            throw new BusinessException(
+                    ErrorCode.UNAUTHORIZED
+            );
+        }
+
+        QueryPublicMomentVO vo = momentService.queryPublicMoment(
+                page, pageSize, asc
         );
 
         return Result.success(vo);

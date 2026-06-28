@@ -90,7 +90,16 @@ public enum ErrorCode {
     NOT_MOMENT_OWNER(403, "仅动态发布者本人可执行该操作"),
     COMMENT_CONTENT_EMPTY(400, "评论内容不能为空"),
     NO_SUCH_COMMENT(404, "评论不存在"),
-    NOT_COMMENT_OWNER(403, "仅评论作者本人可执行该操作");
+    NOT_COMMENT_OWNER(403, "仅评论作者本人可执行该操作"),
+
+    // HEALTH
+    INVALID_HEALTH_METRIC_TYPE(400, "健康指标类型不正确"),
+    HEALTH_RECORD_VALUE_INVALID(400, "健康记录数值不合法"),
+    NOT_SAME_FAMILY(403, "目标用户不是同一家庭成员"),
+    INVALID_REMIND_TIME(400, "提醒时间格式不正确"),
+    NO_SUCH_HEALTH_RECORD(404, "健康记录不存在"),
+    NOT_HEALTH_RECORD_OWNER(403, "仅本人可修改自己的健康记录"),
+    HEALTH_RECORD_DATE_CONFLICT(409, "该日期已存在同指标的记录");
 
 
     /** HTTP 风格的数字状态码，会写进 Result.code */

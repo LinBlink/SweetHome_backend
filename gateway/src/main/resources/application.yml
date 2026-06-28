@@ -55,6 +55,11 @@ spring:
               predicates:
                 - Path=/v1/moment/**
 
+            - id: health-route
+              uri: lb://health-service
+              predicates:
+                - Path=/v1/health/**
+
           discovery:
             locator:
               enabled: false

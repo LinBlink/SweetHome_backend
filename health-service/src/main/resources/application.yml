@@ -1,0 +1,48 @@
+server:
+  port: 8087
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: health-service
+
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVER_ADDR}:${KAFKA_SERVER_PORT}
+
+  cloud:
+    nacos:
+      server-addr: ${NACOS_SERVER_ADDR}:8848
+      config:
+        group: DEFAULT_GROUP
+        file-extension: yaml
+        encode: UTF-8
+        namespace: ${NACOS_NAMESPACE}
+      discovery:
+        namespace: ${NACOS_NAMESPACE}
+  config:
+    import:
+      - file:.env[.properties]
+      - nacos:common-spring.yaml
+      - nacos:common-logs.yaml
+      - nacos:common-mybatis.yaml
+      - nacos:common-redis.yaml
+      - nacos:health-service-dubbo.yaml
+
+
+sh:
+  redis:
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
+    password: ${REDIS_PASSWORD}
+  jdbc:
+    host: ${MYSQL_SERVER_ADDR}
+    password: ${MYSQL_ROOT_PASSWORD}
+    database: sh_health
+  nacos:
+    server-addr: ${NACOS_SERVER_ADDR}
+    namespace: ${NACOS_NAMESPACE}
+
+logging:
+  level:
+    asia.sweethome: debug

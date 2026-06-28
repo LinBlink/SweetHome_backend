@@ -1,7 +1,7 @@
 package asia.sweethome.chat.config;
 
 import asia.sweethome.chat.ws.ChatRedisSubscriber;
-import asia.sweethome.chat.ws.registry.RedisMessageRelay;
+import asia.sweethome.chat.ws.RedisMessageRelay;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

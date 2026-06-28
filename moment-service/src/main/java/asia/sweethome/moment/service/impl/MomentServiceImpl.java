@@ -22,9 +22,12 @@ import asia.sweethome.moment.entity.dto.MomentMediaDTO;
 import asia.sweethome.moment.entity.dto.PostMomentDTO;
 import asia.sweethome.moment.entity.po.Moment;
 import asia.sweethome.moment.entity.po.MomentMedia;
+import asia.sweethome.api.entity.dto.FamilyDTO;
 import asia.sweethome.moment.entity.vo.MomentMediaVO;
 import asia.sweethome.moment.entity.vo.MomentVO;
+import asia.sweethome.moment.entity.vo.PublicMomentVO;
 import asia.sweethome.moment.entity.vo.QueryMyFamilyMomentVO;
+import asia.sweethome.moment.entity.vo.QueryPublicMomentVO;
 import asia.sweethome.moment.mapper.MomentMapper;
 import asia.sweethome.moment.service.IMomentMediaService;
 import asia.sweethome.moment.service.IMomentService;
@@ -93,6 +96,10 @@ public class MomentServiceImpl extends ServiceImpl<MomentMapper, Moment> impleme
         );
         moment.setContent(
                 dto.getContent()
+        );
+        // 不传默认不公开（仅本家庭可见），永远不信任「不传等于公开」这种默认值
+        moment.setIsPublic(
+                dto.getIsPublic() != null && dto.getIsPublic()
         );
         moment.setCreatedAt( now );
         moment.setUpdatedAt( now );
@@ -256,6 +263,116 @@ public class MomentServiceImpl extends ServiceImpl<MomentMapper, Moment> impleme
         }
 
         vo.setMoments(momentVOS);
+
+        return vo;
+
+    }
+
+    @Override
+    public QueryPublicMomentVO queryPublicMoment(Integer page, Integer pageSize, Boolean asc) {
+
+        int pageNum = (page == null || page < 1) ? 1 : page;
+        int size = (pageSize == null || pageSize < 1) ? DEFAULT_PAGE_SIZE : Math.min(pageSize, MAX_PAGE_SIZE);
+
+        Page<Moment> pageSet = new Page<>(pageNum, size);
+
+        if (asc == null) {
+            asc = false;
+        }
+
+        pageSet.addOrder(
+                asc
+                        ? OrderItem.asc("created_at")
+                        : OrderItem.desc("created_at")
+        );
+
+        // 只按 is_public 过滤，不做家庭边界校验——这就是「公开」的意义
+        Page<Moment> momentPage = lambdaQuery().eq(
+                Moment::getIsPublic, true
+        ).page(
+                pageSet
+        );
+
+        QueryPublicMomentVO vo = new QueryPublicMomentVO();
+        vo.setTotal(momentPage.getTotal());
+
+        List<Moment> momentRecords = momentPage.getRecords();
+
+        if (momentRecords.isEmpty()) {
+            vo.setMoments(List.of());
+            return vo;
+        }
+
+        // 批量查发布者用户信息、发布者所在家庭信息、关联媒体，避免循环内逐条查库（N+1）
+        List<Long> userIds = new LinkedList<>();
+        List<Long> familyIds = new LinkedList<>();
+        List<Long> momentIds = new LinkedList<>();
+        for (Moment momentRecord : momentRecords) {
+            userIds.add(momentRecord.getUserId());
+            familyIds.add(momentRecord.getFamilyId());
+            momentIds.add(momentRecord.getId());
+        }
+
+        Map<Long, UserDTO> userIdUserDTOMap = new HashMap<>();
+        for (UserDTO userDTO : userApi.findUsersByIds(userIds)) {
+            userIdUserDTOMap.put(userDTO.getId(), userDTO);
+        }
+
+        Map<Long, FamilyDTO> familyIdFamilyDTOMap = new HashMap<>();
+        for (FamilyDTO familyDTO : familyApi.getFamiliesByIds(familyIds)) {
+            familyIdFamilyDTOMap.put(familyDTO.getId(), familyDTO);
+        }
+
+        List<MomentMedia> momentMediaList = momentMediaService.lambdaQuery()
+                .in(MomentMedia::getMomentId, momentIds)
+                .list();
+
+        Map<Long, List<MomentMedia>> momentIdMomentMediaMap = momentMediaList.stream()
+                .collect(Collectors.groupingBy(MomentMedia::getMomentId));
+
+        List<PublicMomentVO> publicMomentVOS = new ArrayList<>(momentRecords.size());
+
+        for (Moment momentRecord : momentRecords) {
+
+            PublicMomentVO publicMomentVO = new PublicMomentVO();
+
+            publicMomentVO.setId(momentRecord.getId());
+            publicMomentVO.setUserId(momentRecord.getUserId());
+
+            UserDTO userDTO = userIdUserDTOMap.get(momentRecord.getUserId());
+            if (userDTO != null) {
+                publicMomentVO.setUsername(userDTO.getName());
+                publicMomentVO.setUserAvatarUrl(userDTO.getAvatarUrl());
+            }
+
+            publicMomentVO.setFamilyId(momentRecord.getFamilyId());
+
+            FamilyDTO familyDTO = familyIdFamilyDTOMap.get(momentRecord.getFamilyId());
+            if (familyDTO != null) {
+                publicMomentVO.setFamilyName(familyDTO.getName());
+            }
+
+            publicMomentVO.setCreatedAt(momentRecord.getCreatedAt());
+            publicMomentVO.setContent(momentRecord.getContent());
+
+            List<MomentMedia> momentMedias = momentIdMomentMediaMap.getOrDefault(momentRecord.getId(), List.of());
+            List<MomentMediaVO> momentMediaVOS = new ArrayList<>(momentMedias.size());
+
+            for (MomentMedia momentMedia : momentMedias) {
+                MomentMediaVO momentMediaVO = new MomentMediaVO();
+                momentMediaVO.setContent(momentMedia.getContent());
+                momentMediaVO.setCreatedAt(momentMedia.getCreatedAt());
+                momentMediaVO.setType(momentMedia.getType());
+                momentMediaVOS.add(momentMediaVO);
+            }
+
+            publicMomentVO.setMediaFiles(momentMediaVOS);
+
+            publicMomentVOS.add(publicMomentVO);
+
+        }
+
+        vo.setMoments(publicMomentVOS);
 
         return vo;
 

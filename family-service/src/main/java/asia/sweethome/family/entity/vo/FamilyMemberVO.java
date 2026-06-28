@@ -11,6 +11,7 @@ import lombok.Data;
 @Data
 public class FamilyMemberVO {
     private Long userId;          // 成员的用户 id
+    private Long memberId;        // 成员的 memberId
     private String name;          // 昵称
     private String gender;        // 性别
     private String relationCode;  // 关系编码，如 F.F；前端据此本地化为称谓

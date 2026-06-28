@@ -1,17 +1,8 @@
 package asia.sweethome.chat.ws;
 
-import asia.sweethome.chat.entity.po.ConversationMember;
-import asia.sweethome.chat.entity.po.Message;
-import asia.sweethome.chat.entity.vo.MessageVO;
-import asia.sweethome.chat.service.ChatAssembler;
-import asia.sweethome.chat.service.IConversationMembersService;
-import asia.sweethome.chat.service.IMessagesService;
-import asia.sweethome.chat.ws.registry.LocalSessionRegistry;
-import asia.sweethome.chat.ws.registry.RedisMessageRelay;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
@@ -20,6 +11,16 @@ import org.springframework.web.socket.WebSocketSession;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import asia.sweethome.chat.entity.po.ConversationMember;
+import asia.sweethome.chat.entity.po.Message;
+import asia.sweethome.chat.entity.vo.MessageVO;
+import asia.sweethome.chat.service.ChatAssembler;
+import asia.sweethome.chat.service.IConversationMembersService;
+import asia.sweethome.chat.service.IMessagesService;
+import asia.sweethome.chat.ws.registry.LocalSessionRegistry;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 【Redis 消息广播 · 订阅端】
@@ -127,7 +128,9 @@ public class ChatRedisSubscriber implements MessageListener {
             return;
         }
         try {
-            session.sendMessage(new TextMessage(objectMapper.writeValueAsString(payload)));
+            session.sendMessage(
+                    new TextMessage(objectMapper.writeValueAsString(payload)
+                    ));
         } catch (Exception e) {
             log.warn("WebSocket 推送失败, sessionId={}", session.getId(), e);
         }

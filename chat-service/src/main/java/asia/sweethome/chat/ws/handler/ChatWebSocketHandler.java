@@ -1,16 +1,7 @@
 package asia.sweethome.chat.ws.handler;
 
-import asia.sweethome.chat.entity.po.Message;
-import asia.sweethome.chat.service.IConversationMembersService;
-import asia.sweethome.chat.service.IMessagesService;
-import asia.sweethome.chat.ws.*;
-import asia.sweethome.chat.ws.registry.LocalSessionRegistry;
-import asia.sweethome.chat.ws.registry.OnlineUserRegistry;
-import asia.sweethome.chat.ws.registry.RedisMessageRelay;
-import asia.sweethome.common.constants.MessageTypeConstants;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -18,6 +9,19 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.util.Map;
+
+import asia.sweethome.chat.entity.po.Message;
+import asia.sweethome.chat.service.ChatMessageKafkaDispatcher;
+import asia.sweethome.chat.service.IConversationMembersService;
+import asia.sweethome.chat.service.IMessagesService;
+import asia.sweethome.chat.ws.InboundFrame;
+import asia.sweethome.chat.ws.RedisMessageRelay;
+import asia.sweethome.chat.ws.WsSessionAttributes;
+import asia.sweethome.chat.ws.registry.LocalSessionRegistry;
+import asia.sweethome.chat.ws.registry.OnlineUserRegistry;
+import asia.sweethome.common.constants.MessageTypeConstants;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 【WebSocket 消息处理器】原始 WebSocket（非 STOMP）端点，帧格式见 doc/api.md 「五、WebSocket 接口」。
@@ -44,6 +48,9 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     private final IConversationMembersService conversationMembersService;
     private final IMessagesService messagesService;
     private final ObjectMapper objectMapper;                   // JSON 与对象互转
+
+    private final ChatMessageKafkaDispatcher chatMessageKafkaDispatcher;        // 对离线成员推送消息
+
 
     /** 连接建立：把这条连接登记到本机，并标记该用户在线、广播上线事件 */
     @Override
@@ -130,6 +137,12 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 
         // 广播「这个会话有新消息 id=xxx」，各实例的订阅者据此推给本地在线的成员
         redisMessageRelay.publishNewMessage(frame.getConversationId(), saved.getId());
+
+        // Kafka 给离线成员推送消息
+        chatMessageKafkaDispatcher.dispatch(
+                saved
+        );
+
     }
 
     /** 处理「已读上报」：把该用户在此会话的已读进度更新到指定消息 id */
@@ -149,6 +162,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
             case "IMAGE" -> MessageTypeConstants.IMAGE;
             case "VOICE" -> MessageTypeConstants.VOICE;
             case "SYSTEM" -> MessageTypeConstants.SYSTEM;
+            case "VIDEO" -> MessageTypeConstants.VIDEO;
             default -> MessageTypeConstants.TEXT;
         };
     }

@@ -1,6 +1,13 @@
 package asia.sweethome.family.controller.v1;
 
 
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import asia.sweethome.api.ChatApi;
 import asia.sweethome.api.UserApi;
 import asia.sweethome.api.entity.dto.UserDTO;
@@ -12,25 +19,17 @@ import asia.sweethome.family.entity.dto.JoinFamilyByInviteCodeDTO;
 import asia.sweethome.family.entity.po.Family;
 import asia.sweethome.family.entity.po.FamilyMember;
 import asia.sweethome.family.entity.po.FamilyRelation;
-import asia.sweethome.family.entity.vo.FamilyDetailVO;
-import asia.sweethome.family.entity.vo.FamilyLookupMemberVO;
-import asia.sweethome.family.entity.vo.FamilyLookupVO;
-import asia.sweethome.family.entity.vo.FamilyMemberVO;
-import asia.sweethome.family.entity.vo.InviteCodeVO;
+import asia.sweethome.family.entity.vo.*;
 import asia.sweethome.family.kinship.KinshipEngine;
 import asia.sweethome.family.kinship.RelationResult;
 import asia.sweethome.family.service.IFamiliesService;
 import asia.sweethome.family.service.IFamilyMembersService;
 import asia.sweethome.family.service.IFamilyRelationsService;
 import cn.hutool.core.util.StrUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * 【家庭控制器】
@@ -48,6 +47,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/v1/families")
 @Slf4j
 @RequiredArgsConstructor
+@Tag(name="家庭控制器")
 public class FamiliesController {
 
     private final IFamiliesService familiesService;
@@ -65,6 +65,7 @@ public class FamiliesController {
      * 凭邀请码「预览」家庭（还没真正加入）。前端加入前先看看这是哪个家、都有谁，
      * 以便选择「和谁建立什么关系」。
      */
+    @Operation(summary = "凭邀请码「预览」家庭")
     @GetMapping("/lookup")
     public Result<FamilyLookupVO> lookupByInviteCode(
             @RequestParam("inviteCode") String inviteCode
@@ -101,6 +102,7 @@ public class FamiliesController {
      * {@code @PathVariable} 把 URL 里的 {familyId} 取出来作为参数。
      * 访问前先校验「当前登录者是这个家庭的成员」，不是成员直接拒绝。
      */
+    @Operation(summary = "查看家庭详情")
     @GetMapping("/{familyId}")
     public Result<FamilyDetailVO> getFamilyDetail(
             @PathVariable("familyId") Long familyId
@@ -125,6 +127,60 @@ public class FamiliesController {
         familyDetailVO.setCreatedAt(family.getCreatedAt());
 
         return Result.success(familyDetailVO);
+
+    }
+
+    @Operation(summary = "得到该家庭下所有成员的用户id")
+    @GetMapping("/{familyId}/userids")
+    public Result<List<Long>> getFamilyMembersUserIds(
+            @PathVariable Long familyId
+    ){
+
+        requireActiveMember(familyId, UserContext.getUserId());
+
+        Family family = familiesService.getById(familyId);
+
+        if (family == null) {
+            throw new BusinessException(
+                    ErrorCode.NO_SUCH_FAMILY
+            );
+        }
+
+        List<Long> userIds = familyMembersService.lambdaQuery().eq(
+                FamilyMember::getFamilyId,
+                familyId
+        ).list().stream().map(
+                FamilyMember::getUserId
+        ).toList();
+
+        return Result.success( userIds );
+
+    }
+
+    @Operation(summary = "得到该家庭下所有成员的memberid")
+    @GetMapping("/{familyId}/memberid")
+    public Result<List<Long>> getFamilyMembersMemberIds(
+            @PathVariable Long familyId
+    ){
+
+        requireActiveMember(familyId, UserContext.getUserId());
+
+        Family family = familiesService.getById(familyId);
+
+        if (family == null) {
+            throw new BusinessException(
+                    ErrorCode.NO_SUCH_FAMILY
+            );
+        }
+
+        List<Long> memberIds = familyMembersService.lambdaQuery().eq(
+                FamilyMember::getFamilyId,
+                familyId
+        ).list().stream().map(
+                FamilyMember::getId
+        ).toList();
+
+        return Result.success( memberIds );
 
     }
 
@@ -173,6 +229,7 @@ public class FamiliesController {
         List<FamilyMemberVO> result = members.stream().map(m -> {
             FamilyMemberVO vo = new FamilyMemberVO();
             vo.setUserId(m.getUserId());
+            vo.setMemberId(m.getId());
             vo.setGender(m.getGender());
             vo.setRole(m.getRole());
             vo.setIsOnline(onlineUserIds.contains(m.getUserId()));
