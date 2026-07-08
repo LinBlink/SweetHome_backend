@@ -99,7 +99,15 @@ public enum ErrorCode {
     INVALID_REMIND_TIME(400, "提醒时间格式不正确"),
     NO_SUCH_HEALTH_RECORD(404, "健康记录不存在"),
     NOT_HEALTH_RECORD_OWNER(403, "仅本人可修改自己的健康记录"),
-    HEALTH_RECORD_DATE_CONFLICT(409, "该日期已存在同指标的记录");
+    HEALTH_RECORD_DATE_CONFLICT(409, "该日期已存在同指标的记录"),
+
+    // REDPACKET
+    INVALID_REDPACKET_AMOUNT(400, "红包数值太小了，改大一些"),
+    INVALID_REDPACKET(404, "红包不存在或已过期"),
+    REDPACKET_GRABBED_ALREADY(400, "已经抢过红包，不能再抢"),
+    REDPACKET_EMPTY(400, "红包被抢完了"),
+    REDPACKET_EXPIRED(400, "红包过期了"),
+    REDPACKET_NUMBER_MORE_THAN_CONVERSATION_MEMBERS(400, "红包数量大于对话成员数量");
 
 
     /** HTTP 风格的数字状态码，会写进 Result.code */

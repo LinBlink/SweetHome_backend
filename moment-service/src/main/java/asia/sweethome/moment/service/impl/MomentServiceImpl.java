@@ -204,7 +204,7 @@ public class MomentServiceImpl extends ServiceImpl<MomentMapper, Moment> impleme
         // 批量获得 MomentMedias
         List<MomentMedia> momentMediaList = momentMediaService.lambdaQuery()
                 .in(
-                        MomentMedia::getMomentId,
+                        !momentIds.isEmpty(), MomentMedia::getMomentId,
                         momentIds
                 ).list();
 

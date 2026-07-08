@@ -24,4 +24,13 @@ public interface ChatApi {
 
     // 从给定 userId 列表中筛选出当前在线（任意 chat-service 实例持有活跃 WebSocket 连接）的用户
     List<Long> filterOnlineUserIds(List<Long> userIds);
+
+    // 得到对话中的成员数量
+    Long getConversationMemberCount(Long conversation);
+
+    // 判断某个用户是否是对话中的成员
+    Boolean userExistsInConversation(Long userId, Long conversationId);
+
+    Long getConversationFamilyId(Long conversationId);
+
 }

@@ -1,7 +1,14 @@
 package asia.sweethome.chat.service.dubbo;
 
+import org.apache.dubbo.config.annotation.DubboService;
+
+import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
+
 import asia.sweethome.api.ChatApi;
 import asia.sweethome.chat.entity.po.Conversation;
+import asia.sweethome.chat.entity.po.ConversationMember;
 import asia.sweethome.chat.service.IConversationMembersService;
 import asia.sweethome.chat.service.IConversationsService;
 import asia.sweethome.chat.ws.registry.OnlineUserRegistry;
@@ -9,11 +16,6 @@ import asia.sweethome.common.constants.ConversationTypeConstants;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
-import org.apache.dubbo.config.annotation.DubboService;
-
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * 【ChatApi 的 Dubbo 实现】
@@ -77,6 +79,15 @@ public class ChatApiImpl implements ChatApi {
         return onlineUserRegistry.filterOnline(userIds);
     }
 
+    @Override
+    public Long getConversationMemberCount(Long conversation) {
+        return conversationMembersService.lambdaQuery()
+                .eq(
+                        ConversationMember::getConversationId,
+                        conversation
+                ).count();
+    }
+
     /** 找某家庭对应的群聊会话（一个家庭一个群） */
     private Conversation groupConversationOf(Long familyId) {
         return conversationsService.lambdaQuery()
@@ -85,4 +96,39 @@ public class ChatApiImpl implements ChatApi {
                 .isNull(Conversation::getDeletedAt)
                 .one();
     }
+
+    @Override
+    public Boolean userExistsInConversation(Long userId, Long conversationId) {
+
+        ConversationMember one = conversationMembersService.lambdaQuery().eq(
+                ConversationMember::getConversationId,
+                conversationId
+        ).eq(
+                ConversationMember::getUserId,
+                userId
+        ).isNull(
+                ConversationMember::getLeftAt
+        ).one();
+
+        return one != null;
+    }
+
+    @Override
+    public Long getConversationFamilyId(Long conversationId) {
+
+        Conversation one = conversationsService.lambdaQuery().eq(
+                Conversation::getId,
+                conversationId
+        ).isNull(
+                Conversation::getDeletedAt
+        ).one();
+
+        if (one == null || one.getFamilyId() == null) {
+            return null;
+        }
+
+        return one.getFamilyId();
+
+    }
+
 }

@@ -148,6 +148,17 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
                     throw new BusinessException(ErrorCode.SPOUSE_ALREADY_EXISTS);
                 }
                 addSpouseOf(familyId, newMemberId, anchor.getId());
+                // 回填：锚点已有的孩子，也要给新配偶补一条直接血亲边，
+                // 否则从孩子那一侧算回来，这位新配偶会被算成"配偶的儿子/女儿"而不是"儿子/女儿"
+                // ——跟上面 CHILD_OF 分支「锚点已有配偶时补边」是同一件事的镜像场景。
+                familyRelationsService.lambdaQuery()
+                        .eq(FamilyRelation::getRelationType, RelationTypeConstants.PARENT_OF)
+                        .eq(FamilyRelation::getSubjectMemberId, anchor.getId())
+                        .isNull(FamilyRelation::getDeletedAt)
+                        .list()
+                        .stream()
+                        .map(FamilyRelation::getObjectMemberId)
+                        .forEach(childId -> addParentOf(familyId, newMemberId, childId));
             }
             // 新成员是锚点的「兄弟姐妹」：本质是「和锚点共享父母」，
             // 所以把锚点的每一位父母，也都设为新成员的父母
