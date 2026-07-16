@@ -107,7 +107,12 @@ public enum ErrorCode {
     REDPACKET_GRABBED_ALREADY(400, "已经抢过红包，不能再抢"),
     REDPACKET_EMPTY(400, "红包被抢完了"),
     REDPACKET_EXPIRED(400, "红包过期了"),
-    REDPACKET_NUMBER_MORE_THAN_CONVERSATION_MEMBERS(400, "红包数量大于对话成员数量");
+    REDPACKET_NUMBER_MORE_THAN_CONVERSATION_MEMBERS(400, "红包数量大于对话成员数量"),
+
+    // WALLET
+    INSUFFICIENT_FUND(400, "用户余额不足");
+
+    ;
 
 
     /** HTTP 风格的数字状态码，会写进 Result.code */

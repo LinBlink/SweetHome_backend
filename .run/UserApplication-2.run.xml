@@ -4,7 +4,7 @@
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <module name="user-service" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="asia.sweethome.user.UserApplication" />
-    <option name="VM_PARAMETERS" value="-DServer.port=8092 -Ddubbo.protocol.port=20891 -Ddubbo.application.qos-port=22229" />
+    <option name="VM_PARAMETERS" value="-DServer.port=8092 -Ddubbo.protocol.port=20891 -Ddubbo.application.qos-port=22231" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

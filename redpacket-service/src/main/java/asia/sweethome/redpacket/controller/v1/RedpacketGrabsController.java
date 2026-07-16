@@ -13,7 +13,9 @@ import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 import asia.sweethome.redpacket.entity.dto.RedPacketGrabDTO;
 import asia.sweethome.redpacket.entity.po.RedpacketGrab;
+import asia.sweethome.redpacket.entity.vo.RedpacketGrabVO;
 import asia.sweethome.redpacket.service.IRedpacketGrabsService;
+import cn.hutool.core.bean.BeanUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +38,7 @@ public class RedpacketGrabsController {
 
     @Operation(summary = "抢红包")
     @PostMapping
-    public Result<RedpacketGrab> grabRedpacket(
+    public Result<RedpacketGrabVO> grabRedpacket(
             @RequestBody
             RedPacketGrabDTO
             dto
@@ -55,7 +57,12 @@ public class RedpacketGrabsController {
                 userId, redpacketId
         );
 
-        return Result.success(redpacketGrab);
+        return Result.success(
+                BeanUtil.copyProperties(
+                        redpacketGrab,
+                        RedpacketGrabVO.class
+                )
+        );
 
     }
 

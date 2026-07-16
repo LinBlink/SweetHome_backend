@@ -1,7 +1,8 @@
 package asia.sweethome.user.service;
 
-import asia.sweethome.user.entity.po.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import asia.sweethome.user.entity.po.User;
 
 /**
  * 【用户表 服务接口】
@@ -19,4 +20,7 @@ public interface IUsersService extends IService<User> {
 
     // 部分更新个人资料（昵称、头像）
     User updateProfile(Long userId, String name, String avatarUrl);
+
+    boolean increaseBalance( Long userId, Long amount );
+
 }

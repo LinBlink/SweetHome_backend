@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 
 import asia.sweethome.api.ChatApi;
+import asia.sweethome.api.UserApi;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 import asia.sweethome.redpacket.controller.constant.RedpacketConstant;
@@ -31,6 +32,9 @@ public class RedpacketServiceImpl extends ServiceImpl<RedpacketMapper, Redpacket
 
     @DubboReference
     private ChatApi chatApi;
+
+    @DubboReference
+    private UserApi userApi;
 
     @Override
     // REQUIRES_NEW 的事务传播行为：如果外层有事务将外层事务挂起，该任务作为新事务。如果外层没有事务，自己作为新事务
@@ -94,8 +98,10 @@ public class RedpacketServiceImpl extends ServiceImpl<RedpacketMapper, Redpacket
         redpacket.setConversationId(
                 conversationId
         );
-        // 这里的 enum 怎么写
-        redpacket.setStatus("ongoing");
+
+        redpacket.setStatus(
+                RedpacketConstant.REDPACKET_STATUS_ONGOING
+        );
         redpacket.setExpiredAt(
                 now.plusDays(1)
         );
@@ -103,9 +109,15 @@ public class RedpacketServiceImpl extends ServiceImpl<RedpacketMapper, Redpacket
                 now
         );
 
-        save( redpacket );
+        // 扣减用户余额
+        // todo 分布式事务
+        if (!userApi.deductBalance( userId, redpacket.getTotalAmount() )) {
+            throw new BusinessException(
+                    ErrorCode.INSUFFICIENT_FUND
+            );
+        }
 
-        // todo 用户余额扣减
+        save( redpacket );
 
         return redpacket;
 

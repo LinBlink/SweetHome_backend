@@ -14,6 +14,7 @@ public class MessageTypeConstants {
     public static final String AUDIO = "audio";   // 音频消息
     public static final String VIDEO = "video";   // 视频消息
     public static final String SYSTEM = "system"; // 系统消息（如「XX 加入了家庭」）
+    public static final String REDPACKET = "redpacket"; // 红包消息
 
     public static final List<String> MESSAGE_TYPE_LIST = List.of(
             MessageTypeConstants.IMAGE,
@@ -21,7 +22,8 @@ public class MessageTypeConstants {
             MessageTypeConstants.VOICE,
             MessageTypeConstants.AUDIO,
             MessageTypeConstants.VIDEO,
-            MessageTypeConstants.SYSTEM
+            MessageTypeConstants.SYSTEM,
+            MessageTypeConstants.REDPACKET
     );
 
 }

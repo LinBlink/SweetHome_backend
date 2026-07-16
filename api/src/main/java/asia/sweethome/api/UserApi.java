@@ -29,4 +29,8 @@ public interface UserApi {
     // 按一批用户 id 批量查用户（如群成员列表），避免逐个查询的 N 次网络往返
     List<UserDTO> findUsersByIds(List<Long> userIds);
 
+    boolean deductBalance(Long userId, Long amount);
+
+    boolean increaseBalance(Long userId, Long amount );
+
 }

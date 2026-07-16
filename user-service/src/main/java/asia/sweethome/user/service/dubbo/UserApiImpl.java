@@ -314,5 +314,24 @@ public class UserApiImpl implements UserApi {
                 .toList();
     }
 
+    @Override
+    public boolean deductBalance(Long userId, Long amount) {
+        return usersService.lambdaUpdate()
+                .eq(
+                        User::getId,
+                        userId
+                ).ge(
+                        User::getBalance,
+                        amount
+                ).setSql(
+                        "balance = balance - " + amount
+                ).update();
+    }
+
+    @Override
+    public boolean increaseBalance(Long userId, Long amount) {
+        return usersService.increaseBalance( userId, amount );
+    }
+
 
 }

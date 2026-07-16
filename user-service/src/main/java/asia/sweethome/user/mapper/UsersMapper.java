@@ -1,7 +1,8 @@
 package asia.sweethome.user.mapper;
 
-import asia.sweethome.user.entity.po.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import asia.sweethome.user.entity.po.User;
 
 /**
  * 【users 表的数据访问接口（Mapper）】
@@ -12,5 +13,4 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2026-06-30
  */
 public interface UsersMapper extends BaseMapper<User> {
-
 }

@@ -4,7 +4,6 @@ package asia.sweethome.redpacket.controller.v1;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import asia.sweethome.common.context.UserContext;
@@ -12,8 +11,9 @@ import asia.sweethome.common.entity.vo.Result;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 import asia.sweethome.redpacket.entity.dto.RedpacketDTO;
-import asia.sweethome.redpacket.entity.po.Redpacket;
+import asia.sweethome.redpacket.entity.vo.RedpacketVO;
 import asia.sweethome.redpacket.service.IRedpacketService;
+import cn.hutool.core.bean.BeanUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -41,7 +41,7 @@ public class RedpacketController {
      */
     @Operation(summary = "创建红包")
     @PostMapping
-    public Result<Redpacket> createRedpacket(
+    public Result<RedpacketVO> createRedpacket(
             @RequestBody
             RedpacketDTO
             dto
@@ -70,8 +70,10 @@ public class RedpacketController {
 
         // 良好实践：保证只要是传给service的，都必须是有效的参数
         return Result.success(
-
-                redpacketService.createRedpacket( userId, dto )
+                BeanUtil.copyProperties(
+                        redpacketService.createRedpacket( userId, dto ),
+                        RedpacketVO.class
+                )
         );
 
 

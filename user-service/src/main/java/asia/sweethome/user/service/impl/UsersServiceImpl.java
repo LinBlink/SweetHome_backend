@@ -1,17 +1,19 @@
 package asia.sweethome.user.service.impl;
 
 import static asia.sweethome.common.constants.KafkaTopicConstants.TOPIC_USER_PROFILE_CHANGED;
+import static asia.sweethome.user.constant.RedisConstants.CACHE_DOUBLE_DELETE_MS;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.benmanes.caffeine.cache.Cache;
 
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.scheduling.TaskScheduler;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronization;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -43,9 +45,8 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, User> implements 
 
     private final StringRedisTemplate stringRedisTemplate;
     private final Cache<Long, Optional<UserDTO>> userDTOCache;
-    private final KafkaTemplate<String, String> kafkaTemplate;
     private final IOutboxMessagesService outboxMessagesService;
-
+    private final TaskScheduler taskScheduler;
     /** 按手机号查用户，查不到直接抛「用户不存在」，让调用方不必重复判空 */
     @Override
     public User findUserByPhone(String phone) {
@@ -100,6 +101,7 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, User> implements 
         );
 
         // 事务提交成功后清空缓存
+        // TransactionSynchronizationManager.registerSynchronization 的作用是在事务生命周期的特定节点执行自定义逻辑
         TransactionSynchronizationManager.registerSynchronization(
                 new TransactionSynchronization() {
                     @Override
@@ -113,6 +115,30 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, User> implements 
 
                         // L1
                         userDTOCache.invalidate( userId );
+
+                        // todo 模拟延迟双删，日后配置主从加强
+                        taskScheduler.schedule(
+                                ()->{
+                                    // 只清空L2，L1缓存通过 Kafka 消息清空
+                                    stringRedisTemplate.delete(
+                                            RedisConstants.userDTOCacheKey(
+                                                    userId
+                                            )
+                                    );
+
+                                    /* Kafka 消息清空 OUTBOX 已经覆盖，于是舍弃
+                                    kafkaTemplate.send(
+                                      TOPIC_USER_PROFILE_CHANGED,
+                                      String.valueOf(userId),
+                                      String.valueOf(userId)
+                                    );
+                                    */
+                                },
+                                Instant.now().plusMillis(
+                                        CACHE_DOUBLE_DELETE_MS
+                                )
+                        );
+
                     }
                 }
         );
@@ -147,6 +173,24 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, User> implements 
 
 
         return user;
+    }
+
+
+    /**
+     * 充值接口
+     * @param userId
+     * @param amount
+     * @return 充值是否成功
+     */
+    @Override
+    public boolean increaseBalance(Long userId, Long amount) {
+        return lambdaUpdate().eq(
+                User::getId,
+                userId
+        ).setSql(
+                amount != null && amount >0,
+                "balance = balance +" + amount
+        ).update();
     }
 
 }

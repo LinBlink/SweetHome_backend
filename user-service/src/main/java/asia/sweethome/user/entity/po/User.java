@@ -3,12 +3,13 @@ package asia.sweethome.user.entity.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
  * 【users 表实体（PO）】
@@ -62,5 +63,9 @@ public class User implements Serializable {
      */
     private LocalDateTime deletedAt;
 
+    /**
+     * 用户钱包余额
+     */
+    private Long balance;
 
 }
