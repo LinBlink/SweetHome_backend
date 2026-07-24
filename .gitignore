@@ -41,3 +41,6 @@ build/
 ### LOG ###
 logs/
 *.log
+
+### DOC ###
+doc
