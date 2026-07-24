@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import asia.sweethome.api.ChatApi;
+import asia.sweethome.api.UserApi;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 import asia.sweethome.redpacket.config.LuaScriptLoader;
@@ -42,6 +43,9 @@ public class RedpacketGrabsServiceImpl extends ServiceImpl<RedpacketGrabsMapper,
 
     @DubboReference
     private ChatApi chatApi;
+
+    @DubboReference
+    private UserApi userApi;
 
     private final IRedpacketService redpacketService;
 
@@ -258,6 +262,10 @@ public class RedpacketGrabsServiceImpl extends ServiceImpl<RedpacketGrabsMapper,
                 grab
         );
 
+        // todo 分布式事务
+        userApi.increaseBalance( userId, amount );
+
+        // 更新红包中余额、个数信息
         redpacketService.lambdaUpdate()
                 .eq(Redpacket::getId,
                         redpacketId)
@@ -267,6 +275,7 @@ public class RedpacketGrabsServiceImpl extends ServiceImpl<RedpacketGrabsMapper,
                         "remaining_count = remaining_count - 1"
                 ).update();
 
+        // 如果红包被抢光了，宣布终止
         redpacketService.lambdaUpdate()
                 .eq(
                         Redpacket::getId,
@@ -281,6 +290,11 @@ public class RedpacketGrabsServiceImpl extends ServiceImpl<RedpacketGrabsMapper,
 
     }
 
+    /**
+     * 查看我抢到的所有红包
+     * @param userId
+     * @return
+     */
     @Override
     public List<RedpacketGrabVO> getRedpacketsIGrabbed(Long userId) {
 
