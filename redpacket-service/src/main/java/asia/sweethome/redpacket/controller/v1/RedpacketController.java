@@ -1,10 +1,9 @@
 package asia.sweethome.redpacket.controller.v1;
 
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import asia.sweethome.common.context.UserContext;
 import asia.sweethome.common.entity.vo.Result;
@@ -33,6 +32,7 @@ import lombok.RequiredArgsConstructor;
 public class RedpacketController {
 
     private final IRedpacketService redpacketService;
+
 
     /**
      * 红包创建接口
@@ -75,8 +75,36 @@ public class RedpacketController {
                         RedpacketVO.class
                 )
         );
+    }
 
+    @Operation(summary = "查询红包详细信息")
+    @GetMapping("/{id}")
+    public Result<RedpacketVO> getRedpacketDetail(@PathVariable("id") Long redpacketId) {
+
+        if (redpacketId == null) {
+            throw new BusinessException(
+                    ErrorCode.PARAM_ERROR
+            );
+        }
+
+        Long userId = UserContext.getUserId();
+
+        return Result.success(
+                redpacketService.getRedpacketDetail(userId, redpacketId)
+        );
+    }
+
+    @Operation(summary = "查看我发出的红包")
+    @GetMapping("/i-sent")
+    public Result<List<RedpacketVO>> getRedpacketsISent(){
+
+        Long userId = UserContext.getUserId();
+        return Result.success(
+                redpacketService.getRedpacketsISent( userId )
+        );
 
     }
+
+
 
 }

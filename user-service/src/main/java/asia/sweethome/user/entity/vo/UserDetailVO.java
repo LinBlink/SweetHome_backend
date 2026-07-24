@@ -23,4 +23,5 @@ public class UserDetailVO {
     private String familyName; // 所在家庭名称
     private String role;       // 在家庭中的角色 admin/member
     private String gender;     // 性别 male/female
+    private Long balance;      // 用户余额
 }

@@ -1,4 +1,4 @@
-package asia.sweethome.redpacket.controller.constant;
+package asia.sweethome.redpacket.constant;
 
 /**
  * @description:

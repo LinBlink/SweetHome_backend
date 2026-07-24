@@ -1,11 +1,9 @@
 package asia.sweethome.redpacket.controller.v1;
 
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 import asia.sweethome.common.context.UserContext;
 import asia.sweethome.common.entity.vo.Result;
@@ -65,5 +63,34 @@ public class RedpacketGrabsController {
         );
 
     }
+
+    @Operation(summary = "查看详细的抢红包信息")
+    @GetMapping
+    public Result<List<RedpacketGrabVO>> getRedpacketGrabDetail(
+            @RequestParam("redpacketId") Long redpacketId
+    ) {
+        if (redpacketId == null) {
+            throw new BusinessException(
+                    ErrorCode.PARAM_ERROR
+            );
+        }
+
+        Long userId = UserContext.getUserId();
+
+        return Result.success(
+                redpacketGrabsService.getRedpacketGrabDetail(userId, redpacketId)
+        );
+
+    }
+
+    @Operation(summary = "查看我收到的红包")
+    @GetMapping("/i-received")
+    public Result<List<RedpacketGrabVO>> getRedpacketsIGrabbed(){
+        Long userId = UserContext.getUserId();
+        return Result.success(
+                redpacketGrabsService.getRedpacketsIGrabbed( userId )
+        );
+    }
+
 
 }

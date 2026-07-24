@@ -188,7 +188,7 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, User> implements 
                 User::getId,
                 userId
         ).setSql(
-                amount != null && amount >0,
+                amount != null && amount >= 0,
                 "balance = balance +" + amount
         ).update();
     }

@@ -19,7 +19,7 @@ public class InboundFrame {
     private String type;              // 帧类型（必填），决定其它字段如何解读
     private Long conversationId;      // 目标会话 id
     private String content;           // 消息内容（发消息时用）
-    private String messageType;       // 消息类型 text/image/voice/system
+    private String messageType;       // 消息类型 text/image/voice/system/redpacket
     private String clientId;          // 客户端生成的唯一 id，用于去重和乐观更新回显
     private Long lastReadMessageId;   // 已读到的消息 id（上报已读时用）
 }

@@ -1,5 +1,8 @@
 package asia.sweethome.user.controller.v1;
 
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.web.bind.annotation.*;
+
 import asia.sweethome.api.FamilyApi;
 import asia.sweethome.api.entity.dto.FamilyDTO;
 import asia.sweethome.common.context.UserContext;
@@ -11,12 +14,6 @@ import asia.sweethome.user.service.IUsersService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 【用户控制器】
@@ -70,6 +67,7 @@ public class UserController {
         vo.setName(user.getName());
         vo.setPhone(user.getPhone());
         vo.setAvatarUrl(user.getAvatarUrl());
+        vo.setBalance(user.getBalance());
 
         // 家庭相关信息来自 family-service（用户必属于某个家庭，否则这些调用会抛业务异常）
         FamilyDTO family = familyApi.getFamilyByUserId(userId);

@@ -60,6 +60,11 @@ spring:
               predicates:
                 - Path=/v1/health/**
 
+            - id: redpacket-route
+              uri: lb://redpacket-service
+              predicates:
+                - Path=/v1/redpacket/**,/v1/redpacket-grabs/**
+
           discovery:
             locator:
               enabled: false

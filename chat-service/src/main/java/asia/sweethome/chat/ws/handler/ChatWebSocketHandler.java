@@ -114,6 +114,9 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
      * 这条路径，保证多设备、多实例看到的消息完全一致（自己的其它设备也会收到）。
      */
     private void handleSendMessage(WebSocketSession session, Long userId, InboundFrame frame) {
+
+        log.info("收到新消息 {}", frame);
+
         if (frame.getConversationId() == null) {
             sendError(session, "PARAM_ERROR", "缺少 conversationId");
             return;
@@ -128,7 +131,10 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
             return;
         }
 
+        // 得到消息类型
         String dbType = toDbMessageType(frame.getMessageType());
+
+
 
         // 落库（内部按 clientId 去重，重复投递不会存两条）
         Message saved = messagesService.send(
@@ -158,11 +164,12 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
         if (messageType == null) {
             return MessageTypeConstants.TEXT;
         }
-        return switch (messageType.toUpperCase()) {
-            case "IMAGE" -> MessageTypeConstants.IMAGE;
-            case "VOICE" -> MessageTypeConstants.VOICE;
-            case "SYSTEM" -> MessageTypeConstants.SYSTEM;
-            case "VIDEO" -> MessageTypeConstants.VIDEO;
+        return switch (messageType.toLowerCase()) {
+            case "image" -> MessageTypeConstants.IMAGE;
+            case "voice" -> MessageTypeConstants.VOICE;
+            case "system" -> MessageTypeConstants.SYSTEM;
+            case "video" -> MessageTypeConstants.VIDEO;
+            case "redpacket" -> MessageTypeConstants.REDPACKET;
             default -> MessageTypeConstants.TEXT;
         };
     }
