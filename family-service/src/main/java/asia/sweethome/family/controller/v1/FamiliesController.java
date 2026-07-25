@@ -191,8 +191,7 @@ public class FamiliesController {
      */
     @GetMapping("/{familyId}/members")
     public Result<List<FamilyMemberVO>> getFamilyMembers(
-            @PathVariable("familyId") Long familyId,
-            @RequestHeader(value = "Accept-Language", required = false) String acceptLanguage
+            @PathVariable("familyId") Long familyId
     ) {
         // viewerMember 就是「我」，后面要以我的视角计算对每个人的称谓
         Long viewerUserId = UserContext.getUserId();
@@ -226,6 +225,13 @@ public class FamiliesController {
         // lambda 里要用的外部变量必须是 final（或事实 final），故另赋一个不可变引用
         final List<Long> onlineUserIds = resolvedOnlineUserIds;
 
+        // 一次遍历算出「我」对全家每个人的称谓。
+        // 注意别写回原来那样在下面的 map 循环里逐个调 computeRelation——那样每个成员都会把整张
+        // 关系图重建一遍再遍历一遍，N 个成员就是 N 次重复劳动；而图遍历本来就是单源多汇的，
+        // 从我出发跑一次，到每个人的路径就都有了。
+        Map<Long, RelationResult> relationsByMemberId =
+                kinshipEngine.computeRelations(relations, membersById, viewerMember.getId());
+
         List<FamilyMemberVO> result = members.stream().map(m -> {
             FamilyMemberVO vo = new FamilyMemberVO();
             vo.setUserId(m.getUserId());
@@ -240,9 +246,7 @@ public class FamiliesController {
                 vo.setAvatarUrl(user.getAvatarUrl());
             }
 
-            RelationResult relation = kinshipEngine.computeRelation(
-                    relations, membersById, viewerMember.getId(), m.getId(), acceptLanguage
-            );
+            RelationResult relation = relationsByMemberId.getOrDefault(m.getId(), RelationResult.NONE);
             vo.setRelationCode(relation.relationCode());
 
             return vo;

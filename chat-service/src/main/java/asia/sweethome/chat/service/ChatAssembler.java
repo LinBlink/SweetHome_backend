@@ -63,6 +63,9 @@ public class ChatAssembler {
                 new RelationQueryDTO(viewerUserId, message.getSenderId(), acceptLanguage)
         );
         vo.setSenderRelationCode(relation.getRelationCode());
+        // 原样透传，不要在 null 时兜底成 male：前端只有拿到真实性别才能把 "S" 翻成丈夫/妻子，
+        // 拿不到时它会显示中性文案，这比猜错性别把称谓叫错要好。
+        vo.setSenderGender(relation.getTargetGender());
 
         return vo;
     }
@@ -127,6 +130,7 @@ public class ChatAssembler {
                         new RelationQueryDTO(viewerUserId, counterpartId, acceptLanguage)
                 );
                 vo.setRelationCode(relation.getRelationCode());
+                vo.setOtherUserGender(relation.getTargetGender());
                 vo.setAvatarColor(AvatarUtil.color(counterpartId));
 
             }

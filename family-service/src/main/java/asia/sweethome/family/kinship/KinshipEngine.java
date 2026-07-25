@@ -1,267 +1,337 @@
 package asia.sweethome.family.kinship;
 
-import asia.sweethome.common.constants.RelationTypeConstants;
-import asia.sweethome.common.constants.UserConstants;
-import asia.sweethome.family.entity.po.FamilyMember;
-import asia.sweethome.family.entity.po.FamilyRelation;
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
+import java.util.PriorityQueue;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import asia.sweethome.common.constants.RelationTypeConstants;
+import asia.sweethome.common.constants.UserConstants;
+import asia.sweethome.family.entity.po.FamilyMember;
+import asia.sweethome.family.entity.po.FamilyRelation;
+
 /**
- * 【亲属称谓计算引擎】见 doc/api.md 「七、亲属称谓计算算法」。
+ * 【亲属称谓计算引擎】见 doc/API.md 「十一、亲属称谓计算算法」。
  * <p>
  * 一句话原理：把家庭看成一张「关系网络图」——每个成员是一个点，父子/夫妻是点之间的连线。
- * 要算「我」怎么称呼「某人」，就在这张图上找从我到他的一条最短路径，把沿途每一步翻译成
- * 一个字母 token（F=父、M=母、S=配偶、Son=儿、Dau=女），拼起来就是一条「关系编码」，
- * 例如 F.F = 爸爸的爸爸 = 爷爷。步骤：
+ * 要算「我」怎么称呼「某人」，就在这张图上找从我到他的一条路径，把沿途每一步翻译成一个
+ * token（{@link KinshipToken}），拼起来就是一条「关系编码」，例如 F.F = 爸爸的爸爸 = 爷爷。
  * <ol>
- *   <li>buildGraph：把数据库里的边加载成邻接表（血亲边排在姻亲边前，保证优先走血亲）；</li>
- *   <li>bfs：广度优先搜索找最短路径，得到沿途的节点和 token；</li>
- *   <li>reduce：把「上一辈再下一辈」这种绕路折叠成「兄弟姐妹」（如 F.Son → 兄/弟）；</li>
- *   <li>localize：把最终的关系编码翻译成人类可读的称谓文字。</li>
+ *   <li>{@link #buildGraph}：把数据库里的边加载成邻接表；</li>
+ *   <li>{@link #shortestPaths}：从 viewer 出发一次遍历，求出到<b>所有</b>成员的规范最短路径；</li>
+ *   <li>{@link #reduce}：把「上一辈再下一辈」折成兄弟姐妹、「下一辈再上一辈」折成配偶；</li>
+ *   <li>用「.」拼接成 relationCode。本地化完全交给前端，后端不翻译（见 API.md 11.6）。</li>
  * </ol>
+ *
+ * <h3>为什么不是普通 BFS</h3>
+ * 旧实现用「谁先摸到门把手谁进」的 BFS（visited-on-enqueue），于是选出哪条路径取决于
+ * 数据库返回边的顺序——同一份数据换个执行计划就可能算出不同的称谓，且线上无法复现。
+ * 现在改成按一个<b>全序</b>挑路径（{@link #PATH_ORDER}）：先比跳数、再比姻亲跳数（血亲优先）、
+ * 再比 token 字面量、最后比成员 id。这个顺序里没有任何一项依赖输入顺序，因此
+ * <b>把 relations 列表任意打乱，结果都完全一致</b>（见 KinshipEngineTest 的乱序测试）。
  */
 @Component
 public class KinshipEngine {
 
-    // 关系路径上每一步用到的 token（方向 + 性别）
-    private static final String TOKEN_FATHER = "F";    // 向上一步，且对方是男性 → 父
-    private static final String TOKEN_MOTHER = "M";    // 向上一步，且对方是女性 → 母
-    private static final String TOKEN_SPOUSE = "S";    // 横向一步 → 配偶
-    private static final String TOKEN_SON = "Son";     // 向下一步，且对方是男性 → 儿子
-    private static final String TOKEN_DAUGHTER = "Dau";// 向下一步，且对方是女性 → 女儿
+    private static final Logger log = LoggerFactory.getLogger(KinshipEngine.class);
+
+    /** viewer 就是 target 自己时的关系编码 */
+    public static final String SELF_CODE = "SELF";
 
     /**
-     * 图里的一条「有向」边。
-     * @param to    这条边指向的节点（成员 id）
-     * @param token 走这条边对应的称谓字母
-     * @param blood true=血亲边(父子)，false=姻亲边(夫妻)
+     * 图里的一条「有向」边：走到 to 这个成员，对应 token 这一步。
      */
-    private record Edge(Long to, String token, boolean blood) {
+    private record Edge(Long to, KinshipToken token) {
     }
 
     /**
-     * 计算 viewer 对 target 的称谓。返回关系编码 + 可读称谓；无路径则返回 NONE。
-     * @param relations 关系原材料
-     * @param membersById 家庭成员id原材料
-     * @param viewerMemberId 称呼的主体
-     * @param targetMemberId 称呼的对象
-     * @param acceptLanguage 保留参数，当前未使用（称谓本地化已下放前端，后端只产出 relationCode）
-     * @return 返回对象对于主体是什么关系
+     * 一条候选路径。nodes 比 tokens 多一个元素（nodes[0] 是起点 viewer）。
+     * @param affinalHops 路径里姻亲（配偶）边的条数，选路时用来实现「血亲优先」
+     */
+    private record Candidate(List<Long> nodes, List<KinshipToken> tokens, int affinalHops) {
+    }
+
+    /**
+     * 【规范路径全序】决定「多条路径都能到达时选哪条」，是本引擎可复现的根基。
+     * 依次比较：① 跳数（越短越好）→ ② 姻亲跳数（血亲优先）→ ③ token 字面量序 → ④ 成员 id 序。
+     * 后两项是纯粹的 tie-break，保证任何两条不同路径都能比出胜负，从而结果唯一。
+     */
+    private static final Comparator<Candidate> PATH_ORDER =
+            Comparator.<Candidate>comparingInt(c -> c.tokens().size())
+                    .thenComparingInt(Candidate::affinalHops)
+                    .thenComparing(Candidate::tokens, KinshipEngine::compareTokens)
+                    .thenComparing(Candidate::nodes, KinshipEngine::compareIds);
+
+    /**
+     * 计算 viewer 对 target 的称谓。无路径则返回 {@link RelationResult#NONE}。
+     * <p>
+     * 只需要一个 target 时用这个；要算「我对全家每个人」的称谓请用
+     * {@link #computeRelations}——那个只跑一次遍历，不要在循环里调本方法。
      */
     public RelationResult computeRelation(
             List<FamilyRelation> relations,
             Map<Long, FamilyMember> membersById,
             Long viewerMemberId,
-            Long targetMemberId,
-            String acceptLanguage
+            Long targetMemberId
     ) {
-
-        // 规范检查
         if (viewerMemberId == null || targetMemberId == null) {
             return RelationResult.NONE;
         }
-
-        // 特例：查自己对自己 → SELF
-        if (viewerMemberId.equals(targetMemberId)) {
-            return new RelationResult("SELF");
-        }
-
-        // 1. 建图
-        Map<Long, List<Edge>> graph = buildGraph(relations, membersById);
-
-        // 2. BFS 找最短路径，结果写进 nodes（沿途节点）和 tokens（沿途称谓字母）
-        List<Long> nodes = new ArrayList<>();
-        List<String> tokens = new ArrayList<>();
-        boolean found = bfs(graph, viewerMemberId, targetMemberId, nodes, tokens);
-
-        if (!found) {
-            return RelationResult.NONE;   // 两人不连通，无称谓
-        }
-
-        // 3. 折叠化简（把绕路的同辈关系合并成兄弟姐妹）
-        reduce(nodes, tokens, membersById);
-
-        // 4. 用「.」把 tokens 连起来得到关系编码。可读称谓交给前端按 code 本地化，后端不再翻译。
-        String relationCode = String.join(".", tokens);
-
-        return new RelationResult(relationCode);
+        return computeRelations(relations, membersById, viewerMemberId)
+                .getOrDefault(targetMemberId, RelationResult.NONE);
     }
 
     /**
-     * 完成关系图构建
-     * @param relations 关系（边）
-     * @param membersById 节点
-     * @return
+     * 【批量】一次算出 viewer 对家里<b>所有</b>可达成员的称谓。
+     * <p>
+     * 图遍历天生就是「单源多汇」：从 viewer 出发跑一次，到每个人的路径就都有了。
+     * 旧代码在成员列表的循环里逐个调 computeRelation，每次都重新建一遍图、重新遍历一次，
+     * N 个成员就是 N 次重复劳动（O(N·E)）；改成批量后是 O(E)，20 人的家庭省掉 19 次建图。
+     *
+     * @return memberId → 称谓结果，只含可达成员（含 viewer 自己 → SELF）；不可达的成员不在 map 里
+     */
+    public Map<Long, RelationResult> computeRelations(
+            List<FamilyRelation> relations,
+            Map<Long, FamilyMember> membersById,
+            Long viewerMemberId
+    ) {
+        if (viewerMemberId == null) {
+            return Map.of();
+        }
+
+        Map<Long, List<Edge>> graph = buildGraph(relations, membersById);
+
+        Map<Long, RelationResult> results = new HashMap<>();
+        results.put(viewerMemberId, new RelationResult(SELF_CODE));
+
+        for (Map.Entry<Long, Candidate> entry : shortestPaths(graph, viewerMemberId).entrySet()) {
+            Candidate path = entry.getValue();
+            List<KinshipToken> reduced = reduce(path.nodes(), path.tokens(), membersById);
+
+            // 折叠有可能把整条路径消解干净（理论上只在 target 就是 viewer 时发生，已被上面提前处理）
+            if (reduced.isEmpty()) {
+                results.put(entry.getKey(), new RelationResult(SELF_CODE));
+                continue;
+            }
+
+            StringBuilder code = new StringBuilder();
+            for (KinshipToken token : reduced) {
+                if (code.length() > 0) {
+                    code.append('.');
+                }
+                code.append(token.getCode());
+            }
+            results.put(entry.getKey(), new RelationResult(code.toString()));
+        }
+
+        return results;
+    }
+
+    /**
+     * 把关系表变成邻接表。
+     * <p>
+     * 两类边都必须校验「两端成员真的存在」：调用方给的 members 是<b>已过滤退出成员</b>的列表，
+     * 而 relations 只按 deletedAt 过滤——一个人退出家庭但夫妻关系行没同步软删，就会变成一个
+     * 「幽灵节点」留在图里，还能被当成中转站走过去，最后静默算出错误称谓。旧实现只在血亲分支
+     * 做了这个校验，姻亲分支一行都没做。
      */
     private Map<Long, List<Edge>> buildGraph(List<FamilyRelation> relations, Map<Long, FamilyMember> membersById) {
         Map<Long, List<Edge>> graph = new HashMap<>();
-
-        // 先加全部血亲边（PARENT_OF），保证同一节点的邻接表中血亲边排在姻亲边之前
-        for (FamilyRelation rel : relations) {
-            if (!RelationTypeConstants.PARENT_OF.equals(rel.getRelationType())) {
-                continue;
-            }
-            Long parentId = rel.getSubjectMemberId();
-            Long childId = rel.getObjectMemberId();
-
-            FamilyMember child = membersById.get(childId);
-            FamilyMember parent = membersById.get(parentId);
-            if (child == null || parent == null) {
-                continue;
-            }
-
-            String downToken = UserConstants.MALE.equals(child.getGender()) ? TOKEN_SON : TOKEN_DAUGHTER;
-            String upToken = UserConstants.MALE.equals(parent.getGender()) ? TOKEN_FATHER : TOKEN_MOTHER;
-
-            graph.computeIfAbsent(parentId, k -> new ArrayList<>()).add(new Edge(childId, downToken, true));
-            graph.computeIfAbsent(childId, k -> new ArrayList<>()).add(new Edge(parentId, upToken, true));
+        if (relations == null) {
+            return graph;
         }
 
-        // 再加姻亲边（SPOUSE_OF），排在血亲边之后
         for (FamilyRelation rel : relations) {
-            if (!RelationTypeConstants.SPOUSE_OF.equals(rel.getRelationType())) {
+            Long subjectId = rel.getSubjectMemberId();
+            Long objectId = rel.getObjectMemberId();
+            if (subjectId == null || objectId == null || subjectId.equals(objectId)) {
+                continue;   // 自环（A 是 A 的父母）是脏数据，直接丢掉
+            }
+
+            FamilyMember subject = membersById.get(subjectId);
+            FamilyMember object = membersById.get(objectId);
+            if (subject == null || object == null) {
+                // 关系行还在、成员已退出/被移除 → 幽灵边，丢掉并留下痕迹便于排查数据不一致
+                log.warn("关系边引用了不存在的成员，已忽略：type={} subject={} object={}",
+                        rel.getRelationType(), subjectId, objectId);
                 continue;
             }
-            Long a = rel.getSubjectMemberId();
-            Long b = rel.getObjectMemberId();
 
-            graph.computeIfAbsent(a, k -> new ArrayList<>()).add(new Edge(b, TOKEN_SPOUSE, false));
-            graph.computeIfAbsent(b, k -> new ArrayList<>()).add(new Edge(a, TOKEN_SPOUSE, false));
+            if (RelationTypeConstants.PARENT_OF.equals(rel.getRelationType())) {
+                // subject 是 object 的父/母：向下一步看孩子性别，向上一步看家长性别
+                addEdge(graph, subjectId, objectId, isMale(object) ? KinshipToken.SON : KinshipToken.DAUGHTER);
+                addEdge(graph, objectId, subjectId, isMale(subject) ? KinshipToken.FATHER : KinshipToken.MOTHER);
+            } else if (RelationTypeConstants.SPOUSE_OF.equals(rel.getRelationType())) {
+                addEdge(graph, subjectId, objectId, KinshipToken.SPOUSE);
+                addEdge(graph, objectId, subjectId, KinshipToken.SPOUSE);
+            }
         }
 
         return graph;
     }
 
-    /**
-     * 广度优先搜索（BFS）：像水波纹一样从 start 一层层向外扩散，最先到达 target 的路径
-     * 就是最短路径。用 predecessor 记录「每个点是从哪个点走过来的」，找到后回溯即可还原整条路径。
-     */
-    private boolean bfs(
-            Map<Long, List<Edge>> graph,
-            Long start,
-            Long target,
-            List<Long> outNodes,
-            List<String> outTokens
-    ) {
-        Map<Long, Long> predecessor = new HashMap<>();       // 记录：某点 <- 它的上一个点
-        Map<Long, String> predecessorToken = new HashMap<>();// 记录：走到某点用的 token
-        Set<Long> visited = new HashSet<>();                 // 已访问，防止重复和绕圈
-        Queue<Long> queue = new ArrayDeque<>();              // 待扩散的队列
-
-        visited.add(start);
-        queue.add(start);
-
-        boolean found = start.equals(target);
-
-        while (!queue.isEmpty() && !found) {
-            Long current = queue.poll();
-            for (Edge edge : graph.getOrDefault(current, List.of())) {
-                if (visited.contains(edge.to())) {
-                    continue;
-                }
-                visited.add(edge.to());
-                predecessor.put(edge.to(), current);
-                predecessorToken.put(edge.to(), edge.token());
-                if (edge.to().equals(target)) {
-                    found = true;
-                    break;
-                }
-                queue.add(edge.to());
-            }
-        }
-
-        if (!found) {
-            return false;
-        }
-
-        // 从 target 回溯到 start，再反转
-        List<Long> nodePath = new ArrayList<>();
-        List<String> tokenPath = new ArrayList<>();
-        Long cursor = target;
-        nodePath.add(cursor);
-        while (!cursor.equals(start)) {
-            String token = predecessorToken.get(cursor);
-            cursor = predecessor.get(cursor);
-            nodePath.add(cursor);
-            tokenPath.add(token);
-        }
-
-        java.util.Collections.reverse(nodePath);
-        java.util.Collections.reverse(tokenPath);
-
-        outNodes.addAll(nodePath);
-        outTokens.addAll(tokenPath);
-        return true;
+    private void addEdge(Map<Long, List<Edge>> graph, Long from, Long to, KinshipToken token) {
+        graph.computeIfAbsent(from, k -> new ArrayList<>()).add(new Edge(to, token));
     }
 
     /**
-     * 反复折叠相邻的 (F|M)+(Son|Dau) 为同辈 token（eB/yB/eZ/yZ），直至一轮扫描无法再折叠。
+     * 求 viewer 到所有其它成员的规范最短路径。
+     * <p>
+     * 做法是「按 {@link #PATH_ORDER} 排序的优先队列」版 Dijkstra：每次取出全局最优的候选路径，
+     * 第一次取到某个成员时就把它<b>定下来</b>（settled），之后再也不改。因为 PATH_ORDER 是全序，
+     * 「全局最优」唯一确定，所以邻接表的插入顺序对结果毫无影响——这正是修掉「同样数据算出不同
+     * 称谓」的关键。只从已定下来的点向<b>未</b>定下来的点扩展，路径天然不会绕回自己（简单路径）。
+     *
+     * @return memberId → 到它的规范最短路径（不含 viewer 自己）
      */
-    private void reduce(List<Long> nodes, List<String> tokens, Map<Long, FamilyMember> membersById) {
+    private Map<Long, Candidate> shortestPaths(Map<Long, List<Edge>> graph, Long start) {
+        Map<Long, Candidate> settled = new HashMap<>();
+        Set<Long> done = new HashSet<>();
+        done.add(start);
+
+        PriorityQueue<Candidate> queue = new PriorityQueue<>(PATH_ORDER);
+        seed(queue, graph, start, new Candidate(List.of(start), List.of(), 0));
+
+        while (!queue.isEmpty()) {
+            Candidate candidate = queue.poll();
+            Long node = candidate.nodes().get(candidate.nodes().size() - 1);
+
+            if (!done.add(node)) {
+                continue;   // 已经有更优的路径定下来了
+            }
+            settled.put(node, candidate);
+
+            seed(queue, graph, node, candidate);
+        }
+
+        return settled;
+    }
+
+    /** 把 from 的所有「还没定下来」的邻居作为新候选路径压进队列 */
+    private void seed(PriorityQueue<Candidate> queue, Map<Long, List<Edge>> graph, Long from, Candidate base) {
+        for (Edge edge : graph.getOrDefault(from, List.of())) {
+            List<Long> nodes = new ArrayList<>(base.nodes());
+            nodes.add(edge.to());
+            List<KinshipToken> tokens = new ArrayList<>(base.tokens());
+            tokens.add(edge.token());
+            queue.add(new Candidate(nodes, tokens, base.affinalHops() + (edge.token().isAffinal() ? 1 : 0)));
+        }
+    }
+
+    /**
+     * 反复折叠相邻的两步，直到一轮扫描无法再折叠为止（允许级联折叠）：
+     * <ul>
+     *   <li>(F|M) + (Son|Dau) → 同辈 token：「爸爸的儿子」其实是「我兄弟」，不该表述成两跳；</li>
+     *   <li>(Son|Dau) + (F|M) → S：「我儿子的妈妈」其实是「我配偶」。这条是旧实现漏掉的方向——
+     *       夫妻关系没登记 SPOUSE_OF（未婚生育、离异未清理、用户懒得填）但两个孩子的
+     *       PARENT_OF 都在时就会走到，界面上会出现「我儿子的妈妈」这种四不像。</li>
+     * </ul>
+     * 注：不需要再判断「折叠两端是不是同一个人」——{@link #shortestPaths} 产出的是简单路径，
+     * nodes 里不可能有重复元素，旧代码里那个 startNode.equals(endNode) 的检查是永远为 false 的死代码。
+     *
+     * @return 折叠后的 token 序列（不修改传入的 list）
+     */
+    private List<KinshipToken> reduce(List<Long> nodes, List<KinshipToken> tokens, Map<Long, FamilyMember> membersById) {
+        List<Long> ns = new ArrayList<>(nodes);
+        List<KinshipToken> ts = new ArrayList<>(tokens);
+
         boolean collapsedAny = true;
         while (collapsedAny) {
             collapsedAny = false;
-            for (int i = 0; i < tokens.size() - 1; i++) {
-                String t1 = tokens.get(i);
-                String t2 = tokens.get(i + 1);
-                boolean isUpStep = TOKEN_FATHER.equals(t1) || TOKEN_MOTHER.equals(t1);
-                boolean isDownStep = TOKEN_SON.equals(t2) || TOKEN_DAUGHTER.equals(t2);
+            for (int i = 0; i + 1 < ts.size(); i++) {
+                KinshipToken first = ts.get(i);
+                KinshipToken second = ts.get(i + 1);
 
-                if (!isUpStep || !isDownStep) {
+                KinshipToken folded;
+                if (first.isUpStep() && second.isDownStep()) {
+                    folded = siblingToken(membersById.get(ns.get(i)), membersById.get(ns.get(i + 2)));
+                } else if (first.isDownStep() && second.isUpStep()) {
+                    folded = KinshipToken.SPOUSE;
+                } else {
                     continue;
                 }
 
-                Long startNode = nodes.get(i);
-                Long endNode = nodes.get(i + 2);
-                if (startNode.equals(endNode)) {
-                    continue;
-                }
-
-                String siblingToken = siblingToken(membersById.get(startNode), membersById.get(endNode));
-
-                tokens.remove(i + 1);
-                tokens.set(i, siblingToken);
-                nodes.remove(i + 1);
-
+                ts.set(i, folded);
+                ts.remove(i + 1);
+                ns.remove(i + 1);   // 中间那个人被折掉了
                 collapsedAny = true;
                 break;
             }
         }
+
+        return ts;
     }
 
     /**
      * 折叠成同辈时，决定用哪个 token：eB=哥、yB=弟、eZ=姐、yZ=妹。
      * 长幼由出生顺序 birthOrder 判断（数字越小越年长）；性别决定用「兄弟」还是「姐妹」。
-     * @param start 折叠路径的起点成员（即「我」这一侧）
-     * @param end   折叠路径的终点成员（即被称呼的兄弟姐妹）
+     *
+     * @param start 折叠路径的起点成员（这一侧的「我」，多跳路径里未必是 viewer 本人）
+     * @param end   折叠路径的终点成员（被称呼的那个兄弟姐妹）
      */
-    private String siblingToken(FamilyMember start, FamilyMember end) {
-        boolean endIsElder;
+    private KinshipToken siblingToken(FamilyMember start, FamilyMember end) {
         Integer startOrder = start == null ? null : start.getBirthOrder();
         Integer endOrder = end == null ? null : end.getBirthOrder();
 
+        boolean endIsElder;
         if (startOrder == null || endOrder == null) {
-            // 排行未知时默认按年长处理
+            // 排行未知时默认按年长处理（见 API.md 11.4 的已知精度局限）。
+            // 打日志是为了能量化这个兜底分支在真实数据里的命中率——目前 birthOrder 没有任何
+            // 录入入口，怀疑它几乎总是 null，也就是说线上几乎所有兄弟姐妹都被叫成了「哥/姐」。
+            log.debug("birthOrder 缺失，长幼判定回退为「年长」：start={} end={}",
+                    start == null ? null : start.getId(), end == null ? null : end.getId());
             endIsElder = true;
         } else {
-            endIsElder = endOrder < startOrder;   // 对方排行数字更小 → 对方更年长
+            endIsElder = endOrder < startOrder;
         }
 
-        boolean endIsMale = end != null && UserConstants.MALE.equals(end.getGender());
-
-        if (endIsMale) {
-            return endIsElder ? "eB" : "yB";   // 哥 / 弟
-        } else {
-            return endIsElder ? "eZ" : "yZ";   // 姐 / 妹
+        if (isMale(end)) {
+            return endIsElder ? KinshipToken.ELDER_BROTHER : KinshipToken.YOUNGER_BROTHER;
         }
+        return endIsElder ? KinshipToken.ELDER_SISTER : KinshipToken.YOUNGER_SISTER;
+    }
+
+    /**
+     * 性别判定。⚠️ 已知局限：gender 为 null / 取值不认识时会落到「女性」分支，
+     * 也就是把「不知道」和「女性」混为一谈。彻底修好需要引入中性 token（P=家长、C=孩子）
+     * 并同步前端 6 个语言的词表，属于下一阶段的工作；这里先打日志让它可观测。
+     */
+    private boolean isMale(FamilyMember member) {
+        String gender = member == null ? null : member.getGender();
+        if (!UserConstants.MALE.equals(gender) && !UserConstants.FEMALE.equals(gender)) {
+            log.warn("成员性别缺失或取值非法，称谓可能不准：memberId={} gender={}",
+                    member == null ? null : member.getId(), gender);
+        }
+        return UserConstants.MALE.equals(gender);
+    }
+
+    private static int compareTokens(List<KinshipToken> a, List<KinshipToken> b) {
+        int shared = Math.min(a.size(), b.size());
+        for (int i = 0; i < shared; i++) {
+            int cmp = a.get(i).getCode().compareTo(b.get(i).getCode());
+            if (cmp != 0) {
+                return cmp;
+            }
+        }
+        return Integer.compare(a.size(), b.size());
+    }
+
+    private static int compareIds(List<Long> a, List<Long> b) {
+        int shared = Math.min(a.size(), b.size());
+        for (int i = 0; i < shared; i++) {
+            int cmp = Long.compare(a.get(i), b.get(i));
+            if (cmp != 0) {
+                return cmp;
+            }
+        }
+        return Integer.compare(a.size(), b.size());
     }
 }

@@ -18,6 +18,9 @@ public class MessageVO {
     private String senderAvatarLabel;  // 发送者头像文字
     private String senderAvatarUrl;    // 发生者头像
     private String senderRelationCode; // 我对发送者的关系编码；前端据此本地化为称谓
+    // 发送者性别 male/female。前端 localizeRelationCode 需要它才能把 senderRelationCode="S"
+    // 翻译成「丈夫」还是「妻子」——只给编码的话这里会翻译失败，气泡上的称谓直接是空白。
+    private String senderGender;
     private String content;            // 消息内容
     private String type;               // 消息类型 text/image/voice/system
     private LocalDateTime sentAt;      // 发送时间

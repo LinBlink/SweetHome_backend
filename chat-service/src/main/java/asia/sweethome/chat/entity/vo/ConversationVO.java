@@ -18,6 +18,10 @@ public class ConversationVO {
     private String avatarUrl;          // 头像URL
     // 仅 type=direct 时返回：对方相对当前请求用户的关系编码（前端据此本地化为称谓）
     private String relationCode;
+    // 仅 type=direct 时返回：对方性别 male/female。前端拿它消歧 relationCode="S"（丈夫/妻子）。
+    // 「我」自己的性别不用在这里重复下发——GET /v1/users/me 已经返回 gender，前端从登录态取
+    // （消歧 S.F=岳父/公公 这类随我方性别而变的称谓时用）。
+    private String otherUserGender;
     private String lastMessage;        // 最后一条消息预览
     private LocalDateTime lastMessageAt;// 最后消息时间（列表排序用）
     private String lastMessageType;

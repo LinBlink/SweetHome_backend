@@ -169,13 +169,18 @@ public class FamilyApiImpl implements FamilyApi {
                 .stream()
                 .collect(Collectors.toMap(FamilyMember::getId, m -> m));
 
-        // 交给引擎在图上找路径并翻译成称谓
+        // 交给引擎在图上找路径，得到语言无关的关系编码
         RelationResult result = kinshipEngine.computeRelation(
-                relations, membersById, viewerMember.getId(), targetMember.getId(),
-                relationQueryDTO.getAcceptLanguage()
+                relations, membersById, viewerMember.getId(), targetMember.getId()
         );
 
-        return new RelationDTO(result.relationCode());
+        // 编码之外还要带上两边性别：光有 "S" 分不出丈夫/妻子，光有 "S.F" 分不出岳父/公公。
+        // 这两个成员上面已经查出来了，顺手带上不额外花代价。
+        return new RelationDTO(
+                result.relationCode(),
+                viewerMember.getGender(),
+                targetMember.getGender()
+        );
     }
 
     @Override
