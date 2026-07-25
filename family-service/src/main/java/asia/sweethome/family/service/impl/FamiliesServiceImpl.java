@@ -115,6 +115,13 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
             leaveOldFamily(existingActiveMembership);
         }
 
+        // 生日是按「每次加入的家庭」单独记录的（和 gender 一样），但一个人换个家庭生日不会变。
+        // 已登录用户换家庭时前端不会再问一遍生日，没有这行的话 birth_date 就悄悄变成 NULL，
+        // 长幼判定退回「一律按年长」——刚做好的功能会在换家庭这条路径上静默失效。
+        if (birthDate == null && existingActiveMembership != null) {
+            birthDate = existingActiveMembership.getBirthDate();
+        }
+
         // 1. 新成员加入 family_members
         FamilyMember newMember = new FamilyMember();
         newMember.setFamilyId(familyId);

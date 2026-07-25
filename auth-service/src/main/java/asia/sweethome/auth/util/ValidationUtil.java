@@ -5,6 +5,7 @@ import asia.sweethome.auth.entity.dto.LoginRequestDTO;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 
+import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 /**
@@ -77,6 +78,18 @@ public class ValidationUtil {
     }
 
     /**
+     * 出生日期是否合法：必填，且不能是未来的日期。
+     * <p>
+     * 必填是有意的。它是判定同辈长幼（哥/弟、姐/妹）的唯一可靠信号——中文里「哥哥」和
+     * 「弟弟」是两个词，光知道是兄弟姐妹还不够。唯一的兜底 `birth_order` 需要用户理解并
+     * 手填「我排第几」，而没有任何流程收集它，所以一旦生日也缺失，引擎只能一律按年长处理，
+     * 线上几乎所有兄弟姐妹都会显示成「哥/姐」。见 API.md 11.4。
+     */
+    public static Boolean validateBirthDate(LocalDate birthDate) {
+        return birthDate != null && !birthDate.isAfter(LocalDate.now());
+    }
+
+    /**
      * 校验整个注册请求是否合法（返回 true/false，由调用方决定如何处理）。
      * 除了各字段格式，还要保证「新建家庭」和「加入家庭」二者恰好选其一。
      */
@@ -93,7 +106,8 @@ public class ValidationUtil {
         String inviteCode = userRegisterDTO.getInviteCode();
 
         if (!validateName(name) || !validatePhoneNumber(phone) || !validatePassword(password)
-                || !validateGender(userRegisterDTO.getGender())) {
+                || !validateGender(userRegisterDTO.getGender())
+                || !validateBirthDate(userRegisterDTO.getBirthDate())) {
             return false;
         }
 
