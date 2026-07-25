@@ -238,6 +238,7 @@ public class FamiliesController {
             vo.setUserId(m.getUserId());
             vo.setMemberId(m.getId());
             vo.setGender(m.getGender());
+            vo.setBirthDate(m.getBirthDate());
             vo.setRole(m.getRole());
             vo.setIsOnline(onlineUserIds.contains(m.getUserId()));
 

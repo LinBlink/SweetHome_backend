@@ -1,5 +1,7 @@
 package asia.sweethome.family.service.dubbo;
 
+
+import java.time.LocalDate;
 import org.apache.dubbo.config.annotation.DubboService;
 
 import java.util.List;
@@ -133,6 +135,24 @@ public class FamilyApiImpl implements FamilyApi {
     public String getGenderByUserId(Long userId) {
         FamilyMember member = activeFamilyMemberByUserId(userId);
         return member == null ? null : member.getGender();
+    }
+
+    @Override
+    public LocalDate getBirthDateByUserId(Long userId) {
+        FamilyMember member = activeFamilyMemberByUserId(userId);
+        return member == null ? null : member.getBirthDate();
+    }
+
+    @Override
+    public boolean updateBirthDate(Long userId, LocalDate birthDate) {
+        FamilyMember member = activeFamilyMemberByUserId(userId);
+        if (member == null) {
+            return false;
+        }
+        return familyMembersService.lambdaUpdate()
+                .eq(FamilyMember::getId, member.getId())
+                .set(FamilyMember::getBirthDate, birthDate)
+                .update();
     }
 
     /**

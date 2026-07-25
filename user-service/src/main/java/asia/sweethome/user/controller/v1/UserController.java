@@ -3,10 +3,14 @@ package asia.sweethome.user.controller.v1;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 import asia.sweethome.api.FamilyApi;
 import asia.sweethome.api.entity.dto.FamilyDTO;
 import asia.sweethome.common.context.UserContext;
 import asia.sweethome.common.entity.vo.Result;
+import asia.sweethome.common.exception.BusinessException;
+import asia.sweethome.common.exception.ErrorCode;
 import asia.sweethome.user.entity.dto.UserUpdateDTO;
 import asia.sweethome.user.entity.po.User;
 import asia.sweethome.user.entity.vo.UserDetailVO;
@@ -52,6 +56,17 @@ public class UserController {
     public Result<UserDetailVO> updateMyInfo(@RequestBody UserUpdateDTO userUpdateDTO) {
         Long userId = UserContext.getUserId();
         usersService.updateProfile(userId, userUpdateDTO.getName(), userUpdateDTO.getAvatarUrl());
+
+        // 生日存在 family_members 上（和 gender 一样按家庭记录），不在 users 表里，
+        // 所以要回调 family-service 落库。不传则不改，保持部分更新的语义。
+        LocalDate birthDate = userUpdateDTO.getBirthDate();
+        if (birthDate != null) {
+            if (birthDate.isAfter(LocalDate.now())) {
+                throw new BusinessException(ErrorCode.PARAM_ERROR);
+            }
+            familyApi.updateBirthDate(userId, birthDate);
+        }
+
         return Result.success(buildDetail(userId));
     }
 
@@ -75,6 +90,7 @@ public class UserController {
         vo.setFamilyName(family.getName());
         vo.setRole(familyApi.getFamilyRoleByUserId(userId));
         vo.setGender(familyApi.getGenderByUserId(userId));
+        vo.setBirthDate(familyApi.getBirthDateByUserId(userId));
 
         return vo;
     }

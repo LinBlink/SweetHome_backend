@@ -1,7 +1,5 @@
 package asia.sweethome.family.kinship;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -11,6 +9,7 @@ import asia.sweethome.common.constants.RelationTypeConstants;
 import asia.sweethome.common.constants.UserConstants;
 import asia.sweethome.family.entity.po.FamilyMember;
 import asia.sweethome.family.entity.po.FamilyRelation;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 【亲属称谓计算引擎】见 doc/API.md 「十一、亲属称谓计算算法」。
@@ -32,10 +31,10 @@ import asia.sweethome.family.entity.po.FamilyRelation;
  * 再比 token 字面量、最后比成员 id。这个顺序里没有任何一项依赖输入顺序，因此
  * <b>把 relations 列表任意打乱，结果都完全一致</b>（见 KinshipEngineTest 的乱序测试）。
  */
+@Slf4j
 @Component
 public class KinshipEngine {
 
-    private static final Logger log = LoggerFactory.getLogger(KinshipEngine.class);
 
     /** viewer 就是 target 自己时的关系编码 */
     public static final String SELF_CODE = "SELF";

@@ -1,5 +1,6 @@
 package asia.sweethome.api;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import asia.sweethome.api.entity.dto.*;
@@ -43,6 +44,19 @@ public interface FamilyApi {
     // 根据用户 id 找到其在当前家庭中的性别（写入 family_members.gender，亲属称谓计算的基础输入）
     String getGenderByUserId(
             Long userId
+    );
+
+    // 根据用户 id 取其出生日期（family_members.birth_date）；未加入家庭或未填时返回 null
+    LocalDate getBirthDateByUserId(
+            Long userId
+    );
+
+    // 修改用户在当前家庭中的出生日期。生日和性别一样存在 family_members 上，
+    // 所以「改个人资料」这件事要从 user-service 回调到 family-service 来落库。
+    // 用户不在任何家庭时返回 false（调用方据此决定是否报错）。
+    boolean updateBirthDate(
+            Long userId,
+            LocalDate birthDate
     );
 
     // 计算 viewer 相对 target 的亲属称谓，两人不在同一家庭时返回的 DTO 内字段均为 null

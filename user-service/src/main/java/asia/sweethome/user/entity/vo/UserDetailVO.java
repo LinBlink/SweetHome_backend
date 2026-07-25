@@ -1,5 +1,7 @@
 package asia.sweethome.user.entity.vo;
 
+
+import java.time.LocalDate;
 import lombok.Data;
 
 /**
@@ -23,5 +25,6 @@ public class UserDetailVO {
     private String familyName; // 所在家庭名称
     private String role;       // 在家庭中的角色 admin/member
     private String gender;     // 性别 male/female
+    private LocalDate birthDate; // 出生日期 YYYY-MM-DD，未填时为 null（存在 family_members 上）
     private Long balance;      // 用户余额
 }
