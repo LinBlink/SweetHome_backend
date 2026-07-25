@@ -1,17 +1,10 @@
 package asia.sweethome.family.kinship;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Set;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import java.util.*;
 
 import asia.sweethome.common.constants.RelationTypeConstants;
 import asia.sweethome.common.constants.UserConstants;
@@ -167,11 +160,12 @@ public class KinshipEngine {
 
             if (RelationTypeConstants.PARENT_OF.equals(rel.getRelationType())) {
                 // subject 是 object 的父/母：向下一步看孩子性别，向上一步看家长性别
-                addEdge(graph, subjectId, objectId, isMale(object) ? KinshipToken.SON : KinshipToken.DAUGHTER);
-                addEdge(graph, objectId, subjectId, isMale(subject) ? KinshipToken.FATHER : KinshipToken.MOTHER);
+                addEdge(graph, subjectId, objectId, childToken(object));
+                addEdge(graph, objectId, subjectId, parentToken(subject));
             } else if (RelationTypeConstants.SPOUSE_OF.equals(rel.getRelationType())) {
-                addEdge(graph, subjectId, objectId, KinshipToken.SPOUSE);
-                addEdge(graph, objectId, subjectId, KinshipToken.SPOUSE);
+                // 配偶边的两个方向 token 不同：走向谁，就用谁的性别
+                addEdge(graph, subjectId, objectId, spouseToken(object));
+                addEdge(graph, objectId, subjectId, spouseToken(subject));
             }
         }
 
@@ -254,7 +248,8 @@ public class KinshipEngine {
                 if (first.isUpStep() && second.isDownStep()) {
                     folded = siblingToken(membersById.get(ns.get(i)), membersById.get(ns.get(i + 2)));
                 } else if (first.isDownStep() && second.isUpStep()) {
-                    folded = KinshipToken.SPOUSE;
+                    // 折出来的是配偶，用哪个 token 取决于「共同亲代」那一方的性别
+                    folded = spouseToken(membersById.get(ns.get(i + 2)));
                 } else {
                     continue;
                 }
@@ -293,24 +288,61 @@ public class KinshipEngine {
             endIsElder = endOrder < startOrder;
         }
 
-        if (isMale(end)) {
-            return endIsElder ? KinshipToken.ELDER_BROTHER : KinshipToken.YOUNGER_BROTHER;
-        }
-        return endIsElder ? KinshipToken.ELDER_SISTER : KinshipToken.YOUNGER_SISTER;
+        return switch (genderOf(end)) {
+            case MALE -> endIsElder ? KinshipToken.ELDER_BROTHER : KinshipToken.YOUNGER_BROTHER;
+            case FEMALE -> endIsElder ? KinshipToken.ELDER_SISTER : KinshipToken.YOUNGER_SISTER;
+            case UNKNOWN -> endIsElder ? KinshipToken.ELDER_SIBLING : KinshipToken.YOUNGER_SIBLING;
+        };
+    }
+
+    /** 向上一步用哪个 token */
+    private KinshipToken parentToken(FamilyMember parent) {
+        return switch (genderOf(parent)) {
+            case MALE -> KinshipToken.FATHER;
+            case FEMALE -> KinshipToken.MOTHER;
+            case UNKNOWN -> KinshipToken.PARENT;
+        };
+    }
+
+    /** 向下一步用哪个 token */
+    private KinshipToken childToken(FamilyMember child) {
+        return switch (genderOf(child)) {
+            case MALE -> KinshipToken.SON;
+            case FEMALE -> KinshipToken.DAUGHTER;
+            case UNKNOWN -> KinshipToken.CHILD;
+        };
+    }
+
+    /** 横向一步用哪个 token */
+    private KinshipToken spouseToken(FamilyMember spouse) {
+        return switch (genderOf(spouse)) {
+            case MALE -> KinshipToken.HUSBAND;
+            case FEMALE -> KinshipToken.WIFE;
+            case UNKNOWN -> KinshipToken.SPOUSE;
+        };
+    }
+
+    /** 成员性别的三种可能。注意「未知」是独立的一种，不能和「女性」混为一谈 */
+    private enum Gender {
+        MALE, FEMALE, UNKNOWN
     }
 
     /**
-     * 性别判定。⚠️ 已知局限：gender 为 null / 取值不认识时会落到「女性」分支，
-     * 也就是把「不知道」和「女性」混为一谈。彻底修好需要引入中性 token（P=家长、C=孩子）
-     * 并同步前端 6 个语言的词表，属于下一阶段的工作；这里先打日志让它可观测。
+     * 性别判定。旧实现用 {@code MALE.equals(gender)} 判断，false 就一律当女性，
+     * 于是 gender 为 null（老数据、第三方登录没拿到）时会静默产出「女性」称谓。
+     * 现在「不知道」有自己的分支，最终会走成中性 token（P/C/S/eX/yX）。
      */
-    private boolean isMale(FamilyMember member) {
+    private Gender genderOf(FamilyMember member) {
         String gender = member == null ? null : member.getGender();
-        if (!UserConstants.MALE.equals(gender) && !UserConstants.FEMALE.equals(gender)) {
-            log.warn("成员性别缺失或取值非法，称谓可能不准：memberId={} gender={}",
-                    member == null ? null : member.getId(), gender);
+        if (UserConstants.MALE.equals(gender)) {
+            return Gender.MALE;
         }
-        return UserConstants.MALE.equals(gender);
+        if (UserConstants.FEMALE.equals(gender)) {
+            return Gender.FEMALE;
+        }
+        log.warn("成员性别缺失或取值非法，将产出中性称谓：memberId={} gender={}",
+                member == null ? null : member.getId(), gender);
+        return Gender.UNKNOWN;
     }
 
     private static int compareTokens(List<KinshipToken> a, List<KinshipToken> b) {

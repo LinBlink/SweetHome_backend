@@ -212,7 +212,7 @@ class KinshipEngineTest {
         );
         List<FamilyRelation> relations = List.of(spouseOf(1L, 2L));
         RelationResult result = engine.computeRelation(relations, members, 1L, 2L);
-        assertThat(result.relationCode()).isEqualTo("S");
+        assertThat(result.relationCode()).isEqualTo("Wi");
     }
 
     @Test
@@ -223,7 +223,22 @@ class KinshipEngineTest {
         );
         List<FamilyRelation> relations = List.of(spouseOf(1L, 2L));
         RelationResult result = engine.computeRelation(relations, members, 1L, 2L);
-        assertThat(result.relationCode()).isEqualTo("S");
+        assertThat(result.relationCode()).isEqualTo("Hu");
+    }
+
+    /**
+     * 这两个方向以前算出来是同一个编码 "S"——「配偶的性别」在编码里彻底丢失了，
+     * 前端只能靠额外传 gender 参数外加「婚姻是异性的」假设去反推。现在编码自己说清楚。
+     */
+    @Test
+    void spouseTokenDistinguishesHusbandFromWife() {
+        Map<Long, FamilyMember> members = Map.of(
+                1L, member(1L, UserConstants.MALE),
+                2L, member(2L, UserConstants.FEMALE)
+        );
+        List<FamilyRelation> relations = List.of(spouseOf(1L, 2L));
+        assertThat(engine.computeRelation(relations, members, 1L, 2L).relationCode())
+                .isNotEqualTo(engine.computeRelation(relations, members, 2L, 1L).relationCode());
     }
 
     // ────── 同辈折叠（兄弟姐妹） ──────
@@ -347,8 +362,8 @@ class KinshipEngineTest {
 
     @Test
     void childViaSpouse() {
-        // 我(1, male) → 配偶(2, female) → 继子(3, male)
-        // 我 → 继子: 先 S 到配偶, 再 Son 到孩子 = S.Son
+        // 我(1, male) → 妻子(2, female) → 继子(3, male)
+        // 我 → 继子: 先 Wi 到妻子, 再 Son 到孩子 = Wi.Son
         Map<Long, FamilyMember> members = Map.of(
                 1L, member(1L, UserConstants.MALE),
                 2L, member(2L, UserConstants.FEMALE),
@@ -359,13 +374,13 @@ class KinshipEngineTest {
                 parentOf(2L, 3L)
         );
         RelationResult result = engine.computeRelation(relations, members, 1L, 3L);
-        assertThat(result.relationCode()).isEqualTo("S.Son");
+        assertThat(result.relationCode()).isEqualTo("Wi.Son");
     }
 
     @Test
     void mothersHusbandIsStepFather() {
         // 妈妈(1, female) + 继父(2, male) = 配偶, 妈妈(1) → 我(3)
-        // 我 → 继父 = M.S = 母亲的配偶
+        // 我 → 继父 = M.Hu = 母亲的丈夫
         Map<Long, FamilyMember> members = Map.of(
                 1L, member(1L, UserConstants.FEMALE),
                 2L, member(2L, UserConstants.MALE),
@@ -376,13 +391,14 @@ class KinshipEngineTest {
                 parentOf(1L, 3L)
         );
         RelationResult result = engine.computeRelation(relations, members, 3L, 2L);
-        assertThat(result.relationCode()).isEqualTo("M.S");
+        assertThat(result.relationCode()).isEqualTo("M.Hu");
     }
 
     @Test
     void grandparentInLaw() {
-        // 我(1,male) + 配偶(2,female) = 配偶, 配偶(2) → 岳父(3,male)
-        // 我 → 岳父 = S.F
+        // 我(1,male) + 妻子(2,female) = 配偶, 妻子(2) → 岳父(3,male)
+        // 我 → 岳父 = Wi.F。以前这里是 S.F，而 S.F 同时也是女方叫公公用的编码，
+        // 靠前端额外传「我」的性别才能分开；现在 Wi.F=岳父 / Hu.F=公公，编码本身就不歧义了。
         Map<Long, FamilyMember> members = Map.of(
                 1L, member(1L, UserConstants.MALE),
                 2L, member(2L, UserConstants.FEMALE),
@@ -393,7 +409,25 @@ class KinshipEngineTest {
                 parentOf(3L, 2L)
         );
         RelationResult result = engine.computeRelation(relations, members, 1L, 3L);
-        assertThat(result.relationCode()).isEqualTo("S.F");
+        assertThat(result.relationCode()).isEqualTo("Wi.F");
+    }
+
+    /** 同一张图，换成女方视角就是公公 Hu.F——两个称谓从此是两个编码 */
+    @Test
+    void parentInLawDiffersByMarriageSide() {
+        Map<Long, FamilyMember> members = Map.of(
+                1L, member(1L, UserConstants.MALE),      // 丈夫
+                2L, member(2L, UserConstants.FEMALE),    // 妻子
+                3L, member(3L, UserConstants.MALE),      // 丈夫的爸爸 → 妻子叫公公
+                4L, member(4L, UserConstants.MALE)       // 妻子的爸爸 → 丈夫叫岳父
+        );
+        List<FamilyRelation> relations = List.of(
+                spouseOf(1L, 2L),
+                parentOf(3L, 1L),
+                parentOf(4L, 2L)
+        );
+        assertThat(engine.computeRelation(relations, members, 2L, 3L).relationCode()).isEqualTo("Hu.F");
+        assertThat(engine.computeRelation(relations, members, 1L, 4L).relationCode()).isEqualTo("Wi.F");
     }
 
     // ────── 大型家庭图 ──────
@@ -409,7 +443,7 @@ class KinshipEngineTest {
         //         └─ 表弟(9,male, birthOrder=1)
         // 我(5) → 爷爷 = F.F
         // 我(5) → 姐姐 = F.Dau = eZ
-        // 我(5) → 表弟 = F.S.F.Son = eB/yB
+        // 我(5) → 表弟 = 走血亲（经姑姑）而不是姻亲（经姑父），见下方断言
 
         Map<Long, FamilyMember> members = Map.ofEntries(
                 Map.entry(1L, member(1L, UserConstants.MALE)),
@@ -524,10 +558,11 @@ class KinshipEngineTest {
                 parentOf(1L, 3L),
                 parentOf(2L, 3L)
         );
-        assertThat(engine.computeRelation(relations, members, 1L, 2L).relationCode()).isEqualTo("S");
+        // 折出来的配偶是女性 → Wi
+        assertThat(engine.computeRelation(relations, members, 1L, 2L).relationCode()).isEqualTo("Wi");
     }
 
-    /** 折叠可以级联：孩子的妈的爸 → S.F（岳父/公公），而不是 Son.M.F */
+    /** 折叠可以级联：孩子的妈的爸 → Wi.F（岳父），而不是 Son.M.F */
     @Test
     void collapseCascadesThroughSpouse() {
         Map<Long, FamilyMember> members = Map.of(
@@ -541,7 +576,60 @@ class KinshipEngineTest {
                 parentOf(2L, 3L),
                 parentOf(4L, 2L)
         );
-        assertThat(engine.computeRelation(relations, members, 1L, 4L).relationCode()).isEqualTo("S.F");
+        assertThat(engine.computeRelation(relations, members, 1L, 4L).relationCode()).isEqualTo("Wi.F");
+    }
+
+    // ────── 性别缺失 → 中性 token，而不是猜成女性 ──────
+
+    /**
+     * 旧实现用 {@code MALE.equals(gender)} 判断，false 就一律当女性，于是 gender 为 null
+     * （老数据、第三方登录没拿到）时会静默产出「妈妈」「女儿」「妻子」这类确定性的错误称谓。
+     * 现在「不知道」有自己的 token，前端会显示中性文案。
+     */
+    @Test
+    void unknownGenderProducesNeutralTokens() {
+        Map<Long, FamilyMember> members = Map.of(
+                1L, member(1L, null),                    // 家长，性别未录
+                2L, member(2L, UserConstants.MALE),      // 我
+                3L, member(3L, null),                    // 孩子，性别未录
+                4L, member(4L, null)                     // 配偶，性别未录
+        );
+        List<FamilyRelation> relations = List.of(
+                parentOf(1L, 2L),
+                parentOf(2L, 3L),
+                spouseOf(2L, 4L)
+        );
+
+        assertThat(engine.computeRelation(relations, members, 2L, 1L).relationCode()).isEqualTo("P");
+        assertThat(engine.computeRelation(relations, members, 2L, 3L).relationCode()).isEqualTo("C");
+        assertThat(engine.computeRelation(relations, members, 2L, 4L).relationCode()).isEqualTo("S");
+    }
+
+    /** 性别未知的同辈用 eX/yX，不再一律算成姐妹 */
+    @Test
+    void unknownGenderSiblingUsesNeutralToken() {
+        Map<Long, FamilyMember> members = Map.of(
+                1L, member(1L, UserConstants.MALE),
+                2L, member(2L, null, 1),   // 兄或姐，性别未录
+                3L, member(3L, UserConstants.MALE, 2)
+        );
+        List<FamilyRelation> relations = List.of(
+                parentOf(1L, 2L),
+                parentOf(1L, 3L)
+        );
+        assertThat(engine.computeRelation(relations, members, 3L, 2L).relationCode()).isEqualTo("eX");
+        assertThat(engine.computeRelation(relations, members, 2L, 3L).relationCode()).isEqualTo("yB");
+    }
+
+    /** 性别取值非法（不是 male/female）与缺失同等对待 */
+    @Test
+    void invalidGenderIsTreatedAsUnknown() {
+        Map<Long, FamilyMember> members = Map.of(
+                1L, member(1L, "MALE"),   // 大写，与数据库约定的小写不符
+                2L, member(2L, UserConstants.MALE)
+        );
+        assertThat(engine.computeRelation(List.of(parentOf(1L, 2L)), members, 2L, 1L)
+                .relationCode()).isEqualTo("P");
     }
 
     // ────── 脏数据防御 ──────
