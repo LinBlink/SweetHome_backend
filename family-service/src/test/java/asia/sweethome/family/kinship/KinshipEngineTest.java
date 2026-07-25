@@ -6,6 +6,7 @@ import asia.sweethome.family.entity.po.FamilyMember;
 import asia.sweethome.family.entity.po.FamilyRelation;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -680,6 +681,90 @@ class KinshipEngineTest {
         assertThat(engine.computeRelation(
                 List.of(parentOf(1L, 2L), parentOf(1L, 2L)), members, 2L, 1L
         ).relationCode()).isEqualTo("F");
+    }
+
+    // ────── 长幼判定：生日优先，排行兜底 ──────
+
+    private static FamilyMember memberBorn(Long id, String gender, String birthDate, Integer birthOrder) {
+        FamilyMember m = new FamilyMember();
+        m.setId(id);
+        m.setGender(gender);
+        m.setBirthOrder(birthOrder);
+        m.setBirthDate(birthDate == null ? null : LocalDate.parse(birthDate));
+        return m;
+    }
+
+    /** 两边都有生日时用生日定长幼，不看 birthOrder */
+    @Test
+    void birthDateDecidesSeniority() {
+        Map<Long, FamilyMember> members = Map.of(
+                1L, member(1L, UserConstants.MALE),
+                2L, memberBorn(2L, UserConstants.MALE, "1990-03-01", null),   // 年长
+                3L, memberBorn(3L, UserConstants.MALE, "1995-08-20", null)
+        );
+        List<FamilyRelation> relations = List.of(parentOf(1L, 2L), parentOf(1L, 3L));
+
+        assertThat(engine.computeRelation(relations, members, 3L, 2L).relationCode()).isEqualTo("eB");
+        assertThat(engine.computeRelation(relations, members, 2L, 3L).relationCode()).isEqualTo("yB");
+    }
+
+    /**
+     * 生日和 birthOrder 冲突时以生日为准——birthOrder 要用户理解「排行」的语义再手填，
+     * 填错的概率比生日高得多。
+     */
+    @Test
+    void birthDateWinsOverBirthOrder() {
+        Map<Long, FamilyMember> members = Map.of(
+                1L, member(1L, UserConstants.MALE),
+                // 生日说 2 号年长，birthOrder 说 3 号年长，故意让两者矛盾
+                2L, memberBorn(2L, UserConstants.MALE, "1990-03-01", 2),
+                3L, memberBorn(3L, UserConstants.MALE, "1995-08-20", 1)
+        );
+        List<FamilyRelation> relations = List.of(parentOf(1L, 2L), parentOf(1L, 3L));
+
+        assertThat(engine.computeRelation(relations, members, 3L, 2L).relationCode()).isEqualTo("eB");
+    }
+
+    /** 只有一方填了生日 → 定不了长幼，退回 birthOrder */
+    @Test
+    void fallsBackToBirthOrderWhenBirthDateIncomplete() {
+        Map<Long, FamilyMember> members = Map.of(
+                1L, member(1L, UserConstants.MALE),
+                2L, memberBorn(2L, UserConstants.MALE, "1990-03-01", 2),
+                3L, memberBorn(3L, UserConstants.MALE, null, 1)   // 生日缺失
+        );
+        List<FamilyRelation> relations = List.of(parentOf(1L, 2L), parentOf(1L, 3L));
+
+        // 生日不可比 → 用 birthOrder：3 号排行 1 更年长
+        assertThat(engine.computeRelation(relations, members, 2L, 3L).relationCode()).isEqualTo("eB");
+    }
+
+    /** 生日相同（双胞胎且未填排行）→ 无法定长幼，回退默认「年长」 */
+    @Test
+    void identicalBirthDateFallsBackToElder() {
+        Map<Long, FamilyMember> members = Map.of(
+                1L, member(1L, UserConstants.MALE),
+                2L, memberBorn(2L, UserConstants.MALE, "1990-03-01", null),
+                3L, memberBorn(3L, UserConstants.MALE, "1990-03-01", null)
+        );
+        List<FamilyRelation> relations = List.of(parentOf(1L, 2L), parentOf(1L, 3L));
+
+        assertThat(engine.computeRelation(relations, members, 3L, 2L).relationCode()).isEqualTo("eB");
+        assertThat(engine.computeRelation(relations, members, 2L, 3L).relationCode()).isEqualTo("eB");
+    }
+
+    /** 生日相同但排行不同（双胞胎且填了排行）→ 用排行 */
+    @Test
+    void identicalBirthDateUsesBirthOrderWhenPresent() {
+        Map<Long, FamilyMember> members = Map.of(
+                1L, member(1L, UserConstants.MALE),
+                2L, memberBorn(2L, UserConstants.MALE, "1990-03-01", 1),
+                3L, memberBorn(3L, UserConstants.MALE, "1990-03-01", 2)
+        );
+        List<FamilyRelation> relations = List.of(parentOf(1L, 2L), parentOf(1L, 3L));
+
+        assertThat(engine.computeRelation(relations, members, 3L, 2L).relationCode()).isEqualTo("eB");
+        assertThat(engine.computeRelation(relations, members, 2L, 3L).relationCode()).isEqualTo("yB");
     }
 
     // ────── 批量接口 ──────

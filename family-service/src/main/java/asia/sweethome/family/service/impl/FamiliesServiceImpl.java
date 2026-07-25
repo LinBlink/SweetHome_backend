@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -72,6 +73,7 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
             Long userId,
             String inviteCode,
             String gender,
+            LocalDate birthDate,
             Long relationToMemberId,
             String relationType
     ) {
@@ -119,6 +121,7 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
         newMember.setUserId(userId);
         newMember.setRole(RoleConstants.FAMILY_MEMBER);
         newMember.setGender(gender);
+        newMember.setBirthDate(birthDate);
         newMember.setJoinedAt(now);
         boolean memberSaved = familyMembersService.save(newMember);
         if (!memberSaved) {
@@ -193,6 +196,7 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
     public Long createFamily(
             Long userId,
             String gender,
+            LocalDate birthDate,
             String familyName
     ) {
         Family family = new Family();
@@ -214,6 +218,7 @@ public class FamiliesServiceImpl extends ServiceImpl<FamiliesMapper, Family> imp
         familyMember.setUserId(userId);
         familyMember.setRole(RoleConstants.FAMILY_ADMIN);
         familyMember.setGender(gender);
+        familyMember.setBirthDate(birthDate);
         familyMember.setJoinedAt(now);
 
         familyMembersService.save(familyMember);

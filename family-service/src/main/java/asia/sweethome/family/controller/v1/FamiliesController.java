@@ -4,6 +4,7 @@ package asia.sweethome.family.controller.v1;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -272,6 +273,7 @@ public class FamiliesController {
 
         String inviteCode = joinFamilyByInviteCodeDTO.getInviteCode();
         String gender = joinFamilyByInviteCodeDTO.getGender();
+        LocalDate birthDate = joinFamilyByInviteCodeDTO.getBirthDate();
         Long relationToMemberId = joinFamilyByInviteCodeDTO.getRelationToMemberId();
         String relationType = joinFamilyByInviteCodeDTO.getRelationType();
 
@@ -289,7 +291,8 @@ public class FamiliesController {
         Long userId = UserContext.getUserId();
 
         // 完成加入家庭逻辑（含退出旧家庭级联）
-        Long familyId = familiesService.joinFamily(userId, inviteCode.trim().toUpperCase(), gender, relationToMemberId, relationType);
+        Long familyId = familiesService.joinFamily(
+                userId, inviteCode.trim().toUpperCase(), gender, birthDate, relationToMemberId, relationType);
 
         return getFamilyDetail(familyId);
 

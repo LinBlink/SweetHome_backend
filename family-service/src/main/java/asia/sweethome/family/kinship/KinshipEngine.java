@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import asia.sweethome.common.constants.RelationTypeConstants;
@@ -273,26 +274,43 @@ public class KinshipEngine {
      * @param end   折叠路径的终点成员（被称呼的那个兄弟姐妹）
      */
     private KinshipToken siblingToken(FamilyMember start, FamilyMember end) {
-        Integer startOrder = start == null ? null : start.getBirthOrder();
-        Integer endOrder = end == null ? null : end.getBirthOrder();
-
-        boolean endIsElder;
-        if (startOrder == null || endOrder == null) {
-            // 排行未知时默认按年长处理（见 API.md 11.4 的已知精度局限）。
-            // 打日志是为了能量化这个兜底分支在真实数据里的命中率——目前 birthOrder 没有任何
-            // 录入入口，怀疑它几乎总是 null，也就是说线上几乎所有兄弟姐妹都被叫成了「哥/姐」。
-            log.debug("birthOrder 缺失，长幼判定回退为「年长」：start={} end={}",
-                    start == null ? null : start.getId(), end == null ? null : end.getId());
-            endIsElder = true;
-        } else {
-            endIsElder = endOrder < startOrder;
-        }
+        boolean endIsElder = endIsElder(start, end);
 
         return switch (genderOf(end)) {
             case MALE -> endIsElder ? KinshipToken.ELDER_BROTHER : KinshipToken.YOUNGER_BROTHER;
             case FEMALE -> endIsElder ? KinshipToken.ELDER_SISTER : KinshipToken.YOUNGER_SISTER;
             case UNKNOWN -> endIsElder ? KinshipToken.ELDER_SIBLING : KinshipToken.YOUNGER_SIBLING;
         };
+    }
+
+    /**
+     * 判定 end 是否比 start 年长。三级兜底：
+     * <ol>
+     *   <li><b>出生日期</b>——日期早的年长。最可靠，因为生日是用户本来就会填的字段；</li>
+     *   <li><b>出生顺序 birthOrder</b>——数值小的年长。要用户理解并手填「我排第几」，
+     *       而注册/加入家庭的流程里没有这一步，所以实际上几乎总是 null；</li>
+     *   <li><b>默认按年长处理</b>（见 API.md 11.4）。这不是一个「罕见的兜底」——在 birthDate
+     *       落地之前它覆盖了几乎全部流量，也就是线上几乎所有兄弟姐妹都显示成「哥/姐」。
+     *       打 info 日志就是为了能量化它到底还占多少。</li>
+     * </ol>
+     * 注意两边都得有值才能比：只有一方填了生日是没法定长幼的。
+     */
+    private boolean endIsElder(FamilyMember start, FamilyMember end) {
+        LocalDate startBirth = start == null ? null : start.getBirthDate();
+        LocalDate endBirth = end == null ? null : end.getBirthDate();
+        if (startBirth != null && endBirth != null && !startBirth.isEqual(endBirth)) {
+            return endBirth.isBefore(startBirth);
+        }
+
+        Integer startOrder = start == null ? null : start.getBirthOrder();
+        Integer endOrder = end == null ? null : end.getBirthOrder();
+        if (startOrder != null && endOrder != null && !startOrder.equals(endOrder)) {
+            return endOrder < startOrder;
+        }
+
+        log.info("生日与排行都无法定长幼，回退为「年长」：start={} end={}",
+                start == null ? null : start.getId(), end == null ? null : end.getId());
+        return true;
     }
 
     /** 向上一步用哪个 token */

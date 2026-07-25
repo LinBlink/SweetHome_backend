@@ -3,6 +3,7 @@ package asia.sweethome.api.entity.dto;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * 【创建家庭的入参】
@@ -24,5 +25,7 @@ public class FamilyCreateInfoDTO implements Serializable {
     private String familyName;
     // 创建者要加入家庭名单，需要知道性别（用于日后计算亲属称谓）
     private String gender;
+    // 出生日期，可为 null；用于判定同辈长幼（哥/弟、姐/妹），见 KinshipEngine
+    private LocalDate birthDate;
 
 }

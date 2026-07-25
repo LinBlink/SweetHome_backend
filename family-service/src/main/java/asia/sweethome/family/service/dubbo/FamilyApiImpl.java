@@ -48,7 +48,8 @@ public class FamilyApiImpl implements FamilyApi {
         String gender = familyCreateInfoDTO.getGender();
 
         // 创建家庭
-        Long familyId = familiesService.createFamily(userId, gender, familyName);
+        Long familyId = familiesService.createFamily(
+                userId, gender, familyCreateInfoDTO.getBirthDate(), familyName);
 
         // 构建返回值
         FamilyDTO familyDTO = new FamilyDTO();
@@ -76,7 +77,8 @@ public class FamilyApiImpl implements FamilyApi {
         String relationType = familyJoinInfoDTO.getRelationType();
 
         // 加入家庭
-        Long familyId = familiesService.joinFamily(userId, inviteCode, gender, relationToMemberId, relationType);
+        Long familyId = familiesService.joinFamily(
+                userId, inviteCode, gender, familyJoinInfoDTO.getBirthDate(), relationToMemberId, relationType);
 
 
         // 构建返回值

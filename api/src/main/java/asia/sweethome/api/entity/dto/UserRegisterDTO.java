@@ -3,6 +3,7 @@ package asia.sweethome.api.entity.dto;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * 【用户注册入参】
@@ -28,6 +29,9 @@ public class UserRegisterDTO implements Serializable {
     private String familyName;        // 新建家庭名（与 inviteCode 二选一）
     private String inviteCode;        // 加入家庭的邀请码（与 familyName 二选一）
     private String gender;            // 性别，male/female
+    // 出生日期（ISO-8601，如 1990-03-01），选填。用于判定同辈长幼——中文里「哥哥」和「弟弟」
+    // 是两个词，光知道是兄弟姐妹还不够。不填则退回 birthOrder，两者都没有时一律按年长处理。
+    private LocalDate birthDate;
     private Long relationToMemberId;  // 加入家庭时，和哪位成员建立关系
     private String relationType;      // 关系类型，见 RelationTypeConstants
 

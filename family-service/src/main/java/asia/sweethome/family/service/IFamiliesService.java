@@ -4,6 +4,7 @@ import asia.sweethome.family.entity.po.Family;
 import asia.sweethome.family.entity.po.FamilyMember;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -18,15 +19,18 @@ import java.util.List;
 public interface IFamiliesService extends IService<Family> {
 
     // 加入家庭（含退出旧家庭级联、补关系边、加群聊），返回家庭 id
+    // birthDate 可为 null，用于判定同辈长幼（哥/弟、姐/妹），见 KinshipEngine
     Long joinFamily(Long userId,
                     String inviteCode,
                     String gender,
+                    LocalDate birthDate,
                     Long relationToMemberId,
                     String relationType);
 
     // 创建家庭（创建者成为管理员并自动建群聊），返回家庭 id
     Long createFamily(Long userId,
                       String gender,
+                      LocalDate birthDate,
                       String familyName);
 
     // 生成/复用邀请码，requesterUserId 必须是该家庭管理员

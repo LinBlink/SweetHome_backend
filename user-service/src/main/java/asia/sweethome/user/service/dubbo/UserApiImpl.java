@@ -142,6 +142,7 @@ public class UserApiImpl implements UserApi {
             FamilyJoinInfoDTO familyJoinInfoDTO = new FamilyJoinInfoDTO();
             familyJoinInfoDTO.setUserId(newUserId);
             familyJoinInfoDTO.setGender(userRegisterDTO.getGender());
+            familyJoinInfoDTO.setBirthDate(userRegisterDTO.getBirthDate());
             familyJoinInfoDTO.setInviteCode(inviteCode);
             familyJoinInfoDTO.setRelationToMemberId(
                     userRegisterDTO.getRelationToMemberId()
@@ -171,6 +172,7 @@ public class UserApiImpl implements UserApi {
         familyCreateInfoDTO.setUserId(newUserId);
         familyCreateInfoDTO.setFamilyName(userRegisterDTO.getFamilyName());
         familyCreateInfoDTO.setGender(userRegisterDTO.getGender());
+        familyCreateInfoDTO.setBirthDate(userRegisterDTO.getBirthDate());
 
         // 远程调用 family-service 创建家庭
         FamilyDTO familyDTO = familyApi.createFamily(
