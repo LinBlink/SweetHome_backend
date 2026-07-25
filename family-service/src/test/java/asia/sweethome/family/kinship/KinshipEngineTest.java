@@ -523,6 +523,44 @@ class KinshipEngineTest {
         }
     }
 
+    /**
+     * 一个孩子录了两个父亲（生父 + 养父），两条支系都必须能走到。
+     * <p>
+     * 这是「按第一条匹配的行取父亲」那种写法的最尖锐反例——前端旧引擎正是这么做的：
+     * 它问图要「那个父亲」，于是哪条 PARENT_OF 行先返回哪个就赢，<b>另一个父亲连同他
+     * 上面的整条支系直接从家谱里消失</b>。后端的建图是「一行一条边」，本来就没这个问题，
+     * 这里把它钉死，防止以后有人「优化」成按性别取单个家长。
+     */
+    @Test
+    void bothRecordedFathersAreReachable() {
+        Map<Long, FamilyMember> members = Map.of(
+                1L, member(1L, UserConstants.MALE),   // 我
+                2L, member(2L, UserConstants.MALE),   // 生父
+                3L, member(3L, UserConstants.MALE),   // 养父
+                4L, member(4L, UserConstants.MALE),   // 生父的爸爸
+                5L, member(5L, UserConstants.MALE)    // 养父的爸爸
+        );
+        List<FamilyRelation> relations = new ArrayList<>(List.of(
+                parentOf(2L, 1L),
+                parentOf(3L, 1L),
+                parentOf(4L, 2L),
+                parentOf(5L, 3L)
+        ));
+
+        Map<Long, RelationResult> expected = engine.computeRelations(relations, members, 1L);
+        assertThat(expected.get(2L).relationCode()).isEqualTo("F");
+        assertThat(expected.get(3L).relationCode()).isEqualTo("F");
+        assertThat(expected.get(4L).relationCode()).isEqualTo("F.F");
+        assertThat(expected.get(5L).relationCode()).isEqualTo("F.F");
+
+        // 且与顺序无关
+        List<FamilyRelation> shuffled = new ArrayList<>(relations);
+        for (int round = 0; round < 50; round++) {
+            Collections.shuffle(shuffled, new Random(round));
+            assertThat(engine.computeRelations(shuffled, members, 1L)).isEqualTo(expected);
+        }
+    }
+
     /** 同等长度时血亲路径优先于姻亲路径（API.md 11.3），且这一点不受输入顺序影响 */
     @Test
     void bloodPathWinsOverAffinalPathOfSameLength() {
