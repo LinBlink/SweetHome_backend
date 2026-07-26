@@ -320,7 +320,7 @@ R2_PUBLIC_BASE_URL=https://pub.your-domain.com
 
 ## 📖 API 概览
 
-完整 API 文档见 [`doc/API.md`](./doc/API.md)（2424 行，涵盖全部接口）。
+只展示部分API。
 
 ### 认证服务
 | 方法 | 路径 | 说明 |

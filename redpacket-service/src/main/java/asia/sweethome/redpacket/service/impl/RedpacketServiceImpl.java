@@ -16,13 +16,13 @@ import java.util.List;
 
 import asia.sweethome.api.ChatApi;
 import asia.sweethome.api.UserApi;
+import asia.sweethome.api.entity.dto.UserDTO;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 import asia.sweethome.redpacket.constant.RedisConstant;
 import asia.sweethome.redpacket.constant.RedpacketConstant;
 import asia.sweethome.redpacket.entity.dto.RedpacketDTO;
 import asia.sweethome.redpacket.entity.po.Redpacket;
-import asia.sweethome.redpacket.entity.vo.RedpacketGrabVO;
 import asia.sweethome.redpacket.entity.vo.RedpacketVO;
 import asia.sweethome.redpacket.mapper.RedpacketMapper;
 import asia.sweethome.redpacket.service.IRedpacketService;
@@ -186,7 +186,15 @@ public class RedpacketServiceImpl extends ServiceImpl<RedpacketMapper, Redpacket
             );
         }
 
-        return BeanUtil.copyProperties(redpacket, RedpacketVO.class);
+        RedpacketVO vo = BeanUtil.copyProperties(redpacket, RedpacketVO.class);
+
+        UserDTO user = userApi.findUserById(vo.getUserId());
+
+        vo.setUserAvatarUrl( user.getAvatarUrl() );
+        vo.setUsername( user.getName() );
+
+        return vo;
+
     }
 
     @Override

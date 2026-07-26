@@ -12,10 +12,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import asia.sweethome.api.ChatApi;
 import asia.sweethome.api.UserApi;
+import asia.sweethome.api.entity.dto.UserDTO;
 import asia.sweethome.common.exception.BusinessException;
 import asia.sweethome.common.exception.ErrorCode;
 import asia.sweethome.redpacket.config.LuaScriptLoader;
@@ -303,10 +307,51 @@ public class RedpacketGrabsServiceImpl extends ServiceImpl<RedpacketGrabsMapper,
                 userId
         ).list();
 
-        return BeanUtil.copyToList(
+        if (redpacketGrabList.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        List<RedpacketGrabVO> vo = BeanUtil.copyToList(
                 redpacketGrabList,
                 RedpacketGrabVO.class
         );
+
+        // 1. 收集我抢到的红包 id（去重），本库一次 IN 查出所有红包 → Map
+        List<Long> redpacketIdList = vo.stream()
+                .map(RedpacketGrabVO::getRedpacketId)
+                .distinct()
+                .toList();
+
+        Map<Long, Redpacket> redpacketMap = redpacketService.listByIds(redpacketIdList).stream()
+                .collect(Collectors.toMap(Redpacket::getId, r -> r));
+
+        // 2. 从红包里收集"发红包人" id（去重，同一人可能发过多个红包），
+        //    循环外一次 findUsersByIds 批量取用户 → Map（★规避 N+1，绝不在循环里逐个查★）
+        List<Long> ownerIdList = redpacketMap.values().stream()
+                .map(Redpacket::getUserId)
+                .distinct()
+                .toList();
+
+        Map<Long, UserDTO> ownerInfos = userApi.findUsersByIds(ownerIdList).stream()
+                .collect(Collectors.toMap(UserDTO::getId, u -> u));
+
+        // 3. 组装：给每条抢红包记录补上"发红包人"信息（只取 name/avatar，★不透传 passwordHash★）
+        for (RedpacketGrabVO grabVO : vo) {
+            Redpacket redpacket = redpacketMap.get(grabVO.getRedpacketId());
+            if (redpacket == null) {
+                continue;
+            }
+            grabVO.setRedpacketOwnerId(redpacket.getUserId());
+
+            UserDTO owner = ownerInfos.get(redpacket.getUserId());
+            if (owner != null) {
+                grabVO.setRedpacketOwnerUsername(owner.getName());
+                grabVO.setRedpacketOwnerUserAvatarUrl(owner.getAvatarUrl());
+            }
+        }
+
+        return vo;
+
     }
 
 
@@ -334,10 +379,32 @@ public class RedpacketGrabsServiceImpl extends ServiceImpl<RedpacketGrabsMapper,
                 redpacketId
         ).list();
 
-        return BeanUtil.copyToList(
+        // 完成基础字段的复制
+        List<RedpacketGrabVO> redpacketGrabVOS = BeanUtil.copyToList(
                 redpacketGrabList,
                 RedpacketGrabVO.class
         );
+
+        // 封装 user 详细信息，避免N次查询
+        Map<Long, UserDTO> userInfos = userApi.findUsersByIds(
+                redpacketGrabVOS.stream().map(
+                        RedpacketGrabVO::getUserId
+                ).toList()
+        ).stream().collect(
+                Collectors.toMap(
+                        UserDTO::getId,
+                        u -> u
+                ));
+
+        for (RedpacketGrabVO vo : redpacketGrabVOS) {
+            UserDTO u = userInfos.get(vo.getUserId());
+            if (u != null) {
+                vo.setUsername(u.getName());
+                vo.setUserAvatarUrl(u.getAvatarUrl());
+            }
+        }
+
+        return redpacketGrabVOS;
 
     }
 

@@ -17,6 +17,7 @@ else
 
     -- 加入抢到红包的记录到hash中。键是用户id，值是抢到的金额
     redis.call('HSET', KEYS[2], ARGV[1], amountGrabbed);
+    -- todo Redis优化，抢红包的记录不可能一直存redis，不会内存打爆
 
     -- 将抢红包记录到消息队列，消费者消费时入库
     redis.call('XADD', KEYS[3], '*',

@@ -23,6 +23,10 @@ public class RedpacketVO implements Serializable {
      */
     private Long userId;
 
+    private String username;
+
+    private String userAvatarUrl;
+
     /**
      * 使用bigint存储金额方便计算，使用浮点会有精度损失
      */
