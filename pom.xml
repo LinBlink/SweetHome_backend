@@ -31,9 +31,7 @@
         <module>chat-service</module>
         <module>location-service</module>
         <module>moment-service</module>
-        <module>shop-service</module>
         <module>health-service</module>
-        <module>ai-service</module>
         <module>redpacket-service</module>
     </modules>
     <scm>

@@ -1,15 +1,14 @@
-version: '3.8'
-
 services:
+  # ===== 基础设施 =====
   nacos:
     image: nacos/nacos-server:v2.4.3
     container_name: nacos
     restart: always
     environment:
       MODE: standalone
-      # 官方镜像支持这几个变量显式收窄堆大小，不给默认的自动探测值（会按宿主机内存算，白白吃掉几个G）
-      JVM_XMS: 256m
-      JVM_XMX: 512m
+      # 4G 预算下进一步收窄，standalone 模式够用
+      JVM_XMS: 512m
+      JVM_XMX: 768m
       JVM_XMN: 256m
     ports:
       - "8848:8848"
@@ -19,52 +18,38 @@ services:
     deploy:
       resources:
         limits:
-          memory: 768m   # ≈ JVM_XMX(512m) × 1.5，留堆外内存余量
-          cpus: "1.0"
-#  防止docker卡死，设置healthcheck
+          memory: 2g   # ≈ JVM_XMX(256m) × 1.25，standalone 元数据量小，余量可以收紧
+          cpus: "0.5"
 
-#  部署mysql 的最佳实践
   mysql:
-    image: mysql:8.0.36 # 1. 指定具体版本，避免使用 latest
+    image: mysql:8.0.36
     container_name: mysql
-    restart: always # 2. 生产环境建议设置为 always 或 unless-stopped
-
-    # 3. 环境变量管理（敏感信息推荐从 .env 文件读取）
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      TZ: Asia/Shanghai # 设置容器时区
-
-    # 4. 端口映射（如果仅内部服务访问，可省略 ports，改用 expose）
+      TZ: Asia/Shanghai
     ports:
       - "3306:3306"
-
-    # 5. 数据持久化与配置挂载
     volumes:
-      - mysql_data:/var/lib/mysql # 数据文件
-      - ./docker/mysql/mysql-init:/docker-entrypoint-initdb.d # 首次启动自动执行 doc/schema.sql 建表
-
-    # 7. 健康检查（极为重要！）
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/mysql-init:/docker-entrypoint-initdb.d
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}" ]
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 30s # 给数据库初始化留出足够的时间
+      start_period: 30s
     networks:
       - backend_network
-    deploy:
-      resources:
-        limits:
-          memory: 512m   # 本地开发数据量小，默认 innodb_buffer_pool_size(128m) 就够，留够堆外/连接开销即可
-          cpus: "1.0"
 
-  # chat-service 多实例 WebSocket 广播 / 在线状态依赖 Redis Pub/Sub
   redis:
     image: redis:7-alpine
     container_name: redis
     restart: always
-    # 显式给 Redis 自己设内存上限，让它按 LRU 优雅淘汰 key，而不是被容器 mem_limit 硬 OOM Kill
-    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    # 4G 预算下 maxmemory 收到 128mb，chat-service 的 Pub/Sub 消息体本身很小，够用
+    command: redis-server --maxmemory 128mb --maxmemory-policy allkeys-lru
     ports:
       - "6379:6379"
     volumes:
@@ -79,11 +64,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 384m   # ≈ maxmemory(256mb) + 堆外/持久化开销余量
-          cpus: "0.5"
+          memory: 192m   # ≈ maxmemory(128mb) + 持久化/连接开销余量
+          cpus: "0.3"
 
-  # user-service 多实例广播 L1 缓存失效 / 事件驱动依赖 Kafka
-  # KRaft 模式:单节点同时兼任 broker + controller，不再需要 Zookeeper（面试题 192）
   kafka:
     image: apache/kafka:3.9.0
     container_name: kafka
@@ -91,15 +74,12 @@ services:
     ports:
       - "9092:9092"
     environment:
-      KAFKA_HEAP_OPTS: "-Xms256m -Xmx512m"
+      # 单节点 KRaft，本地开发吞吐量低，堆没必要给到 512m
+      KAFKA_HEAP_OPTS: "-Xms192m -Xmx256m"
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
-      # 三个监听口:9092 给宿主机客户端、29092 给容器内客户端、9093 给 controller 选举
       KAFKA_LISTENERS: PLAINTEXT://:9092,INTERNAL://:29092,CONTROLLER://:9093
-      # 广播地址:两种客户端各拿各的
-      #   宿主机(user-service)→ localhost:9092
-      #   容器(kafdrop 等)     → kafka:29092
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,INTERNAL://kafka:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,INTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
@@ -107,26 +87,24 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      # 单分区场景下页缓存/日志段没必要预留太多，缩小段大小减少常驻内存
+      KAFKA_LOG_SEGMENT_BYTES: 268435456
       CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
     restart: unless-stopped
     volumes:
       - kafka_data:/var/lib/kafka/data
     networks:
       - backend_network
-    deploy:
-      resources:
-        limits:
-          memory: 768m
-          cpus: "1.0"
 
-  # Kafka GUI(浏览器 http://localhost:9000 看 topic / 消息)
+  # Kafka GUI，纯调试工具，日常不需要常驻，用 profile 隔离，需要看 topic 时再启：
+  # docker compose --profile debug up -d kafdrop
   kafdrop:
     image: obsidiandynamics/kafdrop
     container_name: kafdrop
+    profiles: ["debug"]
     ports:
       - "9000:9000"
     environment:
-      # kafdrop 在容器网络里，走 INTERNAL 广播地址 kafka:29092（不是 9092）
       KAFKA_BROKERCONNECT: "kafka:29092"
       SERVER_SERVLET_CONTEXTPATH: "/"
     restart: unless-stopped
@@ -135,16 +113,176 @@ services:
     deploy:
       resources:
         limits:
-          memory: 256m   # 只是个查看 topic 的轻量 Web UI，够用
-          cpus: "0.5"
+          memory: 160m
+          cpus: "0.3"
 
-# 定义持久化卷
+  # ===== 业务微服务 =====
+  # 统一约定：JAVA_OPTS 需要 Dockerfile 的 ENTRYPOINT 用 `sh -c "java $JAVA_OPTS -jar app.jar"`
+  # 这种形式读取环境变量才会生效，如果是写死的 `java -jar app.jar` 需要先改 Dockerfile。
+  # -XX:+UseSerialGC + -XX:ActiveProcessorCount=1：容器只分到 <1 核时，G1 的多 GC 线程反而是负担
+  # -XX:+ExitOnOutOfMemoryError：内存不够时让容器直接重启，而不是卡死在一个不可用状态
+
+  gateway:
+    restart: unless-stopped
+    networks:
+      - backend_network
+    volumes:
+      - ./.env:/app/.env:ro
+    environment:
+      JAVA_OPTS: >-
+        -Xms256m -Xmx512m
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    container_name: gateway
+    build: { context: ., args: { MODULE: gateway } }
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+
+  auth-service:
+    restart: unless-stopped
+    networks:
+      - backend_network
+    volumes:
+      - ./.env:/app/.env:ro
+    environment:
+      JAVA_OPTS: >-
+        -Xms256m -Xmx512m
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    env_file:
+      - .env
+    container_name: auth-service
+    build: { context: ., args: { MODULE: auth-service } }
+
+  user-service:
+    restart: unless-stopped
+    networks:
+      - backend_network
+    volumes:
+      - ./.env:/app/.env:ro
+    environment:
+      JAVA_OPTS: >-
+        -Xms256m -Xmx512m
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    env_file:
+      - .env
+    container_name: user-service
+    build: { context: ., args: { MODULE: user-service } }
+
+  family-service:
+    restart: unless-stopped
+    networks:
+      - backend_network
+    volumes:
+      - ./.env:/app/.env:ro
+    environment:
+      JAVA_OPTS: >-
+        -Xms256m -Xmx512m
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    env_file:
+      - .env
+    container_name: family-service
+    build: { context: ., args: { MODULE: family-service } }
+
+  chat-service:
+    restart: unless-stopped
+    networks:
+      - backend_network
+    volumes:
+      - ./.env:/app/.env:ro
+    environment:
+      JAVA_OPTS: >-
+        -Xms256m -Xmx512m
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    env_file:
+      - .env
+    container_name: chat-service
+    build: { context: ., args: { MODULE: chat-service } }
+
+  location-service:
+    restart: unless-stopped
+    networks:
+      - backend_network
+    volumes:
+      - ./.env:/app/.env:ro
+    environment:
+      JAVA_OPTS: >-
+        -Xms256m -Xmx512m
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    env_file:
+      - .env
+    container_name: location-service
+    build: { context: ., args: { MODULE: location-service } }
+
+  moment-service:
+    restart: unless-stopped
+    networks:
+      - backend_network
+    volumes:
+      - ./.env:/app/.env:ro
+    environment:
+      JAVA_OPTS: >-
+        -Xms256m -Xmx512m
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    env_file:
+      - .env
+    container_name: moment-service
+    build: { context: ., args: { MODULE: moment-service } }
+
+  health-service:
+    restart: unless-stopped
+    networks:
+      - backend_network
+    volumes:
+      - ./.env:/app/.env:ro
+    environment:
+      JAVA_OPTS: >-
+        -Xms256m -Xmx512m
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    env_file:
+      - .env
+    container_name: health-service
+    build: { context: ., args: { MODULE: health-service } }
+
+  redpacket-service:
+    restart: unless-stopped
+    networks:
+      - backend_network
+    volumes:
+      - ./.env:/app/.env:ro
+    environment:
+      JAVA_OPTS: >-
+        -Xms256m -Xmx512m
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    env_file:
+      - .env
+    container_name: redpacket-service
+    build: { context: ., args: { MODULE: redpacket-service } }
+
+
 volumes:
   mysql_data:
   redis_data:
   kafka_data:
 
-# 定义安全网络
 networks:
   backend_network:
     driver: bridge

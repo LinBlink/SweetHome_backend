@@ -43,6 +43,8 @@ sh:
     namespace: ${NACOS_NAMESPACE}
   ws:
     max-message-length: 2000
+    # WebSocket 握手允许的 Origin（逗号分隔，支持 * 通配）。仅浏览器客户端受此约束。
+    allowed-origin-patterns: "http://localhost:*,http://127.0.0.1:*,https://sweethome.asia,https://*.sweethome.asia"
 
 jwt:
   public-key: ${JWT_PUBLIC_KEY}
